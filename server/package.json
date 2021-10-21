@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "license": "MIT",
-  "type": "module",
   "author": "",
   "scripts": {
     "dev": "nodemon",
