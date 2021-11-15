@@ -20,7 +20,7 @@
       <hr class="ml-32 mr-32" />
     </div>
 
-    <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-4">
+    <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
         <button
           class="
@@ -57,7 +57,7 @@
 
     <br />
 
-    <div class="flex space-x-4">
+    <div class="flex space-x-4 ml-8 mr-8">
       <div class="flex-col items-center justify-center bg-gray-400 p-6">
         <div>
           <label class="text-white underline">FILTER BY</label>
@@ -100,11 +100,18 @@
 
       <br />
 
-      <div class="flex items-center justify-around bg-gray-400">
-        <div>Name</div>
-        <div>College</div>
-        <div>Department</div>
-        <div>Rating</div>
+      <div class="flex-col flex-grow">
+        <div class="flex items-center justify-around bg-gray-400">
+          <div class="text-white">Name</div>
+          <div class="text-white">College</div>
+          <div class="text-white">Department</div>
+          <div class="text-white">Rating</div>
+        </div>
+        <div class="overscroll-auto">
+          <div>
+            <!-- insert professors here -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
