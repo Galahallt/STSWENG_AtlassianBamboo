@@ -4,14 +4,11 @@
       flex
       items-center
       justify-center
-      h-screen
+      min-h-screen
       bg-gradient-to-tr
       via-blue-300
       from-green-500
       to-purple-to-tr
-      w-full
-      h-screen
-      block
     "
   >
     <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
@@ -42,6 +39,7 @@
         <div class="mt-4">
           <div class="flex items-baseline justify-center">
             <button
+              id="google-login"
               class="
                 px-6
                 py-2
@@ -60,3 +58,28 @@
     </div>
   </div>
 </template>
+
+<script>
+import { onMounted } from '@vue/runtime-core';
+import { generateKeyPairSync } from 'crypto';
+
+import * as api from '../api';
+
+export default {
+  name: 'Login',
+  setup() {
+    onMounted(() => {
+      gapi.signin2.render('google-login', {
+        onsuccess: loginUser(),
+      });
+    });
+    async function loginUser() {
+      try {
+        await api.loginUser();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  },
+};
+</script>
