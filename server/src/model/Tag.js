@@ -1,22 +1,25 @@
 // import mongoose module for schema modelling
 const mongoose = require('mongoose');
 
-const TagSchema = new.mongoose.Schema({
-	tagName: {
-		type: String,
-		required: true,
-	},
+const TagSchema = new mongoose.Schema(
+  {
+    tagName: {
+      type: String,
+      required: true,
+    },
 
-	instructorID: {
-    type: String,
-    required: true,
+    instructorID: {
+      type: String,
+      required: true,
+    },
+
+    timestamp: {
+      type: Date,
+      default: Date.now(),
+    },
   },
-
-  timestamp: {
-		type: Date,
-		default: Date.now(),
-	}
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 // implement tag schema as tag model
 const TagModel = mongoose.model('Tag', TagSchema);

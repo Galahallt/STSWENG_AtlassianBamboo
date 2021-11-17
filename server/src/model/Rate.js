@@ -1,27 +1,30 @@
 // import mongoose module for schema modelling
 const mongoose = require('mongoose');
 
-const RateSchema = new.mongoose.Schema({
-	rating: {
-    type: Number,
-    required: true,
-  },
-  
-  userID: {
-    type: String,
-    required: true,
-  },
+const RateSchema = new mongoose.Schema(
+  {
+    rating: {
+      type: Number,
+      required: true,
+    },
 
-  instructorID: {
-    type: String,
-    required: true,
-  },
+    userID: {
+      type: String,
+      required: true,
+    },
 
-  timestamp: {
-		type: Date,
-		default: Date.now(),
-	}
-}, { timestamps: true });
+    instructorID: {
+      type: String,
+      required: true,
+    },
+
+    timestamp: {
+      type: Date,
+      default: Date.now(),
+    },
+  },
+  { timestamps: true }
+);
 
 // implement rate schema as rate model
 const RateModel = mongoose.model('Rate', RateSchema);
