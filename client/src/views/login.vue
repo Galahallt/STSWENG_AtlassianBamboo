@@ -61,12 +61,9 @@
 
 <script>
 import { onMounted } from '@vue/runtime-core';
-import { generateKeyPairSync } from 'crypto';
-
 import * as api from '../api';
 
 export default {
-  name: 'Login',
   setup() {
     onMounted(() => {
       gapi.signin2.render('google-login', {

@@ -34,4 +34,7 @@ app.use(
   })
 );
 
+// routes implementation
+app.use('/', indexRoutes);
+
 module.exports = app;

@@ -3,6 +3,7 @@ export default {
     user: null,
     token: null,
   },
+  getters: {},
   mutations: {
     INIT_STATE(state) {
       state.user = JSON.parse(localStorage.getItem('user'));
