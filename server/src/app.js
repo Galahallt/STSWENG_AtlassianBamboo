@@ -3,8 +3,6 @@ import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import connectDatabase from './config/connectDB.js';
-import passport from 'passport';
-import './middleware/passport.js';
 
 // routes
 import indexRoutes from './routes/index_routes.js';
@@ -13,10 +11,6 @@ import indexRoutes from './routes/index_routes.js';
 connectDatabase();
 
 const app = express();
-
-// use passport for google login
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(express.json());
 

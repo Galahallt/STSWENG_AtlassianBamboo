@@ -35,36 +35,73 @@
       <h3 class="text-2xl font-bold text-center">
         Welcome to DLSU Profs to Pick!
       </h3>
-      <form action="">
-        <div class="mt-4">
-          <div class="flex items-baseline justify-center">
-            <button id="google-login">Login with Google Account</button>
-          </div>
+      <div class="mt-4">
+        <div class="flex items-baseline justify-center">
+          <button
+            @click="loginUser"
+            :disabled="!Vue3GoogleOauth.isInit || Vue3GoogleOauth.isAuthorized"
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-gray-900
+            "
+          >
+            Login with Google Account
+          </button>
         </div>
-      </form>
+        <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
+        <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted } from '@vue/runtime-core';
+import { inject, toRefs } from 'vue';
 import * as api from '../api';
 
 export default {
-  setup() {
-    onMounted(() => {
-      gapi.signin2.render('google-login', {
-        onsuccess: loginUser(),
-      });
-    });
-    async function loginUser() {
+  name: 'Login',
+  props: {
+    msg: String,
+  },
+  data() {
+    return {
+      user: '',
+    };
+  },
+
+  methods: {
+    async loginUser() {
       try {
-        const result = await api.loginUser();
-        console.log(result);
-      } catch (err) {
-        console.log(err);
+        const googleUser = await this.$gAuth.signIn();
+        if (!googleUser) {
+          console.log('empty google user');
+        } else {
+          console.log(googleUser);
+          // const result = await api.loginUser(googleUser);
+          // console.log(result);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    }
+    },
+  },
+  setup(props) {
+    const { isSignin } = toRefs(props);
+    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
+
+    const handleClickLogin = () => {};
+
+    return {
+      isSignin,
+      handleClickLogin,
+      Vue3GoogleOauth,
+    };
   },
 };
 </script>
