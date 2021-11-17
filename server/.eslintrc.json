@@ -5,12 +5,14 @@
     "node": true,
     "jest": true
   },
-  "extends": ["google", "prettier", "plugin:node/recommended"],
+  "extends": ["google", "prettier"],
   "plugins": ["prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": true,
     "requireConfigFile": false
   },
   "rules": {

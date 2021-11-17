@@ -1,19 +1,28 @@
 // import modules
-const express = require('express');
+import express from 'express';
 
 // import index controller object for index controller methods
-const indexController = require('../controller/index_controller');
+import indexController from '../controller/index_controller.js';
 
 // import passport
-const passport = require('passport');
-const passportSetup = require('../middleware/passport')
+import passport from 'passport';
 
 // get express router
 const router = express.Router();
 
 // route for logging in user to application
-router.post('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/login/callback', passport.authenticate('google', { failureRedirect: '/failed' }), indexController.postLogin);
+router.post(
+  '/login',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+router.get(
+  '/login/callback',
+  passport.authenticate('google', { failureRedirect: '/failed' }),
+  indexController.postLogin
+);
+
+router.get('/failed', indexController.failedLogin);
 
 // export index routes
-module.exports = router;
+export default router;

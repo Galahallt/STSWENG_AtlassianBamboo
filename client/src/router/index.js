@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/login.vue';
 import Error from '../views/error.vue';
+import Home from '../views/home.vue';
 
 const routes = [
   {
@@ -12,9 +13,17 @@ const routes = [
     },
   },
   {
-    path: '/login-fail',
+    path: '/failed',
     name: 'Error',
     component: Error,
+    meta: {
+      hideForAuth: true,
+    },
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
     meta: {
       requiresAuth: true,
     },

@@ -38,20 +38,7 @@
       <form action="">
         <div class="mt-4">
           <div class="flex items-baseline justify-center">
-            <button
-              id="google-login"
-              class="
-                px-6
-                py-2
-                mt-4
-                text-white
-                bg-green-600
-                rounded-lg
-                hover:bg-gray-900
-              "
-            >
-              Login with Google Account
-            </button>
+            <button id="google-login">Login with Google Account</button>
           </div>
         </div>
       </form>
@@ -72,7 +59,8 @@ export default {
     });
     async function loginUser() {
       try {
-        await api.loginUser();
+        const result = await api.loginUser();
+        console.log(result);
       } catch (err) {
         console.log(err);
       }
