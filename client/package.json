@@ -17,7 +17,7 @@
     "lodash": "^4.17.21",
     "vue": "^3.2.16",
     "vue-axios": "^3.3.7",
-    "vue-router": "^3.5.2",
+    "vue-router": "^4.0.12",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0"
   },
