@@ -101,15 +101,91 @@
       <br />
 
       <div class="flex-col flex-grow">
-        <div class="flex items-center justify-around bg-gray-400">
+        <div class="grid grid-cols-4 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>
           <div class="text-white">Rating</div>
         </div>
         <div class="overscroll-auto">
-          <div>
+          <div class="grid grid-cols-4 bg-gray-100">
             <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
+          </div>
+        </div>
+        <div class="overscroll-auto">
+          <div class="grid grid-cols-4 bg-gray-100">
+            <!-- insert professors here -->
+            <div class="text-black">Dr. Juanito Delos Reyes</div>
+            <div class="text-black">CCS</div>
+            <div class="text-black">ST</div>
+            <div class="text-black">5 star</div>
           </div>
         </div>
       </div>
