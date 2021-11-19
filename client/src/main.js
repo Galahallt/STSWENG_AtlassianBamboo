@@ -14,7 +14,7 @@ const gAuthOptions = {
   clientId: gAuthClientId,
   scope: 'email',
   prompt: 'consent',
-  fetch_basic_profile: false,
+  fetch_basic_profile: true,
 };
 
 app.use(router);

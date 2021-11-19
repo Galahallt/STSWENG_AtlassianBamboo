@@ -1,11 +1,39 @@
+import UserService from '../service/user_service.js';
+import logger from '../logger/index.js';
+
 const indexController = {
   // index controller method to login user
   postLogin: async (req, res) => {
     try {
-      console.log(req.body.getBasicProfile());
-      return res.status(204).json({ message: 'login' });
+      const email = req.body.email;
+      const domain = email.split('@').pop();
+
+      logger.info(domain);
+
+      if (domain != 'dlsu.edu.ph') {
+        logger.error(domain);
+        return res.status(400).json({ message: 'Not DLSU account!' });
+      } else {
+        const userExisting = await UserService.getUser({ email: email });
+
+        const user = {
+          fullName: req.body.fullName,
+          givenName: req.body.givenName,
+          familyName: req.body.familyName,
+          email: email,
+        };
+
+        const accessToken = req.body.accessToken;
+
+        if (userExisting == null) {
+          const newUser = await UserService.addUser(user);
+          logger.info('User added sucessfully!' + newUser);
+        }
+
+        return res.status(200).json({ user: user, accessToken: accessToken });
+      }
     } catch (error) {
-      console.log(error);
+      logger.error(error);
     }
   },
 };

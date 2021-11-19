@@ -10,10 +10,14 @@ export default {
       state.token = localStorage.getItem('token');
     },
     LOGIN_USER(state, payload) {
-      state.user = payload.data;
+      state.user = payload.user;
       localStorage.setItem('user', JSON.stringify({ ...state.user }));
       state.token = payload.accessToken;
       localStorage.setItem('token', state.token);
+    },
+    LOGOUT_USER(state) {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     },
   },
   actions: {
@@ -22,6 +26,9 @@ export default {
     },
     loginUser({ commit }, data) {
       commit('LOGIN_USER', data);
+    },
+    logoutUser({ commit }) {
+      commit('LOGOUT_USER');
     },
   },
 };

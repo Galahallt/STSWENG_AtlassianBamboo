@@ -45,6 +45,12 @@ router.beforeEach((to, from, next) => {
     } else {
       next({ name: 'Login' });
     }
+  } else if (hideForAuth) {
+    if (user != null) {
+      next({ name: 'Home' });
+    } else {
+      next();
+    }
   } else {
     next();
   }
