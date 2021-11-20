@@ -1,0 +1,73 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  RULES_CHANGES_PATH: "**/*"
+
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - $RULES_CHANGES_PATH
+    - when: manual
+      allow_failure: true
+
+.server:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "server/**/*"
+
+.client:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "client/**/*"
+
+server-build:
+  stage: build
+  extends: .server
+  needs: []
+  script:
+    - echo "Compiling the server code..."
+
+client-build:
+  stage: build
+  extends: .client
+  needs: []
+  script:
+    - echo "Compiling the client code..."
+
+server-test:
+  stage: test
+  extends: .server
+  needs: ["server-build"]
+  script:
+    - echo "Testing the server code..."
+
+client-test:
+  stage: test
+  extends: .client
+  needs: ["client-build"]
+  script:
+    - echo "Testing the client code..."
+
+server-deploy:
+  stage: deploy
+  extends: .server
+  needs: ["server-test"]
+  script:
+    - echo "Deploying the server code..."
+
+client-deploy:
+  stage: deploy
+  extends: .client
+  needs: ["client-test"]
+  script:
+    - echo "Deploying the client code..."
