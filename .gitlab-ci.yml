@@ -78,6 +78,7 @@ server-deploy:
   script:
     - echo "Deploying the server code..."
     - cd server
+    - yarn install
     - yarn dev
 
 client-deploy:
@@ -87,4 +88,5 @@ client-deploy:
   script:
     - echo "Deploying the client code..."
     - cd client
+    - yarn install
     - yarn dev
