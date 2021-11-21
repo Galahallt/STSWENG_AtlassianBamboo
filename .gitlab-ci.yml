@@ -43,10 +43,6 @@ server-build:
   stage: build
   extends: .server
   needs: []
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Compiling the server code..."
     - cd server
@@ -56,10 +52,6 @@ client-build:
   stage: build
   extends: .client
   needs: []
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Compiling the client code..."
     - cd client
@@ -69,10 +61,6 @@ server-test:
   stage: test
   extends: .server
   needs: ["server-build"]
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Testing the server code..."
 
@@ -80,10 +68,6 @@ client-test:
   stage: test
   extends: .client
   needs: ["client-build"]
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Testing the client code..."
 
@@ -91,22 +75,16 @@ server-deploy:
   stage: deploy
   extends: .server
   needs: ["server-test"]
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Deploying the server code..."
+    - cd server
     - yarn dev
 
 client-deploy:
   stage: deploy
   extends: .client
   needs: ["client-test"]
-  cache:
-    paths:
-      - node_modules/
-      - .yarn
   script:
     - echo "Deploying the client code..."
+    - cd client
     - yarn dev
