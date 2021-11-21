@@ -3,6 +3,9 @@ stages:
   - test
   - deploy
 
+default:
+  image: node:16.11.1
+
 variables:
   RULES_CHANGES_PATH: "**/*"
 
