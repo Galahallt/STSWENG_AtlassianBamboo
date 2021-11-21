@@ -36,6 +36,8 @@ server-build:
   needs: []
   script:
     - echo "Compiling the server code..."
+    - npm install -g yarn
+    - yarn install
 
 client-build:
   stage: build
@@ -43,6 +45,8 @@ client-build:
   needs: []
   script:
     - echo "Compiling the client code..."
+    - npm install -g yarn
+    - yarn install
 
 server-test:
   stage: test
