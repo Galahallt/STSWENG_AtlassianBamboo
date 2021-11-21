@@ -39,6 +39,7 @@ server-build:
   needs: []
   script:
     - echo "Compiling the server code..."
+    - cd server
     - yarn install
 
 client-build:
@@ -47,6 +48,7 @@ client-build:
   needs: []
   script:
     - echo "Compiling the client code..."
+    - cd client
     - yarn install
 
 server-test:
