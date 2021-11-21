@@ -9,6 +9,12 @@ default:
 variables:
   RULES_CHANGES_PATH: "**/*"
 
+before_script:
+  # Install yarn as outlined in (https://yarnpkg.com/lang/en/docs/install/#alternatives-stable)
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  # Make available in the current terminal
+  - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 .base-rules:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -37,6 +43,10 @@ server-build:
   stage: build
   extends: .server
   needs: []
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Compiling the server code..."
     - cd server
@@ -46,6 +56,10 @@ client-build:
   stage: build
   extends: .client
   needs: []
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Compiling the client code..."
     - cd client
@@ -55,6 +69,10 @@ server-test:
   stage: test
   extends: .server
   needs: ["server-build"]
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Testing the server code..."
 
@@ -62,6 +80,10 @@ client-test:
   stage: test
   extends: .client
   needs: ["client-build"]
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Testing the client code..."
 
@@ -69,14 +91,22 @@ server-deploy:
   stage: deploy
   extends: .server
   needs: ["server-test"]
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Deploying the server code..."
-    - npm run dev
+    - yarn dev
 
 client-deploy:
   stage: deploy
   extends: .client
   needs: ["client-test"]
+  cache:
+    paths:
+      - node_modules/
+      - .yarn
   script:
     - echo "Deploying the client code..."
-    - npm run dev
+    - yarn dev
