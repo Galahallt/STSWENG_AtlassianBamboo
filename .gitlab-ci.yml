@@ -71,7 +71,7 @@ server-deploy:
   needs: ["server-test"]
   script:
     - echo "Deploying the server code..."
-    - yarn dev
+    - npm run dev
 
 client-deploy:
   stage: deploy
@@ -79,4 +79,4 @@ client-deploy:
   needs: ["client-test"]
   script:
     - echo "Deploying the client code..."
-    - yarn dev
+    - npm run dev
