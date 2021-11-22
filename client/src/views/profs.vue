@@ -1,5 +1,15 @@
 <template>
-  <div>
+  <div
+    class="
+      bg-gradient-to-tr
+      via-blue-300
+      from-green-500
+      to-purple-to-tr
+      w-full
+      h-screen
+      block
+    "
+  >
     <!-- top navigation bar -->
     <div class="flex items-center justify-around ml-20 mr-20">
       <div>

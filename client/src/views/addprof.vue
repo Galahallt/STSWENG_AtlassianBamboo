@@ -1,5 +1,15 @@
 <template>
-  <div>
+  <div
+    class="
+      bg-gradient-to-tr
+      via-blue-300
+      from-green-500
+      to-purple-to-tr
+      w-full
+      h-screen
+      block
+    "
+  >
     <div class="flex items-center justify-around ml-20 mr-20">
       <div>
         <a href="#" class="hover:underline">Home</a>
@@ -19,7 +29,7 @@
       <hr class="ml-32 mr-32" />
     </div>
 
-    <div class="bg-gray-200">
+    <div>
       <div class="flex space-x-reverse flex-row-reverse mr-8">
         <div>
           <button
@@ -50,7 +60,7 @@
           <div class="text-black">Department</div>
           <div class="text-black">Courses</div>
         </div>
-        <div class="text-left space-y-6">
+        <div class="text-left space-y-6 col-span-5">
           <div>
             <input class="w-72" />
           </div>
@@ -63,8 +73,67 @@
           <div>
             <input class="w-72" />
           </div>
-          <div>
+          <div class="relative mt-20">
             <!-- insert dropdown -->
+            <select class="dropdown-field w-72">
+              <option value="placeholder" disabled selected hidden>
+                Select One
+              </option>
+              <option value="College of Business">College of Business</option>
+              <option value="School of Economics">School of Economics</option>
+              <option value="College of Liberal Arts">
+                College of Liberal Arts
+              </option>
+              <option value="College of Science">College of Science</option>
+              <option value="College of Engineering">
+                College of Engineering
+              </option>
+              <option value="College of Computer Studies">
+                College of Computer Studies
+              </option>
+              <option value="College of Education">College of Education</option>
+            </select>
+          </div>
+          <div>
+            <select class="dropdown-field w-72">
+              <option value="placeholder" disabled selected hidden>
+                Select One
+              </option>
+              <option value="ST">ST</option>
+              <option value="IS">IS</option>
+            </select>
+          </div>
+          <div cl>
+            <input class="w-72" />
+            <button
+              class="
+                px-3
+                py-1
+                ml-12
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+              "
+            >
+              +
+            </button>
+
+            <button
+              class="
+                px-3
+                py-1
+                ml-4
+                text-white
+                bg-red-600
+                rounded-lg
+                hover:bg-red-900
+                shadow-lg
+              "
+            >
+              -
+            </button>
           </div>
         </div>
       </div>
