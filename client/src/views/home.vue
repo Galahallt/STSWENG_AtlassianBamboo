@@ -17,6 +17,8 @@
     </button>
     <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
     <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
+    <vue3-star-ratings :disableClick="true" v-model="state.rating" />
+    <h1>{{ state.rating }}</h1>
   </div>
 </template>
 
@@ -28,13 +30,16 @@ button:disabled {
 </style>
 
 <script>
-import { inject, getCurrentInstance } from 'vue';
+import { inject, getCurrentInstance, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
   setup() {
+    let state = reactive({
+      rating: 0,
+    });
     const app = getCurrentInstance();
     const gAuth = app.appContext.config.globalProperties.$gAuth;
     const router = useRouter();
@@ -54,6 +59,7 @@ export default {
     }
 
     return {
+      state,
       Vue3GoogleOauth,
       logoutUser,
     };

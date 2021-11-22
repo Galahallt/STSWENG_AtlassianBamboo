@@ -1733,6 +1733,11 @@ vue3-google-oauth2@^1.0.6:
   resolved "https://registry.yarnpkg.com/vue3-google-oauth2/-/vue3-google-oauth2-1.0.6.tgz#bde2e17a565e83979d54f83e27bac8e7ced03b1a"
   integrity sha512-ebUW3V1jejImw2z9nggjczPj4jUnZArNq+kgTdLdGuf6k/zQDDCeGTLmTUiy5gSXMbzVz9PQWiVEj8eX6y/I0Q==
 
+vue3-star-ratings@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue3-star-ratings/-/vue3-star-ratings-1.0.7.tgz#b88261b990d7792004b67ff664cf318f498d6502"
+  integrity sha512-CXuomv1R6LLc4SqpIqbzWfcnqBTf3kn61e4mZ9YKDWJ+XpIqIyD4J8sa4qv9z7l9VFbnBi2ORF5HlfKyvMiAhQ==
+
 vue@^3.2.16:
   version "3.2.21"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.21.tgz#55f5665172d95cf97e806b9aad0a375180be23a1"
