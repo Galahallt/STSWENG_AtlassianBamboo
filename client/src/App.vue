@@ -1,10 +1,12 @@
 <template>
   <div>
-    <router-view />
+    <!-- <router-view /> -->
+    <rating />
   </div>
 </template>
 
 <script>
+import rating from './views/rating.vue';
 import { useStore } from 'vuex';
 export default {
   beforeCreate() {
