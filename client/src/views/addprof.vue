@@ -8,19 +8,20 @@
       w-full
       h-screen
       block
+      font-sans
     "
   >
-    <div class="flex items-center justify-around ml-20 mr-20">
-      <div>
+    <div class="flex items-center justify-around ml-20 mr-20 text-xl">
+      <div class="mt-6">
         <a href="#" class="hover:underline">Home</a>
       </div>
-      <div>
+      <div class="mt-6">
         <a href="#" class="hover:underline">View Professors</a>
       </div>
-      <div>
+      <div class="mt-6">
         <a href="#" class="hover:underline">FAQs</a>
       </div>
-      <div>
+      <div class="mt-6">
         <a href="#" class="hover:underline">Contact Us</a>
       </div>
     </div>
