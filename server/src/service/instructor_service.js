@@ -18,8 +18,29 @@ const instructorService = {
   getUserRatings: async (userID) =>
     Rate.find({ userID: userID }).sort({ createdAt: 'descending' }),
 
+  // this method retrieves all instructor ratings
+  // from most to least recent
   getInstructorRatings: async (instructorID) =>
     Rate.find({ instructorID: instructorID }).sort({ createdAt: 'descending' }),
+
+  // add new rating to instructor
+  addRating: async (rating) => {
+    const newRating = new Rate({
+      rating: rating.rating,
+      userID: rating.userID,
+      instructorID: rating.instructorID,
+      timestamp: rating.timestamp,
+    });
+    await newRating.save();
+  },
+
+  // update rating of instructor
+  updateRating: async (id, data) =>
+    Rate.findOneAndUpdate(
+      { id: id },
+      { $set: data },
+      { new: true, omitUndefined: true }
+    ),
 };
 
 export default instructorService;
