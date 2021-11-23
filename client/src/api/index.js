@@ -11,4 +11,4 @@ API.interceptors.request.use((req) => {
 });
 
 // user login api methods
-export const loginUser = (googleUser) => API.post('/login', googleUser);
+export const loginUser = (user) => API.post('/login', user);

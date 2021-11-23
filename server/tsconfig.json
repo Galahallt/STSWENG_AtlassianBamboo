@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "./built/",
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "target": "ES2017",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "lib": ["es2017", "dom"]
+  },
+  "include": ["**/*"]
+}
