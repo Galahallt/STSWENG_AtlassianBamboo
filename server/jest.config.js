@@ -1,4 +1,5 @@
-module.exports = {
+export default {
+  preset: 'ts-jest',
   testEnvironment: 'node',
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['<rootDir>/src/**/*.{js,ts}'],
@@ -12,4 +13,9 @@ module.exports = {
   },
   moduleDirectories: ['node_modules', 'src'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
+  },
+  transformIgnorePatterns: ['node_modules/(?!(mongoose|mongodb))'],
 };

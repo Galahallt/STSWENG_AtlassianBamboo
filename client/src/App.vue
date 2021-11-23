@@ -6,19 +6,33 @@
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* web application's scrollbar */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 8px;
+  background: #cfd8dc;
+}
+
+::-webkit-scrollbar-track {
+  background: #cfd8dc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #90a4ae;
+  border-radius: 6px;
+  border: 3px solid #07090a;
 }
 </style>
 
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-//import AdminList from './views/adminlist.vue';
-import AddAdmin from './views/addadmin.vue';
+<script>
+import { useStore } from 'vuex';
+export default {
+  beforeCreate() {
+    const store = useStore();
+    const loadData = async () => {
+      await store.dispatch('initState');
+    };
+    loadData();
+  },
+};
 </script>
