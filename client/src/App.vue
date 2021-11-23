@@ -1,6 +1,8 @@
 <template>
-  <AddAdmin />
-  <!-- <AdminList /> -->
+    <div>
+
+        <router-view />
+    </div>
 </template>
 
 <style>

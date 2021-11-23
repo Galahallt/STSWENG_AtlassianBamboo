@@ -1,6 +1,6 @@
-const app = require('./app.js');
-const dotenv = require('dotenv-safe');
-const logger = require('./logger/index.js');
+import app from './app.js';
+import dotenv from 'dotenv-safe';
+import logger from './logger/index.js';
 
 // get .env config values
 dotenv.config();

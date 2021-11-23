@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const logger = require('../logger/index.js');
-const dotenv = require('dotenv-safe');
+import mongoose from 'mongoose';
+import logger from '../logger/index.js';
+import dotenv from 'dotenv-safe';
 
 dotenv.config();
 
@@ -15,4 +15,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

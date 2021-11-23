@@ -337,6 +337,19 @@
     </div>
   </div>
 </template>
+<script>
+// import { getCurrentInstance } from '@vue/runtime-core';
+
+//     export default{
+//         name: 'Admin List',
+//         setup()
+//         {
+//             const app = getCurrentInstance();
+//             const router = useRouter();
+//             return
+//         }
+//     };
+</script>
 
 <style>
 .menu {
@@ -349,4 +362,4 @@
 }
 </style>
 
-<script></script>
+
