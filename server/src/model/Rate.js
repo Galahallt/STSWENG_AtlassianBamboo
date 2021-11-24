@@ -1,5 +1,5 @@
 // import mongoose module for schema modelling
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const RateSchema = new mongoose.Schema(
   {

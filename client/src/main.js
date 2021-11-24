@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import gAuth from 'vue3-google-oauth2';
+import FontAwesomeIcon from './utilities/fontawesome.js';
+import { VueCsvImportPlugin } from 'vue-csv-import';
 import './styles/index.css';
 
 const app = createApp(App);
@@ -17,7 +19,9 @@ const gAuthOptions = {
   fetch_basic_profile: true,
 };
 
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(router);
 app.use(store);
+app.use(VueCsvImportPlugin);
 app.use(gAuth, gAuthOptions);
 app.mount('#app');

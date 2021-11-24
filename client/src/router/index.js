@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/login.vue';
 import Error from '../views/error.vue';
 import Home from '../views/home.vue';
+import AddProf from '../views/addProf.vue';
 
 const routes = [
   {

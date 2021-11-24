@@ -1,0 +1,148 @@
+<template>
+  <div
+    class="
+      bg-gradient-to-tr
+      via-blue-300
+      from-green-500
+      to-purple-to-tr
+      w-full
+      h-screen
+      block
+      font-sans
+    "
+  >
+    <nav-bar />
+
+    <!-- top navigation bar -->
+    <!-- <div class="flex items-center justify-around ml-20 mr-20">
+      <div class="mt-6">
+        <a href="#" class="hover:underline">Home</a>
+      </div>
+      <div class="mt-6">
+        <a href="#" class="hover:underline">View Professors</a>
+      </div>
+      <div class="mt-6">
+        <a href="#" class="hover:underline">FAQs</a>
+      </div>
+      <div class="mt-6">
+        <a href="#" class="hover:underline">Contact Us</a>
+      </div>
+    </div> -->
+
+    <!-- <div>
+      <hr class="ml-32 mr-32" />
+    </div> -->
+
+    <div>
+      <div class="flex space-x-reverse flex-row-reverse mr-8">
+        <div>
+          <button
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
+          >
+            Save
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-9 gap-4">
+        <div class="col-span-3"></div>
+        <div class="text-left col-span-1 space-y-6">
+          <div class="text-black">First Name</div>
+          <div class="text-black">Last Name</div>
+          <div class="text-black">DLSU Email</div>
+          <div class="text-black">College</div>
+          <div class="text-black">Department</div>
+          <div class="text-black">Courses</div>
+        </div>
+        <div class="text-left space-y-6 col-span-5">
+          <div>
+            <input class="w-72" />
+          </div>
+          <div>
+            <input class="w-72" />
+          </div>
+          <div>
+            <input class="w-72" />
+          </div>
+          <div>
+            <input class="w-72" />
+          </div>
+          <div class="relative mt-20">
+            <!-- insert dropdown -->
+            <select class="dropdown-field w-72">
+              <option value="placeholder" disabled selected hidden>
+                Select One
+              </option>
+              <option value="College of Business">College of Business</option>
+              <option value="School of Economics">School of Economics</option>
+              <option value="College of Liberal Arts">
+                College of Liberal Arts
+              </option>
+              <option value="College of Science">College of Science</option>
+              <option value="College of Engineering">
+                College of Engineering
+              </option>
+              <option value="College of Computer Studies">
+                College of Computer Studies
+              </option>
+              <option value="College of Education">College of Education</option>
+            </select>
+          </div>
+          <div>
+            <select class="dropdown-field w-72">
+              <option value="placeholder" disabled selected hidden>
+                Select One
+              </option>
+              <option value="ST">ST</option>
+              <option value="IS">IS</option>
+            </select>
+          </div>
+          <div cl>
+            <input class="w-72" />
+            <button
+              class="
+                px-2
+                ml-12
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+              "
+            >
+              +
+            </button>
+
+            <button
+              class="
+                px-2
+                ml-4
+                text-white
+                bg-red-600
+                rounded-lg
+                hover:bg-red-900
+                shadow-lg
+              "
+            >
+              -
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import NavBar from '../components/NavBar.vue';
+export default { name: 'Home', components: { NavBar } };
+</script>

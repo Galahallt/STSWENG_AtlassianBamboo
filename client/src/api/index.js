@@ -12,3 +12,7 @@ API.interceptors.request.use((req) => {
 
 // user login api methods
 export const loginUser = (user) => API.post('/login', user);
+
+// professor api methods
+export const addProf = (profData) => API.post('/professor/addProf', profData);
+export const getAllProfs = () => API.get('/professor/getAllProfs');

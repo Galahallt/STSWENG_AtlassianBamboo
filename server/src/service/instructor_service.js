@@ -9,6 +9,24 @@ import Rate from '../model/Rate.js';
 
 // create instructor receipt model that contains methods for rating receipt data manipulation
 const instructorService = {
+  // this method retrieves and returns a specific instructor
+  getProf: async (data) => Instructor.findOne(data),
+  //this method retrieves and returns all instructors from the database
+  getAllProfs: async () =>
+    Instructor.find({}).sort({ createdAt: 'descending' }),
+  // this method adds a new instructor to the database
+  addProf: async (prof) => {
+    const newProf = new Instructor({
+      id: prof.id,
+      lastName: prof.lastName,
+      firstName: prof.firstName,
+      email: prof.email,
+      college: prof.college,
+      department: prof.department,
+      courses: prof.courses,
+    });
+    return newProf.save();
+  },
   // this retrieves and returns all rating receipt data in the database
   // from most to least recent
   getAllRatings: async () => Rate.find({}).sort({ createdAt: 'descending' }),
