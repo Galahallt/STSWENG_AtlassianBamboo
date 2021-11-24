@@ -134,10 +134,54 @@
     </button>
     <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
     <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1> -->
-
-    <div>
-      <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-      <h1>{{ state.rating }}</h1>
+    <div class="grid grid-cols-10 gap-4 mt-12">
+      <div class="col-span-3"></div>
+      <div class="col-span-5 space-y-6 text-left">
+        <div class="text-black text-3xl font-bold">Dr. Juanito Delos Reyes</div>
+        <div class="text-black flex">
+          <div>Email:</div>
+          <div class="ml-2">juanito.delos.reyes@dlsu.edu.ph</div>
+        </div>
+        <div class="text-black flex">
+          <div>College:</div>
+          <div class="ml-2">CCS</div>
+        </div>
+        <div class="text-black flex">
+          <div>Department:</div>
+          <div class="ml-2">ST</div>
+        </div>
+        <div class="text-black flex">
+          <div>Rating:</div>
+          <div class="ml-2">5/5</div>
+        </div>
+        <div class="text-black flex">
+          <div>Courses taught:</div>
+          <div class="ml-2">STSWENG, CSSWENG, CCINFOM</div>
+        </div>
+      </div>
+      <div class="col-span-2 mr-8">
+        <div class="flex flex-row-reverse mr-6">
+          <button
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
+          >
+            Write Review
+          </button>
+        </div>
+        <vue3-star-ratings :disableClick="true" v-model="state.rating" />
+        <div class="flex justify-center">
+          <div>Numeric value:</div>
+          <div class="ml-2">{{ state.rating }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
