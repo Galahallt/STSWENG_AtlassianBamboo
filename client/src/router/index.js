@@ -29,14 +29,6 @@ const routes = [
       requiresAuth: true,
     },
   },
-  {
-    path: '/addProf',
-    name: 'AddProf',
-    component: AddProf,
-    meta: {
-      requiresAuth: true,
-    },
-  },
 ];
 
 const router = createRouter({

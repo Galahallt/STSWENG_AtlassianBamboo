@@ -1,5 +1,5 @@
 // get rating service static object from service folder
-import instructorService from "../service/instructor_service.js";
+import instructorService from '../service/instructor_service.js';
 
 const instructorController = {
   // get all ratings
@@ -65,7 +65,7 @@ const instructorController = {
       const day = date.getDate().toString().padStart(2, 0);
       const formattedDate = `${year}-${month}-${day}`;
 
-      const userID = await UserService.getUser({ req.body.userID });
+      const userID = await UserService.getUser({ id: req.body.userID });
 
       const rate = {
         rating: req.body.rating,
