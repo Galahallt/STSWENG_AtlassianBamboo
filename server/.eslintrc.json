@@ -5,11 +5,11 @@
     "node": true,
     "jest": true
   },
-  "extends": ["google", "prettier"],
+  "extends": ["google", "prettier", "plugin:node/recommended"],
   "plugins": ["prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
+    "ecmaVersion": 12,
     "sourceType": "module",
     "allowImportExportEverywhere": false,
     "codeFrame": true,

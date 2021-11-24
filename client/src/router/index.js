@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/login.vue';
 import Error from '../views/error.vue';
 import Home from '../views/home.vue';
+import AddProf from '../views/addProf.vue';
 
 const routes = [
   {
@@ -28,6 +29,14 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/addProf',
+    name: 'AddProf',
+    component: AddProf,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -44,6 +53,12 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next({ name: 'Login' });
+    }
+  } else if (hideForAuth) {
+    if (user != null) {
+      next({ name: 'Home' });
+    } else {
+      next();
     }
   } else {
     next();

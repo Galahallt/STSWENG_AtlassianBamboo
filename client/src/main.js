@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import gAuth from 'vue3-google-oauth2';
+import FontAwesomeIcon from './utilities/fontawesome.js';
 import './styles/index.css';
 
 const app = createApp(App);
@@ -14,9 +15,10 @@ const gAuthOptions = {
   clientId: gAuthClientId,
   scope: 'email',
   prompt: 'consent',
-  fetch_basic_profile: false,
+  fetch_basic_profile: true,
 };
 
+app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(router);
 app.use(store);
 app.use(gAuth, gAuthOptions);

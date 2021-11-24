@@ -53,54 +53,78 @@
             Login with Google Account
           </button>
         </div>
-        <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
-        <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
+        <p
+          v-if="state.error"
+          class="ml-2 mt-4 text-red-600 manrope-bold text-center text-sm"
+        >
+          Please use a DLSU account!
+        </p>
       </div>
     </div>
   </div>
 </template>
 
+<style>
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+</style>
+
 <script>
-import { inject, toRefs } from 'vue';
+import { inject, getCurrentInstance, reactive } from 'vue';
+import { useStore } from 'vuex';
 import * as api from '../api';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      user: '',
-    };
-  },
+  setup() {
+    let state = reactive({
+      error: false,
+    });
+    const app = getCurrentInstance();
+    const gAuth = app.appContext.config.globalProperties.$gAuth;
+    const router = useRouter();
+    const store = useStore();
+    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
 
-  methods: {
-    async loginUser() {
+    async function loginUser() {
       try {
-        const googleUser = await this.$gAuth.signIn();
+        const googleUser = await gAuth.signIn();
         if (!googleUser) {
           console.log('empty google user');
         } else {
-          console.log(googleUser);
-          // const result = await api.loginUser(googleUser);
-          // console.log(result);
+          const profile = googleUser.getBasicProfile();
+
+          const user = {
+            id: profile.getId(),
+            fullName: profile.getName(),
+            givenName: profile.getGivenName(),
+            familyName: profile.getFamilyName(),
+            imageURL: profile.getImageUrl(),
+            email: profile.getEmail(),
+            accessToken: gAuth.instance.currentUser.get().getAuthResponse()
+              .access_token,
+          };
+          const result = await api.loginUser(user);
+          console.log(result.data);
+          if (result.data) {
+            store.dispatch('loginUser', result.data);
+            router.push({ name: 'Home' });
+          }
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.response.data);
+        await gAuth.signOut();
+        state.error = true;
       }
-    },
-  },
-  setup(props) {
-    const { isSignin } = toRefs(props);
-    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
-
-    const handleClickLogin = () => {};
+    }
 
     return {
-      isSignin,
-      handleClickLogin,
       Vue3GoogleOauth,
+      loginUser,
+      state,
     };
   },
 };
