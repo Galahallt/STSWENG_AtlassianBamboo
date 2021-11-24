@@ -65,7 +65,7 @@ const instructorController = {
       const day = date.getDate().toString().padStart(2, 0);
       const formattedDate = `${year}-${month}-${day}`;
 
-      const userID = await UserService.getUser({ req.userID.userID });
+      const userID = await UserService.getUser({ req.body.userID });
 
       const rate = {
         rating: req.body.rating,
