@@ -79,7 +79,7 @@
                 name="lastName"
                 type="text"
                 v-model.trim="addProfData.lastName"
-                class="manrope-regular input-text-field w-80 ml-10"
+                class="manrope-regular input-text-field w-80 ml-10 capitalize"
                 :class="{
                   'border-red-500': v.lastName.$error,
                 }"
@@ -105,7 +105,7 @@
                 name="firstName"
                 type="text"
                 v-model.trim="addProfData.firstName"
-                class="manrope-regular input-text-field w-80 ml-10"
+                class="manrope-regular input-text-field w-80 ml-10 capitalize"
                 :class="{
                   'border-red-500': v.firstName.$error,
                 }"
@@ -131,7 +131,7 @@
                 name="email"
                 type="email"
                 v-model.trim="addProfData.email"
-                class="manrope-regular input-text-field w-80 ml-9"
+                class="manrope-regular input-text-field w-80 ml-9 lowercase"
                 @keyup="isValidProf"
                 :class="{
                   'border-red-500': v.email.$error,
@@ -364,7 +364,7 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field w-80"
+                class="ml-14 input-text-field w-80 uppercase"
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -422,20 +422,6 @@
           </div>
         </div>
       </addProfModal>
-      <button
-        class="
-          px-6
-          py-2
-          mt-4
-          text-white
-          bg-green-600
-          rounded-lg
-          hover:bg-green-900
-          shadow-lg
-        "
-      >
-        Add Multiple Professors
-      </button>
     </div>
     <br />
     <div class="flex space-x-4 ml-8 mr-8">
@@ -481,94 +467,23 @@
 
       <br />
 
-      <div class="flex-col flex-grow">
+      <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
         <div class="grid grid-cols-4 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>
           <div class="text-white">Rating</div>
         </div>
-        <div class="overscroll-auto">
+        <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
+        <!-- <div class="overscroll-auto">
           <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
+            
             <div class="text-black">Dr. Juanito Delos Reyes</div>
             <div class="text-black">CCS</div>
             <div class="text-black">ST</div>
             <div class="text-black">5/5</div>
           </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -649,6 +564,16 @@ ul {
   border: none;
   cursor: pointer;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
 </style>
 
 <script>
@@ -656,20 +581,25 @@ import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
+import profInfo from '../components/profInfo.vue';
 import { email, required, alpha, helpers } from '@vuelidate/validators';
-import { ref, watch, nextTick, onMounted, reactive } from 'vue';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
   components: {
     NavBar,
     addProfModal,
+    profInfo,
   },
   setup() {
     const state = reactive({
       disable: null,
       error: null,
       invalidEmail: null,
+      invalidFile: null,
+      empty: null,
+      profs: null,
     });
 
     const addProfData = reactive({
@@ -715,7 +645,6 @@ export default {
     // toggles add professor modal
     function toggleAddProfModal() {
       showAddProfModal.value = !showAddProfModal.value;
-      console.log(showAddProfModal.value);
     }
 
     const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
@@ -778,6 +707,26 @@ export default {
         state.invalidEmail = addProfData.email;
       }
     }
+
+    async function initProfs() {
+      try {
+        const result = await api.getAllProfs();
+        state.profs = result.data;
+
+        if (state.profs.length !== 0) {
+          state.empty = false;
+        } else {
+          state.empty = true;
+        }
+      } catch (err) {
+        console.log(err.response.data);
+        state.empty = true;
+      }
+    }
+
+    onBeforeMount(() => {
+      initProfs();
+    });
 
     function isValidProf() {
       state.error =

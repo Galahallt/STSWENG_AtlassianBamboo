@@ -9,5 +9,8 @@ const router = express.Router();
 // route for adding instructor to database
 router.post('/addProf', instructorController.postAddProf);
 
+// route for getting all instructors from database
+router.get('/getAllProfs', instructorController.getAllProfs);
+
 // export instructor routes
 export default router;
