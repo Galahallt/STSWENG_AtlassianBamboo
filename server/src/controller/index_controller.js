@@ -1,5 +1,6 @@
 import UserService from '../service/user_service.js';
 import logger from '../logger/index.js';
+import uniqid from 'uniqid';
 
 const indexController = {
   // index controller method to login user
@@ -17,9 +18,11 @@ const indexController = {
         const userExisting = await UserService.getUser({ email: email });
 
         const user = {
+          id: uniqid(),
           fullName: req.body.fullName,
           givenName: req.body.givenName,
           familyName: req.body.familyName,
+          imgURL: req.body.imageURL,
           email: email,
         };
 
@@ -29,6 +32,8 @@ const indexController = {
           const newUser = await UserService.addUser(user);
           logger.info('User added sucessfully!' + newUser);
         }
+
+        delete user.id;
 
         return res.status(200).json({ user: user, accessToken: accessToken });
       }
