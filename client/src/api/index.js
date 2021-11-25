@@ -15,4 +15,6 @@ export const loginUser = (user) => API.post('/login', user);
 
 // professor api methods
 export const addProf = (profData) => API.post('/professor/addProf', profData);
+export const addProfsCsv = (profData) =>
+  API.post('/professor/addProfsCsv', profData);
 export const getAllProfs = () => API.get('/professor/getAllProfs');

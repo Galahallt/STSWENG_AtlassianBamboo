@@ -422,6 +422,85 @@
           </div>
         </div>
       </addProfModal>
+      <button
+        class="
+          px-6
+          py-2
+          mt-4
+          text-white
+          bg-green-600
+          rounded-lg
+          hover:bg-green-900
+          shadow-lg
+        "
+        @click="toggleMultipleAddProfModal"
+      >
+        Add Multiple Professors
+      </button>
+      <multipleAddProfModal
+        :multipleAddProf="showMultipleAddProfModal"
+        @close="toggleMultipleAddProfModal"
+      >
+        <p class="mt-12">
+          CSV File must contain headers and follow this format: [Last Name,
+          First Name, DLSU Email, College, Department, Courses]
+        </p>
+        <div class="mt-4 flex-col">
+          <div class="flex justify-center">
+            <label
+              for="csv-file"
+              class="
+                px-6
+                py-2
+                mt-4
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+              "
+              >Upload CSV File</label
+            >
+            <input
+              id="csv-file"
+              name="csv-file"
+              type="file"
+              ref="file"
+              accept=".csv"
+              class="hidden"
+              @change="onFileUpload"
+            />
+          </div>
+
+          <div class="flex justify-center">
+            <p v-if="!state.fileExisting" class="text-red-500">
+              No Files Selected
+            </p>
+            <p v-if="state.fileExisting">
+              {{ state.csvFile.name }}
+            </p>
+          </div>
+        </div>
+        <button
+          class="
+            px-6
+            py-2
+            mt-4
+            text-white
+            bg-green-600
+            rounded-lg
+            hover:bg-green-900
+            shadow-lg
+            flex-shrink
+            content-center
+            update-btn
+          "
+          @click="addProfsCsv"
+          :disabled="!state.csvFile"
+        >
+          Add Multiple Professors
+        </button>
+      </multipleAddProfModal>
     </div>
     <br />
     <div class="flex space-x-4 ml-8 mr-8">
@@ -580,6 +659,7 @@ ul {
 import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
+import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, alpha, helpers } from '@vuelidate/validators';
@@ -591,6 +671,7 @@ export default {
     NavBar,
     addProfModal,
     profInfo,
+    multipleAddProfModal,
   },
   setup() {
     const state = reactive({
@@ -600,6 +681,8 @@ export default {
       invalidFile: null,
       empty: null,
       profs: null,
+      fileExisting: null,
+      csvFile: null,
     });
 
     const addProfData = reactive({
@@ -611,7 +694,10 @@ export default {
       courses: [],
     });
 
+    const file = ref(null);
+
     const showAddProfModal = ref(false);
+    const showMultipleAddProfModal = ref(false);
 
     const newTag = ref('');
     const paddingLeft = ref(10);
@@ -632,9 +718,10 @@ export default {
 
     // add the new tag to the tags array
     function addTag(tag) {
-      addProfData.courses.push(tag);
-      newTag.value = '';
-      console.log(addProfData.courses);
+      if (tag) {
+        addProfData.courses.push(tag.toUpperCase());
+        newTag.value = '';
+      }
     }
 
     // remove the latest tag from the tags array
@@ -645,6 +732,11 @@ export default {
     // toggles add professor modal
     function toggleAddProfModal() {
       showAddProfModal.value = !showAddProfModal.value;
+    }
+
+    // toggles multiple add professor modal
+    function toggleMultipleAddProfModal() {
+      showMultipleAddProfModal.value = !showMultipleAddProfModal.value;
     }
 
     const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
@@ -691,21 +783,37 @@ export default {
     console.log;
 
     async function addProf() {
+      console.log(addProfData);
       try {
+        formatAddProfInputs();
+        console.log(addProfData);
+
         const validated = await v.value.$validate();
-        console.log(v.value);
+
         if (validated) {
-          console.log('hi');
           const res = await api.addProf(addProfData);
+          if (res) {
+            state.profs.unshift(res.data);
+          }
+
           state.error = null;
           toggleAddProfModal();
-          console.log(res);
         }
       } catch (error) {
         console.log(error.response.data);
         state.error = error.response.data.message;
         state.invalidEmail = addProfData.email;
       }
+    }
+
+    function formatAddProfInputs() {
+      addProfData.lastName = titleCase(addProfData.lastName);
+      addProfData.firstName = titleCase(addProfData.firstName);
+      addProfData.email = addProfData.email.toLowerCase();
+    }
+
+    function titleCase(str) {
+      return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
     }
 
     async function initProfs() {
@@ -735,9 +843,27 @@ export default {
           : false;
     }
 
+    function onFileUpload() {
+      state.fileExisting = file.value.files.length != 0 ? true : false;
+      if (state.fileExisting) {
+        state.csvFile = file.value.files[0];
+        console.log('file: ' + file.value.files[0].name);
+      }
+    }
+
+    async function addProfsCsv() {
+      console.log('hi');
+      const formData = new FormData();
+      formData.append('csv-file', state.csvFile);
+      const res = await api.addProfsCsv(formData);
+      console.log(res);
+    }
+
     return {
       toggleAddProfModal,
+      toggleMultipleAddProfModal,
       showAddProfModal,
+      showMultipleAddProfModal,
       newTag,
       addTag,
       removeTag,
@@ -746,8 +872,12 @@ export default {
       addProfData,
       state,
       addProf,
+      addProfsCsv,
       v,
       isValidProf,
+      titleCase,
+      file,
+      onFileUpload,
     };
   },
 };

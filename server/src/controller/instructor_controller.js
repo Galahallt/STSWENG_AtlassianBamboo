@@ -13,6 +13,8 @@ import Tag from '../model/Tag.js';
 import Rate from '../model/Rate.js';
 
 import uniqid from 'uniqid';
+import csv from 'fast-csv';
+import fs from 'fs';
 
 const instructorController = {
   // add professor to database
@@ -39,8 +41,6 @@ const instructorController = {
         const newProf = await instructorService.addProf(prof);
         logger.info('Professor added successfully' + newProf);
 
-        delete prof.id;
-
         return res.status(200).json(newProf);
       } else {
         return res.status(400).json({ message: 'Professor already exists.' });
@@ -49,6 +49,25 @@ const instructorController = {
       logger.error(err);
       // if error has occurred, send server error status and message
       return res.status(500).json({ message: 'Server Error' });
+    }
+  },
+
+  // add multiple professors to database via csv
+  postAddProfsCsv: async (req, res) => {
+    try {
+      const fileRows = [];
+      csv
+        .parseFile(req.file.path)
+        .on('data', function (data) {
+          fileRows.push(data);
+        })
+        .on('end', function () {
+          fs.unlinkSync(req.file.path);
+          logger.info(fileRows);
+          return res.status(200).json(fileRows);
+        });
+    } catch (error) {
+      logger.error(error);
     }
   },
 
