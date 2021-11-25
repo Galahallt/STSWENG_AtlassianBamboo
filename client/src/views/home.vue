@@ -680,7 +680,7 @@ export default {
       invalidEmail: null,
       invalidFile: null,
       empty: null,
-      profs: null,
+      profs: [],
       fileExisting: null,
       csvFile: null,
     });
@@ -737,6 +737,8 @@ export default {
     // toggles multiple add professor modal
     function toggleMultipleAddProfModal() {
       showMultipleAddProfModal.value = !showMultipleAddProfModal.value;
+      state.csvFile = null;
+      state.fileExisting = null;
     }
 
     const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
@@ -852,11 +854,26 @@ export default {
     }
 
     async function addProfsCsv() {
-      console.log('hi');
-      const formData = new FormData();
-      formData.append('csv-file', state.csvFile);
-      const res = await api.addProfsCsv(formData);
-      console.log(res);
+      try {
+        console.log('hi');
+        const tempCsv = state.csvFile;
+        const formData = new FormData();
+        formData.append('csv-file', tempCsv);
+        const res = await api.addProfsCsv(formData);
+        if (res) {
+          toggleMultipleAddProfModal();
+          for (let i = 0; i < res.data.length; i++) {
+            state.profs.unshift(res.data[i]);
+          }
+
+          // console.log(res.data);
+          // res.data.map((row, i) => {
+          //   state.profs.unshift(row[i]);
+          // });
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     return {
