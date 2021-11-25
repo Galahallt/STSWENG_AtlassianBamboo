@@ -29,17 +29,16 @@ const instructorService = {
   },
   // this retrieves and returns all rating receipt data in the database
   // from most to least recent
-  getAllRatings: async () => Rate.find({}).sort({ createdAt: 'descending' }),
+  getAllRatings: async () => Rate.find({}),
 
   // this method retrieves ratings done by this user
   // from most to least recent
-  getUserRatings: async (userID) =>
-    Rate.find({ userID: userID }).sort({ createdAt: 'descending' }),
+  getUserRatings: async (userID) => Rate.find({ userID: userID }),
 
   // this method retrieves all instructor ratings
   // from most to least recent
   getInstructorRatings: async (instructorID) =>
-    Rate.find({ instructorID: instructorID }).sort({ createdAt: 'descending' }),
+    Rate.find({ instructorID: instructorID }),
 
   // add new rating to instructor
   addRating: async (rating) => {
@@ -47,7 +46,6 @@ const instructorService = {
       rating: rating.rating,
       userID: rating.userID,
       instructorID: rating.instructorID,
-      timestamp: rating.timestamp,
     });
     await newRating.save();
   },

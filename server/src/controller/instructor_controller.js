@@ -151,19 +151,15 @@ const instructorController = {
 
   addRating: async (req, res) => {
     try {
-      const date = new Date();
-      const year = date.getFullYear().toString();
-      const month = (date.getMonth() + 1).toString().padStart(2, 0);
-      const day = date.getDate().toString().padStart(2, 0);
-      const formattedDate = `${year}-${month}-${day}`;
-
-      const userID = await UserService.getUser({ id: req.body.userID });
+      const userID = await UserService.getUser({ email: req.body.userEmail });
+      const instructorID = await instructorService.getProf({
+        email: req.body.instructorEmail,
+      });
 
       const rate = {
         rating: req.body.rating,
-        userID: userID,
-        instructorID: req.body.instructorID,
-        timestamp: formattedDate,
+        userID: userID.id,
+        instructorID: instructorID.id,
       };
 
       const newRate = await instructorService.addRating(rate);

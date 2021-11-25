@@ -69,10 +69,31 @@
               hover:bg-green-900
               shadow-lg
             "
+            @click="toggleWriteModal"
           >
             Write Review
           </button>
         </div>
+        <writeModal :writeReview="showWriteModal" @close="toggleWriteModal"
+          ><button
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+              flex-shrink
+              content-center
+              update-btn
+            "
+            @click="addRating"
+          >
+            Submit Review
+          </button></writeModal
+        >
         <vue3-star-ratings :disableClick="true" v-model="state.rating" />
         <div class="flex justify-center">
           <div>Numeric value:</div>
@@ -88,15 +109,30 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.update-btn {
+  position: absolute;
+  background-color: #0f4c81;
+  color: white;
+  border-radius: 20px;
+  bottom: 15px;
+  width: 25%;
+  left: 70%;
+  height: 3rem;
+  vertical-align: middle;
+  outline: none;
+}
 </style>
 
 <script>
-import { onBeforeMount, reactive } from 'vue';
+import * as api from '../api/index.js';
+import { ref, onBeforeMount, reactive } from 'vue';
+import writeModal from '../components/writeReviewModal.vue';
 import NavBar from '../components/NavBar.vue';
 
 export default {
   name: 'View Professor',
-  components: { NavBar },
+  components: { NavBar, writeModal },
   props: {
     profLast: {
       type: String,
@@ -121,15 +157,17 @@ export default {
     },
   },
   setup(props) {
-    let state = reactive({
+    const state = reactive({
       rating: 0,
       tagString: '',
     });
 
+    // load tags before loading
     onBeforeMount(() => {
       formatTags();
     });
 
+    // tag formatting for printing
     function formatTags() {
       for (let i = 0; i < props.tags.length; i++) {
         if (i != props.tags.length - 1) {
@@ -140,8 +178,40 @@ export default {
       }
     }
 
+    // insert rating to database
+    async function addRating() {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+
+        const rate = {
+          rating: state.rating,
+          userEmail: email,
+          instructorEmail: props.email,
+        };
+
+        const res = await api.addRating(rate);
+
+        if (res) {
+          console.log(res);
+        }
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // declare modal
+    const showWriteModal = ref(false);
+
+    // toggle modal
+    function toggleWriteModal() {
+      showWriteModal.value = !showWriteModal.value;
+    }
+
     return {
       state,
+      showWriteModal,
+      toggleWriteModal,
+      addRating,
     };
   },
 };
