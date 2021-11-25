@@ -145,6 +145,47 @@ const instructorController = {
       return res.status(500).json({ message: 'Server Error' });
     }
   },
+
+  addRating: async (req, res) => {
+    try {
+      const date = new Date();
+      const year = date.getFullYear().toString();
+      const month = (date.getMonth() + 1).toString().padStart(2, 0);
+      const day = date.getDate().toString().padStart(2, 0);
+      const formattedDate = `${year}-${month}-${day}`;
+
+      const userID = await UserService.getUser({ id: req.body.userID });
+
+      const rate = {
+        rating: req.body.rating,
+        userID: userID,
+        instructorID: req.body.instructorID,
+        timestamp: formattedDate,
+      };
+
+      const newRate = await instructorService.addRating(rate);
+
+      return res.status(201).json(newRate);
+    } catch (err) {
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
+
+  updateRating: async (req, res) => {
+    try {
+      const id = req.params.instructorID;
+      const data = {};
+
+      if (req.body.rating) {
+        data['rating'] = req.body.rating;
+      }
+
+      const result = await instructorService.updateRating(id, data);
+      return res.status(204).json(result);
+    } catch (err) {
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
 };
 
 // export instructor controller object for routing
