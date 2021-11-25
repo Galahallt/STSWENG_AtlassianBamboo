@@ -480,6 +480,12 @@
               {{ state.csvFile.name }}
             </p>
           </div>
+          <p
+            class="mt-8 text-red-500 manrope-bold text-center text-sm"
+            v-if="state.profExisting"
+          >
+            {{ state.profExisting }}
+          </p>
         </div>
         <button
           class="
@@ -683,6 +689,7 @@ export default {
       profs: [],
       fileExisting: null,
       csvFile: null,
+      profExisting: null,
     });
 
     const addProfData = reactive({
@@ -739,6 +746,9 @@ export default {
       showMultipleAddProfModal.value = !showMultipleAddProfModal.value;
       state.csvFile = null;
       state.fileExisting = null;
+      if (!showMultipleAddProfModal.value) {
+        state.profExisting = false;
+      }
     }
 
     const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
@@ -855,23 +865,26 @@ export default {
 
     async function addProfsCsv() {
       try {
-        console.log('hi');
         const tempCsv = state.csvFile;
         const formData = new FormData();
         formData.append('csv-file', tempCsv);
         const res = await api.addProfsCsv(formData);
         if (res) {
           toggleMultipleAddProfModal();
-          for (let i = 0; i < res.data.length; i++) {
-            state.profs.unshift(res.data[i]);
-          }
+          console.log(res);
+          if (res.status == 200) {
+            for (let i = 0; i < res.data.length; i++) {
+              state.profs.unshift(res.data[i]);
+            }
 
-          // console.log(res.data);
-          // res.data.map((row, i) => {
-          //   state.profs.unshift(row[i]);
-          // });
+            // console.log(res.data);
+            // res.data.map((row, i) => {
+            //   state.profs.unshift(row[i]);
+            // });
+          }
         }
       } catch (error) {
+        state.profExisting = error.response.data.message;
         console.log(error);
       }
     }

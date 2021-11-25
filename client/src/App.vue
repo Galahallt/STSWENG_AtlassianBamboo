@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <router-view /> -->
-    <rating />
+    <router-view />
   </div>
 </template>
 

@@ -69,10 +69,9 @@ const instructorController = {
           fs.unlinkSync(req.file.path);
           const validationError = csvValidator.validateCsvData(fileRows);
           if (validationError) {
-            return res.status(400).json(validationError);
+            return res.status(400).json({ message: validationError });
           } else {
             fileRows.shift();
-            logger.info(fileRows);
             await Promise.all(
               fileRows.map(async (row, i, arr) => {
                 // format last name to title case
@@ -103,36 +102,23 @@ const instructorController = {
                     courses: arr[i][5],
                   };
                   newProf.push(await instructorService.addProf(prof));
-                  logger.info(
-                    arr[i][0] + ', ' + arr[i][1] + ' successfully added!'
-                  );
                 }
               })
             );
-
-            return res.status(200).json(newProf);
-            // fileRows.forEach(async function (row, i, arr) {
-
-            //   } else {
-            //     logger.info(arr[i][0] + ', ' + arr[i][1] + ' already exists!');
-            //   }
-            // });
-
-            // initialize prof object
-            // const prof = {
-            //   lastName: fileRows[i][0],
-            //   firstName: fileRows[i][1],
-            //   email: fileRows[i][2],
-            //   college: fileRows[i][3],
-            //   department: fileRows[i][4],
-            //   courses: fileRows[i][5],
-            // };
-
-            // logger.info(fileRows);
+            logger.info(newProf);
+            if (newProf.length != 0) {
+              return res.status(200).json(newProf);
+            } else {
+              return res
+                .status(400)
+                .json({ message: 'Professors already exists!' });
+            }
           }
         });
     } catch (error) {
       logger.error(error);
+      // if error has occurred, send server error status and message
+      return res.status(500).json({ message: 'Server Error' });
     }
   },
 
