@@ -42,15 +42,18 @@ const instructorController = {
   getInstructorRatings: async (req, res) => {
     try {
       // retrieve all ratings of this instructor
-      const ratings = await RateService.getUserRatings(req.params.instructorID);
-
-      // if there are existing ratings of this instructor from the database
-      if (ratings.length != 0) {
-        return res.status(200).json(ratings);
+      const ratings = await RateService.getInstructorRatings(
+        req.params.instructorID
+      );
+      const avg = 0;
+      for (let i = 0; i < ratings.length; i++) {
+        avg += ratings[i].rating;
       }
 
-      // send the empty array of ratings back to the client with appropriate status code
-      return res.status(404).json(ratings);
+      avg /= ratings.length;
+
+      // if there are existing ratings of this instructor from the database
+      return res.status(200).json(avg);
     } catch (err) {
       // if error has occured, send server error status and message
       return res.status(500).json({ message: 'Server Error' });
