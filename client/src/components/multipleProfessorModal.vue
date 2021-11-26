@@ -17,7 +17,7 @@
               text-green-600 text-left text-2xl
             "
           >
-            Add Multiple Professor
+            Add Multiple Professors
           </h1>
           <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
@@ -71,7 +71,7 @@ export default {
   position: relative;
   max-width: 960px;
   width: 30%;
-  height: 70%;
+  height: 50%;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
