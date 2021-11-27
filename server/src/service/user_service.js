@@ -3,7 +3,7 @@ import User from '../model/User.js';
 const UserService = {
   // this method retrieves and returns a specific user
   getUser: async (data) => User.findOne(data),
-  getAllUsers: async () => User.find({}),
+  getAllAdmins: async() => User.find({isAdministrator: true}),
   // this method adds a new user to the database
   addUser: async (user) => {
     const newUser = new User({
@@ -15,7 +15,10 @@ const UserService = {
     // add new user data to 'User' Collection
     return newUser.save();
   },
-  updateAdministratorUser: async(email, flag) => User.updateOne({email: email}, {isAdministrator: flag})
+  
+  updateAdministratorUser: async(email, flag) => User.updateOne({email: email}, {$set: {isAdministrator: true}}, (e,s)=>{})
+
+      
 };
 
 // export user service object

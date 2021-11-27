@@ -11,4 +11,6 @@ API.interceptors.request.use((req) => {
 });
 
 // user login api methods
-export const loginUser = (user) => API.post('/login', user);
+export const getAdminList = () => API.get('/admin/adminlist');
+export const postAddAdmin = (email) => API.post('/admin/addadmin', {email: email});
+

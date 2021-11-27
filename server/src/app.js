@@ -6,8 +6,7 @@ import connectDatabase from './config/connectDB.js';
 import logger from './logger/index.js';
 
 // routes
-import indexRoutes from './routes/index_routes.js';
-
+import adminRoutes from './routes/admin_routes.js';
 // connect to Profs to Pick database
 connectDatabase();
 
@@ -35,7 +34,8 @@ app.use(
     },
   })
 );
-app.use('/', indexRoutes);
+
+app.use('/admin', adminRoutes);
 
 
 export default app;

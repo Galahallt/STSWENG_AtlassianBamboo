@@ -31,7 +31,7 @@
 
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
-        <button
+        <router-link
           class="
             px-6
             py-2
@@ -42,9 +42,10 @@
             hover:bg-green-900
             shadow-lg
           "
+          to="/addadmin"
         >
           New Admin
-        </button>
+        </router-link>
       </div>
     </div>
 
@@ -60,245 +61,11 @@
           <div class="text-white">Date Added</div>
           <div class="text-white">Action</div>
         </div>
-        <div class="overscroll-auto">
+        <div v-for="items in state.admins" :key="items.email" class="overscroll-auto">
           <div class="grid grid-cols-4 bg-gray-100">
             <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
-            <div class="text-black">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                "
-              >
-                Modify
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">juanito.delosreyes@dlsu.edu.ph</div>
+            <div class="text-black">{{items.fullName}}</div>
+            <div class="text-black">{{items.email}}</div>
             <div class="text-black">11/20/2021</div>
             <div>
               <button
@@ -338,17 +105,41 @@
   </div>
 </template>
 <script>
-// import { getCurrentInstance } from '@vue/runtime-core';
+import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
+import { useRouter } from 'vue-router'
+import { reactive } from 'vue';
+import * as api from '../api';
+export default{
+    name: 'Admin List',
+    setup()
+    {
+        let state = reactive({
+            admins: null,
+            error: false
+        });
+        //if theres no entries make `error` true and display error msg
+        const app = getCurrentInstance();
+        const router = useRouter();
 
-//     export default{
-//         name: 'Admin List',
-//         setup()
-//         {
-//             const app = getCurrentInstance();
-//             const router = useRouter();
-//             return
-//         }
-//     };
+        async function getAdminList()
+        {
+            try {
+                const result = await api.getAdminList();
+                state.admins = result.data;
+                console.log(result.data);
+            } catch (err){
+                console.log(err);
+            }
+        }
+
+        // this thing runs first thing before the page loads in
+        onBeforeMount(() => {
+            getAdminList();
+        });
+
+        return {state};
+    }
+};
 </script>
 
 <style>

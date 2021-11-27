@@ -49,57 +49,97 @@
         </div>
         <h3 class="text-2l font-bold text-center">Enter DLSU Email</h3>
         <div>
-          <input
-            type="text"
-            placeholder="Email"
-            class="
-              w-full
-              px-4
-              py-2
-              mt-2
-              border
-              rounded-md
-              focus:outline-none focus:ring-1 focus:ring-blue-600
-            "
-          />
-        </div>
-        <h4 class="text-2l mt-2 font-bold text-center text-green-600">
-          Verified!
-        </h4>
-        <form action="">
-          <div class="mt-1">
+            <input
+                v-model="state.email"
+                type="text"
+                placeholder="Email"
+                class="
+                w-full
+                px-4
+                py-2
+                mt-2
+                border
+                rounded-md
+                focus:outline-none focus:ring-1 focus:ring-blue-600
+                "
+            />
+            
+            <h4 v-show="state.attempted" class="text-2l mt-2 font-bold text-center text-green-600">
+                {{ state.message }}
+            </h4>
+
+            <div class="mt-1">
             <div class="flex items-baseline justify-center">
-              <button
+                <button
+                @click="addAdmin"
                 class="
-                  px-7
-                  py-2
-                  mt-4
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-gray-900
+                    px-7
+                    py-2
+                    mt-4
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-gray-900
                 "
-              >
+                >
                 Save
-              </button>
-              <button
+                </button>
+                <router-link
                 class="
-                  px-6
-                  py-2
-                  mt-4
-                  ml-2
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-gray-900
+                    px-6
+                    py-2
+                    mt-4
+                    ml-2
+                    text-white
+                    bg-red-600
+                    rounded-lg
+                    hover:bg-gray-900
                 "
-              >
+                to="/adminlist"
+                >
                 Cancel
-              </button>
+                </router-link>
             </div>
-          </div>
-        </form>
+            </div>            
+        </div>
+
       </div>
     </div>
   </div>
 </template>
+<script>
+import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
+import { useRouter } from 'vue-router'
+import { reactive } from 'vue';
+import * as api from '../api';
+export default{
+    name: 'Admin List',
+    setup()
+    {
+        let state = reactive({
+            email: "",
+            attempted: false,
+            message: "",
+            error: false
+        });
+        //if theres no entries make `error` true and display error msg
+        const app = getCurrentInstance();
+        const router = useRouter();
+
+        async function addAdmin() {
+            const email = state.email;
+            state.attempted = true;
+            await api.postAddAdmin(email);
+
+            state.email = "";
+            state.message = "Verified!";
+                
+        }
+        onBeforeMount(() => {
+        
+        });
+
+        return {state, addAdmin};
+    }
+};
+</script>
