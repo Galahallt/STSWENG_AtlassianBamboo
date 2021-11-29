@@ -4,6 +4,9 @@ import logger from '../logger/index.js';
 import Instructor from '../model/Instructor.js';
 
 // get instructor service methods from service folder
+import userService from '../service/user_service.js';
+
+// get instructor service methods from service folder
 import instructorService from '../service/instructor_service.js';
 
 // get tag model object from model folder
@@ -87,101 +90,6 @@ const instructorController = {
     } catch (err) {
       logger.error(err);
       // if error has occurred, send server error status and message
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  },
-
-  // get all ratings
-  getAllRatings: async (req, res) => {
-    try {
-      // retrieve all ratings from database
-      const ratings = await RateService.getAllRatings();
-
-      // if there are existing ratings from the database
-      if (ratings.length != 0) {
-        return res.status(200).json(ratings);
-      }
-
-      // send the empty array of ratings back to the client with appropriate status code
-      return res.status(404).json(ratings);
-    } catch (err) {
-      // if error has occured, send server error status and message
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  },
-
-  getUserRatings: async (req, res) => {
-    try {
-      // retrieve all ratings from this user
-      const ratings = await RateService.getUserRatings(req.params.userID);
-
-      // if there are existing ratings from this user from the database
-      if (ratings.length != 0) {
-        return res.status(200).json(ratings);
-      }
-
-      // send the empty array of ratings back to the client with appropriate status code
-      return res.status(404).json(ratings);
-    } catch (err) {
-      // if error has occured, send server error status and message
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  },
-
-  getInstructorRatings: async (req, res) => {
-    try {
-      // retrieve all ratings of this instructor
-      const ratings = await RateService.getInstructorRatings(
-        req.params.instructorID
-      );
-      const avg = 0;
-      for (let i = 0; i < ratings.length; i++) {
-        avg += ratings[i].rating;
-      }
-
-      avg /= ratings.length;
-
-      // if there are existing ratings of this instructor from the database
-      return res.status(200).json(avg);
-    } catch (err) {
-      // if error has occured, send server error status and message
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  },
-
-  addRating: async (req, res) => {
-    try {
-      const userID = await UserService.getUser({ email: req.body.userEmail });
-      const instructorID = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
-
-      const rate = {
-        rating: req.body.rating,
-        userID: userID.id,
-        instructorID: instructorID.id,
-      };
-
-      const newRate = await instructorService.addRating(rate);
-
-      return res.status(201).json(newRate);
-    } catch (err) {
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  },
-
-  updateRating: async (req, res) => {
-    try {
-      const id = req.params.instructorID;
-      const data = {};
-
-      if (req.body.rating) {
-        data['rating'] = req.body.rating;
-      }
-
-      const result = await instructorService.updateRating(id, data);
-      return res.status(204).json(result);
-    } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
     }
   },

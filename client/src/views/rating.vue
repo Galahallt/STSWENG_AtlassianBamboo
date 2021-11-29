@@ -49,7 +49,7 @@
         </div>
         <div class="text-black flex">
           <div>Rating:</div>
-          <div class="ml-2">{{ rating + '/5' }}</div>
+          <div class="ml-2">{{ state.avgRating + '/5' }}</div>
         </div>
         <div class="text-black flex">
           <div>Courses taught:</div>
@@ -74,8 +74,19 @@
             Write Review
           </button>
         </div>
-        <writeModal :writeReview="showWriteModal" @close="toggleWriteModal"
-          ><button
+        <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+          <vue3-star-ratings :disableClick="true" v-model="state.rating" />
+          <div class="flex justify-center">
+            <div>Numeric value:</div>
+            <div class="ml-2">{{ state.rating }}</div>
+          </div>
+          <p
+            class="ml-10 text-red-500 manrope-bold text-left text-sm"
+            v-if="state.error"
+          >
+            Error occured.
+          </p>
+          <button
             class="
               px-6
               py-2
@@ -94,11 +105,6 @@
             Submit Review
           </button></writeModal
         >
-        <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-        <div class="flex justify-center">
-          <div>Numeric value:</div>
-          <div class="ml-2">{{ state.rating }}</div>
-        </div>
       </div>
     </div>
   </div>
@@ -126,7 +132,7 @@ button:disabled {
 
 <script>
 import * as api from '../api/index.js';
-import { ref, onBeforeMount, reactive } from 'vue';
+import { ref, onBeforeMount, onMounted, reactive } from 'vue';
 import writeModal from '../components/writeReviewModal.vue';
 import NavBar from '../components/NavBar.vue';
 
@@ -160,11 +166,18 @@ export default {
     const state = reactive({
       rating: 0,
       tagString: '',
+      error: false,
+      avgRating: 0,
     });
 
     // load tags before loading
     onBeforeMount(() => {
       formatTags();
+    });
+
+    // load after loading
+    onMounted(() => {
+      avgRating();
     });
 
     // tag formatting for printing
@@ -191,6 +204,42 @@ export default {
 
         const res = await api.addRating(rate);
 
+        if (res) {
+          console.log(res);
+          toggleWriteModal();
+          state.error = false;
+          avgRating();
+        } else {
+          state.error = true;
+        }
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // display rating
+    async function avgRating() {
+      try {
+        const instructor = {
+          instructorEmail: props.email,
+        };
+        const res = await api.getInstructorRatings(instructor);
+        state.avgRating = res.data;
+        updateRating();
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // update rating in backend
+    async function updateRating() {
+      try {
+        const instructor = {
+          instructorEmail: props.email,
+          rating: state.avgRating,
+        };
+
+        const res = await api.updateRating(instructor);
         if (res) {
           console.log(res);
         }

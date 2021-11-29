@@ -24,8 +24,5 @@ router.post(
 // route for getting all instructors from database
 router.get('/getAllProfs', instructorController.getAllProfs);
 
-// route for adding rating
-router.post('/addRating', instructorController.addRating);
-
 // export instructor routes
 export default router;

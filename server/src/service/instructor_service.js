@@ -27,36 +27,6 @@ const instructorService = {
     });
     return newProf.save();
   },
-  // this retrieves and returns all rating receipt data in the database
-  // from most to least recent
-  getAllRatings: async () => Rate.find({}),
-
-  // this method retrieves ratings done by this user
-  // from most to least recent
-  getUserRatings: async (userID) => Rate.find({ userID: userID }),
-
-  // this method retrieves all instructor ratings
-  // from most to least recent
-  getInstructorRatings: async (instructorID) =>
-    Rate.find({ instructorID: instructorID }),
-
-  // add new rating to instructor
-  addRating: async (rating) => {
-    const newRating = new Rate({
-      rating: rating.rating,
-      userID: rating.userID,
-      instructorID: rating.instructorID,
-    });
-    await newRating.save();
-  },
-
-  // update rating of instructor
-  updateRating: async (id, data) =>
-    Rate.findOneAndUpdate(
-      { id: id },
-      { $set: data },
-      { new: true, omitUndefined: true }
-    ),
 };
 
 export default instructorService;
