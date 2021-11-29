@@ -49,97 +49,115 @@
         </div>
         <h3 class="text-2l font-bold text-center">Enter DLSU Email</h3>
         <div>
-            <input
-                v-model="state.email"
-                type="text"
-                placeholder="Email"
-                class="
-                w-full
-                px-4
-                py-2
-                mt-2
-                border
-                rounded-md
-                focus:outline-none focus:ring-1 focus:ring-blue-600
-                "
-            />
-            
-            <h4 v-show="state.attempted" class="text-2l mt-2 font-bold text-center text-green-600">
-                {{ state.message }}
-            </h4>
+          <input
+            v-model="state.email"
+            type="text"
+            placeholder="Email"
+            class="
+              w-full
+              px-4
+              py-2
+              mt-2
+              border
+              rounded-md
+              focus:outline-none focus:ring-1 focus:ring-blue-600
+            "
+          />
 
-            <div class="mt-1">
+          <template v-if="state.attempted">
+            <h4
+              v-if="!state.error"
+              class="text-2l mt-2 font-bold text-center text-green-600"
+            >
+              {{ state.message }}
+            </h4>
+            <h4
+              v-else
+              class="text-2l mt-2 font-bold text-center text-red-600"
+            >
+              {{ state.message }}
+            </h4>
+          </template>
+
+          <div class="mt-1">
             <div class="flex items-baseline justify-center">
-                <button
+              <button
                 @click="addAdmin"
                 class="
-                    px-7
-                    py-2
-                    mt-4
-                    text-white
-                    bg-green-600
-                    rounded-lg
-                    hover:bg-gray-900
+                  px-7
+                  py-2
+                  mt-4
+                  text-white
+                  bg-green-600
+                  rounded-lg
+                  hover:bg-gray-900
                 "
-                >
+              >
                 Save
-                </button>
-                <router-link
+              </button>
+              <router-link
                 class="
-                    px-6
-                    py-2
-                    mt-4
-                    ml-2
-                    text-white
-                    bg-red-600
-                    rounded-lg
-                    hover:bg-gray-900
+                  px-6
+                  py-2
+                  mt-4
+                  ml-2
+                  text-white
+                  bg-red-600
+                  rounded-lg
+                  hover:bg-gray-900
                 "
                 to="/adminlist"
-                >
+              >
                 Cancel
-                </router-link>
+              </router-link>
             </div>
-            </div>            
+          </div>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 <script>
 import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 import * as api from '../api';
-export default{
-    name: 'Admin List',
-    setup()
-    {
-        let state = reactive({
-            email: "",
-            attempted: false,
-            message: "",
-            error: false
-        });
-        //if theres no entries make `error` true and display error msg
-        const app = getCurrentInstance();
-        const router = useRouter();
+export default {
+  name: 'Admin List',
+  setup() {
+    let state = reactive({
+      email: '',
+      attempted: false,
+      message: '',
+      error: false,
+    });
+    //if theres no entries make `error` true and display error msg
+    const app = getCurrentInstance();
+    const router = useRouter();
 
-        async function addAdmin() {
-            const email = state.email;
-            state.attempted = true;
-            await api.postAddAdmin(email);
+    async function addAdmin() {
+      const email = state.email;
+      state.attempted = true;
+      const res = await api.postAddAdmin(email);
+      // when getting stuff from SERVER, use res.data prefix
 
-            state.email = "";
-            state.message = "Verified!";
-                
+      if (res.data.matchedCount == 0) {
+        state.error = true;
+        state.email = '';
+        state.message = 'Cannot find email!';
+      } else {
+        state.email = '';
+        if (res.data.modifiedCount == 1) {
+          state.message = 'Verified!';
+        } else {
+          state.error = true;
+          state.message = 'User is already an Administrator!';
         }
-        onBeforeMount(() => {
-        
-        });
-
-        return {state, addAdmin};
+      }
     }
+    onBeforeMount(() => {});
+
+    return { state, addAdmin };
+  },
 };
 </script>
