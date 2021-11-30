@@ -751,7 +751,15 @@ export default {
       }
     }
 
-    const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
+    const dlsuEmail = (value) => {
+      const domain = value.split('@').pop();
+
+      if (domain != 'dlsu.edu.ph') {
+        return false;
+      } else {
+        return true;
+      }
+    };
 
     const notDefault = (value) => !value.includes('Choose One');
 
@@ -766,7 +774,13 @@ export default {
           validName
         ),
       },
-      firstName: { alpha, required },
+      firstName: {
+        required,
+        validName: helpers.withMessage(
+          'Value must contain alphabet characters.',
+          validName
+        ),
+      },
       email: {
         email,
         required,
