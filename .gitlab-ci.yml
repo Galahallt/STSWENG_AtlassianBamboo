@@ -1,0 +1,92 @@
+stages:
+  - build
+  - test
+  - deploy
+
+default:
+  image: node:16.11.1
+
+variables:
+  RULES_CHANGES_PATH: "**/*"
+
+before_script:
+  # Install yarn as outlined in (https://yarnpkg.com/lang/en/docs/install/#alternatives-stable)
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  # Make available in the current terminal
+  - export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+.base-rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - $RULES_CHANGES_PATH
+    - when: manual
+      allow_failure: true
+
+.server:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "server/**/*"
+
+.client:
+  extends: .base-rules
+  variables:
+    RULES_CHANGES_PATH: "client/**/*"
+
+server-build:
+  stage: build
+  extends: .server
+  needs: []
+  script:
+    - echo "Compiling the server code..."
+    - cd server
+    - yarn install
+
+client-build:
+  stage: build
+  extends: .client
+  needs: []
+  script:
+    - echo "Compiling the client code..."
+    - cd client
+    - yarn install
+
+server-test:
+  stage: test
+  extends: .server
+  needs: ["server-build"]
+  script:
+    - echo "Testing the server code..."
+
+client-test:
+  stage: test
+  extends: .client
+  needs: ["client-build"]
+  script:
+    - echo "Testing the client code..."
+
+server-deploy:
+  stage: deploy
+  extends: .server
+  needs: ["server-test"]
+  script:
+    - echo "Deploying the server code..."
+    - cd server
+    - yarn install
+    - yarn dev
+
+client-deploy:
+  stage: deploy
+  extends: .client
+  needs: ["client-test"]
+  script:
+    - echo "Deploying the client code..."
+    - cd client
+    - yarn install
+    - yarn dev
