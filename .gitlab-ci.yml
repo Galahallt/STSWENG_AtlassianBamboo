@@ -64,13 +64,6 @@ server-test:
   script:
     - echo "Testing the server code..."
 
-client-test:
-  stage: test
-  extends: .client
-  needs: ["client-build"]
-  script:
-    - echo "Testing the client code..."
-
 server-deploy:
   stage: deploy
   extends: .server
@@ -84,7 +77,7 @@ server-deploy:
 client-deploy:
   stage: deploy
   extends: .client
-  needs: ["client-test"]
+  needs: ["client-build"]
   script:
     - echo "Deploying the client code..."
     - cd client
