@@ -1,11 +1,13 @@
 // modules
-const express =  require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const connectDatabase = require('./config/connectDB.js');
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import connectDatabase from './config/connectDB.js';
+import logger from './logger/index.js';
 
 // routes
-const indexRoutes = require('./routes/index_routes.js');
+import indexRoutes from './routes/index_routes.js';
+import instructorRoutes from './routes/instructor_routes.js';
 
 // connect to Profs to Pick database
 connectDatabase();
@@ -13,6 +15,7 @@ connectDatabase();
 const app = express();
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
@@ -34,4 +37,8 @@ app.use(
   })
 );
 
-module.exports = app;
+// routes implementation
+app.use('/', indexRoutes);
+app.use('/professor', instructorRoutes);
+
+export default app;
