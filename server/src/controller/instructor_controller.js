@@ -26,8 +26,6 @@ const instructorController = {
       const email = req.body.email;
       const domain = email.split('@').pop();
 
-      logger.info(domain);
-
       const profExisting = await instructorService.getProf({ email: email });
 
       if (!profExisting) {

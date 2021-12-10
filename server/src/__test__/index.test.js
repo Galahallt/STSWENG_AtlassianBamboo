@@ -1,38 +1,85 @@
-import request from 'supertest';
-// import userService from '../service/user_service.js';
-import User from '../model/User.js';
-// const mockDB = require('./mockDB.js');
+import indexController from '../controller/index_controller.js';
+import mockDB from '../__test__/mockDB.js';
 
-// beforeAll(async () => await mockDB.connect());
+/**
+ * Connect to a new in-memory database before running any tests.
+ */
+beforeAll(async () => await mockDB.connect());
 
-// afterEach(async () => await mockDB.clearDatabase());
+/**
+ * Clear all test data after every test.
+ */
+afterEach(async () => await mockDB.clearDatabase());
 
-// afterAll(async () => await mockDB.closeDatabase());
+/**
+ * Remove and close the db and server.
+ */
+afterAll(async () => await mockDB.closeDatabase());
 
-test('respond with status code 400', async (done) => {
-  const user = {
-    fullName: 'Keil Finez',
-    givenName: 'Keil Christopher',
-    familyName: 'Finez',
-    email: 'keilFinez@gmail.com',
-    accessToken: 'asdasdasdasd',
+// mock request object
+const mockReq = (user) => {
+  return {
+    body: {
+      fullName: user.fullName,
+      givenName: user.givenName,
+      familyName: user.familyName,
+      imageURL: user.imageURL,
+      email: user.email,
+      accessToken: user.accessToken,
+    },
   };
-  const response = await request(app).post('/login').send({
-    fullName: 'Keil Finez',
-    givenName: 'Keil Christopher',
-    familyName: 'Finez',
-    email: 'keilFinez@gmail.com',
-    accessToken: 'asdasdasdasd',
+};
+
+// mock result object
+const mockRes = () => {
+  const res = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  return res;
+};
+
+/**
+ * User test suite.
+ */
+describe('invalid DLSU email', () => {
+  /**
+   * Tests wrong user email in logging in
+   */
+  test('cannot login due to invalid DLSU e-mail', async () => {
+    const req = mockReq({
+      fullName: 'Keil Finez',
+      givenName: 'Keil Christopher',
+      familyName: 'Finez',
+      imageURL: 'asdasdwqeq',
+      email: 'keilFinez@gmail.com',
+      accessToken: 'asdasdasdasd',
+    });
+
+    const res = mockRes();
+
+    await indexController.postLogin(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Not DLSU account!' });
   });
-  expect(response.statusCode).toBe(400);
+});
 
-  done();
-}, 30000);
+describe('valid DLSU email', () => {
+  /**
+   * Tests that a valid user can be created through the userService without throwing any errors.
+   */
+  test('can login to profs to pick web application', async () => {
+    const req = mockReq({
+      fullName: 'Keil Finez',
+      givenName: 'Keil Christopher',
+      familyName: 'Finez',
+      imageURL: 'asdasdwqeq',
+      email: 'keilFinez@dlsu.edu.ph',
+      accessToken: 'asdasdasdasd',
+    });
 
-// describe('POST /login', () => {
-//   describe('logging in with non-dlsu email', () => {
-//     // user should not be able to login
-//     // status code 400 with message "Not DLSU account!"
+    const res = mockRes();
 
-//   });
-// });
+    await indexController.postLogin(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+  });
+});
