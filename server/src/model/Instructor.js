@@ -1,4 +1,5 @@
 // import mongoose module for schema modelling
+
 import mongoose from 'mongoose';
 
 const InstructorSchema = new mongoose.Schema(
@@ -33,6 +34,12 @@ const InstructorSchema = new mongoose.Schema(
       required: true,
     },
 
+    status: {
+      type: String,
+      required: true,
+      default: 'Active',
+    },
+
     courses: {
       type: [String],
       required: true,
@@ -40,7 +47,7 @@ const InstructorSchema = new mongoose.Schema(
 
     rating: {
       type: Number,
-      required: false,
+      required: true,
       default: 0,
     },
 
