@@ -78,8 +78,18 @@
                 id="lastName"
                 name="lastName"
                 type="text"
-                class="manrope-regular input-text-field w-80 ml-10"
+                v-model.trim="addProfData.lastName"
+                class="manrope-regular input-text-field w-80 ml-10 capitalize"
+                :class="{
+                  'border-red-500': v.lastName.$error,
+                }"
               />
+              <p
+                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.lastName.$error"
+              >
+                {{ v.lastName.$errors[0].$message }}
+              </p>
             </div>
           </div>
 
@@ -94,8 +104,18 @@
                 id="firstName"
                 name="firstName"
                 type="text"
-                class="manrope-regular input-text-field w-80 ml-10"
+                v-model.trim="addProfData.firstName"
+                class="manrope-regular input-text-field w-80 ml-10 capitalize"
+                :class="{
+                  'border-red-500': v.firstName.$error,
+                }"
               />
+              <p
+                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.firstName.$error"
+              >
+                {{ v.firstName.$errors[0].$message }}
+              </p>
             </div>
           </div>
 
@@ -110,8 +130,20 @@
                 id="email"
                 name="email"
                 type="email"
-                class="manrope-regular input-text-field w-80 ml-9"
+                v-model.trim="addProfData.email"
+                class="manrope-regular input-text-field w-80 ml-9 lowercase"
+                @keyup="isValidProf"
+                :class="{
+                  'border-red-500': v.email.$error,
+                }"
               />
+
+              <p
+                class="ml-9 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.email.$error"
+              >
+                {{ v.email.$errors[0].$message }}
+              </p>
             </div>
           </div>
 
@@ -127,28 +159,40 @@
               "
               >College:</label
             >
-            <select
-              name="college"
-              id="college"
-              class="
-                w-72
-                ml-16
-                border-solid border-2
-                rounded-md
-                border-gray-500
-              "
-              v-model="state.college"
-            >
-              <option selected disabled hidden>Choose One</option>
-              <option value="BAGCED">BAGCED</option>
-              <option value="CCS">CCS</option>
-              <option value="COL">COL</option>
-              <option value="CLA">CLA</option>
-              <option value="COS">COS</option>
-              <option value="GCOE">GCOE</option>
-              <option value="RVR-COB">RVR-COB</option>
-              <option value="SOE">SOE</option>
-            </select>
+            <div>
+              <select
+                name="college"
+                id="college"
+                class="
+                  w-72
+                  ml-16
+                  border-solid border-2
+                  rounded-md
+                  border-gray-500
+                "
+                :class="{
+                  'border-red-500': v.college.$error,
+                }"
+                v-model="addProfData.college"
+              >
+                <option selected disabled hidden>Choose One</option>
+                <option value="BAGCED">BAGCED</option>
+                <option value="CCS">CCS</option>
+                <option value="COL">COL</option>
+                <option value="CLA">CLA</option>
+                <option value="COS">COS</option>
+                <option value="GCOE">GCOE</option>
+                <option value="RVR-COB">RVR-COB</option>
+                <option value="SOE">SOE</option>
+                <option value="N/A">N/A</option>
+              </select>
+              <p
+                class="ml-16 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.college.$error"
+              >
+                {{ v.college.$errors[0].$message }}
+              </p>
+            </div>
           </div>
 
           <div class="flex mb-5">
@@ -157,133 +201,158 @@
               class="relative manrope-bold text-gray-600 text-md mt-2"
               >Department:</label
             >
-            <select
-              name="department"
-              id="department"
-              class="w-72 ml-8 border-solid border-2 rounded-md border-gray-500"
-            >
-              <option selected disabled hidden>Choose One</option>
-
-              <!-- CCS -->
-              <optgroup
-                v-if="state.college === 'CCS'"
-                label="College of Computer Studies"
+            <div>
+              <select
+                name="department"
+                id="department"
+                class="
+                  w-72
+                  ml-8
+                  border-solid border-2
+                  rounded-md
+                  border-gray-500
+                "
+                v-model="addProfData.department"
+                :class="{ 'border-red-500': v.department.$error }"
               >
-                <option value="Information Technology">
-                  Information Technology
-                </option>
-                <option value="Computer Technology">Computer Technology</option>
-                <option value="Software Technology">Software Technology</option>
-              </optgroup>
+                <option selected disabled hidden>Choose One</option>
 
-              <!-- BAGCED -->
-              <optgroup
-                v-if="state.college === 'BAGCED'"
-                label="Brother Andrew Gonzales College of Education"
+                <!-- CCS -->
+                <optgroup
+                  v-if="addProfData.college === 'CCS'"
+                  label="College of Computer Studies"
+                >
+                  <option value="Information Technology">
+                    Information Technology
+                  </option>
+                  <option value="Computer Technology">
+                    Computer Technology
+                  </option>
+                  <option value="Software Technology">
+                    Software Technology
+                  </option>
+                </optgroup>
+
+                <!-- BAGCED -->
+                <optgroup
+                  v-if="addProfData.college === 'BAGCED'"
+                  label="Brother Andrew Gonzales College of Education"
+                >
+                  <option value="Counseling and Educational Psychology">
+                    Counseling and Educational Psychology
+                  </option>
+                  <option value="Educational Leadership and Management">
+                    Educational Leadership and Management
+                  </option>
+                  <option value="English and Applied Linguistics">
+                    English and Applied Linguistics
+                  </option>
+                  <option value="Physical Education">Physical Education</option>
+                  <option value="Science Education">Science Education</option>
+                </optgroup>
+
+                <!-- RVR-COB -->
+                <optgroup
+                  v-if="addProfData.college === 'RVR-COB'"
+                  label="Ramon V. del Rosario College of Business"
+                >
+                  <option value="Accountancy">Accountancy</option>
+                  <option value="Commercial Law">Commercial Law</option>
+                  <option value="Decision Sciences and Innovation">
+                    Decision Sciences and Innovation
+                  </option>
+                  <option value="Management of Financial Institutions">
+                    Management of Financial Institutions
+                  </option>
+                  <option value="Management and Organization">
+                    Management and Organization
+                  </option>
+                  <option value="Marketing Management">
+                    Marketing Management
+                  </option>
+                </optgroup>
+
+                <!-- CLA -->
+                <optgroup
+                  v-if="addProfData.college === 'CLA'"
+                  label="College of Liberal Arts"
+                >
+                  <option value="Behavioral Science">Behavioral Science</option>
+                  <option value="Communication">Communication</option>
+                  <option value="Filipino">Filipino</option>
+                  <option value="History">History</option>
+                  <option value="International Studies">
+                    International Studies
+                  </option>
+                  <option value="Literature">Literature</option>
+                  <option value="Philosophy">Philosophy</option>
+                  <option value="Political Science">Political Science</option>
+                  <option value="Psychology">Psychology</option>
+                  <option value="Theology and Religious Education">
+                    Theology and Religious Education
+                  </option>
+                </optgroup>
+
+                <!-- COS -->
+                <optgroup
+                  v-if="addProfData.college === 'COS'"
+                  label="College of Science"
+                >
+                  <option value="Biology">Biology</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Mathematics">Mathematics</option>
+                </optgroup>
+
+                <!-- SOE  -->
+                <optgroup
+                  v-if="addProfData.college === 'SOE'"
+                  label="School of Economics"
+                >
+                  <option value="School of Economics">
+                    School of Economics
+                  </option>
+                </optgroup>
+
+                <!-- GCOE -->
+                <optgroup
+                  v-if="addProfData.college === 'GCOE'"
+                  label="Gokongwei College of Engineering"
+                >
+                  <option value="Chemical Engineering">
+                    Chemical Engineering
+                  </option>
+                  <option value="Civil Engineering">Civil Engineering</option>
+                  <option value="Electronics and Communications Engineering">
+                    Electronics and Communications Engineering
+                  </option>
+                  <option value="Mechanical Engineering">
+                    Mechanical Engineering
+                  </option>
+                  <option value="Industrial Engineering">
+                    Industrial Engineering
+                  </option>
+                  <option value="Manufacturing Engineering and Management">
+                    Manufacturing Engineering and Management
+                  </option>
+                </optgroup>
+
+                <!-- COL -->
+                <optgroup
+                  v-if="addProfData.college === 'COL'"
+                  label="College of Law"
+                >
+                  <option value="College of Law">College of Law</option>
+                </optgroup>
+                <option value="N/A">N/A</option>
+              </select>
+              <p
+                class="ml-8 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.department.$error"
               >
-                <option value="Counseling and Educational Psychology">
-                  Counseling and Educational Psychology
-                </option>
-                <option value="Educational Leadership and Management">
-                  Educational Leadership and Management
-                </option>
-                <option value="English and Applied Linguistics">
-                  English and Applied Linguistics
-                </option>
-                <option value="Physical Education">Physical Education</option>
-                <option value="Science Education">Science Education</option>
-              </optgroup>
-
-              <!-- RVR-COB -->
-              <optgroup
-                v-if="state.college === 'RVR-COB'"
-                label="Ramon V. del Rosario College of Business"
-              >
-                <option value="Accountancy">Accountancy</option>
-                <option value="Commercial Law">Commercial Law</option>
-                <option value="Decision Sciences and Innovation">
-                  Decision Sciences and Innovation
-                </option>
-                <option value="Management of Financial Institutions">
-                  Management of Financial Institutions
-                </option>
-                <option value="Management and Organization">
-                  Management and Organization
-                </option>
-                <option value="Marketing Management">
-                  Marketing Management
-                </option>
-              </optgroup>
-
-              <!-- CLA -->
-              <optgroup
-                v-if="state.college === 'CLA'"
-                label="College of Liberal Arts"
-              >
-                <option value="Behavioral Science">Behavioral Science</option>
-                <option value="Communication">Communication</option>
-                <option value="Filipino">Filipino</option>
-                <option value="History">History</option>
-                <option value="International Studies">
-                  International Studies
-                </option>
-                <option value="Literature">Literature</option>
-                <option value="Philosophy">Philosophy</option>
-                <option value="Political Science">Political Science</option>
-                <option value="Psychology">Psychology</option>
-                <option value="Theology and Religious Education">
-                  Theology and Religious Education
-                </option>
-              </optgroup>
-
-              <!-- COS -->
-              <optgroup
-                v-if="state.college === 'COS'"
-                label="College of Science"
-              >
-                <option value="Biology">Biology</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Physics">Physics</option>
-                <option value="Mathematics">Mathematics</option>
-              </optgroup>
-
-              <!-- SOE  -->
-              <optgroup
-                v-if="state.college === 'SOE'"
-                label="School of Economics"
-              >
-                <option value="School of Economics">School of Economics</option>
-              </optgroup>
-
-              <!-- GCOE -->
-              <optgroup
-                v-if="state.college === 'GCOE'"
-                label="Gokongwei College of Engineering"
-              >
-                <option value="Chemical Engineering">
-                  Chemical Engineering
-                </option>
-                <option value="Civil Engineering">Civil Engineering</option>
-                <option value="Electronics and Communications Engineering">
-                  Electronics and Communications Engineering
-                </option>
-                <option value="Mechanical Engineering">
-                  Mechanical Engineering
-                </option>
-                <option value="Industrial Engineering">
-                  Industrial Engineering
-                </option>
-                <option value="Manufacturing Engineering and Management">
-                  Manufacturing Engineering and Management
-                </option>
-              </optgroup>
-
-              <!-- COL -->
-              <optgroup v-if="state.college === 'COL'" label="College of Law">
-                <option value="College of Law">College of Law</option>
-              </optgroup>
-              <option value="N/A">N/A</option>
-            </select>
+                {{ v.department.$errors[0].$message }}
+              </p>
+            </div>
           </div>
 
           <div class="flex">
@@ -295,41 +364,62 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field w-80"
+                class="ml-14 input-text-field w-80 uppercase"
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
                 @keydown.prevent.tab="addTag(newTag)"
-                @keydown.delete="newTag.length || removeTag(tags.length - 1)"
-                :style="{ 'padding-left': `${paddingLeft}px` }"
+                @keydown.delete="
+                  newTag.length || removeTag(addProfData.courses.length - 1)
+                "
+                :style="{
+                  'padding-left': `${paddingLeft}px`,
+                }"
+                :class="{ 'border-red-500': v.courses.$error }"
               />
+
               <ul class="tags ml-14" ref="tagsUl">
-                <li v-for="tag in tags" :key="tag" class="tag">
+                <li v-for="tag in addProfData.courses" :key="tag" class="tag">
                   {{ tag }}
                   <button class="delete" @click="removeTag(index)">x</button>
                 </li>
               </ul>
+              <p
+                class="ml-14 text-red-500 manrope-bold text-left text-sm"
+                v-if="v.courses.$error"
+              >
+                {{ v.courses.$errors[0].$message }}
+              </p>
             </div>
           </div>
         </div>
-        <div class="flex">
-          <button
-            class="
-              px-6
-              py-2
-              mt-4
-              text-white
-              bg-green-600
-              rounded-lg
-              hover:bg-green-900
-              shadow-lg
-              flex-shrink
-              content-center
-              update-btn
-            "
-          >
-            Add Professor
-          </button>
+        <div>
+          <div>
+            <p
+              class="mt-20 text-red-500 manrope-bold text-center text-sm"
+              v-if="state.error"
+            >
+              {{ state.error }}
+            </p>
+            <button
+              class="
+                px-6
+                py-2
+                mt-4
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+                flex-shrink
+                content-center
+                update-btn
+              "
+              @click="addProf"
+            >
+              Add Professor
+            </button>
+          </div>
         </div>
       </addProfModal>
       <button
@@ -343,9 +433,74 @@
           hover:bg-green-900
           shadow-lg
         "
+        @click="toggleMultipleAddProfModal"
       >
         Add Multiple Professors
       </button>
+      <multipleAddProfModal
+        :multipleAddProf="showMultipleAddProfModal"
+        @close="toggleMultipleAddProfModal"
+      >
+        <p class="mt-12">
+          CSV File must contain headers and follow this format: [Last Name,
+          First Name, DLSU Email, College, Department, Courses]
+        </p>
+        <div class="mt-4 flex-col">
+          <div class="flex justify-center">
+            <label
+              for="csv-file"
+              class="
+                px-6
+                py-2
+                mt-4
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+              "
+              >Upload CSV File</label
+            >
+            <input
+              id="csv-file"
+              name="csv-file"
+              type="file"
+              ref="file"
+              accept=".csv"
+              class="hidden"
+              @change="onFileUpload"
+            />
+          </div>
+
+          <div class="flex justify-center">
+            <p v-if="!state.fileExisting" class="text-red-500">
+              No Files Selected
+            </p>
+            <p v-if="state.fileExisting">
+              {{ state.csvFile.name }}
+            </p>
+          </div>
+        </div>
+        <button
+          class="
+            px-6
+            py-2
+            mt-4
+            text-white
+            bg-green-600
+            rounded-lg
+            hover:bg-green-900
+            shadow-lg
+            flex-shrink
+            content-center
+            update-btn
+          "
+          @click="addProfsCsv"
+          :disabled="!state.csvFile"
+        >
+          Add Multiple Professors
+        </button>
+      </multipleAddProfModal>
     </div>
     <br />
     <div class="flex space-x-4 ml-8 mr-8">
@@ -391,94 +546,23 @@
 
       <br />
 
-      <div class="flex-col flex-grow">
+      <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
         <div class="grid grid-cols-4 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>
           <div class="text-white">Rating</div>
         </div>
-        <div class="overscroll-auto">
+        <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
+        <!-- <div class="overscroll-auto">
           <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
+            
             <div class="text-black">Dr. Juanito Delos Reyes</div>
             <div class="text-black">CCS</div>
             <div class="text-black">ST</div>
             <div class="text-black">5/5</div>
           </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
-        <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -559,33 +643,67 @@ ul {
   border: none;
   cursor: pointer;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge add Firefox */
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none; /* Firefox */
+}
 </style>
 
 <script>
+import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
-
-import { ref, watch, nextTick, onMounted, reactive } from 'vue';
+import multipleAddProfModal from '../components/multipleProfessorModal.vue';
+import useVuelidate from '@vuelidate/core';
+import profInfo from '../components/profInfo.vue';
+import { email, required, alpha, helpers } from '@vuelidate/validators';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
   components: {
     NavBar,
     addProfModal,
+    profInfo,
+    multipleAddProfModal,
   },
-  setup(props) {
+  setup() {
     const state = reactive({
-      college: 'Choose One',
-      deparment: 'Choose One',
+      disable: null,
+      error: null,
+      invalidEmail: null,
+      invalidFile: null,
+      empty: null,
+      profs: null,
+      fileExisting: null,
+      csvFile: null,
     });
 
-    const showAddProfModal = ref(false);
+    const addProfData = reactive({
+      lastName: null,
+      firstName: null,
+      email: null,
+      college: 'Choose One',
+      department: 'Choose One',
+      courses: [],
+    });
 
-    const tags = ref([]);
+    const file = ref(null);
+
+    const showAddProfModal = ref(false);
+    const showMultipleAddProfModal = ref(false);
+
     const newTag = ref('');
     const paddingLeft = ref(10);
     const tagsUl = ref(null);
 
+    // adjust cursor
     function onTagsChange() {
       // set left padding
       const extraCushion = 15;
@@ -594,35 +712,172 @@ export default {
       tagsUl.value.scrollTo(tagsUl.value.scrollWidth, 0);
     }
 
-    watch(tags, () => nextTick(onTagsChange), { deep: true });
+    watch(addProfData.courses, () => nextTick(onTagsChange), { deep: true });
 
     onMounted(onTagsChange);
 
+    // add the new tag to the tags array
     function addTag(tag) {
-      tags.value.push(tag); // add the new tag to the tags array
-      newTag.value = '';
-      console.log(tags.value);
+      if (tag) {
+        addProfData.courses.push(tag.toUpperCase());
+        newTag.value = '';
+      }
     }
 
+    // remove the latest tag from the tags array
     function removeTag(index) {
-      tags.value.splice(index, 1);
+      addProfData.courses.splice(index, 1);
     }
 
+    // toggles add professor modal
     function toggleAddProfModal() {
       showAddProfModal.value = !showAddProfModal.value;
-      console.log(showAddProfModal.value);
+    }
+
+    // toggles multiple add professor modal
+    function toggleMultipleAddProfModal() {
+      showMultipleAddProfModal.value = !showMultipleAddProfModal.value;
+    }
+
+    const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
+
+    const notDefault = (value) => !value.includes('Choose One');
+
+    const validName = (value) => (/^[a-zA-Z ]*$/.test(value) ? true : false);
+
+    // initialize validation rules
+    const addProfRules = {
+      lastName: {
+        required,
+        validName: helpers.withMessage(
+          'Value must contain alphabet characters.',
+          validName
+        ),
+      },
+      firstName: { alpha, required },
+      email: {
+        email,
+        required,
+        dlsuEmail: helpers.withMessage(
+          'Value must contain DLSU e-mail.',
+          dlsuEmail
+        ),
+      },
+      college: {
+        notDefault: helpers.withMessage(
+          'Value must not be default',
+          notDefault
+        ),
+      },
+      department: {
+        notDefault: helpers.withMessage(
+          'Value must not be default',
+          notDefault
+        ),
+      },
+      courses: { required },
+    };
+
+    // create validation object
+    const v = useVuelidate(addProfRules, addProfData);
+    console.log;
+
+    async function addProf() {
+      console.log(addProfData);
+      try {
+        formatAddProfInputs();
+        console.log(addProfData);
+
+        const validated = await v.value.$validate();
+
+        if (validated) {
+          const res = await api.addProf(addProfData);
+          if (res) {
+            state.profs.unshift(res.data);
+          }
+
+          state.error = null;
+          toggleAddProfModal();
+        }
+      } catch (error) {
+        console.log(error.response.data);
+        state.error = error.response.data.message;
+        state.invalidEmail = addProfData.email;
+      }
+    }
+
+    function formatAddProfInputs() {
+      addProfData.lastName = titleCase(addProfData.lastName);
+      addProfData.firstName = titleCase(addProfData.firstName);
+      addProfData.email = addProfData.email.toLowerCase();
+    }
+
+    function titleCase(str) {
+      return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
+    }
+
+    async function initProfs() {
+      try {
+        const result = await api.getAllProfs();
+        state.profs = result.data;
+
+        if (state.profs.length !== 0) {
+          state.empty = false;
+        } else {
+          state.empty = true;
+        }
+      } catch (err) {
+        console.log(err.response.data);
+        state.empty = true;
+      }
+    }
+
+    onBeforeMount(() => {
+      initProfs();
+    });
+
+    function isValidProf() {
+      state.error =
+        addProfData.email === state.invalidEmail && state.invalidEmail != null
+          ? 'Professor already exists.'
+          : false;
+    }
+
+    function onFileUpload() {
+      state.fileExisting = file.value.files.length != 0 ? true : false;
+      if (state.fileExisting) {
+        state.csvFile = file.value.files[0];
+        console.log('file: ' + file.value.files[0].name);
+      }
+    }
+
+    async function addProfsCsv() {
+      console.log('hi');
+      const formData = new FormData();
+      formData.append('csv-file', state.csvFile);
+      const res = await api.addProfsCsv(formData);
+      console.log(res);
     }
 
     return {
       toggleAddProfModal,
+      toggleMultipleAddProfModal,
       showAddProfModal,
-      tags,
+      showMultipleAddProfModal,
       newTag,
       addTag,
       removeTag,
       paddingLeft,
       tagsUl,
+      addProfData,
       state,
+      addProf,
+      addProfsCsv,
+      v,
+      isValidProf,
+      titleCase,
+      file,
+      onFileUpload,
     };
   },
 };

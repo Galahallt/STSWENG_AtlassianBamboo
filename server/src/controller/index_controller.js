@@ -1,4 +1,4 @@
-import UserService from '../service/user_service.js';
+import userService from '../service/user_service.js';
 import logger from '../logger/index.js';
 import uniqid from 'uniqid';
 
@@ -15,7 +15,7 @@ const indexController = {
         logger.error(domain);
         return res.status(400).json({ message: 'Not DLSU account!' });
       } else {
-        const userExisting = await UserService.getUser({ email: email });
+        const userExisting = await userService.getUser({ email: email });
 
         const user = {
           id: uniqid(),
@@ -29,8 +29,8 @@ const indexController = {
         const accessToken = req.body.accessToken;
 
         if (userExisting == null) {
-          const newUser = await UserService.addUser(user);
-          logger.info('User added sucessfully!' + newUser);
+          const newUser = await userService.addUser(user);
+          logger.info('User added successfully!' + newUser);
         }
 
         delete user.id;

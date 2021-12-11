@@ -3,6 +3,7 @@ import Login from '../views/login.vue';
 import Error from '../views/error.vue';
 import Home from '../views/home.vue';
 import AddProf from '../views/addProf.vue';
+import ViewProf from '../views/rating.vue';
 
 const routes = [
   {
@@ -30,9 +31,10 @@ const routes = [
     },
   },
   {
-    path: '/addProf',
-    name: 'AddProf',
-    component: AddProf,
+    path: '/viewProfessor',
+    name: 'View Professor',
+    component: ViewProf,
+    props: true,
     meta: {
       requiresAuth: true,
     },
