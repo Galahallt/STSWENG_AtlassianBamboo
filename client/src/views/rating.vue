@@ -75,36 +75,66 @@
           </button>
         </div>
         <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-          <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-          <div class="flex justify-center">
-            <div>Numeric value:</div>
-            <div class="ml-2">{{ state.rating }}</div>
+          <div class="grid grid-rows-6 gap-1">
+            <div class="row-span-3"></div>
+            <div class="row-span-2">
+              <div class="flex justify-center">
+                <vue3-star-ratings
+                  :disableClick="true"
+                  v-model="state.rating"
+                />
+              </div>
+              <div class="flex justify-center">
+                <div>Numeric value:</div>
+                <div class="ml-2">{{ state.rating }}</div>
+              </div>
+            </div>
+            <p
+              class="ml-10 text-red-500 manrope-bold text-left text-sm"
+              v-if="state.error"
+            >
+              Error occured.
+            </p>
+            <div class="row-span-1 grid grid-cols-2">
+              <div class="col-span-1">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    flex-shrink
+                    content-center
+                  "
+                  @click="addRating"
+                >
+                  Edit Review
+                </button>
+              </div>
+              <div class="col-span-1 justify-self-end">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    flex-shrink
+                    content-center
+                  "
+                  @click="addRating"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </div>
           </div>
-          <p
-            class="ml-10 text-red-500 manrope-bold text-left text-sm"
-            v-if="state.error"
-          >
-            Error occured.
-          </p>
-          <button
-            class="
-              px-6
-              py-2
-              mt-4
-              text-white
-              bg-green-600
-              rounded-lg
-              hover:bg-green-900
-              shadow-lg
-              flex-shrink
-              content-center
-              update-btn
-            "
-            @click="addRating"
-          >
-            Submit Review
-          </button></writeModal
-        >
+        </writeModal>
       </div>
     </div>
   </div>
@@ -118,6 +148,18 @@ button:disabled {
 
 .update-btn {
   position: absolute;
+  background-color: #0f4c81;
+  color: white;
+  border-radius: 20px;
+  bottom: 15px;
+  width: 25%;
+  left: 70%;
+  height: 3rem;
+  vertical-align: middle;
+  outline: none;
+}
+
+.edit-btn {
   background-color: #0f4c81;
   color: white;
   border-radius: 20px;
