@@ -422,7 +422,7 @@
           </div>
         </div>
         <div>
-          <div>
+          <div class="flex flex-row-reverse">
             <p
               class="mt-20 text-red-500 manrope-bold text-center text-sm"
               v-if="state.error"
@@ -433,15 +433,15 @@
               class="
                 px-6
                 py-2
-                mt-4
+                mt-80
+                mr-4
                 text-white
                 bg-green-600
                 rounded-lg
                 hover:bg-green-900
                 shadow-lg
-                flex-shrink
                 content-center
-                update-btn
+                place-self-end
               "
               @click="addProf"
             >
@@ -519,7 +519,8 @@
           class="
             px-6
             py-2
-            mt-4
+            mt-48
+            mr-4
             text-white
             bg-green-600
             rounded-lg
@@ -527,7 +528,7 @@
             shadow-lg
             flex-shrink
             content-center
-            update-btn
+            place-self-end
           "
           @click="addProfsCsv"
           :disabled="!state.csvFile"
@@ -581,7 +582,7 @@
       <br />
 
       <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-5 bg-gray-400 text-center">
+        <div class="grid grid-cols-5 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>

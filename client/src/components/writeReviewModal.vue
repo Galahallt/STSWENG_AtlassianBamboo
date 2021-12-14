@@ -14,7 +14,7 @@
               text-green-600 text-left text-2xl
             "
           >
-            Write Review
+            Add Rating
           </h1>
           <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
