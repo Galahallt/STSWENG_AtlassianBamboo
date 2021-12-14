@@ -95,25 +95,25 @@
             >
               Error occured.
             </p>
-
-            <div class="justify-self-center">
-              <button
-                class="
-                  mt-8
-                  px-6
-                  py-2
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  flex-shrink
-                  content-center
-                "
-                @click="addRating"
-              >
-                Submit Rating
-              </button>
+            <div class="row-span-1 grid grid-cols-2">
+              <div class="col-span-1 justify-self-end">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    flex-shrink
+                    content-center
+                  "
+                  @click="checkRating"
+                >
+                  Submit Review
+                </button>
+              </div>
             </div>
 
             <div class="row-span-2"></div>
@@ -217,6 +217,29 @@ export default {
       }
     }
 
+    // check rating in database before adding/updating
+    async function checkRating() {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+
+        const rate = {
+          userEmail: email,
+          instructorEmail: props.email,
+        };
+
+        const checkExists = await api.findRating(rate);
+        if (checkExists) {
+          console.log('EXISTS');
+          updateRating();
+        } else {
+          console.log('NO!');
+          addRating();
+        }
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
     // insert rating to database
     async function addRating() {
       try {
@@ -229,12 +252,11 @@ export default {
         };
 
         const res = await api.addRating(rate);
-
         if (res) {
           console.log(res);
           toggleWriteModal();
           state.error = false;
-          avgRating();
+          await avgRating();
         } else {
           state.error = true;
         }
@@ -250,8 +272,10 @@ export default {
           instructorEmail: props.email,
         };
         const res = await api.getInstructorRatings(instructor);
-        state.avgRating = res.data;
-        updateRating();
+        if (res) {
+          state.avgRating = res.data;
+        }
+        console.log(res);
       } catch (err) {
         console.log(err.response.data);
       }
@@ -260,14 +284,22 @@ export default {
     // update rating in backend
     async function updateRating() {
       try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+
         const instructor = {
+          userEmail: email,
           instructorEmail: props.email,
-          rating: state.avgRating,
+          rating: state.rating,
         };
 
         const res = await api.updateRating(instructor);
         if (res) {
           console.log(res);
+          toggleWriteModal();
+          state.error = false;
+          await avgRating();
+        } else {
+          state.error = true;
         }
       } catch (err) {
         console.log(err.response.data);
@@ -285,8 +317,8 @@ export default {
     return {
       state,
       showWriteModal,
+      checkRating,
       toggleWriteModal,
-      addRating,
     };
   },
 };
