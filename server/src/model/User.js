@@ -26,11 +26,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // user's image
-  imgURL: {
-    type: String,
-    required: true,
-  },
+  isAdministrator: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // implement user schema as user model

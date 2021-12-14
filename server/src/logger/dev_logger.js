@@ -36,4 +36,4 @@ const buildDevLogger = () =>
     transports: [new transports.Console()],
   });
 
-export default buildDevLogger;
+  export default buildDevLogger;
