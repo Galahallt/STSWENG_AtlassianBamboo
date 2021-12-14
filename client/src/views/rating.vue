@@ -95,44 +95,27 @@
             >
               Error occured.
             </p>
-            <div class="row-span-1 grid grid-cols-2">
-              <div class="col-span-1">
-                <button
-                  class="
-                    px-6
-                    py-2
-                    text-white
-                    bg-green-600
-                    rounded-lg
-                    hover:bg-green-900
-                    shadow-lg
-                    flex-shrink
-                    content-center
-                  "
-                  @click="addRating"
-                >
-                  Edit Rating
-                </button>
-              </div>
-              <div class="col-span-1 justify-self-end">
-                <button
-                  class="
-                    px-6
-                    py-2
-                    text-white
-                    bg-green-600
-                    rounded-lg
-                    hover:bg-green-900
-                    shadow-lg
-                    flex-shrink
-                    content-center
-                  "
-                  @click="addRating"
-                >
-                  Submit Rating
-                </button>
-              </div>
+
+            <div class="justify-self-center">
+              <button
+                class="
+                  mt-8
+                  px-6
+                  py-2
+                  text-white
+                  bg-green-600
+                  rounded-lg
+                  hover:bg-green-900
+                  shadow-lg
+                  flex-shrink
+                  content-center
+                "
+                @click="addRating"
+              >
+                Submit Rating
+              </button>
             </div>
+
             <div class="row-span-2"></div>
           </div>
         </writeModal>
