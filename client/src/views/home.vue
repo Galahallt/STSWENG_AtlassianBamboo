@@ -767,6 +767,15 @@ export default {
 
     // toggles add professor modal
     function toggleAddProfModal() {
+      for (var elem in addProfData) {
+        if (elem == 'department' || elem == 'college') {
+          addProfData[elem] = 'Choose One';
+        } else if (elem == 'courses') {
+          addProfData[elem] = [];
+        } else {
+          addProfData[elem] = null;
+        }
+      }
       showAddProfModal.value = !showAddProfModal.value;
     }
 
@@ -838,10 +847,8 @@ export default {
     console.log;
 
     async function addProf() {
-      console.log(addProfData);
       try {
         formatAddProfInputs();
-        console.log(addProfData);
 
         const validated = await v.value.$validate();
 
@@ -849,10 +856,9 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.profs.unshift(res.data);
+            toggleAddProfModal();
           }
-
           state.error = null;
-          toggleAddProfModal();
         }
       } catch (error) {
         console.log(error.response.data);
@@ -919,11 +925,6 @@ export default {
             for (let i = 0; i < res.data.length; i++) {
               state.profs.unshift(res.data[i]);
             }
-
-            // console.log(res.data);
-            // res.data.map((row, i) => {
-            //   state.profs.unshift(row[i]);
-            // });
           }
         }
       } catch (error) {
