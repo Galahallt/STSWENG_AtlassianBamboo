@@ -28,8 +28,9 @@ const userSchema = new mongoose.Schema({
   },
   isAdministrator: {
     type: Boolean,
-    default: false
-  }
+    required: true,
+    default: false,
+  },
 });
 
 // implement user schema as user model

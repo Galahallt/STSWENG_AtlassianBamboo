@@ -23,7 +23,7 @@ const indexController = {
           email: email,
         };
 
-        logger.info(req.body);
+        logger.info(user.id);
 
         const accessToken = req.body.accessToken;
 
