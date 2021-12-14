@@ -861,20 +861,25 @@ export default {
           state.error = null;
         }
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
         state.error = error.response.data.message;
+
         state.invalidEmail = addProfData.email;
       }
     }
 
     function formatAddProfInputs() {
-      addProfData.lastName = titleCase(addProfData.lastName);
-      addProfData.firstName = titleCase(addProfData.firstName);
-      addProfData.email = addProfData.email.toLowerCase();
+      if (addProfData.lastName && addProfData.firstName && addProfData.email) {
+        addProfData.lastName = titleCase(addProfData.lastName);
+        addProfData.firstName = titleCase(addProfData.firstName);
+        addProfData.email = addProfData.email.toLowerCase();
+      }
     }
 
     function titleCase(str) {
-      return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
+      if (str) {
+        return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
+      }
     }
 
     async function initProfs() {
