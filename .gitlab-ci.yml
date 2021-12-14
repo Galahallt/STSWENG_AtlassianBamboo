@@ -62,7 +62,9 @@ server-test:
   extends: .server
   needs: ["server-build"]
   script:
-    - echo "Testing the server code..."
+    - cd server
+    - yarn install
+    - yarn test
 
 server-deploy:
   stage: deploy
@@ -72,7 +74,6 @@ server-deploy:
     - echo "Deploying the server code..."
     - cd server
     - yarn install
-    - yarn dev
 
 client-deploy:
   stage: deploy
@@ -82,4 +83,3 @@ client-deploy:
     - echo "Deploying the client code..."
     - cd client
     - yarn install
-    - yarn dev
