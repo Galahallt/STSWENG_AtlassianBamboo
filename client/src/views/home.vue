@@ -79,7 +79,15 @@
                 name="lastName"
                 type="text"
                 v-model.trim="addProfData.lastName"
-                class="manrope-regular input-text-field w-80 ml-10 capitalize"
+                class="
+                  manrope-regular
+                  input-text-field
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
+                  ml-10
+                  capitalize
+                "
                 :class="{
                   'border-red-500': v.lastName.$error,
                 }"
@@ -105,7 +113,15 @@
                 name="firstName"
                 type="text"
                 v-model.trim="addProfData.firstName"
-                class="manrope-regular input-text-field w-80 ml-10 capitalize"
+                class="
+                  manrope-regular
+                  input-text-field
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
+                  ml-10
+                  capitalize
+                "
                 :class="{
                   'border-red-500': v.firstName.$error,
                 }"
@@ -131,7 +147,15 @@
                 name="email"
                 type="email"
                 v-model.trim="addProfData.email"
-                class="manrope-regular input-text-field w-80 ml-9 lowercase"
+                class="
+                  manrope-regular
+                  input-text-field
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
+                  ml-9
+                  lowercase
+                "
                 @keyup="isValidProf"
                 :class="{
                   'border-red-500': v.email.$error,
@@ -164,7 +188,9 @@
                 name="college"
                 id="college"
                 class="
-                  w-72
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
                   ml-16
                   border-solid border-2
                   rounded-md
@@ -206,7 +232,9 @@
                 name="department"
                 id="department"
                 class="
-                  w-72
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
                   ml-8
                   border-solid border-2
                   rounded-md
@@ -364,7 +392,7 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field w-80 uppercase"
+                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase"
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -480,6 +508,12 @@
               {{ state.csvFile.name }}
             </p>
           </div>
+          <p
+            class="mt-8 text-red-500 manrope-bold text-center text-sm"
+            v-if="state.profExisting"
+          >
+            {{ state.profExisting }}
+          </p>
         </div>
         <button
           class="
@@ -504,7 +538,7 @@
     </div>
     <br />
     <div class="flex space-x-4 ml-8 mr-8">
-      <div class="flex-col items-center justify-center bg-gray-400 p-6">
+      <div class="flex-col text-center justify-center bg-gray-400 p-6">
         <div>
           <label class="text-white underline">FILTER BY</label>
         </div>
@@ -547,11 +581,12 @@
       <br />
 
       <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-4 bg-gray-400">
+        <div class="grid grid-cols-5 bg-gray-400 text-center">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>
           <div class="text-white">Rating</div>
+          <div class="text-white">Status</div>
         </div>
         <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
         <!-- <div class="overscroll-auto">
@@ -680,9 +715,10 @@ export default {
       invalidEmail: null,
       invalidFile: null,
       empty: null,
-      profs: null,
+      profs: [],
       fileExisting: null,
       csvFile: null,
+      profExisting: null,
     });
 
     const addProfData = reactive({
@@ -737,9 +773,22 @@ export default {
     // toggles multiple add professor modal
     function toggleMultipleAddProfModal() {
       showMultipleAddProfModal.value = !showMultipleAddProfModal.value;
+      state.csvFile = null;
+      state.fileExisting = null;
+      if (!showMultipleAddProfModal.value) {
+        state.profExisting = false;
+      }
     }
 
-    const dlsuEmail = (value) => value.includes('dlsu.edu.ph');
+    const dlsuEmail = (value) => {
+      const domain = value.split('@').pop();
+
+      if (domain != 'dlsu.edu.ph') {
+        return false;
+      } else {
+        return true;
+      }
+    };
 
     const notDefault = (value) => !value.includes('Choose One');
 
@@ -754,7 +803,13 @@ export default {
           validName
         ),
       },
-      firstName: { alpha, required },
+      firstName: {
+        required,
+        validName: helpers.withMessage(
+          'Value must contain alphabet characters.',
+          validName
+        ),
+      },
       email: {
         email,
         required,
@@ -852,11 +907,29 @@ export default {
     }
 
     async function addProfsCsv() {
-      console.log('hi');
-      const formData = new FormData();
-      formData.append('csv-file', state.csvFile);
-      const res = await api.addProfsCsv(formData);
-      console.log(res);
+      try {
+        const tempCsv = state.csvFile;
+        const formData = new FormData();
+        formData.append('csv-file', tempCsv);
+        const res = await api.addProfsCsv(formData);
+        if (res) {
+          toggleMultipleAddProfModal();
+          console.log(res);
+          if (res.status == 200) {
+            for (let i = 0; i < res.data.length; i++) {
+              state.profs.unshift(res.data[i]);
+            }
+
+            // console.log(res.data);
+            // res.data.map((row, i) => {
+            //   state.profs.unshift(row[i]);
+            // });
+          }
+        }
+      } catch (error) {
+        state.profExisting = error.response.data.message;
+        console.log(error);
+      }
     }
 
     return {

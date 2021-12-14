@@ -115,7 +115,7 @@ export default {
           }
         }
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response);
         await gAuth.signOut();
         state.error = true;
       }

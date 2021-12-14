@@ -9,10 +9,7 @@ const indexController = {
       const email = req.body.email;
       const domain = email.split('@').pop();
 
-      logger.info(domain);
-
       if (domain != 'dlsu.edu.ph') {
-        logger.error(domain);
         return res.status(400).json({ message: 'Not DLSU account!' });
       } else {
         const userExisting = await userService.getUser({ email: email });
@@ -25,6 +22,8 @@ const indexController = {
           imgURL: req.body.imageURL,
           email: email,
         };
+
+        logger.info(user.id);
 
         const accessToken = req.body.accessToken;
 

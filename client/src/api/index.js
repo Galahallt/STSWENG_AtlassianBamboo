@@ -18,6 +18,9 @@ export const addProf = (profData) => API.post('/professor/addProf', profData);
 export const addProfsCsv = (profData) =>
   API.post('/professor/addProfsCsv', profData);
 export const getAllProfs = () => API.get('/professor/getAllProfs');
+export const getAdminList = () => API.get('/admin/adminlist');
+export const postAddAdmin = (email) => API.post('/admin/addadmin', {email: email});
+
 
 // rate api methods
 export const addRating = (rating) => API.post('/rating/addRating', rating);

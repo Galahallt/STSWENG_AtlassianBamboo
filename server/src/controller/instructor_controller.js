@@ -9,6 +9,9 @@ import userService from '../service/user_service.js';
 // get instructor service methods from service folder
 import instructorService from '../service/instructor_service.js';
 
+// import csv validator
+import csvValidator from '../utils/csv-validator.js';
+
 // get tag model object from model folder
 import Tag from '../model/Tag.js';
 
@@ -25,8 +28,6 @@ const instructorController = {
     try {
       const email = req.body.email;
       const domain = email.split('@').pop();
-
-      logger.info(domain);
 
       const profExisting = await instructorService.getProf({ email: email });
 
@@ -59,18 +60,66 @@ const instructorController = {
   postAddProfsCsv: async (req, res) => {
     try {
       const fileRows = [];
+      const newProf = [];
       csv
         .parseFile(req.file.path)
         .on('data', function (data) {
           fileRows.push(data);
         })
-        .on('end', function () {
+        .on('end', async function () {
           fs.unlinkSync(req.file.path);
-          logger.info(fileRows);
-          return res.status(200).json(fileRows);
+          const validationError = csvValidator.validateCsvData(fileRows);
+          if (validationError) {
+            return res.status(400).json({ message: validationError });
+          } else {
+            fileRows.shift();
+            await Promise.all(
+              fileRows.map(async (row, i, arr) => {
+                // format last name to title case
+                arr[i][0] = row[0]
+                  .toLowerCase()
+                  .replace(/\b(\w)/g, (s) => s.toUpperCase());
+                // format first name to title case
+                arr[i][1] = row[1]
+                  .toLowerCase()
+                  .replace(/\b(\w)/g, (s) => s.toUpperCase());
+                // format dlsu email
+                arr[i][2] = row[2].toLowerCase();
+                // format courses
+                arr[i][5] = row[5].toUpperCase().split(',');
+
+                const profExisting = await instructorService.getProf({
+                  email: arr[i][2],
+                });
+
+                if (!profExisting) {
+                  const prof = {
+                    id: uniqid(),
+                    lastName: arr[i][0],
+                    firstName: arr[i][1],
+                    email: arr[i][2],
+                    college: arr[i][3],
+                    department: arr[i][4],
+                    courses: arr[i][5],
+                  };
+                  newProf.push(await instructorService.addProf(prof));
+                }
+              })
+            );
+            logger.info(newProf);
+            if (newProf.length != 0) {
+              return res.status(200).json(newProf);
+            } else {
+              return res
+                .status(400)
+                .json({ message: 'Professors already exists!' });
+            }
+          }
         });
     } catch (error) {
       logger.error(error);
+      // if error has occurred, send server error status and message
+      return res.status(500).json({ message: 'Server Error' });
     }
   },
 
