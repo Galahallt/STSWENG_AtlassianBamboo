@@ -1,7 +1,10 @@
 stages:
   - build
   - test
+<<<<<<< HEAD
   - deploy
+=======
+>>>>>>> development
 
 default:
   image: node:16.11.1
@@ -62,6 +65,7 @@ server-test:
   extends: .server
   needs: ["server-build"]
   script:
+<<<<<<< HEAD
     - echo "Testing the server code..."
 
 client-test:
@@ -90,3 +94,8 @@ client-deploy:
     - cd client
     - yarn install
     - yarn dev
+=======
+    - cd server
+    - yarn install
+    - yarn test
+>>>>>>> development

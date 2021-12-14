@@ -7,7 +7,10 @@ import logger from './logger/index.js';
 
 // routes
 import indexRoutes from './routes/index_routes.js';
+import instructorRoutes from './routes/instructor_routes.js';
+import rateRoutes from './routes/rate_routes.js';
 
+import adminRoutes from './routes/admin_routes.js';
 // connect to Profs to Pick database
 connectDatabase();
 
@@ -38,5 +41,8 @@ app.use(
 
 // routes implementation
 app.use('/', indexRoutes);
+app.use('/professor', instructorRoutes);
+app.use('/admin', adminRoutes);
+app.use('/rating', rateRoutes);
 
 export default app;

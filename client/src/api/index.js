@@ -12,3 +12,19 @@ API.interceptors.request.use((req) => {
 
 // user login api methods
 export const loginUser = (user) => API.post('/login', user);
+
+// professor api methods
+export const addProf = (profData) => API.post('/professor/addProf', profData);
+export const addProfsCsv = (profData) =>
+  API.post('/professor/addProfsCsv', profData);
+export const getAllProfs = () => API.get('/professor/getAllProfs');
+export const getAdminList = () => API.get('/admin/adminlist');
+export const postAddAdmin = (email) => API.post('/admin/addadmin', {email: email});
+
+
+// rate api methods
+export const addRating = (rating) => API.post('/rating/addRating', rating);
+export const getInstructorRatings = (rating) =>
+  API.post('/rating/getInstructorRatings', rating);
+export const updateRating = (rating) =>
+  API.patch(`rating/updateRating`, rating);
