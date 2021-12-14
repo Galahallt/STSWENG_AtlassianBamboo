@@ -4,6 +4,7 @@ import AdminList from '../views/adminlist.vue';
 import AddProf from '../views/addProf.vue';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
+import ViewProf from '../views/rating.vue';
 
 const routes = [
   {
@@ -43,6 +44,15 @@ const routes = [
       hideForAuth: true,
     },
   },
+  {
+    path: '/viewProfessor',
+    name: 'View Professor',
+    component: ViewProf,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -70,4 +80,5 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
 export default router;

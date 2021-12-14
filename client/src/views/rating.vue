@@ -11,112 +11,7 @@
       font-sans
     "
   >
-    <nav class="bg-green-700">
-      <div class="max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex items-center h-16">
-          <div class="flex space-x-4">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <!-- <a
-                  href="#"
-                  class="
-                    bg-gray-900
-                    text-white
-                    px-3
-                    py-2
-                    rounded-md
-                    text-sm
-                    font-medium
-                  "
-                  aria-current="page"
-                  >Dashboard</a
-                > -->
-
-            <a
-              href="#"
-              class="
-                text-gray-100
-                hover:bg-green-900 hover:text-white
-                px-3
-                py-2
-                rounded-md
-                font-medium
-                text-lg
-              "
-              >Home</a
-            >
-
-            <a
-              href="#"
-              class="
-                text-gray-100
-                hover:bg-green-900 hover:text-white
-                px-3
-                py-2
-                rounded-md
-                font-medium
-                text-lg
-              "
-              >View Professors</a
-            >
-
-            <a
-              href="#"
-              class="
-                text-gray-100
-                hover:bg-green-900 hover:text-white
-                px-3
-                py-2
-                rounded-md
-                font-medium
-                text-lg
-              "
-              >FAQs</a
-            >
-
-            <a
-              href="#"
-              class="
-                text-gray-100
-                hover:bg-green-900 hover:text-white
-                px-3
-                py-2
-                rounded-md
-                font-medium
-                text-lg
-              "
-              >Contact Us</a
-            >
-          </div>
-
-          <!-- Profile dropdown -->
-          <div class="ml-8">
-            <button
-              type="button"
-              class="
-                bg-gray-800
-                flex
-                text-sm
-                rounded-full
-                focus:outline-none
-                focus:ring-2
-                focus:ring-offset-2
-                focus:ring-offset-gray-800
-                focus:ring-white
-              "
-              id="user-menu-button"
-              aria-expanded="false"
-              aria-haspopup="true"
-            >
-              <img
-                class="h-8 w-8 rounded-full"
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <NavBar />
     <!-- <button
       @click="logoutUser"
       :disabled="!Vue3GoogleOauth.isAuthorized"
@@ -137,26 +32,28 @@
     <div class="grid grid-cols-10 gap-4 mt-12">
       <div class="col-span-3"></div>
       <div class="col-span-5 space-y-6 text-left">
-        <div class="text-black text-3xl font-bold">Dr. Juanito Delos Reyes</div>
+        <div class="text-black text-3xl font-bold">
+          {{ profLast + ', ' + profFirst }}
+        </div>
         <div class="text-black flex">
           <div>Email:</div>
-          <div class="ml-2">juanito.delos.reyes@dlsu.edu.ph</div>
+          <div class="ml-2">{{ email }}</div>
         </div>
         <div class="text-black flex">
           <div>College:</div>
-          <div class="ml-2">CCS</div>
+          <div class="ml-2">{{ college }}</div>
         </div>
         <div class="text-black flex">
           <div>Department:</div>
-          <div class="ml-2">ST</div>
+          <div class="ml-2">{{ dept }}</div>
         </div>
         <div class="text-black flex">
           <div>Rating:</div>
-          <div class="ml-2">5/5</div>
+          <div class="ml-2">{{ state.avgRating + '/5' }}</div>
         </div>
         <div class="text-black flex">
           <div>Courses taught:</div>
-          <div class="ml-2">STSWENG, CSSWENG, CCINFOM</div>
+          <div class="ml-2">{{ state.tagString }}</div>
         </div>
       </div>
       <div class="col-span-2 mr-8">
@@ -172,15 +69,72 @@
               hover:bg-green-900
               shadow-lg
             "
+            @click="toggleWriteModal"
           >
             Write Review
           </button>
         </div>
-        <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-        <div class="flex justify-center">
-          <div>Numeric value:</div>
-          <div class="ml-2">{{ state.rating }}</div>
-        </div>
+        <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+          <div class="grid grid-rows-6 gap-1">
+            <div class="row-span-3"></div>
+            <div class="row-span-2">
+              <div class="flex justify-center">
+                <vue3-star-ratings
+                  :disableClick="true"
+                  v-model="state.rating"
+                />
+              </div>
+              <div class="flex justify-center">
+                <div>Numeric value:</div>
+                <div class="ml-2">{{ state.rating }}</div>
+              </div>
+            </div>
+            <p
+              class="ml-10 text-red-500 manrope-bold text-left text-sm"
+              v-if="state.error"
+            >
+              Error occured.
+            </p>
+            <div class="row-span-1 grid grid-cols-2">
+              <div class="col-span-1">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    flex-shrink
+                    content-center
+                  "
+                  @click="addRating"
+                >
+                  Edit Review
+                </button>
+              </div>
+              <div class="col-span-1 justify-self-end">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    flex-shrink
+                    content-center
+                  "
+                  @click="addRating"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </div>
+          </div>
+        </writeModal>
       </div>
     </div>
   </div>
@@ -191,41 +145,164 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.update-btn {
+  position: absolute;
+  background-color: #0f4c81;
+  color: white;
+  border-radius: 20px;
+  bottom: 15px;
+  width: 25%;
+  left: 70%;
+  height: 3rem;
+  vertical-align: middle;
+  outline: none;
+}
+
+.edit-btn {
+  background-color: #0f4c81;
+  color: white;
+  border-radius: 20px;
+  bottom: 15px;
+  width: 25%;
+  left: 70%;
+  height: 3rem;
+  vertical-align: middle;
+  outline: none;
+}
 </style>
 
 <script>
-import { inject, getCurrentInstance, reactive } from 'vue';
-// import { useStore } from 'vuex';
-// import { useRouter } from 'vue-router';
+import * as api from '../api/index.js';
+import { ref, onBeforeMount, onMounted, reactive } from 'vue';
+import writeModal from '../components/writeReviewModal.vue';
+import NavBar from '../components/NavBar.vue';
 
 export default {
-  // name: 'Login',
-  setup() {
-    let state = reactive({
+  name: 'View Professor',
+  components: { NavBar, writeModal },
+  props: {
+    profLast: {
+      type: String,
+    },
+    profFirst: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    college: {
+      type: String,
+    },
+    dept: {
+      type: String,
+    },
+    rating: {
+      type: String,
+    },
+    tags: {
+      type: Array,
+    },
+  },
+  setup(props) {
+    const state = reactive({
       rating: 0,
+      tagString: '',
+      error: false,
+      avgRating: 0,
     });
-    // const app = getCurrentInstance();
-    // const gAuth = app.appContext.config.globalProperties.$gAuth;
-    // const router = useRouter();
-    // const store = useStore();
-    // const Vue3GoogleOauth = inject('Vue3GoogleOauth');
 
-    // async function logoutUser() {
-    //   console.log('hello');
-    //   try {
-    //     await gAuth.signOut();
-    //     console.log('isAuthorized', this.Vue3GoogleOauth.isAuthorized);
-    //     store.dispatch('logoutUser');
-    //     router.push({ name: 'Login' });
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
+    // load tags before loading
+    onBeforeMount(() => {
+      formatTags();
+    });
+
+    // load after loading
+    onMounted(() => {
+      avgRating();
+    });
+
+    // tag formatting for printing
+    function formatTags() {
+      for (let i = 0; i < props.tags.length; i++) {
+        if (i != props.tags.length - 1) {
+          state.tagString += props.tags[i] + ', ';
+        } else {
+          state.tagString += props.tags[i];
+        }
+      }
+    }
+
+    // insert rating to database
+    async function addRating() {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+
+        const rate = {
+          rating: state.rating,
+          userEmail: email,
+          instructorEmail: props.email,
+        };
+
+        const res = await api.addRating(rate);
+
+        if (res) {
+          console.log(res);
+          toggleWriteModal();
+          state.error = false;
+          avgRating();
+        } else {
+          state.error = true;
+        }
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // display rating
+    async function avgRating() {
+      try {
+        const instructor = {
+          instructorEmail: props.email,
+        };
+        const res = await api.getInstructorRatings(instructor);
+        state.avgRating = res.data;
+        updateRating();
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // update rating in backend
+    async function updateRating() {
+      try {
+        const instructor = {
+          instructorEmail: props.email,
+          rating: state.avgRating,
+        };
+
+        const res = await api.updateRating(instructor);
+        if (res) {
+          console.log(res);
+        }
+      } catch (err) {
+        console.log(err.response.data);
+      }
+    }
+
+    // declare modal
+    const showWriteModal = ref(false);
+
+    // toggle modal
+    function toggleWriteModal() {
+      showWriteModal.value = !showWriteModal.value;
+    }
 
     return {
       state,
-      // Vue3GoogleOauth,
-      // logoutUser,
+      showWriteModal,
+      toggleWriteModal,
+      addRating,
     };
   },
 };
