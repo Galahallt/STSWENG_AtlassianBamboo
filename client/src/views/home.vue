@@ -674,7 +674,6 @@ ul {
 </style>
 
 <script>
-import { getCurrentInstance, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import * as api from '../api/index.js';
@@ -684,7 +683,15 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  reactive,
+  onBeforeMount,
+  getCurrentInstance,
+} from 'vue';
 
 export default {
   name: 'Home',
@@ -695,10 +702,6 @@ export default {
     multipleAddProfModal,
   },
   setup() {
-    let state = reactive({
-      rating: 0,
-    });
-    const app = getCurrentInstance();
     const router = useRouter();
     const store = useStore();
 
