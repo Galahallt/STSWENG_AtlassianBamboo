@@ -11,7 +11,7 @@ import Rate from '../model/Rate.js';
 const instructorService = {
   // this method retrieves and returns a specific instructor
   getProf: async (data) => Instructor.findOne(data),
-  //this method retrieves and returns all instructors from the database
+  // this method retrieves and returns all instructors from the database
   getAllProfs: async () =>
     Instructor.find({}).sort({ createdAt: 'descending' }),
   // this method adds a new instructor to the database
@@ -27,6 +27,8 @@ const instructorService = {
     });
     return newProf.save();
   },
+  updateRating: async (instructorID, update) =>
+    Instructor.findOneAndUpdate({ instructorID: instructorID }, update),
 };
 
 export default instructorService;
