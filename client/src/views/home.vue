@@ -422,7 +422,7 @@
           </div>
         </div>
         <div>
-          <div>
+          <div class="flex flex-row-reverse">
             <p
               class="mt-20 text-red-500 manrope-bold text-center text-sm"
               v-if="state.error"
@@ -433,15 +433,15 @@
               class="
                 px-6
                 py-2
-                mt-4
+                mt-80
+                mr-4
                 text-white
                 bg-green-600
                 rounded-lg
                 hover:bg-green-900
                 shadow-lg
-                flex-shrink
                 content-center
-                update-btn
+                place-self-end
               "
               @click="addProf"
             >
@@ -519,7 +519,8 @@
           class="
             px-6
             py-2
-            mt-4
+            mt-48
+            mr-4
             text-white
             bg-green-600
             rounded-lg
@@ -527,7 +528,7 @@
             shadow-lg
             flex-shrink
             content-center
-            update-btn
+            place-self-end
           "
           @click="addProfsCsv"
           :disabled="!state.csvFile"
@@ -581,7 +582,7 @@
       <br />
 
       <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-5 bg-gray-400 text-center">
+        <div class="grid grid-cols-5 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
           <div class="text-white">Department</div>
@@ -697,7 +698,7 @@ import addProfModal from '../components/addProfessorModal.vue';
 import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
-import { email, required, alpha, helpers } from '@vuelidate/validators';
+import { email, required, helpers } from '@vuelidate/validators';
 import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
@@ -767,6 +768,15 @@ export default {
 
     // toggles add professor modal
     function toggleAddProfModal() {
+      for (var elem in addProfData) {
+        if (elem == 'department' || elem == 'college') {
+          addProfData[elem] = 'Choose One';
+        } else if (elem == 'courses') {
+          addProfData[elem] = [];
+        } else {
+          addProfData[elem] = null;
+        }
+      }
       showAddProfModal.value = !showAddProfModal.value;
     }
 
@@ -838,10 +848,8 @@ export default {
     console.log;
 
     async function addProf() {
-      console.log(addProfData);
       try {
         formatAddProfInputs();
-        console.log(addProfData);
 
         const validated = await v.value.$validate();
 
@@ -849,26 +857,30 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.profs.unshift(res.data);
+            toggleAddProfModal();
           }
-
           state.error = null;
-          toggleAddProfModal();
         }
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
         state.error = error.response.data.message;
+
         state.invalidEmail = addProfData.email;
       }
     }
 
     function formatAddProfInputs() {
-      addProfData.lastName = titleCase(addProfData.lastName);
-      addProfData.firstName = titleCase(addProfData.firstName);
-      addProfData.email = addProfData.email.toLowerCase();
+      if (addProfData.lastName && addProfData.firstName && addProfData.email) {
+        addProfData.lastName = titleCase(addProfData.lastName);
+        addProfData.firstName = titleCase(addProfData.firstName);
+        addProfData.email = addProfData.email.toLowerCase();
+      }
     }
 
     function titleCase(str) {
-      return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
+      if (str) {
+        return str.toLowerCase().replace(/\b(\w)/g, (s) => s.toUpperCase());
+      }
     }
 
     async function initProfs() {
@@ -919,11 +931,6 @@ export default {
             for (let i = 0; i < res.data.length; i++) {
               state.profs.unshift(res.data[i]);
             }
-
-            // console.log(res.data);
-            // res.data.map((row, i) => {
-            //   state.profs.unshift(row[i]);
-            // });
           }
         }
       } catch (error) {

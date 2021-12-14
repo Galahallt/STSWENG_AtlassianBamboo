@@ -74,6 +74,21 @@
             "
             >Contact Us</a
           >
+
+          <button
+            @click="logoutUser"
+            class="
+              text-gray-100
+              hover:bg-green-900 hover:text-white
+              px-3
+              py-2
+              rounded-md
+              font-medium
+              text-lg
+            "
+          >
+            Logout
+          </button>
         </div>
 
         <!-- Profile dropdown -->
@@ -115,12 +130,31 @@
 </style>
 
 <script>
+import { getCurrentInstance } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+
 export default {
   name: 'NavBar',
   setup() {
+    const app = getCurrentInstance();
+    const router = useRouter();
+    const store = useStore();
     const imageURL = JSON.parse(localStorage.getItem('user')).imgURL;
+    const gAuth = app.appContext.config.globalProperties.$gAuth;
+
+    async function logoutUser() {
+      try {
+        await gAuth.signOut();
+        store.dispatch('logoutUser');
+        router.push({ name: 'Login' });
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     return {
+      logoutUser,
       imageURL,
     };
   },

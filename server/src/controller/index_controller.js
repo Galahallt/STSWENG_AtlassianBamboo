@@ -23,8 +23,6 @@ const indexController = {
           email: email,
         };
 
-        logger.info(user.id);
-
         const accessToken = req.body.accessToken;
 
         if (userExisting == null) {

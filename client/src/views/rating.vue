@@ -71,12 +71,12 @@
             "
             @click="toggleWriteModal"
           >
-            Write Review
+            Add Rating
           </button>
         </div>
         <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
           <div class="grid grid-rows-6 gap-1">
-            <div class="row-span-3"></div>
+            <div class="row-span-1"></div>
             <div class="row-span-2">
               <div class="flex justify-center">
                 <vue3-star-ratings
@@ -115,6 +115,8 @@
                 </button>
               </div>
             </div>
+
+            <div class="row-span-2"></div>
           </div>
         </writeModal>
       </div>
