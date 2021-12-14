@@ -75,9 +75,8 @@
           </button>
         </div>
         <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-          <div class="grid grid-rows-6 gap-1">
-            <div class="row-span-1"></div>
-            <div class="row-span-2">
+          <div class="grid grid-rows-3">
+            <div class="row-span-2 mt-4">
               <div class="flex justify-center">
                 <vue3-star-ratings
                   :disableClick="true"
@@ -95,12 +94,13 @@
             >
               Error occured.
             </p>
-            <div class="row-span-1 grid grid-cols-2">
-              <div class="col-span-1 justify-self-end">
+            <div class="row-span-1 justify-self-center">
+              <div class="">
                 <button
                   class="
                     px-6
                     py-2
+                    mt-4
                     text-white
                     bg-green-600
                     rounded-lg
@@ -111,12 +111,10 @@
                   "
                   @click="checkRating"
                 >
-                  Submit Review
+                  Submit Rating
                 </button>
               </div>
             </div>
-
-            <div class="row-span-2"></div>
           </div>
         </writeModal>
       </div>
