@@ -571,18 +571,8 @@
           <div class="text-white">Status</div>
         </div>
         <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
-        <!-- <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div> -->
       </div>
     </div>
-    >>>>>>> development
   </div>
 </template>
 
