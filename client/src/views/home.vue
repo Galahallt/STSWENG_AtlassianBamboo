@@ -1,26 +1,4 @@
 <template>
-<<<<<<< HEAD
-  <div>
-    <button
-      @click="logoutUser"
-      :disabled="!Vue3GoogleOauth.isAuthorized"
-      class="
-        px-6
-        py-2
-        mt-4
-        text-white
-        bg-green-600
-        rounded-lg
-        hover:bg-gray-900
-      "
-    >
-      Logout
-    </button>
-    <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
-    <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1>
-    <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-    <h1>{{ state.rating }}</h1>
-=======
   <div
     class="
       bg-gradient-to-tr
@@ -33,25 +11,6 @@
     "
   >
     <nav-bar />
-    <!-- top navigation bar -->
-    <!-- <div class="flex items-center justify-around ml-20 mr-20">
-      <div class="mt-6">
-        <a href="#" class="hover:underline">Home</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">View Professors</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">FAQs</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">Contact Us</a>
-      </div>
-    </div> -->
-
-    <!-- <div>
-      <hr class="ml-32 mr-32" />
-    </div> -->
 
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
@@ -623,7 +582,7 @@
         </div> -->
       </div>
     </div>
->>>>>>> development
+    >>>>>>> development
   </div>
 </template>
 
@@ -715,11 +674,9 @@ ul {
 </style>
 
 <script>
-<<<<<<< HEAD
-import { inject, getCurrentInstance, reactive } from 'vue';
+import { getCurrentInstance, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-=======
 import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
@@ -728,7 +685,6 @@ import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
 import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
->>>>>>> development
 
 export default {
   name: 'Home',
@@ -739,19 +695,13 @@ export default {
     multipleAddProfModal,
   },
   setup() {
-<<<<<<< HEAD
     let state = reactive({
       rating: 0,
     });
     const app = getCurrentInstance();
-    const gAuth = app.appContext.config.globalProperties.$gAuth;
     const router = useRouter();
     const store = useStore();
-    const Vue3GoogleOauth = inject('Vue3GoogleOauth');
 
-    async function logoutUser() {
-      console.log('hello');
-=======
     const state = reactive({
       disable: null,
       error: null,
@@ -961,7 +911,6 @@ export default {
     }
 
     async function addProfsCsv() {
->>>>>>> development
       try {
         const tempCsv = state.csvFile;
         const formData = new FormData();
@@ -983,11 +932,7 @@ export default {
     }
 
     return {
-<<<<<<< HEAD
       state,
-      Vue3GoogleOauth,
-      logoutUser,
-=======
       toggleAddProfModal,
       toggleMultipleAddProfModal,
       showAddProfModal,
@@ -1006,7 +951,6 @@ export default {
       titleCase,
       file,
       onFileUpload,
->>>>>>> development
     };
   },
 };
