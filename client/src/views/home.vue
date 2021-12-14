@@ -946,7 +946,6 @@ export default {
       paddingLeft,
       tagsUl,
       addProfData,
-      state,
       addProf,
       addProfsCsv,
       v,
