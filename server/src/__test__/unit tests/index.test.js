@@ -1,5 +1,5 @@
-import indexController from '../controller/index_controller.js';
-import mockDB from '../__test__/mockDB.js';
+import indexController from '../../controller/index_controller.js';
+import mockDB from './mockDB.js';
 
 /**
  * Connect to a new in-memory database before running any tests.
