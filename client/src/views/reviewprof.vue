@@ -12,11 +12,14 @@
   >
     <nav-bar />
 
-    <div class="flex items-center justify-center mt-12">
+    <div
+      class="flex items-center justify-center mt-12"
+      style="margin-left: 60px; margin-top: 90px"
+    >
       <div>
         <img
-          class="pt-5"
-          style="width: 250px; height: 300px"
+          class="pt-5 rounded-full lg-shadow"
+          style="width: 300px; height: 300px"
           src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
         />
       </div>
@@ -32,22 +35,22 @@
           shadow-lg
           justify-center
         "
-        style="border-radius: 50px"
+        style="border-radius: 50px; background-color: rgba(229, 231, 235, 0.8)"
       >
         <h1 class="text-3xl font-bold text-center">Mr. John Doe</h1>
         <br />
-        <p>Code</p>
+        <p class="font-bold">Code</p>
         <input
           type="text"
           style="border-radius: 10px; height: 30px; text-align: center"
         />
         <br />
         <br />
-        <p>Comment</p>
+        <p class="font-bold">Comment</p>
         <textarea
           v-model="message"
           placeholder="Type your comment here"
-          style="height: 100px; width: 300px; outline: true border-radius: 20px"
+          style="height: 100px; width: 600px; outline: true border-radius: 20px"
         ></textarea>
         <br />
         <br />
