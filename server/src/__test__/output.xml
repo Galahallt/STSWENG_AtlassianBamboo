@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20211217 22:58:23.754" rpa="false" schemaversion="2">
+<suite id="s1" name="Automated Tests" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests">
+<suite id="s1-s1" name="Us3 Addadmin" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\us3_addadmin.robot">
+<test id="s1-s1-t1" name="Valid Email">
+<kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211217 22:58:23.910" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20211217 22:58:23.909" endtime="20211217 22:58:26.266"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211217 22:58:26.266" endtime="20211217 22:58:26.385"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20211217 22:58:26.385" endtime="20211217 22:58:26.385"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20211217 22:58:26.390" level="INFO">Page title is 'Profs to Pick'.</msg>
+<status status="PASS" starttime="20211217 22:58:26.385" endtime="20211217 22:58:26.390"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Admin Access</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20211217 22:58:26.391" level="INFO">Clicking button 'Admin Access'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211217 22:58:27.296" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211217 22:58:26.410" endtime="20211217 22:58:27.296"/>
+</kw>
+<msg timestamp="20211217 22:58:27.301" level="FAIL">Button with locator 'Admin Access' not found.</msg>
+<status status="FAIL" starttime="20211217 22:58:26.390" endtime="20211217 22:58:27.301"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:27.302" endtime="20211217 22:58:27.302"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ADMIN}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:27.302" endtime="20211217 22:58:27.302"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:27.302" endtime="20211217 22:58:27.302"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:23.909" endtime="20211217 22:58:27.303"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:23.909" endtime="20211217 22:58:27.304">Setup failed:
+Button with locator 'Admin Access' not found.</status>
+</test>
+<test id="s1-s1-t2" name="Self">
+<kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211217 22:58:27.308" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20211217 22:58:27.307" endtime="20211217 22:58:29.553"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211217 22:58:29.554" endtime="20211217 22:58:29.678"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20211217 22:58:29.679" endtime="20211217 22:58:29.679"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20211217 22:58:29.683" level="INFO">Page title is 'Profs to Pick'.</msg>
+<status status="PASS" starttime="20211217 22:58:29.679" endtime="20211217 22:58:29.683"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Admin Access</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20211217 22:58:29.683" level="INFO">Clicking button 'Admin Access'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211217 22:58:30.497" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211217 22:58:29.700" endtime="20211217 22:58:30.497"/>
+</kw>
+<msg timestamp="20211217 22:58:30.498" level="FAIL">Button with locator 'Admin Access' not found.</msg>
+<status status="FAIL" starttime="20211217 22:58:29.683" endtime="20211217 22:58:30.498"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:30.498" endtime="20211217 22:58:30.498"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ADMIN}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:30.499" endtime="20211217 22:58:30.499"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:30.499" endtime="20211217 22:58:30.499"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:27.307" endtime="20211217 22:58:30.500"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:27.306" endtime="20211217 22:58:30.500">Setup failed:
+Button with locator 'Admin Access' not found.</status>
+</test>
+<test id="s1-s1-t3" name="Not User (DLSU)">
+<kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211217 22:58:30.507" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20211217 22:58:30.506" endtime="20211217 22:58:33.013"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211217 22:58:33.014" endtime="20211217 22:58:33.142"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20211217 22:58:33.142" endtime="20211217 22:58:33.142"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20211217 22:58:33.148" level="INFO">Page title is 'Profs to Pick'.</msg>
+<status status="PASS" starttime="20211217 22:58:33.142" endtime="20211217 22:58:33.148"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Admin Access</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20211217 22:58:33.149" level="INFO">Clicking button 'Admin Access'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211217 22:58:33.986" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211217 22:58:33.179" endtime="20211217 22:58:33.986"/>
+</kw>
+<msg timestamp="20211217 22:58:33.989" level="FAIL">Button with locator 'Admin Access' not found.</msg>
+<status status="FAIL" starttime="20211217 22:58:33.149" endtime="20211217 22:58:33.989"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:33.990" endtime="20211217 22:58:33.990"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ADMIN}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:33.990" endtime="20211217 22:58:33.990"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:33.990" endtime="20211217 22:58:33.990"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:30.506" endtime="20211217 22:58:33.991"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:30.505" endtime="20211217 22:58:33.992">Setup failed:
+Button with locator 'Admin Access' not found.</status>
+</test>
+<test id="s1-s1-t4" name="Not User (Non-DLSU)">
+<kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211217 22:58:34.000" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20211217 22:58:34.000" endtime="20211217 22:58:36.663"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211217 22:58:36.663" endtime="20211217 22:58:36.796"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20211217 22:58:36.796" endtime="20211217 22:58:36.797"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20211217 22:58:36.804" level="INFO">Page title is 'Profs to Pick'.</msg>
+<status status="PASS" starttime="20211217 22:58:36.797" endtime="20211217 22:58:36.804"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Admin Access</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20211217 22:58:36.805" level="INFO">Clicking button 'Admin Access'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211217 22:58:37.622" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211217 22:58:36.829" endtime="20211217 22:58:37.622"/>
+</kw>
+<msg timestamp="20211217 22:58:37.623" level="FAIL">Button with locator 'Admin Access' not found.</msg>
+<status status="FAIL" starttime="20211217 22:58:36.805" endtime="20211217 22:58:37.624"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:37.624" endtime="20211217 22:58:37.624"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ADMIN}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:37.625" endtime="20211217 22:58:37.625"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:37.625" endtime="20211217 22:58:37.625"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:33.999" endtime="20211217 22:58:37.626"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:33.998" endtime="20211217 22:58:37.627">Setup failed:
+Button with locator 'Admin Access' not found.</status>
+</test>
+<test id="s1-s1-t5" name="Duplicate">
+<kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20211217 22:58:37.633" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20211217 22:58:37.632" endtime="20211217 22:58:40.511"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20211217 22:58:40.512" endtime="20211217 22:58:40.627"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20211217 22:58:40.627" endtime="20211217 22:58:40.628"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20211217 22:58:40.635" level="INFO">Page title is 'Profs to Pick'.</msg>
+<status status="PASS" starttime="20211217 22:58:40.628" endtime="20211217 22:58:40.635"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Admin Access</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20211217 22:58:40.636" level="INFO">Clicking button 'Admin Access'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20211217 22:58:41.439" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20211217 22:58:40.659" endtime="20211217 22:58:41.439"/>
+</kw>
+<msg timestamp="20211217 22:58:41.441" level="FAIL">Button with locator 'Admin Access' not found.</msg>
+<status status="FAIL" starttime="20211217 22:58:40.636" endtime="20211217 22:58:41.441"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:41.442" endtime="20211217 22:58:41.442"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ADMIN}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:41.442" endtime="20211217 22:58:41.442"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="NOT RUN" starttime="20211217 22:58:41.442" endtime="20211217 22:58:41.442"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:37.631" endtime="20211217 22:58:41.443"/>
+</kw>
+<status status="FAIL" starttime="20211217 22:58:37.630" endtime="20211217 22:58:41.444">Setup failed:
+Button with locator 'Admin Access' not found.</status>
+</test>
+<test id="s1-s1-t6" name="Empty">
+<status status="FAIL" starttime="20211217 22:58:41.446" endtime="20211217 22:58:41.448">Test case contains no keywords.</status>
+</test>
+<doc>A test suite for User Story #3
+
+These are test cases deals with the
+adding an admin.
+
+By James Andrew F. Perez</doc>
+<status status="FAIL" starttime="20211217 22:58:23.770" endtime="20211217 22:58:41.451"/>
+</suite>
+<status status="FAIL" starttime="20211217 22:58:23.755" endtime="20211217 22:58:41.455"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="6" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="6" skip="0" id="s1" name="Automated Tests">Automated Tests</stat>
+<stat pass="0" fail="6" skip="0" id="s1-s1" name="Us3 Addadmin">Automated Tests.Us3 Addadmin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
