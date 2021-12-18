@@ -22,6 +22,7 @@ ${HOME}           http://localhost:3000/
 ${ADMIN}          http://localhost:3000/adminlist
 ${VALID}          paolo_edni_v_espiritu@dlsu.edu.ph
 ${SELF}           james_perez@dlsu.edu.ph
+${ADMIN_USER}     tba@dlsu.edu.ph
 ${NOT_USER}       temp@dlsu.edu.ph
 ${NOT_DLSU}       jamesandrewfperez@gmail.com
 
