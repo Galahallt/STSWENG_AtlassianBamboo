@@ -5,9 +5,10 @@ Documentation     A test suite for User Story #3
 ...               adding an admin. 
 ...               
 ...               By James Andrew F. Perez
-Test Setup        Open Browser To Admin Page
+Suite Setup       Open Browser To Admin Page
+Test Setup        Go Back to Admin Page
 Test Template     Add Admin
-Test Teardown     Close Browser
+Suite Teardown    Close Browser
 Resource          resource1.robot
 
 *** Test Cases ***      EMAIL
@@ -16,8 +17,9 @@ Self                    ${SELF}
 Not User (DLSU)         ${NOT_USER}
 Not User (Non-DLSU)     ${NOT_DLSU}
 Duplicate               ${VALID}
-Empty                   
+Empty                   ${EMPTY}
 
 *** KEYWORDS ***
 Add Admin
     [Arguments]    ${email}
+    Click Link    /addadmin
