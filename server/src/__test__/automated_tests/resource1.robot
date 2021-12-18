@@ -16,22 +16,33 @@ Library           SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}        Chrome
-${DELAY}          0
+${DELAY}          2
 ${TITLE}          Profs to Pick
 ${HOME}           http://localhost:3000/
 ${ADMIN}          http://localhost:3000/adminlist
 ${VALID}          paolo_edni_v_espiritu@dlsu.edu.ph
 ${SELF}           james_perez@dlsu.edu.ph
+${ADMIN_USER}     tba@dlsu.edu.ph
 ${NOT_USER}       temp@dlsu.edu.ph
 ${NOT_DLSU}       jamesandrewfperez@gmail.com
 
 *** Keywords ***
 Open Browser To Admin Page
+    Set Selenium Speed    ${DELAY}
     Open Browser    ${HOME}    ${BROWSER}
     Maximize Browser Window
-    Set Selenium Speed    ${DELAY}
     Title Should Be    ${TITLE}
-    CLICK BUTTON    Admin Access
+    Click Button    Login with Google Account
+    ${TAB}=    Switch Window    NEW
+    Input Text    identifierId    ${SELF}
+    Click Element    identifierNext
+    Input Password    //*[@id="password"]/div[1]/div/div[1]/input    Pass-000
+    Click Element    passwordNext
+    Switch Window    ${TAB}
+    Click Button    //*[@id="app"]/div/div/div[1]/div[1]/button
     ${CURRENT}    Get Location
     Should Be Equal    ${ADMIN}    ${CURRENT}
     Page Should Contain    ${SELF}
+
+Go Back to Admin Page
+    Go To    ${ADMIN}
