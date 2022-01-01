@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import AddAdmin from '../views/addadmin.vue';
 import AdminList from '../views/adminlist.vue';
-import AddProf from '../views/addProf.vue';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
+import ReviewProf from '../views/reviewprof.vue';
 
 const routes = [
   {
@@ -22,11 +22,6 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-  },
-  {
-    path: '/addprof',
-    name: 'Add Prof',
-    component: AddProf,
   },
   {
     path: '/home',
@@ -53,6 +48,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/reviewProfessor',
+    name: 'Review Professor',
+    component: ReviewProf,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },  
 ];
 
 const router = createRouter({
