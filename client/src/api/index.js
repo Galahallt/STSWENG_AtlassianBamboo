@@ -29,3 +29,7 @@ export const getInstructorRatings = (rating) =>
   API.patch('/rating/getInstructorRatings', rating);
 export const updateRating = (rating) =>
   API.patch(`rating/updateRating`, rating);
+
+// review api mehtods
+export const addReview = (review) => API.post('/review/addreview', review);
+export const getReviews = (instructorID) => API.post('/review/reviews', { instructorID: instructorID });

@@ -4,6 +4,8 @@ import AdminList from '../views/adminlist.vue';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
+import ReviewProf from '../views/reviewprof.vue';
+import ViewReviews from '../views/viewprof.vue';
 
 const routes = [
   {
@@ -42,6 +44,24 @@ const routes = [
     path: '/viewProfessor',
     name: 'View Professor',
     component: ViewProf,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/reviewProfessor',
+    name: 'Review Professor',
+    component: ReviewProf,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/viewreviews',
+    name: 'Prof Reviews',
+    component: ViewReviews,
     props: true,
     meta: {
       requiresAuth: true,
