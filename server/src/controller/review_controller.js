@@ -4,7 +4,7 @@ import logger from '../logger/index.js';
 import Review from '../model/review.js';
 
 // get instructor service methods from service folder
-import instructorService from '../service/instructor_service.js';
+import InstructorService from '../service/instructor_service.js';
 
 // get instructor service methods from service folder
 import ReviewService from '../service/review_service.js';
@@ -16,6 +16,7 @@ const instructorController = {
     try {
       // TODO use the prof's ID to find all of his reviews
       const instructorID = req.body.instructorID;
+      logger.info(instructorID);
       const reviews = await ReviewService.getReviews(instructorID);
       if (reviews != null) return res.status(200).json(reviews);
     } catch (err) {
@@ -26,11 +27,14 @@ const instructorController = {
     try {
       const review = {
         id: uniqid(),
-        instructor_id: req.body.review.insturctorID,
-        course_code: req.body.review.course_code,
-        review: req.body.review.review,
+        instructor_id: req.body.instructor_id,
+        course_code: req.body.course_code,
+        review: req.body.review,
         date: Date.now(),
       };
+      logger.info(JSON.stringify(review));
+      await ReviewService.addReview(review);
+      await InstructorService.addProfReview(review.instructor_id, review.id);
       // use review.id and the id and add it to the Instructor's id
       // add review and add the new review's ID into the Instructor's
     } catch (err) {

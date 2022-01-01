@@ -3,6 +3,7 @@
     :to="{
       name: 'View Professor',
       params: {
+        prof_id: prof.id,
         profLast: prof.lastName,
         profFirst: prof.firstName,
         email: prof.email,

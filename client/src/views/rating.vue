@@ -54,10 +54,10 @@
         <div class="text-black flex">
           <div>Courses taught:</div>
           <div class="ml-2">{{ state.tagString }}</div>
-        </div>
+        </div>     
       </div>
       <div class="col-span-2 mr-8">
-        <div class="flex flex-row-reverse mr-6">
+        <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
           <button
             class="
               px-6
@@ -73,6 +73,35 @@
           >
             Add Rating
           </button>
+          <router-link
+            :to="{
+              name: 'Prof Reviews',
+              params: {
+                prof_id: prof_id,
+                prof_lastname: profLast,
+                prof_firstname: profFirst,
+                prof_email: email,
+                prof_college: college,
+                prof_department: dept,
+                prof_rating: rating,
+              },
+            }"
+          >
+            <button
+              class="
+                px-6
+                py-2
+                mt-4
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+              "
+            >
+              Check Reviews
+            </button>          
+          </router-link>          
         </div>
         <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
           <div class="grid grid-rows-3">
@@ -164,6 +193,9 @@ export default {
   name: 'View Professor',
   components: { NavBar, writeModal },
   props: {
+    prof_id: {
+      type: String,
+    },
     profLast: {
       type: String,
     },

@@ -37,11 +37,11 @@
         "
         style="border-radius: 50px; background-color: rgba(229, 231, 235, 0.8)"
       >
-        <h1 class="text-3xl font-bold text-center">Mr. John Doe</h1>
+        <h1 class="text-3xl font-bold text-center">{{ state.prof_lastname + ', ' + state.prof_firstname }}</h1>
         <br />
         <p class="font-bold">Code</p>
         <input
-          v-model="state.subject_code"
+          v-model="state.course_code"
           type="text"
           style="border-radius: 10px; height: 30px; text-align: center"
         />
@@ -53,21 +53,69 @@
           placeholder="Type your comment here"
           style="height: 100px; width: 600px; outline: true border-radius: 20px"
         ></textarea>
+
+        <template v-if="state.attempted">
+          <h4
+            v-if="!state.isCommentEmpty"
+            class="text-2l mt-2 font-bold text-center text-green-600"
+          >
+            {{ state.message }}
+          </h4>
+          <h4
+            v-else
+            class="text-2l mt-2 font-bold text-center text-red-600"
+          >
+            {{ state.comment_error }}
+          </h4>
+        </template>        
+
         <br />
         <br />
-        <button
-          class="
-            px-6
-            py-2
-            mt-4
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-        >
-          Publish
-        </button>
+        <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
+          <button
+            @click="addReview"
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-gray-900
+            "
+          >
+            Publish
+          </button>
+          <router-link
+            :to="{
+              name: 'Prof Reviews',
+              params: {
+                prof_id: prof_id,
+                prof_lastname: prof_lastname,
+                prof_firstname: prof_firstname,
+                prof_email: prof_email,
+                prof_college: prof_college,
+                prof_department: prof_department,
+                prof_rating: prof_rating,
+              },
+            }"
+          >          
+            <button
+              class="
+                px-6
+                py-2
+                mt-4
+                ml-2
+                text-white
+                bg-red-600
+                rounded-lg
+                hover:bg-gray-900
+              "
+            >
+              Cancel
+            </button>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -83,22 +131,34 @@ button:disabled {
 <script>
 import NavBar from '../components/NavBar.vue';
 import { onBeforeMount, reactive } from 'vue';
+import * as api from '../api';
 export default {
-  name: 'ReviewProf',
+  name: 'Review Professor',
   components: {
     NavBar,
   },
   props: {
     prof_id: {
       type: String,
-      required: true,
     },
     prof_lastname: {
       type: String,
     },
     prof_firstname: {
       type: String,
-    }
+    },
+    prof_email: {
+      type: String,
+    },
+    prof_college: {
+      type: String,
+    },
+    prof_department: {
+      type: String,
+    },
+    prof_rating: {
+      type: Number,
+    },
   },
   setup(props)
   {
@@ -112,13 +172,15 @@ export default {
       isCommentEmpty: false,
       isSubjectCodeEmpty: false,
 
-      isAttempted: false,
+      attempted: false,
       comment_error: '',
-      subject_code_error: '',
+      course_code_error: '',
+
+      message:'',
     });
 
     async function addReview() {
-      state.isAttempted = true;
+      state.attempted = true;
 
       if(areFieldsValid()) {
         // TODO get instructor id, subject code, and comment and insert it to the DB 
@@ -128,25 +190,32 @@ export default {
           review: state.comment
         }
         await api.addReview(review);
+        state.course_code = '';
+        state.comment = '';
+        state.message = "Success!";
       }
       else {
-        if(state.comment === '') {
+        if(state.comment.localeCompare('') == 0) {
           state.isCommentEmpty = true;
           state.comment_error = "Please supply a comment!";
         }
         
-        if(state.subject_code === '') {
+        if(state.course_code.localeCompare('') == 0) {
           state.isSubjectCodeEmpty = true;
-          state.subject_code_error = "Please enter a course code!";
+          state.course_code_error = "Please enter a course code!";
         }
 
       }
     }
+    function previousPage() {
+      
+    }
     function areFieldsValid(){
-      if(state.comment === '' || state.subject_code === '') {
+      if(state.comment.localeCompare('') == 0 || state.course_code.localeCompare('') == 0) {
         return false;
       }
       else {
+        state.comment_error = '';
         return true;
       }
     }

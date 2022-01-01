@@ -5,6 +5,7 @@ import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
 import ReviewProf from '../views/reviewprof.vue';
+import ViewReviews from '../views/viewprof.vue';
 
 const routes = [
   {
@@ -56,7 +57,16 @@ const routes = [
     meta: {
       requiresAuth: true,
     },
-  },  
+  },
+  {
+    path: '/viewreviews',
+    name: 'Prof Reviews',
+    component: ViewReviews,
+    props: true,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
