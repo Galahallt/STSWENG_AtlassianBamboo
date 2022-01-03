@@ -15,6 +15,8 @@ const reviewService = {
   },
   getReviews: async (instructorID) =>
     Review.find({ instructor_id: instructorID }),
+
+  deleteReview: async (id) => Review.deleteOne(id),
 };
 
 export default reviewService;
