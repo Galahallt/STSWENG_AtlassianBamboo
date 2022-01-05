@@ -23,6 +23,6 @@ router.post(
 
 // route for getting all instructors from database
 router.get('/getAllProfs', instructorController.getAllProfs);
-
+router.get('/:profID', instructorController.getProf);
 // export instructor routes
 export default router;

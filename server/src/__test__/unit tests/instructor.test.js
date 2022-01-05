@@ -1,10 +1,10 @@
-import instructorController from '../controller/instructor_controller.js';
-import instructorService from '../service/instructor_service.js';
+import instructorController from '../../controller/instructor_controller.js';
+import instructorService from '../../service/instructor_service.js';
 
-import rateController from '../controller/rate_controller.js';
-import rateService from '../service/rate_service.js';
+import rateController from '../../controller/rate_controller.js';
+import rateService from '../../service/rate_service.js';
 
-import mockDB from '../__test__/mockDB.js';
+import mockDB from './mockDB.js';
 
 /**
  * Connect to a new in-memory database before running any tests.

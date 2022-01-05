@@ -1,17 +1,6 @@
 <template>
   <router-link
-    :to="{
-      name: 'View Professor',
-      params: {
-        profLast: prof.lastName,
-        profFirst: prof.firstName,
-        email: prof.email,
-        college: prof.college,
-        dept: prof.department,
-        rating: prof.rating,
-        tags: prof.courses,
-      },
-    }"
+    :to="`/view/${prof.id}`"
   >
     <div class="overscroll-auto">
       <div class="grid grid-cols-5 bg-gray-100">

@@ -12,16 +12,28 @@
     <!-- top navigation bar -->
     <div class="flex items-center justify-around ml-20 mr-20">
       <div>
-        <a href="#" class="hover:underline">Home</a>
+        <a 
+        href="/home" class="hover:underline"
+        >Home
+        </a>
       </div>
       <div>
-        <a href="#" class="hover:underline">View Professors</a>
+        <a 
+        href="#" class="hover:underline"
+        >View Professors
+        </a>
       </div>
       <div>
-        <a href="#" class="hover:underline">FAQs</a>
+        <a 
+        href="#" class="hover:underline"
+        >FAQs
+        </a>
       </div>
       <div>
-        <a href="#" class="hover:underline">Contact Us</a>
+        <a 
+        href="#" class="hover:underline"
+        >Contact Us
+        </a>
       </div>
     </div>
 

@@ -29,6 +29,11 @@ const instructorService = {
   },
   updateRating: async (instructorID, update) =>
     Instructor.findOneAndUpdate({ instructorID: instructorID }, update),
+  addProfReview: async (instructorID, reviewID) =>
+    Instructor.updateOne(
+      { id: instructorID },
+      { $addToSet: { reviews: reviewID } }
+    ),
 };
 
 export default instructorService;

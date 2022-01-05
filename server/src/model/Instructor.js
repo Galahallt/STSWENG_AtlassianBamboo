@@ -50,7 +50,11 @@ const InstructorSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
-
+    reviews: {
+      type: [String],
+      default: [],
+      ref: 'reviews',
+    },
     timestamp: {
       type: Date,
       default: Date.now(),

@@ -14,8 +14,11 @@
 
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
-        <button
-          class="
+        <router-link
+          to="/adminlist"
+        >
+          <button
+            class="
             px-6
             py-2
             mt-4
@@ -25,9 +28,10 @@
             hover:bg-green-900
             shadow-lg
           "
-        >
-          Admin Access
-        </button>
+          >
+            Admin Access
+          </button>
+        </router-link>
       </div>
       <div>
         <button

@@ -142,6 +142,24 @@ const instructorController = {
       return res.status(500).json({ message: 'Server Error' });
     }
   },
+  getProf: async (req, res) => {
+    try {
+      // retrieve professors from the database
+      const profID = req.params.profID;
+      const prof = await instructorService.getProf({ profID: profID });
+      // if there are existing professors in the database
+      if (prof) {
+        return res.status(200).json(prof);
+      } else {
+        // send back empty array with appropriate status code
+        return res.status(400).json(prof);
+      }
+    } catch (err) {
+      logger.error(err);
+      // if error has occurred, send server error status and message
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
 };
 
 // export instructor controller object for routing
