@@ -10,7 +10,7 @@
       block
     "
   >
-    <nav-bar />
+    <NavBar />
     <div class="flex flex-row-reverse mt-1 mr-3">
       <button
         class="
@@ -143,86 +143,33 @@
           <div class="flex ml-16 mt-16">
             <div class="mr-4 font-bold">Filter Review:</div>
             <div>
-              <select class="px-4">
-                <option value="placeholder" disabled selected hidden>
-                  All
+              <select
+                class="px-4"
+                v-model="state.filter"
+                @change="filterReviews"
+              >
+                <option value="All" selected>All</option>
+                <option v-for="code in prof.tags" :value="code" :key="code">
+                  {{ code }}
                 </option>
               </select>
             </div>
           </div>
-          <div class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md">
-            <div class="bg-gray-200 py-2">
-              <div class=""></div>
-              <div class="ml-8 text-blue-800 text font-bold">Ai Cruz</div>
-              <div class="grid grid-cols-10">
-                <div class="ml-8 col-span-9">Very good at teaching!</div>
-                <div
-                  class="
-                    mr-8
-                    justify-self-end
-                    text-xs
-                    italic
-                    text-red-500
-                    col-span-1
-                  "
-                >
-                  Delete Comment
-                </div>
-              </div>
-            </div>
-            <div class="bg-gray-200 py-2">
-              <div class=""></div>
-              <div class="ml-8 text-blue-800 text font-bold">Sheila Supsup</div>
-              <div class="grid grid-cols-10">
-                <div class="ml-8 col-span-9">Amazing prof!</div>
-                <div
-                  class="
-                    mr-8
-                    justify-self-end
-                    text-xs
-                    italic
-                    text-red-500
-                    col-span-1
-                  "
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="py-5 text-left justify-center mx-auto"
-            style="border-radius: 50px; width: 800px"
+          <p
+            class="ml-16 manrope-bold text-left text-sm"
+            v-if="state.emptyReviews"
           >
-            <div
-              class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
-              style="border-radius: 10px"
-            >
-              <div class="overscroll-auto" style="height: 520px">
-                <div
-                  v-for="review in state.reviews"
-                  :key="review.id"
-                  class="grid grid-cols-2 bg-gray-100 py-2 px-2"
-                  style="background-color: rgba(243, 244, 246, 0.7)"
-                >
-                  <!-- One review -->
-                  <div class="grid grid-cols-2 py-2">
-                    <img
-                      class="h-9 w-9 rounded-full mx-auto mt-5"
-                      src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
-                    />
-                    <label
-                      class="text-left text-black text-2xs font-bold mt-5"
-                      >{{ review.course_code }}</label
-                    >
-                  </div>
-                  <div class="text-black text-2xs mt-5">
-                    <p class="text-justify">
-                      {{ review.review }}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            No reviews yet.
+          </p>
+          <div
+            class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md"
+            v-if="!state.emptyReviews"
+          >
+            <profReview
+              v-for="review in state.shownReviews"
+              :key="review.id"
+              :review="review"
+            />
           </div>
         </div>
       </div>
@@ -264,23 +211,26 @@ button:disabled {
 
 <script>
 import * as api from '../api/index.js';
-import { ref, onBeforeMount, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import writeModal from '../components/writeReviewModal.vue';
 import NavBar from '../components/NavBar.vue';
+import profReview from '../components/profReview.vue';
 import { useRoute } from 'vue-router';
 
 export default {
   name: 'View Professor',
-  components: { NavBar, writeModal },
+  components: { NavBar, writeModal, profReview },
   setup() {
     const state = reactive({
       empty: true,
+      filter: 'All',
       rating: 0,
       tagString: '',
       error: false,
       avgRating: 0,
-
-      reviews: null,
+      shownReviews: null,
+      allReviews: null,
+      emptyReviews: null,
     });
 
     const router = useRoute();
@@ -294,19 +244,24 @@ export default {
       rating: null,
       tags: null,
     });
+
     async function loadReviews() {
       try {
         const result = await api.getReviews(router.params.profID);
         if (result) {
-          state.reviews = result.data;
+          state.allReviews = state.shownReviews = result.data;
+          emptyReviews = false;
+        } else {
+          emptyReviews = true;
         }
       } catch (err) {
         console.log(err);
       }
     }
+
     async function loadProf() {
       try {
-        const result = await api.getProf(prof.prof_id);
+        const result = await api.getProf(router.params.profID);
         if (result) {
           prof.profLast = result.data.lastName;
           prof.profFirst = result.data.firstName;
@@ -317,13 +272,35 @@ export default {
           prof.tags = result.data.courses;
           formatTags();
           state.empty = false;
+          console.log(prof.tags);
         }
-        console.log(prof.tags);
       } catch (err) {
         console.log(err);
       }
     }
-    onBeforeMount(() => {});
+
+    function filterReviews() {
+      console.log(state.filter);
+      if (state.filter === 'All') {
+        state.shownReviews = state.allReviews;
+        console.log('hi');
+      } else {
+        const filteredReviews = [];
+
+        for (let i = 0; i < state.allReviews.length; i++) {
+          if (state.allReviews[i].course_code === state.filter) {
+            filteredReviews.push(state.allReviews[i]);
+          }
+        }
+
+        state.shownReviews = filteredReviews;
+      }
+      if (state.shownReviews.length === 0) {
+        state.emptyReviews = true;
+      } else {
+        state.emptyReviews = false;
+      }
+    }
 
     // load after loading
     onMounted(() => {
@@ -349,7 +326,7 @@ export default {
 
         const rate = {
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
         };
 
         const checkExists = await api.findRating(rate);
@@ -373,12 +350,11 @@ export default {
         const rate = {
           rating: state.rating,
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
         };
 
         const res = await api.addRating(rate);
         if (res) {
-          console.log(res);
           toggleWriteModal();
           state.error = false;
           await avgRating();
@@ -394,13 +370,13 @@ export default {
     async function avgRating() {
       try {
         const instructor = {
-          instructorEmail: props.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.getInstructorRatings(instructor);
-        if (res) {
+        if (!res.data.message) {
           state.avgRating = res.data;
+          console.log('hello');
         }
-        console.log(res);
       } catch (err) {
         console.log(err.response.data);
       }
@@ -413,7 +389,7 @@ export default {
 
         const instructor = {
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
           rating: state.rating,
         };
 
@@ -445,6 +421,7 @@ export default {
       showWriteModal,
       checkRating,
       toggleWriteModal,
+      filterReviews,
     };
   },
 };

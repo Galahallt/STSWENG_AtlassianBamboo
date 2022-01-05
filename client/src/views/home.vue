@@ -11,42 +11,20 @@
     "
   >
     <nav-bar />
-    <!-- top navigation bar -->
-    <!-- <div class="flex items-center justify-around ml-20 mr-20">
-      <div class="mt-6">
-        <a href="#" class="hover:underline">Home</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">View Professors</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">FAQs</a>
-      </div>
-      <div class="mt-6">
-        <a href="#" class="hover:underline">Contact Us</a>
-      </div>
-    </div> -->
-
-    <!-- <div>
-      <hr class="ml-32 mr-32" />
-    </div> -->
-
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
-        <router-link
-          to="/adminlist"
-        >
+        <router-link to="/adminlist">
           <button
             class="
-            px-6
-            py-2
-            mt-4
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-green-900
-            shadow-lg
-          "
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
           >
             Admin Access
           </button>
@@ -594,15 +572,6 @@
           <div class="text-white">Status</div>
         </div>
         <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
-        <!-- <div class="overscroll-auto">
-          <div class="grid grid-cols-4 bg-gray-100">
-            
-            <div class="text-black">Dr. Juanito Delos Reyes</div>
-            <div class="text-black">CCS</div>
-            <div class="text-black">ST</div>
-            <div class="text-black">5/5</div>
-          </div>
-        </div> -->
       </div>
     </div>
   </div>

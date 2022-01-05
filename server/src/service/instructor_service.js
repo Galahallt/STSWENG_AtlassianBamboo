@@ -1,12 +1,6 @@
 // get Instructor model in model folder
 import Instructor from '../model/Instructor.js';
 
-// get Tag model in model folder
-import Tag from '../model/Tag.js';
-
-// get Rate model in model folder
-import Rate from '../model/Rate.js';
-
 // create instructor receipt model that contains methods for rating receipt data manipulation
 const instructorService = {
   // this method retrieves and returns a specific instructor

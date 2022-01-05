@@ -11,6 +11,8 @@ import instructorRoutes from './routes/instructor_routes.js';
 import rateRoutes from './routes/rate_routes.js';
 import adminRoutes from './routes/admin_routes.js';
 import reviewRoutes from './routes/review_routes.js';
+import userRoutes from './routes/user_routes.js';
+
 // connect to Profs to Pick database
 connectDatabase();
 
@@ -45,4 +47,5 @@ app.use('/professor', instructorRoutes);
 app.use('/admin', adminRoutes);
 app.use('/rating', rateRoutes);
 app.use('/review', reviewRoutes);
+app.use('/user', userRoutes);
 export default app;

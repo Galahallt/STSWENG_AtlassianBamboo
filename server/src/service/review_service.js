@@ -6,6 +6,7 @@ const reviewService = {
   addReview: async (review) => {
     const newReview = new Review({
       id: review.id,
+      user_id: review.user_id,
       instructor_id: review.instructor_id,
       course_code: review.course_code,
       review: review.review,
