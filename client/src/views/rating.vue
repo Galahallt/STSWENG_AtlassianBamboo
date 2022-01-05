@@ -140,6 +140,55 @@
         <div>
           <h1 class="text-3xl font-bold text-center">REVIEWS</h1>
 
+          <div class="flex ml-16 mt-16">
+            <div class="mr-4 font-bold">Filter Review:</div>
+            <div>
+              <select class="px-4">
+                <option value="placeholder" disabled selected hidden>
+                  All
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md">
+            <div class="bg-gray-200 py-2">
+              <div class=""></div>
+              <div class="ml-8 text-blue-800 text font-bold">Ai Cruz</div>
+              <div class="grid grid-cols-10">
+                <div class="ml-8 col-span-9">Very good at teaching!</div>
+                <div
+                  class="
+                    mr-8
+                    justify-self-end
+                    text-xs
+                    italic
+                    text-red-500
+                    col-span-1
+                  "
+                >
+                  Delete Comment
+                </div>
+              </div>
+            </div>
+            <div class="bg-gray-200 py-2">
+              <div class=""></div>
+              <div class="ml-8 text-blue-800 text font-bold">Sheila Supsup</div>
+              <div class="grid grid-cols-10">
+                <div class="ml-8 col-span-9">Amazing prof!</div>
+                <div
+                  class="
+                    mr-8
+                    justify-self-end
+                    text-xs
+                    italic
+                    text-red-500
+                    col-span-1
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+
           <div
             class="py-5 text-left justify-center mx-auto"
             style="border-radius: 50px; width: 800px"
