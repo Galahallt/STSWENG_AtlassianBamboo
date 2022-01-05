@@ -11,23 +11,20 @@
     "
   >
     <nav-bar />
-
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
       <div>
-        <router-link
-          to="/adminlist"
-        >
+        <router-link to="/adminlist">
           <button
             class="
-            px-6
-            py-2
-            mt-4
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-green-900
-            shadow-lg
-          "
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
           >
             Admin Access
           </button>

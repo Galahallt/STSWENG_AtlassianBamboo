@@ -1,22 +1,10 @@
 import logger from '../logger/index.js';
 
-// get instructor model object from model folder
-import Instructor from '../model/Instructor.js';
-
-// get instructor service methods from service folder
-import userService from '../service/user_service.js';
-
 // get instructor service methods from service folder
 import instructorService from '../service/instructor_service.js';
 
 // import csv validator
 import csvValidator from '../utils/csv-validator.js';
-
-// get tag model object from model folder
-import Tag from '../model/Tag.js';
-
-// get rate model object from model folder
-import Rate from '../model/Rate.js';
 
 import uniqid from 'uniqid';
 import csv from 'fast-csv';
@@ -27,7 +15,6 @@ const instructorController = {
   postAddProf: async (req, res) => {
     try {
       const email = req.body.email;
-      const domain = email.split('@').pop();
 
       const profExisting = await instructorService.getProf({ email: email });
 
@@ -146,7 +133,7 @@ const instructorController = {
     try {
       // retrieve professors from the database
       const profID = req.params.profID;
-      const prof = await instructorService.getProf({ profID: profID });
+      const prof = await instructorService.getProf({ id: profID });
       // if there are existing professors in the database
       if (prof) {
         return res.status(200).json(prof);

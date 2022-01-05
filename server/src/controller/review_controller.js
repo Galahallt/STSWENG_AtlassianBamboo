@@ -1,8 +1,5 @@
 import logger from '../logger/index.js';
 
-// get instructor model object from model folder
-import Review from '../model/review.js';
-
 // get instructor service methods from service folder
 import InstructorService from '../service/instructor_service.js';
 
@@ -25,8 +22,10 @@ const instructorController = {
   },
   addReview: async (req, res) => {
     try {
+      logger.info(req.body.user_id);
       const review = {
         id: uniqid(),
+        user_id: req.body.user_id,
         instructor_id: req.body.instructor_id,
         course_code: req.body.course_code,
         review: req.body.review,
@@ -34,10 +33,10 @@ const instructorController = {
       };
       logger.info(JSON.stringify(review));
       await ReviewService.addReview(review);
-      await InstructorService.addProfReview(review.instructor_id, review.id);
       // use review.id and the id and add it to the Instructor's id
       // add review and add the new review's ID into the Instructor's
     } catch (err) {
+      logger.error(err);
       return res.status(500).json({ message: 'Server Error' });
     }
   },

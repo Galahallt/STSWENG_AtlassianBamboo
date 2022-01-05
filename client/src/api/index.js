@@ -13,6 +13,11 @@ API.interceptors.request.use((req) => {
 // user login api methods
 export const loginUser = (user) => API.post('/login', user);
 
+// user api methods
+export const getUserById = (id) => API.post('/user/getUserById', { id: id });
+export const getUserByEmail = (email) =>
+  API.post('/user/getUserByEmail', { email: email });
+
 // professor api methods
 export const addProf = (profData) => API.post('/professor/addProf', profData);
 export const addProfsCsv = (profData) =>
@@ -33,4 +38,5 @@ export const updateRating = (rating) =>
 
 // review api mehtods
 export const addReview = (review) => API.post('/review/addreview', review);
-export const getReviews = (instructorID) => API.post('/review/reviews', { instructorID: instructorID });
+export const getReviews = (instructorID) =>
+  API.post('/review/reviews', { instructorID: instructorID });

@@ -85,9 +85,7 @@
           >
             Publish
           </button>
-          <router-link
-            :to="`/view/${state.prof_id}`"
-          >
+          <router-link :to="`/view/${state.prof_id}`">
             <button
               class="
                 px-6
@@ -144,6 +142,7 @@ export default {
 
       message: '',
     });
+
     async function loadProf() {
       try {
         const result = await api.getProf(state.prof_id);
@@ -155,20 +154,27 @@ export default {
         console.log(err);
       }
     }
+
     async function addReview() {
       state.attempted = true;
 
       if (areFieldsValid()) {
         // TODO get instructor id, subject code, and comment and insert it to the DB
-        const review = {
-          instructor_id: state.prof_id,
-          course_code: state.course_code,
-          review: state.comment,
-        };
-        await api.addReview(review);
-        state.course_code = '';
-        state.comment = '';
-        state.message = 'Success!';
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const user = await api.getUserByEmail(email);
+        if (user) {
+          const review = {
+            user_id: user.data.id,
+            instructor_id: state.prof_id,
+            course_code: state.course_code,
+            review: state.comment,
+          };
+          console.log(review);
+          await api.addReview(review);
+          state.course_code = '';
+          state.comment = '';
+          state.message = 'Success!';
+        }
       } else {
         if (state.comment.localeCompare('') == 0) {
           state.isCommentEmpty = true;
@@ -181,6 +187,7 @@ export default {
         }
       }
     }
+
     function areFieldsValid() {
       if (
         state.comment.localeCompare('') == 0 ||

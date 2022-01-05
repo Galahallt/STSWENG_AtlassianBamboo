@@ -9,17 +9,6 @@ import instructorService from '../service/instructor_service.js';
 // get rate service methods from service folder
 import rateService from '../service/rate_service.js';
 
-// get instructor model object from model folder
-import Instructor from '../model/Instructor.js';
-
-// get tag model object from model folder
-import Tag from '../model/Tag.js';
-
-// get rate model object from model folder
-import Rate from '../model/Rate.js';
-
-import uniqid from 'uniqid';
-
 const rateController = {
   // get all ratings
   getAllRatings: async (req, res) => {
@@ -42,13 +31,10 @@ const rateController = {
 
   getInstructorRatings: async (req, res) => {
     try {
-      // fetch props email
-      const instructor = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
-
       // retrieve all ratings of this instructor
-      const ratings = await rateService.getInstructorRatings(instructor.id);
+      const ratings = await rateService.getInstructorRatings(
+        req.body.instructorID
+      );
 
       if (ratings.length != 0) {
         let avg = 0;
@@ -64,7 +50,7 @@ const rateController = {
         };
 
         const result = await instructorService.updateRating(
-          instructor.id,
+          req.body.instructorID,
           update
         );
 
@@ -72,7 +58,7 @@ const rateController = {
         return res.status(200).json(result.rating);
       }
 
-      return res.status(404).json({ message: 'No ratings found' });
+      return res.status(200).json({ message: 'No ratings found' });
     } catch (err) {
       // if error has occured, send server error status and message
       return res.status(500).json({ message: 'Server Error' });
@@ -81,8 +67,6 @@ const rateController = {
 
   findRating: async (req, res) => {
     try {
-      logger.info(req.body.userEmail);
-
       const userID = await userService.getUser({ email: req.body.userEmail });
       const instructorID = await instructorService.getProf({
         email: req.body.instructorEmail,
