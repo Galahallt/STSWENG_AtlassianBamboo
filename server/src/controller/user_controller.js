@@ -4,6 +4,7 @@ import logger from '../logger/index.js';
 import UserService from '../service/user_service.js';
 
 const userController = {
+  // get user information by using user id
   getUserById: async (req, res) => {
     try {
       logger.info('uc: ' + req.body.id);
@@ -17,6 +18,7 @@ const userController = {
       return res.status(500).json({ message: 'Server Error' });
     }
   },
+  // get user information by using user email
   getUserByEmail: async (req, res) => {
     try {
       logger.info('uc: ' + req.body.email);

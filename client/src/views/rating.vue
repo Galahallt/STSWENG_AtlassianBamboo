@@ -279,6 +279,7 @@ export default {
       }
     }
 
+    // filter reviews of professor
     function filterReviews() {
       console.log(state.filter);
       if (state.filter === 'All') {
