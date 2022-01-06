@@ -37,7 +37,9 @@
         "
         style="border-radius: 50px; background-color: rgba(229, 231, 235, 0.8)"
       >
-        <h1 class="text-3xl font-bold text-center">{{ state.prof_lastname + ', ' + state.prof_firstname }}</h1>
+        <h1 class="text-3xl font-bold text-center">
+          {{ state.prof_lastname + ', ' + state.prof_firstname }}
+        </h1>
         <br />
         <p class="font-bold">Code</p>
         <input
@@ -61,13 +63,10 @@
           >
             {{ state.message }}
           </h4>
-          <h4
-            v-else
-            class="text-2l mt-2 font-bold text-center text-red-600"
-          >
+          <h4 v-else class="text-2l mt-2 font-bold text-center text-red-600">
             {{ state.comment_error }}
           </h4>
-        </template>        
+        </template>
 
         <br />
         <br />
@@ -86,20 +85,7 @@
           >
             Publish
           </button>
-          <router-link
-            :to="{
-              name: 'Prof Reviews',
-              params: {
-                prof_id: prof_id,
-                prof_lastname: prof_lastname,
-                prof_firstname: prof_firstname,
-                prof_email: prof_email,
-                prof_college: prof_college,
-                prof_department: prof_department,
-                prof_rating: prof_rating,
-              },
-            }"
-          >          
+          <router-link :to="`/view/${state.prof_id}`">
             <button
               class="
                 px-6
@@ -130,45 +116,23 @@ button:disabled {
 
 <script>
 import NavBar from '../components/NavBar.vue';
-import { onBeforeMount, reactive } from 'vue';
+import { onBeforeMount, onMounted, reactive } from 'vue';
+import { useRoute } from 'vue-router';
 import * as api from '../api';
 export default {
   name: 'Review Professor',
   components: {
     NavBar,
   },
-  props: {
-    prof_id: {
-      type: String,
-    },
-    prof_lastname: {
-      type: String,
-    },
-    prof_firstname: {
-      type: String,
-    },
-    prof_email: {
-      type: String,
-    },
-    prof_college: {
-      type: String,
-    },
-    prof_department: {
-      type: String,
-    },
-    prof_rating: {
-      type: Number,
-    },
-  },
-  setup(props)
-  {
-    const state = reactive ({
-      prof_id: '',
+  setup() {
+    const router = useRoute();
+    const state = reactive({
+      prof_id: router.params.profID,
 
-      prof_lastname: '',
-      prof_firstname: '',
-      comment: '',
-      course_code: '',
+      prof_lastname: null,
+      prof_firstname: null,
+      comment: null,
+      course_code: null,
       isCommentEmpty: false,
       isSubjectCodeEmpty: false,
 
@@ -176,59 +140,69 @@ export default {
       comment_error: '',
       course_code_error: '',
 
-      message:'',
+      message: '',
     });
+
+    async function loadProf() {
+      try {
+        const result = await api.getProf(state.prof_id);
+        if (result) {
+          state.prof_lastname = result.data.lastName;
+          state.prof_firstname = result.data.firstName;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
     async function addReview() {
       state.attempted = true;
 
-      if(areFieldsValid()) {
-        // TODO get instructor id, subject code, and comment and insert it to the DB 
-        const review = {
-          instructor_id: state.prof_id,
-          course_code: state.course_code,
-          review: state.comment
+      if (areFieldsValid()) {
+        // TODO get instructor id, subject code, and comment and insert it to the DB
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const user = await api.getUserByEmail(email);
+        if (user) {
+          const review = {
+            user_id: user.data.id,
+            instructor_id: state.prof_id,
+            course_code: state.course_code,
+            review: state.comment,
+          };
+          console.log(review);
+          await api.addReview(review);
+          state.course_code = '';
+          state.comment = '';
+          state.message = 'Success!';
         }
-        await api.addReview(review);
-        state.course_code = '';
-        state.comment = '';
-        state.message = "Success!";
-      }
-      else {
-        if(state.comment.localeCompare('') == 0) {
+      } else {
+        if (state.comment.localeCompare('') == 0) {
           state.isCommentEmpty = true;
-          state.comment_error = "Please supply a comment!";
-        }
-        
-        if(state.course_code.localeCompare('') == 0) {
-          state.isSubjectCodeEmpty = true;
-          state.course_code_error = "Please enter a course code!";
+          state.comment_error = 'Please supply a comment!';
         }
 
+        if (state.course_code.localeCompare('') == 0) {
+          state.isSubjectCodeEmpty = true;
+          state.course_code_error = 'Please enter a course code!';
+        }
       }
     }
-    function previousPage() {
-      
-    }
-    function areFieldsValid(){
-      if(state.comment.localeCompare('') == 0 || state.course_code.localeCompare('') == 0) {
+
+    function areFieldsValid() {
+      if (
+        state.comment.localeCompare('') == 0 ||
+        state.course_code.localeCompare('') == 0
+      ) {
         return false;
-      }
-      else {
+      } else {
         state.comment_error = '';
         return true;
       }
     }
-
-    function initState() {
-      state.prof_id = props.prof_id;
-      state.prof_lastname = props.prof_lastname;
-      state.prof_firstname = props.prof_firstname;
-    }
-
-    onBeforeMount(() => {
-      initState();
+    onMounted(() => {
+      loadProf();
     });
+    onBeforeMount(() => {});
 
     return {
       state,

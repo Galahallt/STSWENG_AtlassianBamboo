@@ -3,22 +3,6 @@
     <div class="max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center h-16">
         <div class="flex space-x-4">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <!-- <a
-                  href="#"
-                  class="
-                    bg-gray-900
-                    text-white
-                    px-3
-                    py-2
-                    rounded-md
-                    text-sm
-                    font-medium
-                  "
-                  aria-current="page"
-                  >Dashboard</a
-                > -->
-
           <router-link
             class="
               text-gray-100
@@ -31,20 +15,6 @@
             "
             :to="`/home`"
             >Home</router-link
-          >
-
-          <a
-            href="#"
-            class="
-              text-gray-100
-              hover:bg-green-900 hover:text-white
-              px-3
-              py-2
-              rounded-md
-              font-medium
-              text-lg
-            "
-            >View Professors</a
           >
 
           <a

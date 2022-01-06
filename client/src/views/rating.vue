@@ -8,144 +8,170 @@
       w-full
       h-screen
       block
-      font-sans
     "
   >
     <NavBar />
-    <!-- <button
-      @click="logoutUser"
-      :disabled="!Vue3GoogleOauth.isAuthorized"
-      class="
-        px-6
-        py-2
-        mt-4
-        text-white
-        bg-green-600
-        rounded-lg
-        hover:bg-gray-900
-      "
-    >
-      Logout
-    </button>
-    <h1>IsInit: {{ Vue3GoogleOauth.isInit }}</h1>
-    <h1>IsAuthorized: {{ Vue3GoogleOauth.isAuthorized }}</h1> -->
-    <div class="grid grid-cols-10 gap-4 mt-12">
-      <div class="col-span-3"></div>
-      <div class="col-span-5 space-y-6 text-left">
-        <div class="text-black text-3xl font-bold">
-          {{ profLast + ', ' + profFirst }}
-        </div>
-        <div class="text-black flex">
-          <div>Email:</div>
-          <div class="ml-2">{{ email }}</div>
-        </div>
-        <div class="text-black flex">
-          <div>College:</div>
-          <div class="ml-2">{{ college }}</div>
-        </div>
-        <div class="text-black flex">
-          <div>Department:</div>
-          <div class="ml-2">{{ dept }}</div>
-        </div>
-        <div class="text-black flex">
-          <div>Rating:</div>
-          <div class="ml-2">{{ state.avgRating + '/5' }}</div>
-        </div>
-        <div class="text-black flex">
-          <div>Courses taught:</div>
-          <div class="ml-2">{{ state.tagString }}</div>
-        </div>     
-      </div>
-      <div class="col-span-2 mr-8">
-        <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-          <button
-            class="
-              px-6
-              py-2
-              mt-4
-              text-white
-              bg-green-600
-              rounded-lg
-              hover:bg-green-900
-              shadow-lg
-            "
-            @click="toggleWriteModal"
-          >
-            Add Rating
-          </button>
-          <router-link
-            :to="{
-              name: 'Prof Reviews',
-              params: {
-                prof_id: prof_id,
-                prof_lastname: profLast,
-                prof_firstname: profFirst,
-                prof_email: email,
-                prof_college: college,
-                prof_department: dept,
-                prof_rating: rating,
-              },
-            }"
-          >
-            <button
-              class="
-                px-6
-                py-2
-                mt-4
-                text-white
-                bg-green-600
-                rounded-lg
-                hover:bg-green-900
-                shadow-lg
-              "
-            >
-              Check Reviews
-            </button>          
-          </router-link>          
-        </div>
-        <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-          <div class="grid grid-rows-3">
-            <div class="row-span-2 mt-4">
-              <div class="flex justify-center">
-                <vue3-star-ratings
-                  :disableClick="true"
-                  v-model="state.rating"
-                />
-              </div>
-              <div class="flex justify-center">
-                <div>Numeric value:</div>
-                <div class="ml-2">{{ state.rating }}</div>
-              </div>
+    <div class="flex flex-row-reverse mt-1 mr-3">
+      <button
+        class="
+          px-6
+          py-2
+          mt-4
+          text-white
+          bg-green-600
+          rounded-lg
+          hover:bg-green-900
+          shadow-lg
+        "
+        @click="toggleWriteModal"
+      >
+        Add Rating
+      </button>
+      <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+        <div class="grid grid-rows-3">
+          <div class="row-span-2 mt-4">
+            <div class="flex justify-center">
+              <vue3-star-ratings :disableClick="true" v-model="state.rating" />
             </div>
-            <p
-              class="ml-10 text-red-500 manrope-bold text-left text-sm"
-              v-if="state.error"
-            >
-              Error occured.
-            </p>
-            <div class="row-span-1 justify-self-center">
-              <div class="">
-                <button
-                  class="
-                    px-6
-                    py-2
-                    mt-4
-                    text-white
-                    bg-green-600
-                    rounded-lg
-                    hover:bg-green-900
-                    shadow-lg
-                    flex-shrink
-                    content-center
-                  "
-                  @click="checkRating"
-                >
-                  Submit Rating
-                </button>
+            <div class="flex justify-center">
+              <div>Numeric value:</div>
+              <div class="ml-2">{{ state.rating }}</div>
+            </div>
+          </div>
+          <p
+            class="ml-10 text-red-500 manrope-bold text-left text-sm"
+            v-if="state.error"
+          >
+            Error occured.
+          </p>
+          <div class="row-span-1 justify-self-center">
+            <div class="">
+              <button
+                class="
+                  px-6
+                  py-2
+                  mt-4
+                  text-white
+                  bg-green-600
+                  rounded-lg
+                  hover:bg-green-900
+                  shadow-lg
+                  flex-shrink
+                  content-center
+                "
+                @click="checkRating"
+              >
+                Submit Rating
+              </button>
+            </div>
+          </div>
+        </div>
+      </writeModal>
+      <router-link :to="`/review/${prof.prof_id}`">
+        <button
+          class="
+            px-6
+            py-2
+            mt-4
+            mr-2
+            text-white
+            bg-green-600
+            rounded-lg
+            hover:bg-gray-900
+          "
+        >
+          Write Review
+        </button>
+      </router-link>
+    </div>
+    <!-- body  -->
+    <div class="grid grid-cols-2 py-2 px-12 justify-center">
+      <!-- IMAGE AND PROF INFO -->
+      <div>
+        <br />
+        <br />
+        <br />
+        <div>
+          <img
+            class="pt-2 rounded-full"
+            style="width: 300px; height: 300px; margin-left: 250px"
+            src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
+          />
+        </div>
+        <!-- Prof Info -->
+        <div
+          class="py-3 px-1 mt-1 text-center"
+          style="border-radius: 50px; width: 500px; margin-left: 150px"
+        >
+          <div
+            class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
+            style="border-radius: 10px"
+          >
+            <div class="overscroll-auto" style="height: 200px">
+              <div
+                class="grid grid-cols-2 bg-gray-100 py-2 px-2"
+                style="background-color: rgba(243, 244, 246, 0.5)"
+              >
+                <div class="text-black text-2xs font-bold mt-1">First Name</div>
+                <div class="text-black text-2xs mt-1">{{ prof.profFirst }}</div>
+                <div class="text-black text-2xs font-bold mt-2">Last Name</div>
+                <div class="text-black text-2xs mt-2">{{ prof.profLast }}</div>
+                <div class="text-black text-2xs font-bold mt-2">DLSU Email</div>
+                <div class="text-black text-2xs mt-2">{{ prof.email }}</div>
+                <div class="text-black text-2xs font-bold mt-2">College</div>
+                <div class="text-black text-2xs mt-2">
+                  {{ prof.college }}
+                </div>
+                <div class="text-black text-2xs font-bold mt-2">Department</div>
+                <div class="text-black text-2xs mt-2">{{ prof.dept }}</div>
+                <div class="text-black text-2xs font-bold mt-2">Rating</div>
+                <div class="text-black text-2xs mt-2">{{ prof.rating }}</div>
+                <div class="text-black text-2xs font-bold mt-2">
+                  Subject Tags
+                </div>
+                <div class="mt-1">{{ state.tagString }}</div>
               </div>
             </div>
           </div>
-        </writeModal>
+        </div>
+      </div>
+      <!-- REVIEWS -->
+      <div class="py-5 d-flex flex-col mb-6">
+        <div>
+          <h1 class="text-3xl font-bold text-center">REVIEWS</h1>
+
+          <div class="flex ml-16 mt-16">
+            <div class="mr-4 font-bold">Filter Review:</div>
+            <div>
+              <select
+                class="px-4"
+                v-model="state.filter"
+                @change="filterReviews"
+              >
+                <option value="All" selected>All</option>
+                <option v-for="code in prof.tags" :value="code" :key="code">
+                  {{ code }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <p
+            class="ml-16 manrope-bold text-left text-sm"
+            v-if="state.emptyReviews"
+          >
+            No reviews yet.
+          </p>
+          <div
+            class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md"
+            v-if="!state.emptyReviews"
+          >
+            <profReview
+              v-for="review in state.shownReviews"
+              :key="review.id"
+              :review="review"
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -185,68 +211,115 @@ button:disabled {
 
 <script>
 import * as api from '../api/index.js';
-import { ref, onBeforeMount, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import writeModal from '../components/writeReviewModal.vue';
 import NavBar from '../components/NavBar.vue';
+import profReview from '../components/profReview.vue';
+import { useRoute } from 'vue-router';
 
 export default {
   name: 'View Professor',
-  components: { NavBar, writeModal },
-  props: {
-    prof_id: {
-      type: String,
-    },
-    profLast: {
-      type: String,
-    },
-    profFirst: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-    college: {
-      type: String,
-    },
-    dept: {
-      type: String,
-    },
-    rating: {
-      type: String,
-    },
-    tags: {
-      type: Array,
-    },
-  },
-  setup(props) {
+  components: { NavBar, writeModal, profReview },
+  setup() {
     const state = reactive({
+      empty: true,
+      filter: 'All',
       rating: 0,
       tagString: '',
       error: false,
       avgRating: 0,
+      shownReviews: null,
+      allReviews: null,
+      emptyReviews: null,
     });
 
-    // load tags before loading
-    onBeforeMount(() => {
-      formatTags();
+    const router = useRoute();
+    const prof = reactive({
+      prof_id: router.params.profID,
+      profLast: null,
+      profFirst: null,
+      email: null,
+      college: null,
+      dept: null,
+      rating: null,
+      tags: null,
     });
+
+    async function loadReviews() {
+      try {
+        const result = await api.getReviews(router.params.profID);
+        if (result) {
+          state.allReviews = state.shownReviews = result.data;
+          emptyReviews = false;
+        } else {
+          emptyReviews = true;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    async function loadProf() {
+      try {
+        const result = await api.getProf(router.params.profID);
+        if (result) {
+          prof.profLast = result.data.lastName;
+          prof.profFirst = result.data.firstName;
+          prof.email = result.data.email;
+          prof.college = result.data.college;
+          prof.dept = result.data.department;
+          prof.rating = result.data.rating;
+          prof.tags = result.data.courses;
+          formatTags();
+          state.empty = false;
+          console.log(prof.tags);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // filter reviews of professor
+    function filterReviews() {
+      console.log(state.filter);
+      if (state.filter === 'All') {
+        state.shownReviews = state.allReviews;
+        console.log('hi');
+      } else {
+        const filteredReviews = [];
+
+        for (let i = 0; i < state.allReviews.length; i++) {
+          if (state.allReviews[i].course_code === state.filter) {
+            filteredReviews.push(state.allReviews[i]);
+          }
+        }
+
+        state.shownReviews = filteredReviews;
+      }
+      if (state.shownReviews.length === 0) {
+        state.emptyReviews = true;
+      } else {
+        state.emptyReviews = false;
+      }
+    }
 
     // load after loading
     onMounted(() => {
+      loadReviews();
+      loadProf();
       avgRating();
     });
 
     // tag formatting for printing
     function formatTags() {
-      for (let i = 0; i < props.tags.length; i++) {
-        if (i != props.tags.length - 1) {
-          state.tagString += props.tags[i] + ', ';
+      for (let i = 0; i < prof.tags.length; i++) {
+        if (i != prof.tags.length - 1) {
+          state.tagString += prof.tags[i] + ', ';
         } else {
-          state.tagString += props.tags[i];
+          state.tagString += prof.tags[i];
         }
       }
     }
-
     // check rating in database before adding/updating
     async function checkRating() {
       try {
@@ -254,7 +327,7 @@ export default {
 
         const rate = {
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
         };
 
         const checkExists = await api.findRating(rate);
@@ -278,12 +351,11 @@ export default {
         const rate = {
           rating: state.rating,
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
         };
 
         const res = await api.addRating(rate);
         if (res) {
-          console.log(res);
           toggleWriteModal();
           state.error = false;
           await avgRating();
@@ -299,13 +371,13 @@ export default {
     async function avgRating() {
       try {
         const instructor = {
-          instructorEmail: props.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.getInstructorRatings(instructor);
-        if (res) {
+        if (!res.data.message) {
           state.avgRating = res.data;
+          console.log('hello');
         }
-        console.log(res);
       } catch (err) {
         console.log(err.response.data);
       }
@@ -318,7 +390,7 @@ export default {
 
         const instructor = {
           userEmail: email,
-          instructorEmail: props.email,
+          instructorEmail: prof.email,
           rating: state.rating,
         };
 
@@ -346,9 +418,11 @@ export default {
 
     return {
       state,
+      prof,
       showWriteModal,
       checkRating,
       toggleWriteModal,
+      filterReviews,
     };
   },
 };
