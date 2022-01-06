@@ -117,20 +117,20 @@ describe('duplicate instructor data', () => {
 /**
  * Rating test suite
  */
-describe('user adds rating to chosen professor', () => {
-  /**
-   * Test if added rating was valid
-   */
-  test('added rating successful', async () => {
-    const req = mockReqRate({
-      rating: 1.5,
-      userID: 'asdasdjjjas',
-      instructorID: 'askldhalshf',
-    });
+// describe('user adds rating to chosen professor', () => {
+//   /**
+//     Test if added rating was valid
+//    /
+//   test('added rating successful', async () => {
+//     const req = mockReqRate({
+//       rating: 1.5,
+//       userID: 'asdasdjjjas',
+//       instructorID: 'askldhalshf',
+//     });
 
-    const res = mockRes();
+//     const res = mockRes();
 
-    await rateController.addRating(req, res);
-    expect(res.status).toHaveBeenCalledWith(201);
-  });
-});
+//     await rateController.addRating(req, res);
+//     expect(res.status).toHaveBeenCalledWith(201);
+//   });
+// });
