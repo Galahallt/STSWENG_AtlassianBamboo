@@ -26,6 +26,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // user's img URL
+  imgURL: {
+    type: String,
+    required: true,
+  },
   isAdministrator: {
     type: Boolean,
     required: true,
