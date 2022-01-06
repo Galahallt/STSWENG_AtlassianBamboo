@@ -665,6 +665,8 @@ ul {
 </style>
 
 <script>
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
@@ -672,7 +674,15 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  reactive,
+  onBeforeMount,
+  getCurrentInstance,
+} from 'vue';
 
 export default {
   name: 'Home',
@@ -683,6 +693,9 @@ export default {
     multipleAddProfModal,
   },
   setup() {
+    const router = useRouter();
+    const store = useStore();
+
     const state = reactive({
       disable: null,
       error: null,
@@ -913,6 +926,7 @@ export default {
     }
 
     return {
+      state,
       toggleAddProfModal,
       toggleMultipleAddProfModal,
       showAddProfModal,
@@ -923,7 +937,6 @@ export default {
       paddingLeft,
       tagsUl,
       addProfData,
-      state,
       addProf,
       addProfsCsv,
       v,

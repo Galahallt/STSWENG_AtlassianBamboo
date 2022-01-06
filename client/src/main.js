@@ -19,6 +19,7 @@ const gAuthOptions = {
   fetch_basic_profile: true,
 };
 
+app.component('vue3-star-ratings', vue3StarRatings);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(router);
 app.use(store);
