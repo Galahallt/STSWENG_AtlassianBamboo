@@ -118,9 +118,9 @@ describe('duplicate instructor data', () => {
  * Rating test suite
  */
 // describe('user adds rating to chosen professor', () => {
-/**
- * Test if added rating was valid
- */
+//   /**
+//     Test if added rating was valid
+//    /
 //   test('added rating successful', async () => {
 //     const req = mockReqRate({
 //       rating: 1.5,

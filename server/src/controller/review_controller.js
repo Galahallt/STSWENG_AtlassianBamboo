@@ -8,7 +8,7 @@ import ReviewService from '../service/review_service.js';
 
 import uniqid from 'uniqid';
 
-const instructorController = {
+const reviewController = {
   getProfReviews: async (req, res) => {
     try {
       // TODO use the prof's ID to find all of his reviews
@@ -40,7 +40,16 @@ const instructorController = {
       return res.status(500).json({ message: 'Server Error' });
     }
   },
+  deleteReview: async (req, res) => {
+    try {
+      const id = req.body.reviewid;
+      await ReviewService.deleteReview(id);
+      return res.status(200).json(id);
+    } catch (err) {
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
 };
 
-// export instructor controller object for routing
-export default instructorController;
+// export review controller object for routing
+export default reviewController;
