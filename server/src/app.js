@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ['https://profs-to-pick.netlify.app'],
+    origin: ['http://localhost:3000', 'https://localhost:3000'],
     credentials: true,
   })
 );

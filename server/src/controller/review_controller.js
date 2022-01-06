@@ -1,21 +1,22 @@
 import logger from '../logger/index.js';
 
-// get instructor service methods from service folder
-import InstructorService from '../service/instructor_service.js';
-
-// get instructor service methods from service folder
+// get review service methods from service folder
 import ReviewService from '../service/review_service.js';
 
 import uniqid from 'uniqid';
 
-const instructorController = {
+const reviewController = {
   getProfReviews: async (req, res) => {
     try {
       // TODO use the prof's ID to find all of his reviews
       const instructorID = req.body.instructorID;
       logger.info(instructorID);
       const reviews = await ReviewService.getReviews(instructorID);
-      if (reviews != null) return res.status(200).json(reviews);
+      if (reviews != null) {
+        return res.status(200).json(reviews);
+      } else {
+        return res.status(200).json({ message: 'No reviews yet.' });
+      }
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
     }
@@ -40,7 +41,16 @@ const instructorController = {
       return res.status(500).json({ message: 'Server Error' });
     }
   },
+  deleteReview: async (req, res) => {
+    try {
+      const id = req.body.reviewid;
+      await ReviewService.deleteReview(id);
+      return res.status(200).json(id);
+    } catch (err) {
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
 };
 
-// export instructor controller object for routing
-export default instructorController;
+// export review controller object for routing
+export default reviewController;
