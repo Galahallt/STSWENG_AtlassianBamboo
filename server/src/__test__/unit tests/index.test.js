@@ -22,12 +22,13 @@ describe('Post controller', () => {
   // Setup the responses
   const mockReq = {
     body: {
+      id: 'askdjasldkj112',
       fullName: 'Keil Finez',
       givenName: 'Keil Christopher',
       familyName: 'Finez',
-      imageURL: 'asdasdwqeq',
       email: 'keilFinez@dlsu.edu.ph',
-      accessToken: 'asdasdasdasd',
+      imgURL: 'asdasdwqeq',
+      isAdministrator: true,
     },
   };
 
@@ -61,15 +62,15 @@ describe('Post controller', () => {
           fullName: 'Keil Finez',
           givenName: 'Keil Christopher',
           familyName: 'Finez',
-          imageURL: 'asdasdwqeq',
           email: 'keilFinez@dlsu.edu.ph',
+          imgURL: 'asdasdwqeq',
           isAdministrator: true,
         },
       };
 
       createUserStub = sinon
         .stub(UserService, 'addUser')
-        .withArgs(expectedResult.body);
+        .yields(expectedResult.body);
 
       // Act
       indexController.postLogin(mockReq, res);

@@ -53,7 +53,12 @@
         <textarea
           v-model="state.comment"
           placeholder="Type your comment here"
-          style="height: 100px; width: 600px; outline: true border-radius: 20px"
+          style="
+            height: 100px;
+            width: 600px;
+            outline: true;
+            border-radius: 20px;
+          "
         ></textarea>
 
         <template v-if="state.attempted">
