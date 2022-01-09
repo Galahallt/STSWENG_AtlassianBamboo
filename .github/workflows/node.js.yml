@@ -26,6 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm install -g yarn
     - run: cd server
-    - run: yarn test
+    - run: npm install -g yarn
+    - run: yarn build
