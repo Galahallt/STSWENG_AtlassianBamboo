@@ -68,16 +68,16 @@ const rateController = {
   findRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      const instructorID = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
 
       const find = {
         userID: userID.id,
-        instructorID: instructorID.id,
       };
 
       const findRate = await rateService.findRating(find);
+
+      logger.info('---------');
+      logger.info(findRate);
+      logger.info('+++++++++');
 
       return res.status(200).json(findRate);
     } catch (err) {
@@ -124,9 +124,6 @@ const rateController = {
         instructor.id,
         update
       );
-
-      logger.info(result);
-      logger.info(update);
 
       return res.status(204).json(result);
     } catch (err) {
