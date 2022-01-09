@@ -68,9 +68,13 @@ const rateController = {
   findRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
+      const profID = await instructorService.getProf({
+        email: req.body.profEmail,
+      });
 
       const find = {
         userID: userID.id,
+        profID: profID.id,
       };
 
       const findRate = await rateService.findRating(find);

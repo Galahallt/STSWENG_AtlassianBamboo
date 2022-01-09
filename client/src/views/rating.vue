@@ -327,6 +327,7 @@ export default {
 
         const rate = {
           userEmail: email,
+          profEmail: prof.email,
         };
 
         const checkExists = await api.findRating(rate);
