@@ -119,15 +119,16 @@ const rateController = {
         email: req.body.instructorEmail,
       });
 
+      const find = {
+        userID: userID.id,
+        instructorID: instructor.id,
+      };
+
       const update = {
         rating: req.body.rating,
       };
 
-      const result = await rateService.updateRating(
-        userID.id,
-        instructor.id,
-        update
-      );
+      const result = await rateService.updateRating(find, update);
 
       return res.status(204).json(result);
     } catch (err) {

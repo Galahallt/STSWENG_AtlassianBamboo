@@ -26,9 +26,9 @@ const rateService = {
   },
 
   // update rating of instructor
-  updateRating: async (userID, instructorID, update) =>
+  updateRating: async (data, update) =>
     Rate.findOneAndUpdate(
-      { userID: userID, instructorID: instructorID },
+      { userID: data.userID, instructorID: data.instructorID },
       update
     ),
 };
