@@ -22,7 +22,7 @@ const instructorService = {
     return newProf.save();
   },
   updateRating: async (data, update) =>
-    Instructor.findOneAndUpdate({ instructorID: data.profID }, update),
+    Instructor.updateOne({ id: data.profID }, update),
   addProfReview: async (instructorID, reviewID) =>
     Instructor.updateOne(
       { id: instructorID },

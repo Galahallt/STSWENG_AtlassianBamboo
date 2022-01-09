@@ -331,6 +331,7 @@ export default {
         };
 
         const checkExists = await api.findRating(rate);
+
         if (checkExists.data != null) {
           console.log('EXISTS');
           updateRating();
