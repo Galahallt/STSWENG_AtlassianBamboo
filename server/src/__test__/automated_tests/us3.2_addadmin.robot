@@ -12,12 +12,12 @@ Suite Teardown    Close Browser
 Resource          resource1.robot
 
 *** Test Cases ***      EMAIL
-Valid Email             ${VALID}
-Self                    ${SELF}
+Valid Email             ${VALID
 Not User (DLSU)         ${NOT_USER}
 Not User (Non-DLSU)     ${NOT_DLSU}
 Duplicate               ${VALID}
 Empty                   ${EMPTY}
+Blank                   ${SPACE}
 
 *** KEYWORDS ***
 Add Admin
