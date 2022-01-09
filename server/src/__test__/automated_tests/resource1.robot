@@ -18,8 +18,8 @@ Library           SeleniumLibrary
 ${BROWSER}        Chrome
 ${DELAY}          2
 ${TITLE}          Profs to Pick
-${HOME}           http://localhost:3000/
-${ADMIN}          http://localhost:3000/adminlist
+${HOME}           https://profs-to-pick.netlify.app
+${ADMIN}          https://profs-to-pick.netlify.app/adminlist
 ${VALID}          paolo_edni_v_espiritu@dlsu.edu.ph
 ${SELF}           james_perez@dlsu.edu.ph
 ${ADMIN_USER}     tba@dlsu.edu.ph
