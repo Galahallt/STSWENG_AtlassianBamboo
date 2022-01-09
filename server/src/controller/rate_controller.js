@@ -45,14 +45,15 @@ const rateController = {
         avg /= ratings.length;
         avg = avg.toFixed(2);
 
+        const prof = {
+          profID: req.body.instructorID,
+        };
+
         const update = {
           rating: avg,
         };
 
-        const result = await instructorService.updateRating(
-          req.body.instructorID,
-          update
-        );
+        const result = await instructorService.updateRating(prof, update);
 
         // if there are existing ratings of this instructor from the database
         return res.status(200).json(result.rating);
