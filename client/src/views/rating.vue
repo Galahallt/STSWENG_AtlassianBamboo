@@ -376,7 +376,8 @@ export default {
         };
         const res = await api.getInstructorRatings(instructor);
         if (!res.data.message) {
-          state.avgRating = res.data;
+          state.rating = res.data;
+          await loadProf();
           console.log('Avg updated');
         }
       } catch (err) {
