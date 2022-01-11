@@ -21,8 +21,8 @@ const instructorService = {
     });
     return newProf.save();
   },
-  updateRating: async (instructorID, update) =>
-    Instructor.findOneAndUpdate({ instructorID: instructorID }, update),
+  updateRating: async (data, update) =>
+    Instructor.updateOne({ id: data.profID }, update),
   addProfReview: async (instructorID, reviewID) =>
     Instructor.updateOne(
       { id: instructorID },

@@ -331,11 +331,12 @@ export default {
 
         const rate = {
           userEmail: email,
-          instructorEmail: prof.email,
+          profEmail: prof.email,
         };
 
         const checkExists = await api.findRating(rate);
-        if (checkExists) {
+
+        if (checkExists.data != null) {
           console.log('EXISTS');
           updateRating();
         } else {
@@ -380,7 +381,7 @@ export default {
         const res = await api.getInstructorRatings(instructor);
         if (!res.data.message) {
           state.avgRating = res.data;
-          console.log('hello');
+          console.log('Avg updated');
         }
       } catch (err) {
         console.log(err.response.data);
@@ -393,9 +394,9 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
 
         const instructor = {
+          rating: state.rating,
           userEmail: email,
           instructorEmail: prof.email,
-          rating: state.rating,
         };
 
         const res = await api.updateRating(instructor);
