@@ -10,20 +10,7 @@
       block
     "
   >
-    <div class="flex items-center justify-around ml-20 mr-20">
-      <div>
-        <a href="#" class="hover:underline">Home</a>
-      </div>
-      <div>
-        <a href="#" class="hover:underline">View Professors</a>
-      </div>
-      <div>
-        <a href="#" class="hover:underline">FAQs</a>
-      </div>
-      <div>
-        <a href="#" class="hover:underline">Contact Us</a>
-      </div>
-    </div>
+    <nav-bar />
     <div class="mt-40"></div>
     <div class="flex items-center justify-center">
       <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
@@ -71,10 +58,7 @@
             >
               {{ state.message }}
             </h4>
-            <h4
-              v-else
-              class="text-2l mt-2 font-bold text-center text-red-600"
-            >
+            <h4 v-else class="text-2l mt-2 font-bold text-center text-red-600">
               {{ state.message }}
             </h4>
           </template>
@@ -118,12 +102,16 @@
   </div>
 </template>
 <script>
+import NavBar from '../components/NavBar.vue';
 import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 import * as api from '../api';
 export default {
   name: 'Admin List',
+  components: {
+    NavBar,
+  },
   setup() {
     let state = reactive({
       email: '',
