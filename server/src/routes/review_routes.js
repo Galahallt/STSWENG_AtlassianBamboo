@@ -9,5 +9,7 @@ const router = express.Router();
 // route for getting all instructors from database
 router.post('/reviews', reviewController.getProfReviews);
 router.post('/addreview', reviewController.addReview);
+router.delete('/deleteReview/:reviewid', reviewController.deleteReview);
+
 // export instructor routes
 export default router;

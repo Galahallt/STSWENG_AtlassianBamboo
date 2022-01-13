@@ -306,7 +306,6 @@ export default {
     // load after loading
     onMounted(() => {
       loadReviews();
-      loadProf();
       avgRating();
     });
 
