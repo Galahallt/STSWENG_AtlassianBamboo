@@ -301,16 +301,17 @@ export default {
     onMounted(() => {
       loadProf();
       loadReviews();
-      avgRating();
     });
 
     // tag formatting for printing
     function formatTags() {
-      for (let i = 0; i < prof.tags.length; i++) {
-        if (i != prof.tags.length - 1) {
-          state.tagString += prof.tags[i] + ', ';
-        } else {
-          state.tagString += prof.tags[i];
+      if (state.tagString == '') {
+        for (let i = 0; i < prof.tags.length; i++) {
+          if (i != prof.tags.length - 1) {
+            state.tagString += prof.tags[i] + ', ';
+          } else {
+            state.tagString += prof.tags[i];
+          }
         }
       }
     }
@@ -370,7 +371,7 @@ export default {
         };
         const res = await api.getInstructorRatings(instructor);
         if (!res.data.message) {
-          state.rating = res.data;
+          state.avgRating = res.data;
           await loadProf();
           console.log('Avg updated');
         }
