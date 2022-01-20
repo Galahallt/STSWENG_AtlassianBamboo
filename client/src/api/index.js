@@ -40,3 +40,5 @@ export const updateRating = (rating) =>
 export const addReview = (review) => API.post('/review/addreview', review);
 export const getReviews = (instructorID) =>
   API.post('/review/reviews', { instructorID: instructorID });
+export const deleteReview = (reviewid) =>
+  API.delete(`/review/deleteReview/${reviewid}`);

@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gray-200 py-2">
+  <div class="bg-gray-200 py-2" v-if="state.deleted == false">
     <div class=""></div>
     <div class="ml-8 text-blue-800 text font-bold">{{ state.userName }}</div>
     <div class="grid grid-cols-10">
       <div class="ml-8 col-span-9">{{ review.review }}</div>
-      <div class="mr-8 col-span-1">
+      <div v-if="state.userID == state.loggedUser" class="mr-8 col-span-1">
         <button
           class="
             px-4
@@ -14,6 +14,7 @@
             rounded-lg
             hover:bg-gray-900
           "
+          @click="deleteReview"
         >
           Delete
         </button>
@@ -35,7 +36,9 @@ export default {
   },
   setup(props) {
     const state = reactive({
+      deleted: false,
       userName: null,
+      userID: null,
       loggedUser: null,
     });
 
@@ -56,6 +59,21 @@ export default {
         if (user) {
           state.loggedUser = user.data.id;
         }
+
+        state.userID = props.review.user_id;
+      } catch (err) {}
+    }
+
+    async function deleteReview() {
+      try {
+        console.log('-===========-');
+        console.log(props.review.id);
+
+        const res = await api.deleteReview(props.review.id);
+        if (res) {
+          state.deleted = true;
+          console.log(res);
+        }
       } catch (err) {}
     }
 
@@ -64,7 +82,7 @@ export default {
       checkUser();
     });
 
-    return { state };
+    return { state, deleteReview };
   },
 };
 </script>
