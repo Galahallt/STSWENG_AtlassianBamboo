@@ -379,7 +379,11 @@
               />
 
               <ul class="tags ml-14" ref="tagsUl">
-                <li v-for="tag in addProfData.courses" :key="tag" class="tag">
+                <li
+                  v-for="(tag, index) in addProfData.courses"
+                  :key="tag"
+                  class="tag"
+                >
                   {{ tag }}
                   <button class="delete" @click="removeTag(index)">x</button>
                 </li>
@@ -734,6 +738,8 @@ export default {
     // remove the latest tag from the tags array
     function removeTag(index) {
       addProfData.courses.splice(index, 1);
+      console.log(index);
+      console.log(addProfData.courses);
     }
 
     // toggles add professor modal
