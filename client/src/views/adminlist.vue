@@ -11,85 +11,91 @@
     "
   >
     <nav-bar />
-    <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-      <router-link
-        class="
-          px-6
-          py-2
-          mt-4
-          text-white
-          bg-green-600
-          rounded-lg
-          hover:bg-green-900
-          shadow-lg
-        "
-        to="/addadmin"
-      >
-        New Admin
-      </router-link>
-    </div>
 
-    <br />
+    <div v-if="state.isAdministrator">
+      <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
+        <router-link
+          class="
+            px-6
+            py-2
+            mt-4
+            text-white
+            bg-green-600
+            rounded-lg
+            hover:bg-green-900
+            shadow-lg
+          "
+          to="/addadmin"
+        >
+          New Admin
+        </router-link>
+      </div>
 
-    <div class="flex space-x-5 ml-8 mr-8">
       <br />
 
-      <div class="flex-col flex-grow">
-        <div class="grid grid-cols-4 bg-gray-400">
-          <div class="text-white ml-3">Name</div>
-          <div class="text-white ml-3">Email</div>
-          <div class="text-white ml-3">Date Added</div>
-          <div class="text-white ml-3">Action</div>
-        </div>
-        <div
-          v-for="items in state.admins"
-          :key="items.email"
-          class="overscroll-auto"
-        >
-          <div class="grid grid-cols-4 bg-gray-100">
-            <!-- insert professors here -->
-            <div class="text-black ml-3">{{ items.fullName }}</div>
-            <div class="text-black ml-3">{{ items.email }}</div>
-            <div class="text-black ml-3">11/20/2021</div>
-            <div>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  text-white
-                  bg-red-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  mb-2
-                  mt-2
-                "
-              >
-                Remove
-              </button>
-              <button
-                class="
-                  px-2
-                  py-1
-                  mt-1
-                  ml-3
-                  text-white
-                  bg-gray-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  mb-2
-                  mt-2
-                "
-              >
-                Modify
-              </button>
+      <div class="flex space-x-5 ml-8 mr-8">
+        <br />
+
+        <div class="flex-col flex-grow">
+          <div class="grid grid-cols-4 bg-gray-400">
+            <div class="text-white ml-3">Name</div>
+            <div class="text-white ml-3">Email</div>
+            <div class="text-white ml-3">Date Added</div>
+            <div class="text-white ml-3">Action</div>
+          </div>
+          <div
+            v-for="items in state.admins"
+            :key="items.email"
+            class="overscroll-auto"
+          >
+            <div class="grid grid-cols-4 bg-gray-100">
+              <!-- insert professors here -->
+              <div class="text-black ml-3">{{ items.fullName }}</div>
+              <div class="text-black ml-3">{{ items.email }}</div>
+              <div class="text-black ml-3">11/20/2021</div>
+              <div>
+                <button
+                  class="
+                    px-2
+                    py-1
+                    text-white
+                    bg-red-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    mb-2
+                    mt-2
+                  "
+                >
+                  Remove
+                </button>
+                <button
+                  class="
+                    px-2
+                    py-1
+                    ml-3
+                    text-white
+                    bg-gray-600
+                    rounded-lg
+                    hover:bg-green-900
+                    shadow-lg
+                    mb-2
+                    mt-2
+                  "
+                >
+                  Modify
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div v-else>
+      Access Denied
+    </div>
+
   </div>
 </template>
 <script>
@@ -107,6 +113,8 @@ export default {
     let state = reactive({
       admins: null,
       error: false,
+      isAdministrator: false,
+      email: JSON.parse(localStorage.getItem('user')).email,      
     });
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
@@ -121,9 +129,20 @@ export default {
         console.log(err);
       }
     }
-
+    async function checkIfAdmin()
+    {
+      try {
+        const result = await api.getUserByEmail(state.email);
+        if(result) {
+          state.isAdministrator = result.data.isAdministrator;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     // this thing runs first thing before the page loads in
     onBeforeMount(() => {
+      checkIfAdmin();
       getAdminList();
     });
 

@@ -12,7 +12,7 @@
   >
     <nav-bar />
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-      <div>
+      <div v-if="state.isAdministrator">
         <router-link to="/adminlist">
           <button
             class="
@@ -712,6 +712,8 @@ export default {
       fileExisting: null,
       csvFile: null,
       profExisting: null,
+      isAdministrator: false,
+      email: JSON.parse(localStorage.getItem('user')).email,
     });
 
     const addProfData = reactive({
@@ -890,9 +892,19 @@ export default {
         state.empty = true;
       }
     }
-
+    async function getUserAdminAccess() {
+      try {
+        const result = await api.getUserByEmail(state.email);
+        if(result) {
+          state.isAdministrator = result.data.isAdministrator;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     onBeforeMount(() => {
       initProfs();
+      getUserAdminAccess();
     });
 
     function isValidProf() {
