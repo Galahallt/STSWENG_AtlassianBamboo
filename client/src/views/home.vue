@@ -374,7 +374,7 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase"
+                class="ml-14 input-text-field w-80 uppercase"
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -529,19 +529,37 @@
           <label>College</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterCol"
+            name="filterCol"
+            type="text"
+            v-model.trim="state.filterCol"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <label>Department</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterDept"
+            name="filterDept"
+            type="text"
+            v-model.trim="state.filterDept"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <label>Course</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterCourse"
+            name="filterCourse"
+            type="text"
+            v-model.trim="state.filterCourse"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <button
@@ -555,15 +573,25 @@
               hover:bg-green-900
               shadow-lg
             "
+            @click="filterProfs"
           >
-            Modify Filter
+            Filter Professors
           </button>
         </div>
       </div>
 
       <br />
+      <p
+        v-if="state.empty"
+        class="mt-20 text-red-500 manrope-bold text-center text-sm"
+      >
+        No results.
+      </p>
 
-      <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
+      <div
+        class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
+        v-if="!state.empty"
+      >
         <div class="grid grid-cols-5 bg-gray-400">
           <div class="text-white">Name</div>
           <div class="text-white">College</div>
@@ -571,7 +599,11 @@
           <div class="text-white">Rating</div>
           <div class="text-white">Status</div>
         </div>
-        <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
+        <profInfo
+          v-for="prof in state.shownProfs"
+          :key="prof.id"
+          :prof="prof"
+        />
       </div>
     </div>
   </div>
@@ -620,7 +652,7 @@ ul {
   top: 0;
   bottom: 0;
   left: 3px;
-  max-width: 55%;
+  max-width: 75%;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -665,8 +697,6 @@ ul {
 </style>
 
 <script>
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
 import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
@@ -674,15 +704,7 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import {
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-  reactive,
-  onBeforeMount,
-  getCurrentInstance,
-} from 'vue';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
@@ -693,19 +715,20 @@ export default {
     multipleAddProfModal,
   },
   setup() {
-    const router = useRouter();
-    const store = useStore();
-
     const state = reactive({
       disable: null,
       error: null,
       invalidEmail: null,
       invalidFile: null,
       empty: null,
-      profs: [],
+      allProfs: [],
+      shownProfs: [],
       fileExisting: null,
       csvFile: null,
       profExisting: null,
+      filterDept: '',
+      filterCourse: '',
+      filterCol: '',
     });
 
     const addProfData = reactive({
@@ -725,7 +748,6 @@ export default {
     const newTag = ref('');
     const paddingLeft = ref(10);
     const tagsUl = ref(null);
-
     // adjust cursor
     function onTagsChange() {
       // set left padding
@@ -746,7 +768,6 @@ export default {
         newTag.value = '';
       }
     }
-
     // remove the latest tag from the tags array
     function removeTag(index) {
       addProfData.courses.splice(index, 1);
@@ -842,7 +863,9 @@ export default {
         if (validated) {
           const res = await api.addProf(addProfData);
           if (res) {
-            state.profs.unshift(res.data);
+            state.allProfs.push(res.data);
+            state.shownProfs.push(res.data);
+            state.shownProfs.sort(compareLastName);
             toggleAddProfModal();
           }
           state.error = null;
@@ -872,9 +895,11 @@ export default {
     async function initProfs() {
       try {
         const result = await api.getAllProfs();
-        state.profs = result.data;
+        state.shownProfs = state.allProfs = result.data;
 
-        if (state.profs.length !== 0) {
+        state.shownProfs.sort(compareLastName);
+
+        if (state.allProfs.length !== 0) {
           state.empty = false;
         } else {
           state.empty = true;
@@ -915,7 +940,9 @@ export default {
           console.log(res);
           if (res.status == 200) {
             for (let i = 0; i < res.data.length; i++) {
-              state.profs.unshift(res.data[i]);
+              state.allProfs.push(res.data[i]);
+              state.shownProfs.push(res.data[i]);
+              state.shownProfs.sort(compareLastName);
             }
           }
         }
@@ -923,6 +950,114 @@ export default {
         state.profExisting = error.response.data.message;
         console.log(error);
       }
+    }
+
+    // filter reviews of professor
+    function filterProfs() {
+      const filteredProfs = [];
+      if (
+        state.filterDept === '' &&
+        state.filterCourse === '' &&
+        state.filterCol === ''
+      ) {
+        state.shownProfs = state.allProfs;
+      } else if (
+        state.filterDept !== '' &&
+        state.filterCourse !== '' &&
+        state.filterCol !== ''
+      ) {
+        if (state.filterDept !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (state.allProfs[i].department === titleCase(state.filterDept)) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+
+        if (state.filterCourse !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (
+              state.allProfs[i].courses.includes(
+                state.filterCourse.toUpperCase()
+              )
+            ) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+
+        if (state.filterCol !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+      } else if (state.filterDept !== '' && state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].department === titleCase(state.filterDept) &&
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterDept !== '' && state.filterCol !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].department === titleCase(state.filterDept) &&
+            state.allProfs[i].college === state.filterCol.toUpperCase()
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCol !== '' && state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].college === state.filterCol.toUpperCase() &&
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterDept !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (state.allProfs[i].department === titleCase(state.filterDept)) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCol !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      }
+      state.shownProfs = filteredProfs;
+      state.shownProfs.sort(compareLastName);
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+      }
+    }
+
+    function compareLastName(a, b) {
+      if (a.lastName < b.lastName) {
+        return -1;
+      }
+      if (a.lastName > b.lastName) {
+        return 1;
+      }
+      return 0;
     }
 
     return {
@@ -944,6 +1079,7 @@ export default {
       titleCase,
       file,
       onFileUpload,
+      filterProfs,
     };
   },
 };

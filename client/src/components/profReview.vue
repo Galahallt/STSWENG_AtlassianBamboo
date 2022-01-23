@@ -3,7 +3,9 @@
     <div class=""></div>
     <div class="ml-8 text-blue-800 text font-bold">{{ state.userName }}</div>
     <div class="grid grid-cols-10">
-      <div class="ml-8 col-span-9">{{ review.review }}</div>
+      <div class="ml-8 col-span-9">
+        ({{ review.course_code }}) {{ review.review }}
+      </div>
       <div class="mr-8 col-span-1">
         <button
           class="
