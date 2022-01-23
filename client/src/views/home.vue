@@ -752,6 +752,7 @@ export default {
     const newTag = ref('');
     const paddingLeft = ref(10);
     const tagsUl = ref(null);
+
     // adjust cursor
     function onTagsChange() {
       // set left padding
@@ -761,12 +762,16 @@ export default {
       tagsUl.value.scrollTo(tagsUl.value.scrollWidth, 0);
     }
 
-    watch(addProfData.courses, () => nextTick(onTagsChange), { deep: true });
+    watch(
+      () => addProfData.courses,
+      () => nextTick(onTagsChange),
+      { deep: true }
+    );
 
     onMounted(onTagsChange);
 
     // add the new tag to the tags array
-    function addTag(tag) {
+    async function addTag(tag) {
       if (tag) {
         addProfData.courses.push(tag.toUpperCase());
         newTag.value = '';
