@@ -389,7 +389,11 @@
               />
 
               <ul class="tags ml-14" ref="tagsUl">
-                <li v-for="tag in addProfData.courses" :key="tag" class="tag">
+                <li
+                  v-for="(tag, index) in addProfData.courses"
+                  :key="tag"
+                  class="tag"
+                >
                   {{ tag }}
                   <button class="delete" @click="removeTag(index)">x</button>
                 </li>
