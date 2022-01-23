@@ -768,6 +768,7 @@ export default {
         newTag.value = '';
       }
     }
+
     // remove the latest tag from the tags array
     function removeTag(index) {
       addProfData.courses.splice(index, 1);
