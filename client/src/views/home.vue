@@ -32,8 +32,8 @@
       </div>
       <div>
         <button
-          data-test = "addProfessorButton"
-          name = "addProfessorButton"
+          data-test="addProfessorButton"
+          name="addProfessorButton"
           class="
             px-6
             py-2
@@ -77,7 +77,13 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm lastname_error"
+                class="
+                  ml-10
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  lastname_error
+                "
                 v-if="v.lastName.$error"
               >
                 {{ v.lastName.$errors[0].$message }}
@@ -111,7 +117,13 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm firstname_error"
+                class="
+                  ml-10
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  firstname_error
+                "
                 v-if="v.firstName.$error"
               >
                 {{ v.firstName.$errors[0].$message }}
@@ -147,7 +159,13 @@
               />
 
               <p
-                class="ml-9 text-red-500 manrope-bold text-left text-sm email_error"
+                class="
+                  ml-9
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  email_error
+                "
                 v-if="v.email.$error"
               >
                 {{ v.email.$errors[0].$message }}
@@ -198,7 +216,13 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-16 text-red-500 manrope-bold text-left text-sm college_error"
+                class="
+                  ml-16
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  college_error
+                "
                 v-if="v.college.$error"
               >
                 {{ v.college.$errors[0].$message }}
@@ -361,7 +385,13 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-8 text-red-500 manrope-bold text-left text-sm department_error"
+                class="
+                  ml-8
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  department_error
+                "
                 v-if="v.department.$error"
               >
                 {{ v.department.$errors[0].$message }}
@@ -378,7 +408,15 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase courses_input"
+                class="
+                  ml-14
+                  input-text-field
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
+                  uppercase
+                  courses_input
+                "
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -403,7 +441,13 @@
                 </li>
               </ul>
               <p
-                class="ml-14 text-red-500 manrope-bold text-left text-sm courses_error"
+                class="
+                  ml-14
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  courses_error
+                "
                 v-if="v.courses.$error"
               >
                 {{ v.courses.$errors[0].$message }}
@@ -414,13 +458,19 @@
         <div>
           <div class="flex flex-row-reverse">
             <p
-              class="mt-20 text-red-500 manrope-bold text-center text-sm professor_error"
+              class="
+                mt-20
+                text-red-500
+                manrope-bold
+                text-center text-sm
+                professor_error
+              "
               v-if="state.error"
             >
               {{ state.error }}
             </p>
             <button
-              name = "confirm_addProfessorBtn"
+              name="confirm_addProfessorBtn"
               class="
                 px-6
                 py-2
@@ -442,7 +492,7 @@
         </div>
       </addProfModal>
       <button
-        name = "addMultipleProfessorsButton"
+        name="addMultipleProfessorsButton"
         class="
           px-6
           py-2
@@ -597,7 +647,10 @@
       >
         No results.
       </p>
-      <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden v-if="!state.empty"">
+      <div
+        class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
+        v-if="!state.empty"
+      >
         <div class="grid grid-cols-9 bg-gray-400">
           <div class="text-white px-1 col-span-1">Name</div>
           <div class="text-white px-1 col-span-1">College</div>
@@ -927,7 +980,7 @@ export default {
     async function getUserAdminAccess() {
       try {
         const result = await api.getUserByEmail(state.email);
-        if(result) {
+        if (result) {
           state.isAdministrator = result.data.isAdministrator;
         }
       } catch (err) {
@@ -985,7 +1038,9 @@ export default {
         state.filterCourse === '' &&
         state.filterCol === ''
       ) {
+        console.log('hi');
         state.shownProfs = state.allProfs;
+        console.log(state.shownProfs);
       } else if (
         state.filterDept !== '' &&
         state.filterCourse !== '' &&
@@ -1066,12 +1121,23 @@ export default {
           }
         }
       }
-      state.shownProfs = filteredProfs;
+
+      if (
+        state.filterDept !== '' ||
+        state.filterCourse !== '' ||
+        state.filterCol !== ''
+      ) {
+        state.shownProfs = filteredProfs;
+      }
+
       state.shownProfs.sort(compareLastName);
+
+      console.log('shownProfs length: ' + state.shownProfs.length);
       if (state.shownProfs.length === 0) {
         state.empty = true;
       } else {
         state.empty = false;
+        console.log('helloo');
       }
     }
 
