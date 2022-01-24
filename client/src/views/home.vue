@@ -570,12 +570,13 @@
       <br />
 
       <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-5 bg-gray-400">
-          <div class="text-white">Name</div>
-          <div class="text-white">College</div>
-          <div class="text-white">Department</div>
-          <div class="text-white">Rating</div>
-          <div class="text-white">Status</div>
+        <div class="grid grid-cols-9 bg-gray-400">
+          <div class="text-white px-1 col-span-1">Name</div>
+          <div class="text-white px-1 col-span-1">College</div>
+          <div class="text-white px-1 col-span-3">Department</div>
+          <div class="text-white px-1 col-span-1">Rating</div>
+          <div class="text-white px-1 col-span-1">Status</div>
+          <div class="text-white px-1 col-span-2">Course Codes</div>
         </div>
         <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
       </div>
