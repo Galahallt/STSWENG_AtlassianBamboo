@@ -43,9 +43,14 @@ const reviewController = {
   },
   deleteReview: async (req, res) => {
     try {
-      const id = req.body.reviewid;
-      await ReviewService.deleteReview(id);
-      return res.status(200).json(id);
+      const id = {
+        reviewid: req.params.reviewid,
+      };
+      logger.info(id.reviewid);
+
+      const revID = await ReviewService.deleteReview(id);
+
+      return res.status(202).json(revID);
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
     }

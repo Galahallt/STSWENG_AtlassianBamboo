@@ -12,7 +12,7 @@
   >
     <nav-bar />
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-      <div>
+      <div v-if="state.isAdministrator">
         <router-link to="/adminlist">
           <button
             class="
@@ -32,6 +32,8 @@
       </div>
       <div>
         <button
+          data-test="addProfessorButton"
+          name="addProfessorButton"
           class="
             px-6
             py-2
@@ -75,7 +77,13 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-10
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  lastname_error
+                "
                 v-if="v.lastName.$error"
               >
                 {{ v.lastName.$errors[0].$message }}
@@ -109,7 +117,13 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-10
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  firstname_error
+                "
                 v-if="v.firstName.$error"
               >
                 {{ v.firstName.$errors[0].$message }}
@@ -145,7 +159,13 @@
               />
 
               <p
-                class="ml-9 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-9
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  email_error
+                "
                 v-if="v.email.$error"
               >
                 {{ v.email.$errors[0].$message }}
@@ -177,6 +197,7 @@
                   border-solid border-2
                   rounded-md
                   border-gray-500
+                  college_select
                 "
                 :class="{
                   'border-red-500': v.college.$error,
@@ -195,7 +216,13 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-16 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-16
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  college_error
+                "
                 v-if="v.college.$error"
               >
                 {{ v.college.$errors[0].$message }}
@@ -221,6 +248,7 @@
                   border-solid border-2
                   rounded-md
                   border-gray-500
+                  department_select
                 "
                 v-model="addProfData.department"
                 :class="{ 'border-red-500': v.department.$error }"
@@ -357,7 +385,13 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-8 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-8
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  department_error
+                "
                 v-if="v.department.$error"
               >
                 {{ v.department.$errors[0].$message }}
@@ -374,7 +408,15 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase"
+                class="
+                  ml-14
+                  input-text-field
+                  sm:w-16
+                  md:w-32
+                  lg:w-64
+                  uppercase
+                  courses_input
+                "
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -389,13 +431,23 @@
               />
 
               <ul class="tags ml-14" ref="tagsUl">
-                <li v-for="tag in addProfData.courses" :key="tag" class="tag">
+                <li
+                  v-for="(tag, index) in addProfData.courses"
+                  :key="tag"
+                  class="tag"
+                >
                   {{ tag }}
                   <button class="delete" @click="removeTag(index)">x</button>
                 </li>
               </ul>
               <p
-                class="ml-14 text-red-500 manrope-bold text-left text-sm"
+                class="
+                  ml-14
+                  text-red-500
+                  manrope-bold
+                  text-left text-sm
+                  courses_error
+                "
                 v-if="v.courses.$error"
               >
                 {{ v.courses.$errors[0].$message }}
@@ -406,12 +458,19 @@
         <div>
           <div class="flex flex-row-reverse">
             <p
-              class="mt-20 text-red-500 manrope-bold text-center text-sm"
+              class="
+                mt-20
+                text-red-500
+                manrope-bold
+                text-center text-sm
+                professor_error
+              "
               v-if="state.error"
             >
               {{ state.error }}
             </p>
             <button
+              name="confirm_addProfessorBtn"
               class="
                 px-6
                 py-2
@@ -433,6 +492,7 @@
         </div>
       </addProfModal>
       <button
+        name="addMultipleProfessorsButton"
         class="
           px-6
           py-2
@@ -529,19 +589,37 @@
           <label>College</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterCol"
+            name="filterCol"
+            type="text"
+            v-model.trim="state.filterCol"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <label>Department</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterDept"
+            name="filterDept"
+            type="text"
+            v-model.trim="state.filterDept"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <label>Course</label>
         </div>
         <div>
-          <input />
+          <input
+            id="filterCourse"
+            name="filterCourse"
+            type="text"
+            v-model.trim="state.filterCourse"
+            class="manrope-regular"
+          />
         </div>
         <div>
           <button
@@ -555,23 +633,37 @@
               hover:bg-green-900
               shadow-lg
             "
+            @click="filterProfs"
           >
-            Modify Filter
+            Filter Professors
           </button>
         </div>
       </div>
 
       <br />
-
-      <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-5 bg-gray-400">
-          <div class="text-white">Name</div>
-          <div class="text-white">College</div>
-          <div class="text-white">Department</div>
-          <div class="text-white">Rating</div>
-          <div class="text-white">Status</div>
+      <p
+        v-if="state.empty"
+        class="mt-20 text-red-500 manrope-bold text-center text-sm"
+      >
+        No results.
+      </p>
+      <div
+        class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
+        v-if="!state.empty"
+      >
+        <div class="grid grid-cols-9 bg-gray-400">
+          <div class="text-white px-1 col-span-1">Name</div>
+          <div class="text-white px-1 col-span-1">College</div>
+          <div class="text-white px-1 col-span-3">Department</div>
+          <div class="text-white px-1 col-span-1">Rating</div>
+          <div class="text-white px-1 col-span-1">Status</div>
+          <div class="text-white px-1 col-span-2">Course Codes</div>
         </div>
-        <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
+        <profInfo
+          v-for="prof in state.shownProfs"
+          :key="prof.id"
+          :prof="prof"
+        />
       </div>
     </div>
   </div>
@@ -620,7 +712,7 @@ ul {
   top: 0;
   bottom: 0;
   left: 3px;
-  max-width: 55%;
+  max-width: 75%;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: thin;
@@ -665,8 +757,6 @@ ul {
 </style>
 
 <script>
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
 import * as api from '../api/index.js';
 import NavBar from '../components/NavBar.vue';
 import addProfModal from '../components/addProfessorModal.vue';
@@ -674,15 +764,7 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import {
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-  reactive,
-  onBeforeMount,
-  getCurrentInstance,
-} from 'vue';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
@@ -693,19 +775,22 @@ export default {
     multipleAddProfModal,
   },
   setup() {
-    const router = useRouter();
-    const store = useStore();
-
     const state = reactive({
       disable: null,
       error: null,
       invalidEmail: null,
       invalidFile: null,
       empty: null,
-      profs: [],
+      allProfs: [],
+      shownProfs: [],
       fileExisting: null,
       csvFile: null,
       profExisting: null,
+      filterDept: '',
+      filterCourse: '',
+      filterCol: '',
+      isAdministrator: false,
+      email: JSON.parse(localStorage.getItem('user')).email,
     });
 
     const addProfData = reactive({
@@ -735,12 +820,16 @@ export default {
       tagsUl.value.scrollTo(tagsUl.value.scrollWidth, 0);
     }
 
-    watch(addProfData.courses, () => nextTick(onTagsChange), { deep: true });
+    watch(
+      () => addProfData.courses,
+      () => nextTick(onTagsChange),
+      { deep: true }
+    );
 
     onMounted(onTagsChange);
 
     // add the new tag to the tags array
-    function addTag(tag) {
+    async function addTag(tag) {
       if (tag) {
         addProfData.courses.push(tag.toUpperCase());
         newTag.value = '';
@@ -842,7 +931,9 @@ export default {
         if (validated) {
           const res = await api.addProf(addProfData);
           if (res) {
-            state.profs.unshift(res.data);
+            state.allProfs.push(res.data);
+            state.shownProfs.push(res.data);
+            state.shownProfs.sort(compareLastName);
             toggleAddProfModal();
           }
           state.error = null;
@@ -872,9 +963,11 @@ export default {
     async function initProfs() {
       try {
         const result = await api.getAllProfs();
-        state.profs = result.data;
+        state.shownProfs = state.allProfs = result.data;
 
-        if (state.profs.length !== 0) {
+        state.shownProfs.sort(compareLastName);
+
+        if (state.allProfs.length !== 0) {
           state.empty = false;
         } else {
           state.empty = true;
@@ -884,9 +977,19 @@ export default {
         state.empty = true;
       }
     }
-
+    async function getUserAdminAccess() {
+      try {
+        const result = await api.getUserByEmail(state.email);
+        if (result) {
+          state.isAdministrator = result.data.isAdministrator;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     onBeforeMount(() => {
       initProfs();
+      getUserAdminAccess();
     });
 
     function isValidProf() {
@@ -915,7 +1018,9 @@ export default {
           console.log(res);
           if (res.status == 200) {
             for (let i = 0; i < res.data.length; i++) {
-              state.profs.unshift(res.data[i]);
+              state.allProfs.push(res.data[i]);
+              state.shownProfs.push(res.data[i]);
+              state.shownProfs.sort(compareLastName);
             }
           }
         }
@@ -923,6 +1028,127 @@ export default {
         state.profExisting = error.response.data.message;
         console.log(error);
       }
+    }
+
+    // filter reviews of professor
+    function filterProfs() {
+      const filteredProfs = [];
+      if (
+        state.filterDept === '' &&
+        state.filterCourse === '' &&
+        state.filterCol === ''
+      ) {
+        console.log('hi');
+        state.shownProfs = state.allProfs;
+        console.log(state.shownProfs);
+      } else if (
+        state.filterDept !== '' &&
+        state.filterCourse !== '' &&
+        state.filterCol !== ''
+      ) {
+        if (state.filterDept !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (state.allProfs[i].department === titleCase(state.filterDept)) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+
+        if (state.filterCourse !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (
+              state.allProfs[i].courses.includes(
+                state.filterCourse.toUpperCase()
+              )
+            ) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+
+        if (state.filterCol !== '') {
+          for (let i = 0; i < state.allProfs.length; i++) {
+            if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
+              filteredProfs.push(state.allProfs[i]);
+            }
+          }
+        }
+      } else if (state.filterDept !== '' && state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].department === titleCase(state.filterDept) &&
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterDept !== '' && state.filterCol !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].department === titleCase(state.filterDept) &&
+            state.allProfs[i].college === state.filterCol.toUpperCase()
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCol !== '' && state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].college === state.filterCol.toUpperCase() &&
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterDept !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (state.allProfs[i].department === titleCase(state.filterDept)) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCourse !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (
+            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
+          ) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      } else if (state.filterCol !== '') {
+        for (let i = 0; i < state.allProfs.length; i++) {
+          if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
+            filteredProfs.push(state.allProfs[i]);
+          }
+        }
+      }
+
+      if (
+        state.filterDept !== '' ||
+        state.filterCourse !== '' ||
+        state.filterCol !== ''
+      ) {
+        state.shownProfs = filteredProfs;
+      }
+
+      state.shownProfs.sort(compareLastName);
+
+      console.log('shownProfs length: ' + state.shownProfs.length);
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+        console.log('helloo');
+      }
+    }
+
+    function compareLastName(a, b) {
+      if (a.lastName < b.lastName) {
+        return -1;
+      }
+      if (a.lastName > b.lastName) {
+        return 1;
+      }
+      return 0;
     }
 
     return {
@@ -944,6 +1170,7 @@ export default {
       titleCase,
       file,
       onFileUpload,
+      filterProfs,
     };
   },
 };

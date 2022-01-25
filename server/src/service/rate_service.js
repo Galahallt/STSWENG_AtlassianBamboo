@@ -13,9 +13,8 @@ const rateService = {
     Rate.find({ instructorID: instructorID }),
 
   // find rating of user in instructor
-  findRating: async (rating) => {
-    Rate.findOne(rating);
-  },
+  findRating: async (data) =>
+    Rate.findOne({ instructorID: data.profID, userID: data.userID }),
 
   // add new rating to instructor
   addRating: async (rating) => {
@@ -28,9 +27,9 @@ const rateService = {
   },
 
   // update rating of instructor
-  updateRating: async (userID, instructorID, update) =>
+  updateRating: async (data, update) =>
     Rate.findOneAndUpdate(
-      { userID: userID, instructorID: instructorID },
+      { userID: data.userID, instructorID: data.instructorID },
       update
     ),
 };

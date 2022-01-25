@@ -2,4 +2,7 @@ node_modules
 .env
 *.log
 logs
+<<<<<<< HEAD
+=======
 coverage
+>>>>>>> development

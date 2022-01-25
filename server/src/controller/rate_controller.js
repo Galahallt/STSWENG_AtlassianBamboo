@@ -45,14 +45,15 @@ const rateController = {
         avg /= ratings.length;
         avg = avg.toFixed(2);
 
+        const prof = {
+          profID: req.body.instructorID,
+        };
+
         const update = {
           rating: avg,
         };
 
-        const result = await instructorService.updateRating(
-          req.body.instructorID,
-          update
-        );
+        const result = await instructorService.updateRating(prof, update);
 
         // if there are existing ratings of this instructor from the database
         return res.status(200).json(result.rating);
@@ -68,16 +69,20 @@ const rateController = {
   findRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      const instructorID = await instructorService.getProf({
-        email: req.body.instructorEmail,
+      const profID = await instructorService.getProf({
+        email: req.body.profEmail,
       });
 
       const find = {
         userID: userID.id,
-        instructorID: instructorID.id,
+        profID: profID.id,
       };
 
       const findRate = await rateService.findRating(find);
+
+      logger.info('---------');
+      logger.info(findRate);
+      logger.info('+++++++++');
 
       return res.status(200).json(findRate);
     } catch (err) {
@@ -115,18 +120,16 @@ const rateController = {
         email: req.body.instructorEmail,
       });
 
+      const find = {
+        userID: userID.id,
+        instructorID: instructor.id,
+      };
+
       const update = {
         rating: req.body.rating,
       };
 
-      const result = await rateService.updateRating(
-        userID.id,
-        instructor.id,
-        update
-      );
-
-      logger.info(result);
-      logger.info(update);
+      const result = await rateService.updateRating(find, update);
 
       return res.status(204).json(result);
     } catch (err) {

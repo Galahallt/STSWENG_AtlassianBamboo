@@ -85,92 +85,86 @@
       </router-link>
     </div>
     <!-- body  -->
-    <div class="grid grid-cols-2 py-2 px-12 justify-center">
+    <div class="grid grid-cols-8 py-2 px-12">
+      <div class="col-span-1"></div>
       <!-- IMAGE AND PROF INFO -->
-      <div>
-        <br />
-        <br />
-        <br />
+      <div class="col-span-2 mt-5">
         <div>
           <img
-            class="pt-2 rounded-full"
-            style="width: 300px; height: 300px; margin-left: 250px"
+            class="rounded-full ml-14"
+            style="width: 230px; height: 230px"
             src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
           />
         </div>
-        <!-- Prof Info -->
+      </div>
+      <!-- Prof Info -->
+      <div class="py-3 px-1 mt-1 col-span-4">
         <div
-          class="py-3 px-1 mt-1 text-center"
-          style="border-radius: 50px; width: 500px; margin-left: 150px"
+          class="grid grid-cols-10 bg-gray-100 py-2 px-2"
+          style="background-color: rgba(243, 244, 246, 0.5)"
         >
-          <div
-            class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
-            style="border-radius: 10px"
-          >
-            <div class="overscroll-auto" style="height: 200px">
-              <div
-                class="grid grid-cols-2 bg-gray-100 py-2 px-2"
-                style="background-color: rgba(243, 244, 246, 0.5)"
-              >
-                <div class="text-black text-2xs font-bold mt-1">First Name</div>
-                <div class="text-black text-2xs mt-1">{{ prof.profFirst }}</div>
-                <div class="text-black text-2xs font-bold mt-2">Last Name</div>
-                <div class="text-black text-2xs mt-2">{{ prof.profLast }}</div>
-                <div class="text-black text-2xs font-bold mt-2">DLSU Email</div>
-                <div class="text-black text-2xs mt-2">{{ prof.email }}</div>
-                <div class="text-black text-2xs font-bold mt-2">College</div>
-                <div class="text-black text-2xs mt-2">
-                  {{ prof.college }}
-                </div>
-                <div class="text-black text-2xs font-bold mt-2">Department</div>
-                <div class="text-black text-2xs mt-2">{{ prof.dept }}</div>
-                <div class="text-black text-2xs font-bold mt-2">Rating</div>
-                <div class="text-black text-2xs mt-2">{{ prof.rating }}</div>
-                <div class="text-black text-2xs font-bold mt-2">
-                  Subject Tags
-                </div>
-                <div class="mt-1">{{ state.tagString }}</div>
-              </div>
+          <div class="col-span-3">
+            <div class="text-black text-2xs font-bold mt-1 ml-4">
+              First Name
             </div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">Last Name</div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">
+              DLSU Email
+            </div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">College</div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">
+              Department
+            </div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">Rating</div>
+            <div class="text-black text-2xs font-bold mt-2 ml-4">
+              Subject Tags
+            </div>
+          </div>
+          <div class="col-span-7">
+            <div class="text-black text-2xs mt-1">{{ prof.profFirst }}</div>
+            <div class="text-black text-2xs mt-2">{{ prof.profLast }}</div>
+            <div class="text-black text-2xs mt-2">{{ prof.email }}</div>
+            <div class="text-black text-2xs mt-2">
+              {{ prof.college }}
+            </div>
+            <div class="text-black text-2xs mt-2">{{ prof.dept }}</div>
+            <div class="text-black text-2xs mt-2">{{ prof.rating }}</div>
+            <div class="mt-2">{{ state.tagString }}</div>
           </div>
         </div>
       </div>
-      <!-- REVIEWS -->
-      <div class="py-5 d-flex flex-col mb-6">
-        <div>
-          <h1 class="text-3xl font-bold text-center">REVIEWS</h1>
+    </div>
+    <!-- REVIEWS -->
+    <div class="py-5 d-flex flex-col mb-6">
+      <div>
+        <h1 class="text-3xl font-bold text-center mt-8">REVIEWS</h1>
 
-          <div class="flex ml-16 mt-16">
-            <div class="mr-4 font-bold">Filter Review:</div>
-            <div>
-              <select
-                class="px-4"
-                v-model="state.filter"
-                @change="filterReviews"
-              >
-                <option value="All" selected>All</option>
-                <option v-for="code in prof.tags" :value="code" :key="code">
-                  {{ code }}
-                </option>
-              </select>
-            </div>
+        <div class="flex ml-16 mt-8">
+          <div class="mr-4 font-bold">Filter Review:</div>
+          <div>
+            <select class="px-4" v-model="state.filter" @change="filterReviews">
+              <option value="All" selected>All</option>
+              <option v-for="code in prof.tags" :value="code" :key="code">
+                {{ code }}
+              </option>
+            </select>
           </div>
-          <p
-            class="ml-16 manrope-bold text-left text-sm"
-            v-if="state.emptyReviews"
-          >
-            No reviews yet.
-          </p>
-          <div
-            class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md"
-            v-if="!state.emptyReviews"
-          >
-            <profReview
-              v-for="review in state.shownReviews"
-              :key="review.id"
-              :review="review"
-            />
-          </div>
+        </div>
+        <p
+          class="ml-16 manrope-bold text-left text-sm"
+          v-if="state.emptyReviews"
+        >
+          No reviews yet.
+        </p>
+        <div
+          class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md"
+          v-if="!state.emptyReviews"
+        >
+          <profReview
+            v-for="review in state.shownReviews"
+            :key="review.id"
+            :review="review"
+          />
         </div>
       </div>
     </div>
@@ -309,18 +303,19 @@ export default {
 
     // load after loading
     onMounted(() => {
-      loadReviews();
       loadProf();
-      avgRating();
+      loadReviews();
     });
 
     // tag formatting for printing
     function formatTags() {
-      for (let i = 0; i < prof.tags.length; i++) {
-        if (i != prof.tags.length - 1) {
-          state.tagString += prof.tags[i] + ', ';
-        } else {
-          state.tagString += prof.tags[i];
+      if (state.tagString == '') {
+        for (let i = 0; i < prof.tags.length; i++) {
+          if (i != prof.tags.length - 1) {
+            state.tagString += prof.tags[i] + ', ';
+          } else {
+            state.tagString += prof.tags[i];
+          }
         }
       }
     }
@@ -331,11 +326,12 @@ export default {
 
         const rate = {
           userEmail: email,
-          instructorEmail: prof.email,
+          profEmail: prof.email,
         };
 
         const checkExists = await api.findRating(rate);
-        if (checkExists) {
+
+        if (checkExists.data != null) {
           console.log('EXISTS');
           updateRating();
         } else {
@@ -380,7 +376,8 @@ export default {
         const res = await api.getInstructorRatings(instructor);
         if (!res.data.message) {
           state.avgRating = res.data;
-          console.log('hello');
+          await loadProf();
+          console.log('Avg updated');
         }
       } catch (err) {
         console.log(err.response.data);
@@ -393,9 +390,9 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
 
         const instructor = {
+          rating: state.rating,
           userEmail: email,
           instructorEmail: prof.email,
-          rating: state.rating,
         };
 
         const res = await api.updateRating(instructor);
