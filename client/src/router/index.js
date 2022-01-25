@@ -1,9 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/login.vue';
-import Error from '../views/error.vue';
+import AddAdmin from '../views/addadmin.vue';
+import AdminList from '../views/adminlist.vue';
 import Home from '../views/home.vue';
+import Login from '../views/login.vue';
+import ViewProf from '../views/rating.vue';
+import ReviewProf from '../views/reviewprof.vue';
 
 const routes = [
+  {
+    path: '/addadmin',
+    name: 'Add Admin',
+    component: AddAdmin,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/adminlist',
+    name: 'Admin List',
+    component: AdminList,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    meta: {
+      requiresAuth: true,
+    },
+  },
   {
     path: '/',
     name: 'Login',
@@ -13,17 +40,17 @@ const routes = [
     },
   },
   {
-    path: '/failed',
-    name: 'Error',
-    component: Error,
+    path: '/view/:profID',
+    name: 'View Professor',
+    component: ViewProf,
     meta: {
-      hideForAuth: true,
+      requiresAuth: true,
     },
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    path: '/review/:profID',
+    name: 'Review Professor',
+    component: ReviewProf,
     meta: {
       requiresAuth: true,
     },
