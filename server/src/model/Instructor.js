@@ -1,9 +1,10 @@
 // import mongoose module for schema modelling
-const mongoose = require('mongoose');
+
+import mongoose from 'mongoose';
 
 const InstructorSchema = new mongoose.Schema(
   {
-    instructorID: {
+    id: {
       type: String,
       required: true,
     },
@@ -18,7 +19,7 @@ const InstructorSchema = new mongoose.Schema(
       required: true,
     },
 
-    dlsuEmail: {
+    email: {
       type: String,
       required: true,
     },
@@ -33,12 +34,22 @@ const InstructorSchema = new mongoose.Schema(
       required: true,
     },
 
+    status: {
+      type: String,
+      required: true,
+      default: 'Active',
+    },
+
+    courses: {
+      type: [String],
+      required: true,
+    },
+
     rating: {
       type: Number,
       required: true,
       default: 0,
     },
-
     timestamp: {
       type: Date,
       default: Date.now(),
