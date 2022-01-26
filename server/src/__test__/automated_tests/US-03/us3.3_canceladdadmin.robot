@@ -7,27 +7,23 @@ Documentation     3rd test suite for User Story #3
 ...               By James Andrew F. Perez
 Suite Setup       Open Browser To Admin Page
 Suite Teardown    Close Browser
-Resource          resource1.robot
+Resource          ${CURDIR}${/}..\\resource1.robot
 
 *** Test Cases ***
 Valid
-    Click Element    //*[@id="app"]/div/div/div[3]/div/a
-    Input Text    //*[@id="app"]/div/div/div[3]/div/div[2]/input    ${VALID2}
+    Open Admin Input    ${VALID2}
     Click Cancel
 
 Invalid
-    Click Element    //*[@id="app"]/div/div/div[3]/div/a
-    Input Text    //*[@id="app"]/div/div/div[3]/div/div[2]/input    ${NOT_DLSU}
+    Open Admin Input    ${NOT_DLSU}
     Click Cancel
 
 Empty
-    Click Element    //*[@id="app"]/div/div/div[3]/div/a
-    Input Text    //*[@id="app"]/div/div/div[3]/div/div[2]/input    ${EMPTY}
+    Open Admin Input    ${EMPTY}
     Click Cancel
 
 Redirect
-    Click Element    //*[@id="app"]/div/div/div[3]/div/a
-    Input Text    //*[@id="app"]/div/div/div[3]/div/div[2]/input    ${VALID2}
+    Open Admin Input    ${VALID2}
     Click Redirect
 
 *** KEYWORDS ***

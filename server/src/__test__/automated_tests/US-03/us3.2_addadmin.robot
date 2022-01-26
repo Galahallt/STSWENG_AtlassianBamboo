@@ -9,7 +9,7 @@ Suite Setup       Open Browser To Admin Page
 Test Setup        Go Back to Admin Page
 Test Template     Add Admin
 Suite Teardown    Close Browser
-Resource          resource1.robot
+Resource          ${CURDIR}${/}..\\resource1.robot
 
 *** Test Cases ***      EMAIL             PROMPT
 Valid Email             ${VALID1}         ${VERIFIED}
@@ -22,7 +22,6 @@ Blank                   ${SPACE}          ${UNVERIFIED}
 *** KEYWORDS ***
 Add Admin
     [Arguments]    ${email}    ${prompt}
-    Click Element    //*[@id="app"]/div/div/div[3]/div/a
-    Input Text    //*[@id="app"]/div/div/div[3]/div/div[2]/input    ${email}
-    Click Element    //*[@id="app"]/div/div/div[3]/div/div[2]/div/div/button
+    Open Admin Input    ${email}
+    Click Element    //*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button
     Page Should Contain    ${prompt}

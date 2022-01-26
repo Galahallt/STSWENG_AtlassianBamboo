@@ -4,7 +4,7 @@ Documentation    US # 1 test cases for the Profs to Pick Website
 ...             This test follows the example using keywords for the SeleniumLibary
 ...             
 ...             By Azriel Matthew O. Ortega
-Resource        resource2.robot
+Resource        ${CURDIR}${/}..\\resource2.robot
 Test Teardown    Close Browser
 
 *** Test Cases ***

@@ -6,7 +6,7 @@ Documentation    US # 2 test cases for the Profs to Pick Website
 ...             
 ...
 ...             By Azriel Matthew O. Ortega
-Resource        resource2.robot
+Resource        ${CURDIR}${/}..\\resource2.robot
 Test Teardown    Close Browser
 
 *** Test Cases ***
