@@ -27,6 +27,17 @@
       >
         Add Rating
       </button>
+      <svg width="107" height="107" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clip-path="url(#clip0_3_61)">
+      <path d="M15.9657 5.95162L9.39429 14.0438C8.77091 14.7841 7.80987 14.7841 7.21247 14.0438L0.641043 5.95162C0.0176667 5.1858 0.329355 4.59867 1.29039 4.59867H15.3164C16.3034 4.59867 16.5891 5.1858 15.9657 5.95162Z" fill="#37B47E"/>
+      </g>
+      <defs>
+      <clipPath id="clip0_3_61">
+      <rect width="16" height="15.6738" fill="white" transform="translate(0.317871 0.846153)"/>
+      </clipPath>
+      </defs>
+      </svg>
+
       <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
         <div class="grid grid-rows-3">
           <div class="row-span-2 mt-4">
