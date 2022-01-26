@@ -45,6 +45,7 @@ Login
     ${TAB}    Switch Window    NEW
     Input Text    identifierId    ${email}
     Click Element    identifierNext
+    Sleep    2
     Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
@@ -66,4 +67,6 @@ Check Current Page
 Open Admin Input
     [Arguments]    ${email}
     Click Link    /addadmin
+    Clear Element Text    ${ADMIN_INPUT}
+    Press Keys    ${ADMIN_INPUT}    A+BACKSPACE
     Input Text    ${ADMIN_INPUT}    ${email}

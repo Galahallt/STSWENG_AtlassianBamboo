@@ -28,11 +28,11 @@ Redirect
 
 *** KEYWORDS ***
 Click Cancel
-    Click Element    //*[@id="app"]/div/div/div[3]/div/div[2]/div/div/a
+    Click Element    //*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a
     Page Should Not Contain    ${VALID2}
     Page Should Not Contain    ${NOT_DLSU}
     Check Current Page  ${ADMIN_PAGE}
 
 Click Redirect
-    Click Element    //*[@id="app"]/div/div/div[1]/div[1]/a
+    Click Link    /home
     Check Current Page  ${HOME}
