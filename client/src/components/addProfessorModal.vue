@@ -11,8 +11,9 @@
               top-2
               left-2
               px-2
-              text-green-600 text-2xl
-              mt-6
+              dark_green_text
+              text-2xl
+              mt-4
             "
           >
             ADD SINGLE INSTRUCTOR
@@ -60,6 +61,11 @@ export default {
 .green_line {
   border-bottom: 3px solid #37b47e;
 }
+
+.dark_green_text {
+  color: #37b47e;
+}
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -72,7 +78,7 @@ export default {
 .modal-inner {
   position: relative;
   max-width: 960px;
-  width: 35%;
+  width: 40%;
   height: 75%;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),

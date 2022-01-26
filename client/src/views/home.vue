@@ -500,7 +500,7 @@
                   mr-4
                   w-40
                   text-white
-                  bg-green-600
+                  dark_green
                   rounded-lg
                   hover:bg-green-900
                   shadow-lg
@@ -551,9 +551,22 @@
           :multipleAddProf="showMultipleAddProfModal"
           @close="toggleMultipleAddProfModal"
         >
-          <p class="mt-12">
-            CSV File must contain headers and follow this format: [Last Name,
-            First Name, DLSU Email, College, Department, Courses]
+          <p
+            class="
+              mt-8
+              px-10
+              multiple_prof_color
+              font-semibold
+              text-center text-lg
+            "
+          >
+            Multiple professors may be added through a CSV file upload.
+          </p>
+          <p class="mt-6 px-10 multiple_prof_color text-sm text-center">
+            CSV File must contain headers and follow this format:
+          </p>
+          <p class="px-10 multiple_prof_color text-sm text-center">
+            [Last Name, First Name, DLSU Email, College, Department, Courses]
           </p>
           <div class="mt-4 flex-col">
             <div class="flex justify-center">
@@ -563,13 +576,15 @@
                   px-6
                   py-2
                   mt-4
-                  text-white
-                  bg-green-600
+                  text-green-600
+                  bg-white
                   rounded-lg
-                  hover:bg-green-900
+                  border-2 border-green-600
+                  hover:bg-gray-200
                   shadow-lg
+                  mb-1
                 "
-                >Upload CSV File</label
+                >Select CSV File</label
               >
               <input
                 id="csv-file"
@@ -601,21 +616,21 @@
             class="
               px-6
               py-2
-              mt-48
-              mr-4
+              mt-10
               text-white
-              bg-green-600
+              dark_green
               rounded-lg
               hover:bg-green-900
               shadow-lg
               flex-shrink
               content-center
-              place-self-end
+              place-self-center
+              w-36
             "
             @click="addProfsCsv"
             :disabled="!state.csvFile"
           >
-            Add Multiple Professors
+            Submit
           </button>
         </multipleAddProfModal>
       </div>
@@ -763,6 +778,10 @@
 .background_all {
   background-color: #edfff7;
   height: 100vh;
+}
+
+.multiple_prof_color {
+  color: #546681;
 }
 
 .dark_green {
