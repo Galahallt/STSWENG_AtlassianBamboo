@@ -7,58 +7,26 @@
       to-purple-to-tr
       w-full
       h-screen
+      block
     "
   >
-    <!-- top navigation bar -->
-    <div class="flex items-center justify-around ml-20 mr-20">
-      <div>
-        <a 
-        href="/home" class="hover:underline"
-        >Home
-        </a>
-      </div>
-      <div>
-        <a 
-        href="#" class="hover:underline"
-        >View Professors
-        </a>
-      </div>
-      <div>
-        <a 
-        href="#" class="hover:underline"
-        >FAQs
-        </a>
-      </div>
-      <div>
-        <a 
-        href="#" class="hover:underline"
-        >Contact Us
-        </a>
-      </div>
-    </div>
-
-    <div>
-      <hr class="ml-32 mr-32" />
-    </div>
-
+    <nav-bar />
     <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-      <div>
-        <router-link
-          class="
-            px-6
-            py-2
-            mt-4
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-green-900
-            shadow-lg
-          "
-          to="/addadmin"
-        >
-          New Admin
-        </router-link>
-      </div>
+      <router-link
+        class="
+          px-6
+          py-2
+          mt-4
+          text-white
+          bg-green-600
+          rounded-lg
+          hover:bg-green-900
+          shadow-lg
+        "
+        to="/addadmin"
+      >
+        New Admin
+      </router-link>
     </div>
 
     <br />
@@ -68,17 +36,21 @@
 
       <div class="flex-col flex-grow">
         <div class="grid grid-cols-4 bg-gray-400">
-          <div class="text-white">Name</div>
-          <div class="text-white">Email</div>
-          <div class="text-white">Date Added</div>
-          <div class="text-white">Action</div>
+          <div class="text-white ml-3">Name</div>
+          <div class="text-white ml-3">Email</div>
+          <div class="text-white ml-3">Date Added</div>
+          <div class="text-white ml-3">Action</div>
         </div>
-        <div v-for="items in state.admins" :key="items.email" class="overscroll-auto">
+        <div
+          v-for="items in state.admins"
+          :key="items.email"
+          class="overscroll-auto"
+        >
           <div class="grid grid-cols-4 bg-gray-100">
             <!-- insert professors here -->
-            <div class="text-black">{{items.fullName}}</div>
-            <div class="text-black">{{items.email}}</div>
-            <div class="text-black">11/20/2021</div>
+            <div class="text-black ml-3">{{ items.fullName }}</div>
+            <div class="text-black ml-3">{{ items.email }}</div>
+            <div class="text-black ml-3">11/20/2021</div>
             <div>
               <button
                 class="
@@ -90,6 +62,8 @@
                   rounded-lg
                   hover:bg-green-900
                   shadow-lg
+                  mb-2
+                  mt-2
                 "
               >
                 Remove
@@ -105,6 +79,8 @@
                   rounded-lg
                   hover:bg-green-900
                   shadow-lg
+                  mb-2
+                  mt-2
                 "
               >
                 Modify
@@ -117,40 +93,42 @@
   </div>
 </template>
 <script>
+import NavBar from '../components/NavBar.vue';
 import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
-import { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 import * as api from '../api';
-export default{
-    name: 'Admin List',
-    setup()
-    {
-        let state = reactive({
-            admins: null,
-            error: false
-        });
-        //if theres no entries make `error` true and display error msg
-        const app = getCurrentInstance();
-        const router = useRouter();
+export default {
+  name: 'Admin List',
+  components: {
+    NavBar,
+  },
+  setup() {
+    let state = reactive({
+      admins: null,
+      error: false,
+    });
+    //if theres no entries make `error` true and display error msg
+    const app = getCurrentInstance();
+    const router = useRouter();
 
-        async function getAdminList()
-        {
-            try {
-                const result = await api.getAdminList();
-                state.admins = result.data;
-                console.log(result.data);
-            } catch (err){
-                console.log(err);
-            }
-        }
-
-        // this thing runs first thing before the page loads in
-        onBeforeMount(() => {
-            getAdminList();
-        });
-
-        return {state};
+    async function getAdminList() {
+      try {
+        const result = await api.getAdminList();
+        state.admins = result.data;
+        console.log(result.data);
+      } catch (err) {
+        console.log(err);
+      }
     }
+
+    // this thing runs first thing before the page loads in
+    onBeforeMount(() => {
+      getAdminList();
+    });
+
+    return { state };
+  },
 };
 </script>
 
@@ -164,5 +142,3 @@ export default{
   flex: 1;
 }
 </style>
-
-

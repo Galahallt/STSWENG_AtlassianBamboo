@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.8.5 on win32)" generated="20220121 23:34:30.315" rpa="false" schemaversion="2">
+<suite id="s1" name="Us2" source="D:\Documents\DLSU_Files\TERM 7\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\us2.robot">
+<test id="s1-t1" name="[2-03] User adds professor without Input">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220121 23:34:30.539" endtime="20220121 23:34:30.540"/>
+</kw>
+<kw name="Login to PTP">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220121 23:34:30.541" endtime="20220121 23:34:30.541"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://localhost:3000</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220121 23:34:30.542" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220121 23:34:30.541" endtime="20220121 23:34:36.337"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220121 23:34:36.337" endtime="20220121 23:34:43.262"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login with Google Account</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220121 23:34:43.262" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220121 23:34:43.262" endtime="20220121 23:34:47.411"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<var>${TAB}</var>
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<msg timestamp="20220121 23:34:51.463" level="INFO">${TAB} = CDwindow-47AC913D699FAC7C17B0CFD2AADC030C</msg>
+<status status="PASS" starttime="20220121 23:34:47.411" endtime="20220121 23:34:51.463"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>identifierId</arg>
+<arg>azriel_ortega@dlsu.edu.ph</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220121 23:34:51.463" level="INFO">Typing text 'azriel_ortega@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220121 23:34:51.463" endtime="20220121 23:34:54.639"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>identifierNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220121 23:34:54.639" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220121 23:34:54.639" endtime="20220121 23:34:56.721"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>//*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>MasterJason18!</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220121 23:34:56.721" level="INFO">Typing password into text field '//*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<msg timestamp="20220121 23:35:00.596" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220121 23:35:01.656" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220121 23:34:56.721" endtime="20220121 23:35:01.656"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>passwordNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220121 23:35:01.657" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220121 23:35:01.657" endtime="20220121 23:35:03.724"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>${TAB}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220121 23:35:03.724" endtime="20220121 23:35:07.763"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>addProfessorButton</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220121 23:35:07.763" level="INFO">Clicking button 'addProfessorButton'.</msg>
+<status status="PASS" starttime="20220121 23:35:07.763" endtime="20220121 23:35:11.919"/>
+</kw>
+<status status="PASS" starttime="20220121 23:34:30.540" endtime="20220121 23:35:11.919"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>firstName</arg>
+<arg>Azriel</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220121 23:35:11.919" level="INFO">Typing text 'Azriel' into text field 'firstName'.</msg>
+<status status="PASS" starttime="20220121 23:35:11.919" endtime="20220121 23:35:15.019"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>confirm_addProfessorBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220121 23:35:15.020" level="INFO">Clicking button 'confirm_addProfessorBtn'.</msg>
+<status status="PASS" starttime="20220121 23:35:15.020" endtime="20220121 23:35:19.116"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>class:lastname_error</arg>
+<arg>Value is required</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220121 23:35:19.117" level="INFO">Verifying element 'class:lastname_error' contains exact text 'Value is required'.</msg>
+<status status="PASS" starttime="20220121 23:35:19.117" endtime="20220121 23:35:21.155"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>class:email_error</arg>
+<arg>Value is required</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220121 23:35:21.156" level="INFO">Verifying element 'class:email_error' contains exact text 'Value is required'.</msg>
+<status status="PASS" starttime="20220121 23:35:21.155" endtime="20220121 23:35:23.182"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>class:college_error</arg>
+<arg>Value must not be default</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220121 23:35:23.183" level="INFO">Verifying element 'class:college_error' contains exact text 'Value must not be default'.</msg>
+<status status="PASS" starttime="20220121 23:35:23.183" endtime="20220121 23:35:25.230"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>class:department_error</arg>
+<arg>Value must not be default</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220121 23:35:25.231" level="INFO">Verifying element 'class:department_error' contains exact text 'Value must not be default'.</msg>
+<status status="PASS" starttime="20220121 23:35:25.230" endtime="20220121 23:35:27.276"/>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<arg>class:courses_error</arg>
+<arg>Value is required</arg>
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<msg timestamp="20220121 23:35:27.277" level="INFO">Verifying element 'class:courses_error' contains exact text 'Value is required'.</msg>
+<status status="PASS" starttime="20220121 23:35:27.277" endtime="20220121 23:35:29.313"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220121 23:35:29.314" endtime="20220121 23:35:32.384"/>
+</kw>
+<status status="PASS" starttime="20220121 23:34:30.538" endtime="20220121 23:35:32.385"/>
+</test>
+<doc>US # 2 test cases for the Profs to Pick Website
+
+These are the test cases that deal with the feature adding a
+professor to the web application, Profs top Pick DLSU
+
+
+By Azriel Matthew O. Ortega</doc>
+<status status="PASS" starttime="20220121 23:34:30.319" endtime="20220121 23:35:32.387"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Us2">Us2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

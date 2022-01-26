@@ -32,6 +32,8 @@
       </div>
       <div>
         <button
+          data-test = "addProfessorButton"
+          name = "addProfessorButton"
           class="
             px-6
             py-2
@@ -75,7 +77,7 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                class="ml-10 text-red-500 manrope-bold text-left text-sm lastname_error"
                 v-if="v.lastName.$error"
               >
                 {{ v.lastName.$errors[0].$message }}
@@ -109,7 +111,7 @@
                 }"
               />
               <p
-                class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                class="ml-10 text-red-500 manrope-bold text-left text-sm firstname_error"
                 v-if="v.firstName.$error"
               >
                 {{ v.firstName.$errors[0].$message }}
@@ -145,7 +147,7 @@
               />
 
               <p
-                class="ml-9 text-red-500 manrope-bold text-left text-sm"
+                class="ml-9 text-red-500 manrope-bold text-left text-sm email_error"
                 v-if="v.email.$error"
               >
                 {{ v.email.$errors[0].$message }}
@@ -177,6 +179,7 @@
                   border-solid border-2
                   rounded-md
                   border-gray-500
+                  college_select
                 "
                 :class="{
                   'border-red-500': v.college.$error,
@@ -195,7 +198,7 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-16 text-red-500 manrope-bold text-left text-sm"
+                class="ml-16 text-red-500 manrope-bold text-left text-sm college_error"
                 v-if="v.college.$error"
               >
                 {{ v.college.$errors[0].$message }}
@@ -221,6 +224,7 @@
                   border-solid border-2
                   rounded-md
                   border-gray-500
+                  department_select
                 "
                 v-model="addProfData.department"
                 :class="{ 'border-red-500': v.department.$error }"
@@ -357,7 +361,7 @@
                 <option value="N/A">N/A</option>
               </select>
               <p
-                class="ml-8 text-red-500 manrope-bold text-left text-sm"
+                class="ml-8 text-red-500 manrope-bold text-left text-sm department_error"
                 v-if="v.department.$error"
               >
                 {{ v.department.$errors[0].$message }}
@@ -374,7 +378,7 @@
             <div class="tag-div">
               <input
                 name="courses"
-                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase"
+                class="ml-14 input-text-field sm:w-16 md:w-32 lg:w-64 uppercase courses_input"
                 v-model="newTag"
                 type="text"
                 @keydown.enter="addTag(newTag)"
@@ -395,7 +399,7 @@
                 </li>
               </ul>
               <p
-                class="ml-14 text-red-500 manrope-bold text-left text-sm"
+                class="ml-14 text-red-500 manrope-bold text-left text-sm courses_error"
                 v-if="v.courses.$error"
               >
                 {{ v.courses.$errors[0].$message }}
@@ -406,12 +410,13 @@
         <div>
           <div class="flex justify-center">
             <p
-              class="mt-20 text-red-500 manrope-bold text-center text-sm"
+              class="mt-20 text-red-500 manrope-bold text-center text-sm professor_error"
               v-if="state.error"
             >
               {{ state.error }}
             </p>
             <button
+              name = "confirm_addProfessorBtn"
               class="
                 px-6
                 py-2
@@ -432,6 +437,7 @@
         </div>
       </addProfModal>
       <button
+        name = "addMultipleProfessorsButton"
         class="
           px-6
           py-2

@@ -256,9 +256,13 @@ export default {
         const result = await api.getReviews(router.params.profID);
         if (result) {
           state.allReviews = state.shownReviews = result.data;
-          emptyReviews = false;
+          if (state.allReviews.length === 0) {
+            state.emptyReviews = true;
+          } else {
+            state.emptyReviews = false;
+          }
         } else {
-          emptyReviews = true;
+          state.emptyReviews = true;
         }
       } catch (err) {
         console.log(err);
