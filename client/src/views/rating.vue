@@ -14,7 +14,7 @@
         </svg>
 
         <div class="flex flex-col md:flex-row ">
-          <img src="../assets/man.jpg" class="prof-pic object-cover center">
+          <img src="../assets/woman.jpg" class="prof-pic object-cover center">
           <div class="flex flex-col  md:px-10  md:mx-5 sm:mx-0 sm:mt-5 md:mt-0"> 
               <h1 class="prof-name text-5xl">{{ prof.profFirst }} {{ prof.profLast }}</h1>
 
@@ -25,7 +25,7 @@
 
             <div class="flex flex-row mt-5 flex-start max-w-full">
               <h1 class="text-xl label">Department:</h1>
-              <h1 class=" text-xl md:ml-10 max-w-full">{{ prof.dept }} </h1>
+              <h1 class=" text-xl md:ml-10">{{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} </h1>
             </div>
 
             <div class="flex flex-col md:flex-row mt-5">
@@ -38,26 +38,31 @@
             <div class="flex flex-row mt-5">
               <h1 class="text-xl label pt-2 pb-2">Course Tags:</h1>
 
-              <div class="flex md:px-9 relative tags-container max-w-full mx-auto flex-wrap"> 
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1> 
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1> 
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1> 
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1>
-                <h1 class="course-tag text-lg p-2 mx-1">{{ state.tagString }}</h1> 
+              <div class="flex md:px-9 flex-wrap relative tags-container max-w-full"> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
               </div>
               
             </div>
 
             <div class="flex flex-row mt-6">
               <h1 class="text-2xl rating-text">Rating:</h1>
-              <h1 class="text-2xl md:px-10 rating-text" >{{ prof.college }}</h1>
+              <h1 class="text-2xl md:pl-10 px-2 rating-num">{{ state.rating }}</h1>
+              
+              <svg width="30" height="29" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.8122 10.7584L20.6381 9.42511L16.537 1.11095C16.425 0.883314 16.2407 0.699037 16.0131 0.587025C15.4422 0.305189 14.7484 0.540052 14.463 1.11095L10.3619 9.42511L1.18781 10.7584C0.934878 10.7945 0.703628 10.9138 0.526577 11.0944C0.312532 11.3144 0.194584 11.6104 0.198649 11.9173C0.202714 12.2243 0.32846 12.517 0.548256 12.7313L7.18585 19.2027L5.61769 28.3406C5.58092 28.5532 5.60444 28.7718 5.68559 28.9717C5.76674 29.1716 5.90228 29.3447 6.07682 29.4715C6.25137 29.5983 6.45795 29.6736 6.67313 29.689C6.88831 29.7043 7.10348 29.659 7.29425 29.5583L15.5 25.2441L23.7058 29.5583C23.9298 29.6776 24.19 29.7173 24.4393 29.6739C25.068 29.5655 25.4907 28.9694 25.3823 28.3406L23.8142 19.2027L30.4518 12.7313C30.6324 12.5542 30.7517 12.323 30.7878 12.07C30.8854 11.4377 30.4445 10.8524 29.8122 10.7584Z" fill="#FFCD1E"/>
+              </svg>
+
             </div>
 
             
@@ -95,12 +100,17 @@
     --gray: #546681; 
   }
 
+  body{
+    background-color: var(--light-green);
+  }
+
 .tags-container{
   max-width: 300px;
 }
 
 .label{
-  width: 150px;
+  min-width: 150px;
+  
 }
 
 .rating-body{
@@ -137,6 +147,9 @@
   width: 150px;
 }
 
+.rating-num{
+  color: var(--green)
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
