@@ -620,10 +620,24 @@
           <label class="text-white text-lg">FILTER BY</label>
         </div>
         <div class="white_line mb-6 mx-5"></div>
-        <div>
-          <label class="text-white mt-4">College</label>
+        <div class="mb-1">
+          <label class="text-white">COLLEGE</label>
         </div>
         <div>
+          <select class="rounded-lg">
+            <option selected disabled hidden>Choose One</option>
+            <option value="BAGCED">BAGCED</option>
+            <option value="CCS">CCS</option>
+            <option value="COL">COL</option>
+            <option value="CLA">CLA</option>
+            <option value="COS">COS</option>
+            <option value="GCOE">GCOE</option>
+            <option value="RVR-COB">RVR-COB</option>
+            <option value="SOE">SOE</option>
+            <option value="N/A">N/A</option>
+          </select>
+        </div>
+        <!-- <div>
           <select
             name="college"
             id="college"
@@ -656,7 +670,7 @@
           >
             {{ v.college.$errors[0].$message }}
           </p>
-        </div>
+        </div> -->
         <!-- <div>
           <input
             id="filterCol"
@@ -666,8 +680,8 @@
             class="manrope-regular rounded-lg"
           />
         </div> -->
-        <div class="mt-6">
-          <label class="text-white">Department</label>
+        <div class="mt-6 mb-1">
+          <label class="text-white">DEPARTMENT</label>
         </div>
         <div>
           <input
