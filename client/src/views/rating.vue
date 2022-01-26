@@ -1,193 +1,159 @@
+
 <template>
-  <div
-    class="
-      bg-gradient-to-tr
-      via-blue-300
-      from-green-500
-      to-purple-to-tr
-      w-full
-      h-screen
-      block
-    "
-  >
-    <NavBar />
-    <div class="flex flex-row-reverse mt-1 mr-3">
-      <button
-        class="
-          px-6
-          py-2
-          mt-4
-          text-white
-          bg-green-600
-          rounded-lg
-          hover:bg-green-900
-          shadow-lg
-        "
-        @click="toggleWriteModal"
-      >
-        Add Rating
-      </button>
-      <svg width="107" height="107" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_3_61)">
-      <path d="M15.9657 5.95162L9.39429 14.0438C8.77091 14.7841 7.80987 14.7841 7.21247 14.0438L0.641043 5.95162C0.0176667 5.1858 0.329355 4.59867 1.29039 4.59867H15.3164C16.3034 4.59867 16.5891 5.1858 15.9657 5.95162Z" fill="#37B47E"/>
-      </g>
-      <defs>
-      <clipPath id="clip0_3_61">
-      <rect width="16" height="15.6738" fill="white" transform="translate(0.317871 0.846153)"/>
-      </clipPath>
-      </defs>
-      </svg>
+  
+  
+  <div class="rating-body w-full h-screen ">
+    <NavBar/>
 
-      <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-        <div class="grid grid-rows-3">
-          <div class="row-span-2 mt-4">
-            <div class="flex justify-center">
-              <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-            </div>
-            <div class="flex justify-center">
-              <div>Numeric value:</div>
-              <div class="ml-2">{{ state.rating }}</div>
-            </div>
-          </div>
-          <p
-            class="ml-10 text-red-500 manrope-bold text-left text-sm"
-            v-if="state.error"
-          >
-            Error occured.
-          </p>
-          <div class="row-span-1 justify-self-center">
-            <div class="">
-              <button
-                class="
-                  px-6
-                  py-2
-                  mt-4
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  flex-shrink
-                  content-center
-                "
-                @click="checkRating"
-              >
-                Submit Rating
-              </button>
-            </div>
-          </div>
-        </div>
-      </writeModal>
-      <router-link :to="`/review/${prof.prof_id}`">
-        <button
-          class="
-            px-6
-            py-2
-            mt-4
-            mr-2
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-        >
-          Write Review
-        </button>
-      </router-link>
-    </div>
-    <!-- body  -->
-    <div class="grid grid-cols-8 py-2 px-12">
-      <div class="col-span-1"></div>
-      <!-- IMAGE AND PROF INFO -->
-      <div class="col-span-2 mt-5">
-        <div>
-          <img
-            class="rounded-full ml-14"
-            style="width: 230px; height: 230px"
-            src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
-          />
-        </div>
-      </div>
-      <!-- Prof Info -->
-      <div class="py-3 px-1 mt-1 col-span-4">
-        <div
-          class="grid grid-cols-10 bg-gray-100 py-2 px-2"
-          style="background-color: rgba(243, 244, 246, 0.5)"
-        >
-          <div class="col-span-3">
-            <div class="text-black text-2xs font-bold mt-1 ml-4">
-              First Name
-            </div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">Last Name</div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">
-              DLSU Email
-            </div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">College</div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">
-              Department
-            </div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">Rating</div>
-            <div class="text-black text-2xs font-bold mt-2 ml-4">
-              Subject Tags
-            </div>
-          </div>
-          <div class="col-span-7">
-            <div class="text-black text-2xs mt-1">{{ prof.profFirst }}</div>
-            <div class="text-black text-2xs mt-2">{{ prof.profLast }}</div>
-            <div class="text-black text-2xs mt-2">{{ prof.email }}</div>
-            <div class="text-black text-2xs mt-2">
-              {{ prof.college }}
-            </div>
-            <div class="text-black text-2xs mt-2">{{ prof.dept }}</div>
-            <div class="text-black text-2xs mt-2">{{ prof.rating }}</div>
-            <div class="mt-2">{{ state.tagString }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- REVIEWS -->
-    <div class="py-5 d-flex flex-col mb-6">
-      <div>
-        <h1 class="text-3xl font-bold text-center mt-8">REVIEWS</h1>
 
-        <div class="flex ml-16 mt-8">
-          <div class="mr-4 font-bold">Filter Review:</div>
-          <div>
-            <select class="px-4" v-model="state.filter" @change="filterReviews">
-              <option value="All" selected>All</option>
-              <option v-for="code in prof.tags" :value="code" :key="code">
-                {{ code }}
-              </option>
-            </select>
+      <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
+
+        <!-- BACK BUTTON; may just add name/id here to be able to access the back page -->
+        <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M31.5833 12.9167H6.87501L14.4375 3.83334C14.7911 3.40789 14.9613 2.85939 14.9105 2.3085C14.8597 1.75761 14.5921 1.24946 14.1667 0.895838C13.7412 0.542216 13.1927 0.372087 12.6418 0.422878C12.0909 0.473669 11.5828 0.74122 11.2292 1.16667L0.81251 13.6667C0.742428 13.7661 0.679759 13.8705 0.62501 13.9792C0.62501 14.0833 0.62501 14.1458 0.479177 14.25C0.384747 14.4889 0.335304 14.7432 0.333344 15C0.335304 15.2569 0.384747 15.5111 0.479177 15.75C0.479177 15.8542 0.479177 15.9167 0.62501 16.0208C0.679759 16.1295 0.742428 16.2339 0.81251 16.3333L11.2292 28.8333C11.4251 29.0685 11.6703 29.2576 11.9476 29.3873C12.2249 29.5169 12.5273 29.5838 12.8333 29.5833C13.3201 29.5843 13.7919 29.4148 14.1667 29.1042C14.3776 28.9293 14.552 28.7145 14.6798 28.4721C14.8076 28.2297 14.8864 27.9645 14.9115 27.6916C14.9367 27.4187 14.9078 27.1436 14.8264 26.8819C14.7451 26.6202 14.6129 26.3772 14.4375 26.1667L6.87501 17.0833H31.5833C32.1359 17.0833 32.6658 16.8638 33.0565 16.4731C33.4472 16.0824 33.6667 15.5525 33.6667 15C33.6667 14.4475 33.4472 13.9176 33.0565 13.5269C32.6658 13.1362 32.1359 12.9167 31.5833 12.9167Z" fill="#37B47E"/>
+        </svg>
+
+        <div class="flex flex-col md:flex-row ">
+          <img src="../assets/woman.jpg" class="prof-pic object-cover center">
+          <div class="flex flex-col  md:px-10  md:mx-5 sm:mx-0 sm:mt-5 md:mt-0"> 
+              <h1 class="prof-name text-5xl">{{ prof.profFirst }} {{ prof.profLast }}</h1>
+
+            <div class="flex flex-row mt-10">
+              <h1 class="text-xl label">College:</h1>
+              <h1 class="text-xl md:px-10">{{ prof.college }}</h1>
+            </div>
+
+            <div class="flex flex-row mt-5 flex-start max-w-full">
+              <h1 class="text-xl label">Department:</h1>
+              <h1 class=" text-xl md:ml-10">{{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} </h1>
+            </div>
+
+            <div class="flex flex-col md:flex-row mt-5">
+              <h1 class="text-xl label">DLSU Email:</h1>
+              <h1 class="text-xl md:px-10 ">{{ prof.email }}</h1>
+            </div>
+
+
+            <!-- COURSE TAGS HERE -->
+            <div class="flex flex-row mt-5">
+              <h1 class="text-xl label pt-2 pb-2">Course Tags:</h1>
+
+              <div class="flex md:px-9 flex-wrap relative tags-container max-w-full"> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+                <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
+              </div>
+              
+            </div>
+
+            <div class="flex flex-row mt-6">
+              <h1 class="text-2xl rating-text">Rating:</h1>
+              <h1 class="text-2xl md:pl-10 px-2 rating-num">{{ state.rating }}</h1>
+              
+              <svg width="30" height="29" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.8122 10.7584L20.6381 9.42511L16.537 1.11095C16.425 0.883314 16.2407 0.699037 16.0131 0.587025C15.4422 0.305189 14.7484 0.540052 14.463 1.11095L10.3619 9.42511L1.18781 10.7584C0.934878 10.7945 0.703628 10.9138 0.526577 11.0944C0.312532 11.3144 0.194584 11.6104 0.198649 11.9173C0.202714 12.2243 0.32846 12.517 0.548256 12.7313L7.18585 19.2027L5.61769 28.3406C5.58092 28.5532 5.60444 28.7718 5.68559 28.9717C5.76674 29.1716 5.90228 29.3447 6.07682 29.4715C6.25137 29.5983 6.45795 29.6736 6.67313 29.689C6.88831 29.7043 7.10348 29.659 7.29425 29.5583L15.5 25.2441L23.7058 29.5583C23.9298 29.6776 24.19 29.7173 24.4393 29.6739C25.068 29.5655 25.4907 28.9694 25.3823 28.3406L23.8142 19.2027L30.4518 12.7313C30.6324 12.5542 30.7517 12.323 30.7878 12.07C30.8854 11.4377 30.4445 10.8524 29.8122 10.7584Z" fill="#FFCD1E"/>
+              </svg>
+
+            </div>
+
+            
+              
+
           </div>
+          
+
         </div>
-        <p
-          class="ml-16 manrope-bold text-left text-sm"
-          v-if="state.emptyReviews"
-        >
-          No reviews yet.
-        </p>
-        <div
-          class="mt-8 ml-16 mr-16 divide-y divide-gray-500 shadow-md"
-          v-if="!state.emptyReviews"
-        >
-          <profReview
-            v-for="review in state.shownReviews"
-            :key="review.id"
-            :review="review"
-          />
-        </div>
+
+      
+
+       
+
       </div>
-    </div>
+    
+
   </div>
+
+  
 </template>
 
+
+
+
+
+
+// STYLE HERE 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap');
+
+:root {
+    --green: #37B47E;
+    --light-green: #EDFFF7; 
+    --gray: #546681; 
+  }
+
+  body{
+    background-color: var(--light-green);
+  }
+
+.tags-container{
+  max-width: 300px;
+}
+
+.label{
+  min-width: 150px;
+  
+}
+
+.rating-body{
+  background-color: var(--light-green);
+}
+
+.rating-container{
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  background-color: var(--light-green);
+  color: var(--gray);
+}
+
+.prof-pic{
+  width: 350px;
+  height: 350px;
+  border-radius: 500px;
+  min-width: 350px;
+}
+
+.prof-name{
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.course-tag{
+  background-color: var(--green);
+  color: #FFFFFF;
+}
+
+.rating-text{
+  color: var(--green);
+  width: 150px;
+}
+
+.rating-num{
+  color: var(--green)
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
 .update-btn {
   position: absolute;
   background-color: #0f4c81;
@@ -213,6 +179,12 @@ button:disabled {
   outline: none;
 }
 </style>
+
+
+
+
+
+
 
 <script>
 import * as api from '../api/index.js';
