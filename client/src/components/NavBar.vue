@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-green-700">
+  <nav class="dark_green">
     <div class="max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center h-16">
         <div class="flex space-x-4">
@@ -96,6 +96,15 @@
 }
 .menu-item {
   flex: 1;
+}
+
+.background_all {
+  background-color: #edfff7;
+  height: 100vh;
+}
+
+.dark_green {
+  background-color: #37b47e;
 }
 </style>
 

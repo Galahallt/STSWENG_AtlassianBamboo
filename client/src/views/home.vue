@@ -720,7 +720,7 @@
         class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
         v-if="!state.empty"
       >
-        <div class="grid grid-cols-9 dark_green">
+        <div class="grid grid-cols-9 dark_green py-1">
           <div class="text-white px-1 col-span-1">Name</div>
           <div class="text-white px-1 col-span-1">College</div>
           <div class="text-white px-1 col-span-3">Department</div>
