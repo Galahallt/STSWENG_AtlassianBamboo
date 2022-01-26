@@ -11,79 +11,7 @@
     "
   >
     <NavBar />
-    <div class="flex flex-row-reverse mt-1 mr-3">
-      <button
-        class="
-          px-6
-          py-2
-          mt-4
-          text-white
-          bg-green-600
-          rounded-lg
-          hover:bg-green-900
-          shadow-lg
-        "
-        @click="toggleWriteModal"
-      >
-        Add Rating
-      </button>
-      <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-        <div class="grid grid-rows-3">
-          <div class="row-span-2 mt-4">
-            <div class="flex justify-center">
-              <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-            </div>
-            <div class="flex justify-center">
-              <div>Numeric value:</div>
-              <div class="ml-2">{{ state.rating }}</div>
-            </div>
-          </div>
-          <p
-            class="ml-10 text-red-500 manrope-bold text-left text-sm"
-            v-if="state.error"
-          >
-            Error occured.
-          </p>
-          <div class="row-span-1 justify-self-center">
-            <div class="">
-              <button
-                class="
-                  px-6
-                  py-2
-                  mt-4
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  flex-shrink
-                  content-center
-                "
-                @click="checkRating"
-              >
-                Submit Rating
-              </button>
-            </div>
-          </div>
-        </div>
-      </writeModal>
-      <router-link :to="`/review/${prof.prof_id}`">
-        <button
-          class="
-            px-6
-            py-2
-            mt-4
-            mr-2
-            text-white
-            bg-green-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-        >
-          Write Review
-        </button>
-      </router-link>
-    </div>
+
     <!-- body  -->
     <div class="grid grid-cols-8 py-2 px-12">
       <div class="col-span-1"></div>
@@ -138,16 +66,100 @@
     <div class="py-5 d-flex flex-col mb-6">
       <div>
         <h1 class="text-3xl font-bold text-center mt-8">REVIEWS</h1>
-
-        <div class="flex ml-16 mt-8">
-          <div class="mr-4 font-bold">Filter Review:</div>
-          <div>
-            <select class="px-4" v-model="state.filter" @change="filterReviews">
-              <option value="All" selected>All</option>
-              <option v-for="code in prof.tags" :value="code" :key="code">
-                {{ code }}
-              </option>
-            </select>
+        <div class="grid grid-cols-2 ml-16 mt-8">
+          <div class="flex col-span-1">
+            <div class="mr-4 font-bold">Filter Review:</div>
+            <div>
+              <select
+                class="px-4"
+                v-model="state.filter"
+                @change="filterReviews"
+              >
+                <option value="All" selected>All</option>
+                <option v-for="code in prof.tags" :value="code" :key="code">
+                  {{ code }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-span-1">
+            <div class="flex flex-row-reverse mr-16">
+              <button
+                class="
+                  px-6
+                  py-2
+                  text-white
+                  bg-green-600
+                  rounded-lg
+                  hover:bg-green-900
+                  shadow-lg
+                "
+                @click="toggleWriteModal"
+              >
+                Add Rating
+              </button>
+              <writeModal
+                :writeReview="showWriteModal"
+                @close="toggleWriteModal"
+              >
+                <div class="grid grid-rows-3">
+                  <div class="row-span-2 mt-4">
+                    <div class="flex justify-center">
+                      <vue3-star-ratings
+                        :disableClick="true"
+                        v-model="state.rating"
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <div>Numeric value:</div>
+                      <div class="ml-2">{{ state.rating }}</div>
+                    </div>
+                  </div>
+                  <p
+                    class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                    v-if="state.error"
+                  >
+                    Error occured.
+                  </p>
+                  <div class="row-span-1 justify-self-center">
+                    <div class="">
+                      <button
+                        class="
+                          px-6
+                          py-2
+                          mt-4
+                          text-white
+                          bg-green-600
+                          rounded-lg
+                          hover:bg-green-900
+                          shadow-lg
+                          flex-shrink
+                          content-center
+                        "
+                        @click="checkRating"
+                      >
+                        Submit Rating
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </writeModal>
+              <router-link :to="`/review/${prof.prof_id}`">
+                <button
+                  class="
+                    px-6
+                    py-2
+                    mr-2
+                    text-white
+                    bg-green-600
+                    rounded-lg
+                    hover:bg-gray-900
+                  "
+                >
+                  Write Review
+                </button>
+              </router-link>
+            </div>
           </div>
         </div>
         <p

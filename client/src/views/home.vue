@@ -404,7 +404,7 @@
           </div>
         </div>
         <div>
-          <div class="flex flex-row-reverse">
+          <div class="flex justify-center">
             <p
               class="mt-20 text-red-500 manrope-bold text-center text-sm"
               v-if="state.error"
@@ -415,8 +415,7 @@
               class="
                 px-6
                 py-2
-                mt-80
-                mr-4
+                mt-10
                 text-white
                 bg-green-600
                 rounded-lg
@@ -501,8 +500,7 @@
           class="
             px-6
             py-2
-            mt-48
-            mr-4
+            mt-10
             text-white
             bg-green-600
             rounded-lg
@@ -510,7 +508,7 @@
             shadow-lg
             flex-shrink
             content-center
-            place-self-end
+            place-self-center
           "
           @click="addProfsCsv"
           :disabled="!state.csvFile"
@@ -564,12 +562,13 @@
       <br />
 
       <div class="flex-col flex-grow overflow-y-auto scrollbar-hidden">
-        <div class="grid grid-cols-5 bg-gray-400">
-          <div class="text-white">Name</div>
-          <div class="text-white">College</div>
-          <div class="text-white">Department</div>
-          <div class="text-white">Rating</div>
-          <div class="text-white">Status</div>
+        <div class="grid grid-cols-10 bg-gray-400">
+          <div class="text-white px-1 col-span-2">Name</div>
+          <div class="text-white px-1 col-span-1">College</div>
+          <div class="text-white px-1 col-span-3">Department</div>
+          <div class="text-white px-1 col-span-1">Rating</div>
+          <div class="text-white px-1 col-span-1">Status</div>
+          <div class="text-white px-1 col-span-2">Course Codes</div>
         </div>
         <profInfo v-for="prof in state.profs" :key="prof.id" :prof="prof" />
       </div>
