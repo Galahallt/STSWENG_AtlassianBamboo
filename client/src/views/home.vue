@@ -624,7 +624,7 @@
           <label class="text-white">COLLEGE</label>
         </div>
         <div>
-          <select class="rounded-lg">
+          <select class="rounded-lg w-44 h-8 pl-2">
             <option selected disabled hidden>Choose One</option>
             <option value="BAGCED">BAGCED</option>
             <option value="CCS">CCS</option>
@@ -689,7 +689,7 @@
             name="filterDept"
             type="text"
             v-model.trim="state.filterDept"
-            class="manrope-regular rounded-lg"
+            class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
           />
         </div>
         <!-- <div>
