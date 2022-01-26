@@ -62,8 +62,8 @@
           </button>
         </div>
         <addProfModal :addProf="showAddProfModal" @close="toggleAddProfModal">
-          <div class="flex flex-col mt-10">
-            <div class="flex mb-5">
+          <div class="flex flex-col mt-6">
+            <div class="flex mb-5 justify-center">
               <label
                 for="lastName"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -83,6 +83,7 @@
                     lg:w-64
                     ml-10
                     capitalize
+                    px-2
                   "
                   :class="{
                     'border-red-500': v.lastName.$error,
@@ -103,7 +104,7 @@
               </div>
             </div>
 
-            <div class="flex mb-5">
+            <div class="flex mb-5 justify-center">
               <label
                 for="firstName"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -123,6 +124,7 @@
                     lg:w-64
                     ml-10
                     capitalize
+                    px-2
                   "
                   :class="{
                     'border-red-500': v.firstName.$error,
@@ -143,7 +145,7 @@
               </div>
             </div>
 
-            <div class="flex mb-9">
+            <div class="flex mb-9 justify-center">
               <label
                 for="email"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -163,6 +165,7 @@
                     lg:w-64
                     ml-9
                     lowercase
+                    px-2
                   "
                   @keyup="isValidProf"
                   :class="{
@@ -185,7 +188,7 @@
               </div>
             </div>
 
-            <div class="flex mb-9">
+            <div class="flex mb-9 justify-center">
               <label
                 for="college"
                 class="
@@ -206,6 +209,7 @@
                     md:w-32
                     lg:w-64
                     ml-16
+                    mt-2
                     border-solid border-2
                     rounded-md
                     border-gray-500
@@ -242,7 +246,7 @@
               </div>
             </div>
 
-            <div class="flex mb-5">
+            <div class="flex mb-5 justify-center">
               <label
                 for="department"
                 class="relative manrope-bold text-gray-600 text-md mt-2"
@@ -261,6 +265,7 @@
                     rounded-md
                     border-gray-500
                     department_select
+                    mt-1
                   "
                   v-model="addProfData.department"
                   :class="{ 'border-red-500': v.department.$error }"
@@ -415,7 +420,7 @@
               </div>
             </div>
 
-            <div class="flex">
+            <div class="flex justify-center">
               <label
                 for="courses"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -432,6 +437,7 @@
                     lg:w-64
                     uppercase
                     courses_input
+                    px-2
                   "
                   v-model="newTag"
                   type="text"
@@ -472,7 +478,7 @@
             </div>
           </div>
           <div>
-            <div class="flex flex-row-reverse">
+            <div class="flex justify-center">
               <p
                 class="
                   mt-20
@@ -490,19 +496,20 @@
                 class="
                   px-6
                   py-2
-                  mt-80
+                  mt-20
                   mr-4
+                  w-40
                   text-white
                   bg-green-600
                   rounded-lg
                   hover:bg-green-900
                   shadow-lg
                   content-center
-                  place-self-end
+                  place-self-center
                 "
                 @click="addProf"
               >
-                Add Professor
+                Submit
               </button>
             </div>
           </div>
