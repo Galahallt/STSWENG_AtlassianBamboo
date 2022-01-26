@@ -129,20 +129,9 @@ export default {
         console.log(err);
       }
     }
-    async function checkIfAdmin()
-    {
-      try {
-        const result = await api.getUserByEmail(state.email);
-        if(result) {
-          state.isAdministrator = result.data.isAdministrator;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }
+
     // this thing runs first thing before the page loads in
     onBeforeMount(() => {
-      checkIfAdmin();
       getAdminList();
     });
 

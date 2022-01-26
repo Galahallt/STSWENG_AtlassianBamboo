@@ -59,7 +59,7 @@
               >
                 {{ state.message }}
               </h4>
-              <h4 v-else class="text-2l mt-2 font-bold text-center text-red-600">
+              <h4 v-else class="text-2l mt-2 font-bold text-center text-green-600">
                 {{ state.message }}
               </h4>
             </template>
@@ -124,7 +124,7 @@ export default {
       message: '',
       error: false,
       isAdministrator: false,
-      email: JSON.parse(localStorage.getItem('user')).email,      
+      user_email: JSON.parse(localStorage.getItem('user')).email,      
     });
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
@@ -150,19 +150,8 @@ export default {
         }
       }
     }
-    async function checkIfAdmin()
-    {
-      try {
-        const result = await api.getUserByEmail(state.email);
-        if(result) {
-          state.isAdministrator = result.data.isAdministrator;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }    
+
     onBeforeMount(() => {
-      checkIfAdmin();
     });
 
     return { state, addAdmin };
