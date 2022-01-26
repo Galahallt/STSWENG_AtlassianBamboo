@@ -90,7 +90,8 @@
         <br />
         <br />
         <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-          <button
+          <router-link :to="`/view/${state.prof_id}`">
+            <button
             @click="addReview"
             class="
               px-6
@@ -104,6 +105,8 @@
           >
             Publish
           </button>
+          </router-link>
+          
           <router-link :to="`/view/${state.prof_id}`">
             <button
               class="
