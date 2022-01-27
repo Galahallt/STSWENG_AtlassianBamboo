@@ -8,66 +8,8 @@
 
       <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
 
-<!-- adding of rating and review modal
-    <div class="flex flex-row-reverse mt-1 mr-3">
-      <button
-        class="
-          px-6
-          py-2
-          mt-4
-          text-white
-          bg-green-600
-          rounded-lg
-          hover:bg-green-900
-          shadow-lg
-        "
-        @click="toggleWriteModal"
-      >
-        Add Rating
-      </button>
-
-
-      <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-        <div class="grid grid-rows-3">
-          <div class="row-span-2 mt-4">
-            <div class="flex justify-center">
-              <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-            </div>
-            <div class="flex justify-center">
-              <div>Numeric value:</div>
-              <div class="ml-2">{{ state.rating }}</div>
-            </div>
-          </div>
-          <p
-            class="ml-10 text-red-500 manrope-bold text-left text-sm"
-            v-if="state.error"
-          >
-            Error occured.
-          </p>
-          <div class="row-span-1 justify-self-center">
-            <div class="">
-              <button
-                class="
-                  px-6
-                  py-2
-                  mt-4
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  flex-shrink
-                  content-center
-                "
-                @click="checkRating"
-              >
-                Submit Rating
-              </button>
-            </div>
-          </div>
-        </div>
-      </writeModal>
-      </div>
+<!-- adding of rating and review modal -->
+    
 
       <router-link :to="`/review/${prof.prof_id}`">
       <div class="bg-gray-200 py-2" v-if="state.deleted == false">
@@ -102,7 +44,9 @@
     </div>
     </div>
     
-      </router-link> -->
+      </router-link>
+
+      
 
 
 
@@ -141,15 +85,6 @@
                 <h1 class="text-xl label pt-2 pb-2">Course Tags:</h1>
                 <div class="flex md:px-9 flex-wrap relative tags-container max-w-full"> 
                   <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1> 
-                  <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
                 </div> 
               </div>
 
@@ -182,10 +117,51 @@
 
               <div class="ml-auto flex">
                 <h1 class="text-lg">[Review button]</h1>
-                <h1 class="text-lg">[Rate button]</h1>
+                <div class="flex flex-row-reverse mt-1 mr-3">
+      
+                    <button
+                      class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
+                      @click="toggleWriteModal"
+                    >
+                      Rate
+                    </button>
+
+
+                    <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+                          <div class="grid grid-rows-3">
+                            <div class="row-span-2 mt-4">
+                              <div class="flex justify-center">
+                                <vue3-star-ratings :disableClick="true" v-model="state.rating" />
+                              </div>
+                              <div class="flex justify-center">
+                                <div>Numeric value:</div>
+                                <div class="ml-2">{{ state.rating }}</div>
+                              </div>
+                            </div>
+                            <p
+                              class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                              v-if="state.error"
+                            >
+                              Error occured.
+                            </p>
+                            <div class="row-span-1 justify-self-center">
+                              <div class="">
+                                <button
+                                  class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg flex-shrink content-center"
+                                  @click="checkRating"
+                                >
+                                  Submit Rating
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                    </writeModal>
+                </div>
               </div>
-          </div>
+            </div>
           
+
+
           <p
           class="text-center text-xl "
           v-if="state.emptyReviews"
