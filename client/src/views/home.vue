@@ -714,6 +714,36 @@
             class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
           />
         </div>
+        <div class="mt-8">
+          <label
+            class="
+              px-6
+              py-2
+              text-green-600
+              bg-white
+              rounded-lg
+              border-2 border-green-600
+              hover:bg-gray-200
+              shadow-lg
+            "
+            >Submit</label
+          >
+        </div>
+        <div class="mt-8">
+          <label
+            class="
+              px-8
+              py-2
+              text-green-600
+              bg-white
+              rounded-lg
+              border-2 border-green-600
+              hover:bg-gray-200
+              shadow-lg
+            "
+            >Clear</label
+          >
+        </div>
         <!-- <div>
           <label>Course</label>
         </div>
