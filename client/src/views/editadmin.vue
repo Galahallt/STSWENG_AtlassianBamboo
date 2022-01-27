@@ -1,9 +1,9 @@
 <template>
   <div
-    style="background-color: #edfff7; height: 100hv"
+    style="background-color: #edfff7"
     name="background_all"
     id="background_all"
-    class="justify-center"
+    class="min-h-screen justify-center"
   >
     <nav-bar />
 
@@ -22,7 +22,7 @@
         <br />
         <div class="ml-16">
           <button
-            class="px-8 py-2 mt-4 text-white rounded-lg"
+            class="px-8 py-2 mt-4 text-white rounded"
             style="background-color: #37b47e"
           >
             Edit Profile
@@ -40,7 +40,6 @@
           mr-20
           text-center
           bg-gray-200
-          shadow-lg
           justify-center
         "
         style="border-radius: 50px; background-color: #ffffff"
@@ -50,52 +49,32 @@
         <p class="font-bold">First Name</p>
         <input
           type="text"
-          class="input-text-field sm:w-16 md:w-32 lg:w-64 ml-10 capitalize"
-          style="
-            border-radius: 10px;
-            border-color: #546681;
-            height: 30px;
-            text-align: center;
-          "
+          class="input-text-field sm:w-16 md:w-32 lg:w-64"
+          style="border-color: #546681; height: 30px; text-align: center"
         />
         <br />
         <br />
         <p class="font-bold">Last Name</p>
         <input
           type="text"
-          class="input-text-field sm:w-16 md:w-32 lg:w-64 ml-10 capitalize"
-          style="
-            border-radius: 10px;
-            border-color: #546681;
-            height: 30px;
-            text-align: center;
-          "
+          class="input-text-field sm:w-16 md:w-32 lg:w-64"
+          style="border-color: #546681; height: 30px; text-align: center"
         />
         <br />
         <br />
         <p class="font-bold">College</p>
         <input
           type="text"
-          class="input-text-field sm:w-16 md:w-32 lg:w-64 ml-10 capitalize"
-          style="
-            border-radius: 10px;
-            border-color: #546681;
-            height: 30px;
-            text-align: center;
-          "
+          class="input-text-field sm:w-16 md:w-32 lg:w-64"
+          style="border-color: #546681; height: 30px; text-align: center"
         />
         <br />
         <br />
         <p class="font-bold">Department</p>
         <input
           type="text"
-          class="input-text-field sm:w-16 md:w-32 lg:w-64 ml-10 capitalize"
-          style="
-            border-radius: 10px;
-            border-color: #546681;
-            height: 30px;
-            text-align: center;
-          "
+          class="input-text-field sm:w-16 md:w-32 lg:w-64"
+          style="border-color: #546681; height: 30px; text-align: center"
         />
         <br />
         <br />
@@ -103,13 +82,8 @@
         <p class="font-bold">Email</p>
         <input
           type="text"
-          class="input-text-field sm:w-16 md:w-32 lg:w-64 ml-10 capitalize"
-          style="
-            border-radius: 10px;
-            border-color: #546681;
-            height: 30px;
-            text-align: center;
-          "
+          class="input-text-field sm:w-16 md:w-32 lg:w-64"
+          style="border-color: #546681; height: 30px; text-align: center"
         />
 
         <br />
@@ -117,7 +91,7 @@
 
         <p class="font-bold">Status</p>
         <div>
-          <select class="rounded-md" style="border-color: #546681">
+          <select class="rounded-md border-4 border-indigo-500/100">
             <option selected disabled hidden>Choose One</option>
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
@@ -128,7 +102,7 @@
         <br />
         <div>
           <button
-            class="px-6 py-2 mt-4 text-white rounded-lg"
+            class="px-6 py-2 mt-4 text-white rounded"
             style="background-color: #37b47e"
           >
             Save
@@ -142,7 +116,7 @@
               ml-2
               text-white
               bg-red-600
-              rounded-lg
+              rounded
               hover:bg-gray-900
             "
           >
