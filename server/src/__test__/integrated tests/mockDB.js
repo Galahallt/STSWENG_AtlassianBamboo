@@ -28,6 +28,7 @@ const mockDB = {
   clearDatabase: async () => {
     const collections = mongoose.connection.collections;
 
+    // eslint-disable-next-line guard-for-in
     for (const key in collections) {
       const collection = collections[key];
       await collection.deleteMany();

@@ -1,3 +1,4 @@
+import * as api from '../api/index.js';
 import { createRouter, createWebHistory } from 'vue-router';
 import AddAdmin from '../views/addadmin.vue';
 import AdminList from '../views/adminlist.vue';
@@ -13,7 +14,7 @@ const routes = [
     name: 'Add Admin',
     component: AddAdmin,
     meta: {
-      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -21,7 +22,7 @@ const routes = [
     name: 'Admin List',
     component: AdminList,
     meta: {
-      requiresAuth: true,
+      requiresAdmin: true,
     },
   },
   {
@@ -71,10 +72,12 @@ const router = createRouter({
   routes: routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const hideForAuth = to.matched.some((record) => record.meta.hideForAuth);
-  const user = localStorage.getItem('user');
+  const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
+  const user = JSON.parse(localStorage.getItem('user'));
+  const dbUser = await api.getUserByEmail(user.email);
   if (requiresAuth) {
     if (user != null) {
       next();
@@ -86,6 +89,12 @@ router.beforeEach((to, from, next) => {
       next({ name: 'Home' });
     } else {
       next();
+    }
+  } else if (requiresAdmin) {
+    if (dbUser.data.isAdministrator) {
+      next();
+    } else {
+      next({ name: 'Home' });
     }
   } else {
     next();

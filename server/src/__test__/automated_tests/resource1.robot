@@ -32,22 +32,28 @@ ${PASS2}          Jan20200!
 ${VERIFIED}       Verified!
 ${UNVERIFIED}     Cannot find email!
 ${ALREADY}        User is already an Administrator!
+${ADMIN_INPUT}    //*[@id="app"]/div/div/div/div[2]/div/div[2]/input
 
 *** Keywords ***
-Open Browser To Admin Page
+Login
+    [Arguments]    ${email}    ${pass}    ${current}
     Set Selenium Speed    ${DELAY}
     Open Browser    ${LOGIN}    ${BROWSER}
     Maximize Browser Window
     Title Should Be    ${TITLE}
     Click Button    Login with Google Account
     ${TAB}    Switch Window    NEW
-    Input Text    identifierId    ${SELF}
+    Input Text    identifierId    ${email}
     Click Element    identifierNext
-    Input Password    //*[@id="password"]/div[1]/div/div[1]/input    ${PASS1}
+    Sleep    2
+    Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
     Click Button    //*[@id="app"]/div/div/div[1]/div[1]/a/button
-    Check Current Page    ${ADMIN_PAGE}
+    Check Current Page    ${current}
+
+Open Browser To Admin Page
+    Login    ${SELF}    ${PASS1}    ${ADMIN_PAGE}
     Page Should Contain    ${SELF}
 
 Go Back to Admin Page
@@ -57,3 +63,10 @@ Check Current Page
     [Arguments]    ${target}
     ${CURRENT}    Get Location
     Should Be Equal    ${target}    ${CURRENT}
+
+Open Admin Input
+    [Arguments]    ${email}
+    Click Link    /addadmin
+    Clear Element Text    ${ADMIN_INPUT}
+    Press Keys    ${ADMIN_INPUT}    A+BACKSPACE
+    Input Text    ${ADMIN_INPUT}    ${email}

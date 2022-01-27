@@ -41,12 +41,20 @@
           {{ state.prof_lastname + ', ' + state.prof_firstname }}
         </h1>
         <br />
-        <p class="font-bold">Code</p>
-        <input
-          v-model="state.course_code"
-          type="text"
-          style="border-radius: 10px; height: 30px; text-align: center"
-        />
+        <div class="flex">
+          <div class="mr-4 font-bold">Course Code:</div>
+          <div>
+            <select
+              class="px-4"
+              v-model="state.course_code"
+            >
+              <option value="--Select Course Code--" selected>--Select Course Code--</option>
+              <option v-for="code in state.prof_tags" :value="code" :key="code">
+                {{ code }}
+              </option>              
+            </select>
+          </div>
+        </div>
         <br />
         <br />
         <p class="font-bold">Comment</p>
@@ -61,22 +69,29 @@
           "
         ></textarea>
 
-        <template v-if="state.attempted">
+        <div v-if="state.attempted">
           <h4
-            v-if="!state.isCommentEmpty"
-            class="text-2l mt-2 font-bold text-center text-green-600"
+            v-if="state.isCommentEmpty"
+            class="text-2l mt-2 font-bold text-center text-red-600"
           >
-            {{ state.message }}
-          </h4>
-          <h4 v-else class="text-2l mt-2 font-bold text-center text-red-600">
             {{ state.comment_error }}
           </h4>
-        </template>
+          <h4 
+            v-if="state.isSubjectCodeEmpty"
+            class="text-2l mt-2 font-bold text-center text-red-600">
+            {{ state.code_error }}
+          </h4>
+        </div>
+        <div v-else>
+          <h4 class="mt-2"> </h4>
+          <h4 class="mt-2"> </h4>
+        </div>
 
         <br />
         <br />
         <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-          <button
+          <router-link :to="`/view/${state.prof_id}`">
+            <button
             @click="addReview"
             class="
               px-6
@@ -90,6 +105,8 @@
           >
             Publish
           </button>
+          </router-link>
+          
           <router-link :to="`/view/${state.prof_id}`">
             <button
               class="
@@ -122,7 +139,7 @@ button:disabled {
 <script>
 import NavBar from '../components/NavBar.vue';
 import { onBeforeMount, onMounted, reactive } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import * as api from '../api';
 export default {
   name: 'Review Professor',
@@ -131,19 +148,21 @@ export default {
   },
   setup() {
     const router = useRoute();
+    const redirect = useRouter();
     const state = reactive({
       prof_id: router.params.profID,
-
       prof_lastname: null,
       prof_firstname: null,
-      comment: null,
-      course_code: null,
+      prof_tags: null,
+
+      comment: '',
+      course_code: '--Select Course Code--',
       isCommentEmpty: false,
       isSubjectCodeEmpty: false,
 
       attempted: false,
       comment_error: '',
-      course_code_error: '',
+      code_error: '',
 
       message: '',
     });
@@ -154,6 +173,7 @@ export default {
         if (result) {
           state.prof_lastname = result.data.lastName;
           state.prof_firstname = result.data.firstName;
+          state.prof_tags = result.data.courses;
         }
       } catch (err) {
         console.log(err);
@@ -176,19 +196,18 @@ export default {
           };
           console.log(review);
           await api.addReview(review);
-          state.course_code = '';
           state.comment = '';
           state.message = 'Success!';
+          redirect.push({ name: 'View Professor' });
         }
       } else {
         if (state.comment.localeCompare('') == 0) {
           state.isCommentEmpty = true;
           state.comment_error = 'Please supply a comment!';
         }
-
-        if (state.course_code.localeCompare('') == 0) {
+        if (state.course_code.localeCompare('--Select Course Code--') == 0) {
           state.isSubjectCodeEmpty = true;
-          state.course_code_error = 'Please enter a course code!';
+          state.code_error = 'Please enter a course code!';
         }
       }
     }
@@ -196,11 +215,12 @@ export default {
     function areFieldsValid() {
       if (
         state.comment.localeCompare('') == 0 ||
-        state.course_code.localeCompare('') == 0
+        state.course_code.localeCompare('--Select Course Code--') == 0
       ) {
         return false;
       } else {
         state.comment_error = '';
+        state.code_error = '';
         return true;
       }
     }

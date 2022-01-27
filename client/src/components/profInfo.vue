@@ -10,13 +10,15 @@
         <div class="text-black px-1 col-span-3">{{ prof.department }}</div>
         <div class="text-black px-1 col-span-1">{{ prof.rating }}/5</div>
         <div class="text-black px-1 col-span-1">{{ prof.status }}</div>
-        <div class="text-black px-1 col-span-2"></div>
+        <div class="text-black px-1 col-span-2">{{ state.tagString }}</div>
       </div>
     </div>
   </router-link>
 </template>
 
 <script>
+import { reactive, onMounted } from 'vue';
+
 export default {
   name: 'ProfInfo',
   props: {
@@ -24,6 +26,31 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  setup(props) {
+    const state = reactive({
+      tagString: '',
+    });
+
+    function formatTags() {
+      if (state.tagString == '') {
+        for (let i = 0; i < props.prof.courses.length; i++) {
+          if (i != props.prof.courses.length - 1) {
+            state.tagString += props.prof.courses[i] + ', ';
+          } else {
+            state.tagString += props.prof.courses[i];
+          }
+        }
+      }
+    }
+
+    onMounted(() => {
+      formatTags();
+    });
+
+    return {
+      state,
+    };
   },
 };
 </script>
