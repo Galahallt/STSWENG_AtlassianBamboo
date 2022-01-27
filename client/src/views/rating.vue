@@ -8,7 +8,7 @@
 
       <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
 
-<!-- adding of rating and review modal -->
+<!-- adding of rating and review modal
     <div class="flex flex-row-reverse mt-1 mr-3">
       <button
         class="
@@ -102,7 +102,7 @@
     </div>
     </div>
     
-      </router-link>
+      </router-link> -->
 
 
 
@@ -127,7 +127,7 @@
 
               <div class="flex flex-row mt-5 flex-start max-w-full">
                 <h1 class="text-xl label">Department:</h1>
-                <h1 class=" text-xl md:ml-10">{{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} {{ prof.dept }} </h1>
+                <h1 class=" text-xl md:ml-10">{{ prof.dept }} </h1>
               </div>
 
               <div class="flex flex-col md:flex-row mt-5">
