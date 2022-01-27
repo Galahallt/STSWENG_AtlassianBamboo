@@ -1,30 +1,34 @@
 <template>
-  <div class="bg-gray-200 py-2" v-if="state.deleted == false">
-    <div class=""></div>
-    <div class="ml-8 text-blue-800 text font-bold">{{ state.userName }}</div>
-    <div class="grid grid-cols-10">
-      <div class="ml-8 col-span-9">
-        ({{ review.course_code }}) {{ review.review }}
-      </div>
-      <div class="ml-8 col-span-9">{{ review.review }}</div>
-      <div v-if="state.userID == state.loggedUser" class="mr-8 col-span-1">
-        <button
-          class="
-            px-4
-            py-2
-            text-white text-xs
-            bg-red-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-          @click="deleteReview"
-        >
-          Delete
-        </button>
-      </div>
+ <div class="comment-container py-3 px-6">
+    <p class="comment-name text-xl green-text">{{ state.userName }}</p>
+    <div class="flex flex-wrap flex-col">
+      <p class="comment-course-code text-sm py-1 m-1 ml-0 text-center"> {{ review.course_code }} </p>
+      {{review.review}}
+
     </div>
-  </div>
+
+ </div>
 </template>
+
+
+<style>
+
+.comment-container{
+  background-color: white;
+}
+
+.green-text{
+  color: var(--green)
+}
+
+.comment-course-code{
+  color: white;
+  background-color: var(--green);
+  width: 90px;
+
+}
+</style>
+
 
 <script>
 import { reactive, onMounted } from 'vue';
