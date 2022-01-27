@@ -10,42 +10,6 @@
 
 <!-- adding of rating and review modal -->
     
-
-      <router-link :to="`/review/${prof.prof_id}`">
-      <div class="bg-gray-200 py-2" v-if="state.deleted == false">
-    <div class=""></div>
-    <div class="ml-8 text-blue-800 text font-bold">{{ state.userName }}</div>
-    <div class="grid grid-cols-10">
-      <div class="ml-8 col-span-9">
-        ({{ review.course_code }}) {{ review.review }}
-      </div>
-      <div class="ml-8 col-span-9">{{ review.review }}</div>
-      <div v-if="state.userID == state.loggedUser" class="mr-8 col-span-1">
-        <button
-          class="
-            px-6
-            px-4
-            py-2
-            mt-4
-            mr-2
-            text-white
-            bg-green-600
-            text-white text-xs
-            bg-red-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-          @click="deleteReview"
-        >
-          Write Review
-          Delete
-        </button>
-      </div>
-    </div>
-    </div>
-    
-      </router-link>
-
       
 
 
@@ -116,15 +80,52 @@
               </div>
 
               <div class="ml-auto flex">
-                <h1 class="text-lg">[Review button]</h1>
-                <div class="flex flex-row-reverse mt-1 mr-3">
-      
+                
+                <div class="rate-button flex ">
+
+                     <button
+                      class="review px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
+                      @click="toggleWriteCommentModal"
+                    >
+                      Review
+                    </button>
+
                     <button
-                      class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
+                      class="rate px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
                       @click="toggleWriteModal"
                     >
                       Rate
                     </button>
+
+                    <writeCommentModal :writeComment="showWriteCommentModal" @close="toggleWriteCommentModal">
+                          <div class="grid grid-rows-3">
+                            <div class="row-span-2 mt-4">
+                              <div class="flex justify-center">
+                                <vue3-star-ratings :disableClick="true" v-model="state.rating" />
+                              </div>
+                              <div class="flex justify-center">
+                                <div>Numeric value:</div>
+                                <div class="ml-2">{{ state.rating }}</div>
+                              </div>
+                            </div>
+                            <p
+                              class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                              v-if="state.error"
+                            >
+                              Error occured.
+                            </p>
+                            <div class="row-span-1 justify-self-center">
+                              <div class="">
+                                <button
+                                  class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg flex-shrink content-center"
+                                  @click="checkRating"
+                                >
+                                  Submit Rating
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                    </writeCommentModal>
 
 
                     <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
@@ -156,6 +157,8 @@
                             </div>
                           </div>
                     </writeModal>
+                
+                
                 </div>
               </div>
             </div>
@@ -312,13 +315,16 @@ button:disabled {
 import * as api from '../api/index.js';
 import { ref, onMounted, reactive } from 'vue';
 import writeModal from '../components/writeReviewModal.vue';
+import writeCommentModal from '../components/writeCommentModal.vue';
 import NavBar from '../components/NavBar.vue';
 import profReview from '../components/profReview.vue';
 import { useRoute } from 'vue-router';
+import WriteCommentModal from '../components/writeCommentModal.vue';
 
 export default {
   name: 'View Professor',
-  components: { NavBar, writeModal, profReview },
+  components: { NavBar, writeModal, profReview, writeCommentModal, WriteCommentModal },
+
   setup() {
     const state = reactive({
       empty: true,
@@ -516,18 +522,26 @@ export default {
 
     // declare modal
     const showWriteModal = ref(false);
+    const showWriteCommentModal = ref(false);
 
     // toggle modal
     function toggleWriteModal() {
       showWriteModal.value = !showWriteModal.value;
     }
 
+    // toggle comment modal
+    function toggleWriteCommentModal(){
+      showWriteCommentModal.value = !showWriteCommentModal.value; 
+    }
+
     return {
       state,
       prof,
       showWriteModal,
+      showWriteCommentModal,
       checkRating,
       toggleWriteModal,
+      toggleWriteCommentModal,
       filterReviews,
     };
   },

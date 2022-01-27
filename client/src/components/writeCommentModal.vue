@@ -1,40 +1,43 @@
 <template>
   <transition name="modal-animation">
-    <div v-show="writeReview" class="modal flex justify-center items-center">
+    <div v-show="writeComment" class=" temp modal flex justify-center items-center">
       <transition name="modal-animation-inner">
-        <div v-show="writeReview" class="modal-inner flex flex-col">
+        <div v-show="writeComment" class="modal-inner flex flex-col">
           <!-- modal header -->
           <h1
             class="
               manrope-bold
-              absolute
+              text-center
               top-2
               left-2
               px-2
-              text-green-600 text-left text-2xl
+              dark_green_text
+              text-2xl
+              mt-4
             "
           >
-            Add Rating
+            ADD SINGLE INSTRUCTOR
           </h1>
           <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
 
           <!-- horizontal divider -->
-          <hr
+          <!-- <hr
             class="
-              border-green-700
+              border-green-600
               bg-primary-green
               manrope-bold
               border-solid border-2
               mb-0.5
-              absolute
               top-10
               right-0
               w-full
               justify-center
+              px-8
             "
-          />
-          <!-- write review content -->
+          /> -->
+          <div class="green_line w-5/6 self-center"></div>
+          <!-- add professor contents -->
           <slot />
         </div>
       </transition>
@@ -44,7 +47,7 @@
 
 <script>
 export default {
-  props: ['writeReview'],
+  props: ['addProf'],
   setup(props, { emit }) {
     const close = () => {
       emit('close');
@@ -55,6 +58,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.green_line {
+  border-bottom: 3px solid #37b47e;
+}
+
+.dark_green_text {
+  color: #37b47e;
+}
+
 .modal {
   height: 100vh;
   width: 100vw;
@@ -67,8 +78,8 @@ export default {
 .modal-inner {
   position: relative;
   max-width: 960px;
-  width: 20%;
-  height: 30%;
+  width: 40%;
+  height: 85%;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
