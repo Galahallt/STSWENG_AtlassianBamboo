@@ -155,14 +155,9 @@
 </template>
 <script>
 import NavBar from '../components/NavBar.vue';
-<<<<<<< HEAD
 
 export default {
   name: 'EditAdmin',
-=======
-export default {
-  name: 'editadmin',
->>>>>>> a7e0a1f6e8d5c543ee07b8012424cedfa0ed55a7
   components: {
     NavBar,
   },
