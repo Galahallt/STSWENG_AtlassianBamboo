@@ -10,20 +10,21 @@
           <h1
             class="
               manrope-bold
-              absolute
               top-2
               left-2
               px-2
-              text-green-600 text-left text-2xl
+              dark_green_text
+              text-2xl text-center
+              mt-4
             "
           >
-            Add Multiple Professors
+            ADD MULTIPLE INSTRUCTORS
           </h1>
           <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
 
           <!-- horizontal divider -->
-          <hr
+          <!-- <hr
             class="
               border-green-700
               bg-primary-green
@@ -36,7 +37,8 @@
               w-full
               justify-center
             "
-          />
+          /> -->
+          <div class="green_line w-5/6 self-center"></div>
           <!-- multiple add professor contents -->
           <slot />
         </div>
@@ -58,6 +60,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.green_line {
+  border-bottom: 3px solid #37b47e;
+}
+
+.dark_green_text {
+  color: #37b47e;
+}
 .modal {
   height: 100vh;
   width: 100vw;
@@ -70,7 +79,7 @@ export default {
 .modal-inner {
   position: relative;
   max-width: 960px;
-  width: 30%;
+  width: 40%;
   height: 50%;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),

@@ -62,8 +62,8 @@
           </button>
         </div>
         <addProfModal :addProf="showAddProfModal" @close="toggleAddProfModal">
-          <div class="flex flex-col mt-10">
-            <div class="flex mb-5">
+          <div class="flex flex-col mt-6">
+            <div class="flex mb-5 justify-center">
               <label
                 for="lastName"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -83,6 +83,7 @@
                     lg:w-64
                     ml-10
                     capitalize
+                    px-2
                   "
                   :class="{
                     'border-red-500': v.lastName.$error,
@@ -103,7 +104,7 @@
               </div>
             </div>
 
-            <div class="flex mb-5">
+            <div class="flex mb-5 justify-center">
               <label
                 for="firstName"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -123,6 +124,7 @@
                     lg:w-64
                     ml-10
                     capitalize
+                    px-2
                   "
                   :class="{
                     'border-red-500': v.firstName.$error,
@@ -143,7 +145,7 @@
               </div>
             </div>
 
-            <div class="flex mb-9">
+            <div class="flex mb-9 justify-center">
               <label
                 for="email"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -163,6 +165,7 @@
                     lg:w-64
                     ml-9
                     lowercase
+                    px-2
                   "
                   @keyup="isValidProf"
                   :class="{
@@ -185,7 +188,7 @@
               </div>
             </div>
 
-            <div class="flex mb-9">
+            <div class="flex mb-9 justify-center">
               <label
                 for="college"
                 class="
@@ -206,6 +209,7 @@
                     md:w-32
                     lg:w-64
                     ml-16
+                    mt-2
                     border-solid border-2
                     rounded-md
                     border-gray-500
@@ -242,7 +246,7 @@
               </div>
             </div>
 
-            <div class="flex mb-5">
+            <div class="flex mb-5 justify-center">
               <label
                 for="department"
                 class="relative manrope-bold text-gray-600 text-md mt-2"
@@ -261,6 +265,7 @@
                     rounded-md
                     border-gray-500
                     department_select
+                    mt-1
                   "
                   v-model="addProfData.department"
                   :class="{ 'border-red-500': v.department.$error }"
@@ -415,7 +420,7 @@
               </div>
             </div>
 
-            <div class="flex">
+            <div class="flex justify-center">
               <label
                 for="courses"
                 class="relative manrope-bold text-gray-600 text-md mt-4"
@@ -432,6 +437,7 @@
                     lg:w-64
                     uppercase
                     courses_input
+                    px-2
                   "
                   v-model="newTag"
                   type="text"
@@ -472,7 +478,7 @@
             </div>
           </div>
           <div>
-            <div class="flex flex-row-reverse">
+            <div class="flex justify-center">
               <p
                 class="
                   mt-20
@@ -490,19 +496,20 @@
                 class="
                   px-6
                   py-2
-                  mt-80
+                  mt-20
                   mr-4
+                  w-40
                   text-white
-                  bg-green-600
+                  dark_green
                   rounded-lg
                   hover:bg-green-900
                   shadow-lg
                   content-center
-                  place-self-end
+                  place-self-center
                 "
                 @click="addProf"
               >
-                Add Professor
+                Submit
               </button>
             </div>
           </div>
@@ -544,9 +551,22 @@
           :multipleAddProf="showMultipleAddProfModal"
           @close="toggleMultipleAddProfModal"
         >
-          <p class="mt-12">
-            CSV File must contain headers and follow this format: [Last Name,
-            First Name, DLSU Email, College, Department, Courses]
+          <p
+            class="
+              mt-8
+              px-10
+              multiple_prof_color
+              font-semibold
+              text-center text-lg
+            "
+          >
+            Multiple professors may be added through a CSV file upload.
+          </p>
+          <p class="mt-6 px-10 multiple_prof_color text-sm text-center">
+            CSV File must contain headers and follow this format:
+          </p>
+          <p class="px-10 multiple_prof_color text-sm text-center">
+            [Last Name, First Name, DLSU Email, College, Department, Courses]
           </p>
           <div class="mt-4 flex-col">
             <div class="flex justify-center">
@@ -556,13 +576,15 @@
                   px-6
                   py-2
                   mt-4
-                  text-white
-                  bg-green-600
+                  text-green-600
+                  bg-white
                   rounded-lg
-                  hover:bg-green-900
+                  border-2 border-green-600
+                  hover:bg-gray-200
                   shadow-lg
+                  mb-1
                 "
-                >Upload CSV File</label
+                >Select CSV File</label
               >
               <input
                 id="csv-file"
@@ -594,21 +616,21 @@
             class="
               px-6
               py-2
-              mt-48
-              mr-4
+              mt-10
               text-white
-              bg-green-600
+              dark_green
               rounded-lg
               hover:bg-green-900
               shadow-lg
               flex-shrink
               content-center
-              place-self-end
+              place-self-center
+              w-36
             "
             @click="addProfsCsv"
             :disabled="!state.csvFile"
           >
-            Add Multiple Professors
+            Submit
           </button>
         </multipleAddProfModal>
       </div>
@@ -624,7 +646,7 @@
           <label class="text-white">COLLEGE</label>
         </div>
         <div>
-          <select class="rounded-lg">
+          <select class="rounded-lg w-44 h-8 pl-2">
             <option selected disabled hidden>Choose One</option>
             <option value="BAGCED">BAGCED</option>
             <option value="CCS">CCS</option>
@@ -689,7 +711,7 @@
             name="filterDept"
             type="text"
             v-model.trim="state.filterDept"
-            class="manrope-regular rounded-lg"
+            class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
           />
         </div>
         <!-- <div>
@@ -756,6 +778,10 @@
 .background_all {
   background-color: #edfff7;
   height: 100vh;
+}
+
+.multiple_prof_color {
+  color: #546681;
 }
 
 .dark_green {
