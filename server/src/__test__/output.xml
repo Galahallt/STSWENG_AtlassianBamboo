@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20220126 13:48:04.175" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20220127 20:30:28.267" rpa="false" schemaversion="2">
 <suite id="s1" name="Automated Tests" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests">
 <suite id="s1-s1" name="US-01" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-01">
 <suite id="s1-s1-s1" name="Us1" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-01\us1.robot">
@@ -7,71 +7,103 @@
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>1</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220126 13:48:04.325" endtime="20220126 13:48:04.325"/>
+<status status="PASS" starttime="20220127 20:30:28.630" endtime="20220127 20:30:28.630"/>
 </kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>http://localhost:3000</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220126 13:48:04.326" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
-<status status="PASS" starttime="20220126 13:48:04.325" endtime="20220126 13:48:07.636"/>
+<msg timestamp="20220127 20:30:28.631" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="FAIL" starttime="20220127 20:30:38.208" endtime="20220127 20:30:40.335"/>
+</kw>
+<msg timestamp="20220127 20:30:40.335" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
+<msg timestamp="20220127 20:30:40.383" level="FAIL">WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: Unable to receive message from renderer
+  (Session info: chrome=97.0.4692.99)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x00CE6903+2517251]
+	Ordinal0 [0x00C7F8E1+2095329]
+	Ordinal0 [0x00B82848+1058888]
+	Ordinal0 [0x00B74FBF+1003455]
+	Ordinal0 [0x00B73F8D+999309]
+	Ordinal0 [0x00B74357+1000279]
+	Ordinal0 [0x00B7F131+1044785]
+	Ordinal0 [0x00B754D9+1004761]
+	Ordinal0 [0x00B760E0+1007840]
+	Ordinal0 [0x00B7572A+1005354]
+	Ordinal0 [0x00B74DDA+1002970]
+	Ordinal0 [0x00B73F8D+999309]
+	Ordinal0 [0x00B74246+1000006]
+	Ordinal0 [0x00B83E1A+1064474]
+	Ordinal0 [0x00BD616D+1401197]
+	Ordinal0 [0x00BC64D3+1336531]
+	Ordinal0 [0x00BD5BBF+1399743]
+	Ordinal0 [0x00BC639B+1336219]
+	Ordinal0 [0x00BA27A7+1189799]
+	Ordinal0 [0x00BA3609+1193481]
+	GetHandleVerifier [0x00E75904+1577972]
+	GetHandleVerifier [0x00F20B97+2279047]
+	GetHandleVerifier [0x00D76D09+534521]
+	GetHandleVerifier [0x00D75DB9+530601]
+	Ordinal0 [0x00C84FF9+2117625]
+	Ordinal0 [0x00C898A8+2136232]
+	Ordinal0 [0x00C899E2+2136546]
+	Ordinal0 [0x00C93541+2176321]
+	BaseThreadInitThunk [0x764AFA29+25]
+	RtlGetAppContainerNamedObjectPath [0x771B7A9E+286]
+	RtlGetAppContainerNamedObjectPath [0x771B7A6E+238]
+</msg>
+<status status="FAIL" starttime="20220127 20:30:28.630" endtime="20220127 20:30:40.383"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220126 13:48:07.636" endtime="20220126 13:48:08.774"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.384" endtime="20220127 20:30:40.384"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>Login with Google Account</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 13:48:08.775" level="INFO">Clicking button 'Login with Google Account'.</msg>
-<status status="PASS" starttime="20220126 13:48:08.775" endtime="20220126 13:48:12.936"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.384" endtime="20220127 20:30:40.384"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <var>${TAB}</var>
 <arg>NEW</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<msg timestamp="20220126 13:48:17.003" level="INFO">${TAB} = CDwindow-6F352C8F07615E0F563787747508AD19</msg>
-<status status="PASS" starttime="20220126 13:48:12.937" endtime="20220126 13:48:17.003"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.385" endtime="20220127 20:30:40.385"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>identifierId</arg>
 <arg>azriel_ortega@dlsu.edu.ph</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 13:48:17.004" level="INFO">Typing text 'azriel_ortega@dlsu.edu.ph' into text field 'identifierId'.</msg>
-<status status="PASS" starttime="20220126 13:48:17.004" endtime="20220126 13:48:20.242"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.386" endtime="20220127 20:30:40.386"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>identifierNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 13:48:20.245" level="INFO">Clicking element 'identifierNext'.</msg>
-<status status="PASS" starttime="20220126 13:48:20.244" endtime="20220126 13:48:22.358"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.386" endtime="20220127 20:30:40.386"/>
 </kw>
 <kw name="Input Password" library="SeleniumLibrary">
 <arg>//*[@id="password"]/div[1]/div/div[1]/input</arg>
 <arg>MasterJason18!</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 13:48:22.360" level="INFO">Typing password into text field '//*[@id="password"]/div[1]/div/div[1]/input'.</msg>
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="FAIL" starttime="20220126 13:48:23.858" endtime="20220126 13:48:23.859"/>
-</kw>
-<msg timestamp="20220126 13:48:23.859" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
-<status status="FAIL" starttime="20220126 13:48:22.359" endtime="20220126 13:48:23.860"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.386" endtime="20220127 20:30:40.386"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>passwordNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="NOT RUN" starttime="20220126 13:48:23.860" endtime="20220126 13:48:23.861"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.386" endtime="20220127 20:30:40.386"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <arg>${TAB}</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<status status="NOT RUN" starttime="20220126 13:48:23.861" endtime="20220126 13:48:23.861"/>
+<status status="NOT RUN" starttime="20220127 20:30:40.387" endtime="20220127 20:30:40.387"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
 <errors>
-<msg timestamp="20220126 13:48:23.859" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
-<msg timestamp="20220126 13:48:30.041" level="ERROR">Execution stopped by user.</msg>
+<msg timestamp="20220127 20:30:40.335" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Execution terminated by signal</msg>
+<msg timestamp="20220127 20:30:46.595" level="ERROR">Execution stopped by user.</msg>
 </errors>
 </robot>

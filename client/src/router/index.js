@@ -6,6 +6,7 @@ import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
 import ReviewProf from '../views/reviewprof.vue';
+import EditProf from '../views/editadmin.vue';
 
 const routes = [
   {
@@ -56,6 +57,14 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/editprof/:profID',
+    name: 'Edit Professor',
+    component: EditProf,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -82,7 +91,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else if (requiresAdmin) {
-    if (dbUser.isAdministrator) {
+    if (dbUser.data.isAdministrator) {
       next();
     } else {
       next({ name: 'Home' });
