@@ -69,7 +69,6 @@ router.beforeEach(async (to, from, next) => {
   const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user'));
   const dbUser = await api.getUserByEmail(user.email);
-  console.log(dbUser.data.isAdministrator);
   if (requiresAuth) {
     if (user != null) {
       next();
@@ -85,7 +84,6 @@ router.beforeEach(async (to, from, next) => {
   } else if (requiresAdmin) {
     if (dbUser.data.isAdministrator) {
       next();
-      console.log('admin');
     } else {
       next({ name: 'Home' });
     }

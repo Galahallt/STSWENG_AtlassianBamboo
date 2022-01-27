@@ -12,7 +12,7 @@
   >
     <nav-bar />
 
-    <div v-if="state.isAdministrator">
+    <div>
       <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
         <router-link
           class="
@@ -91,11 +91,6 @@
         </div>
       </div>
     </div>
-
-    <div v-else>
-      Access Denied
-    </div>
-
   </div>
 </template>
 <script>
@@ -114,7 +109,7 @@ export default {
       admins: null,
       error: false,
       isAdministrator: false,
-      email: JSON.parse(localStorage.getItem('user')).email,      
+      email: JSON.parse(localStorage.getItem('user')).email,
     });
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
