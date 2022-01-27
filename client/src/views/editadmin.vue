@@ -93,10 +93,12 @@
   </div>
 </template>
 <script>
+import NavBar from '../components/NavBar.vue';
+
 export default {
   name: 'EditAdmin',
-  //   components: {  ---> when used page is not loading
-  //     NavBar,
-  //   },
+  components: {
+    NavBar,
+  },
 };
 </script>

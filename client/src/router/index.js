@@ -5,6 +5,7 @@ import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
 import ReviewProf from '../views/reviewprof.vue';
+import EditProf from '../views/editadmin.vue';
 
 const routes = [
   {
@@ -51,6 +52,14 @@ const routes = [
     path: '/review/:profID',
     name: 'Review Professor',
     component: ReviewProf,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/editprof/:profID',
+    name: 'Edit Professor',
+    component: EditProf,
     meta: {
       requiresAuth: true,
     },

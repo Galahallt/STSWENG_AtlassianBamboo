@@ -14,7 +14,6 @@
 
     <!-- body  -->
     <div class="grid grid-cols-8 py-2 px-12">
-      <div class="col-span-1"></div>
       <!-- IMAGE AND PROF INFO -->
       <div class="col-span-2 mt-5">
         <div>
@@ -60,6 +59,24 @@
             <div class="mt-2">{{ state.tagString }}</div>
           </div>
         </div>
+      </div>
+      <div class="col-span-1">
+        <router-link :to="`/editprof/${prof.prof_id}`">
+          <button
+            class="
+              px-6
+              py-2
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
+            @click="toggleWriteModal"
+          >
+            Edit Professor
+          </button>
+        </router-link>
       </div>
     </div>
     <!-- REVIEWS -->
