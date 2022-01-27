@@ -68,8 +68,8 @@ router.beforeEach(async (to, from, next) => {
   const hideForAuth = to.matched.some((record) => record.meta.hideForAuth);
   const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log("devug " + user.email);
   const dbUser = await api.getUserByEmail(user.email);
+  console.log(dbUser.data.isAdministrator);
   if (requiresAuth) {
     if (user != null) {
       next();
@@ -83,8 +83,9 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else if (requiresAdmin) {
-    if (dbUser.isAdministrator) {
+    if (dbUser.data.isAdministrator) {
       next();
+      console.log('admin');
     } else {
       next({ name: 'Home' });
     }
