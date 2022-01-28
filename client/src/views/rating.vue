@@ -8,15 +8,6 @@
 
       <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
 
-<!-- adding of rating and review modal -->
-    
-      
-
-
-
-
-
-
         <!-- BACK BUTTON; may just add name/id here to be able to access the back page -->
         <svg class="back-button" width="34" height="30" viewBox="0 0 34 30" xmlns="http://www.w3.org/2000/svg">
           <path d="M31.5833 12.9167H6.87501L14.4375 3.83334C14.7911 3.40789 14.9613 2.85939 14.9105 2.3085C14.8597 1.75761 14.5921 1.24946 14.1667 0.895838C13.7412 0.542216 13.1927 0.372087 12.6418 0.422878C12.0909 0.473669 11.5828 0.74122 11.2292 1.16667L0.81251 13.6667C0.742428 13.7661 0.679759 13.8705 0.62501 13.9792C0.62501 14.0833 0.62501 14.1458 0.479177 14.25C0.384747 14.4889 0.335304 14.7432 0.333344 15C0.335304 15.2569 0.384747 15.5111 0.479177 15.75C0.479177 15.8542 0.479177 15.9167 0.62501 16.0208C0.679759 16.1295 0.742428 16.2339 0.81251 16.3333L11.2292 28.8333C11.4251 29.0685 11.6703 29.2576 11.9476 29.3873C12.2249 29.5169 12.5273 29.5838 12.8333 29.5833C13.3201 29.5843 13.7919 29.4148 14.1667 29.1042C14.3776 28.9293 14.552 28.7145 14.6798 28.4721C14.8076 28.2297 14.8864 27.9645 14.9115 27.6916C14.9367 27.4187 14.9078 27.1436 14.8264 26.8819C14.7451 26.6202 14.6129 26.3772 14.4375 26.1667L6.87501 17.0833H31.5833C32.1359 17.0833 32.6658 16.8638 33.0565 16.4731C33.4472 16.0824 33.6667 15.5525 33.6667 15C33.6667 14.4475 33.4472 13.9176 33.0565 13.5269C32.6658 13.1362 32.1359 12.9167 31.5833 12.9167Z" fill="#37B47E"/>
@@ -65,7 +56,7 @@
 
         <div class="comments-container mt-10 flex flex-col">
           <h1 class= "green-text text-4xl">Reviews</h1>
-
+        <!-- adding of rating and review modal -->
           <div class="reviews-container flex flex-col md:flex-row mt-4 mb-10">
               <div class="filter-review-container flex flex-row sm:mb-5 md:mb-0 mt-10">
                 <p class="text-lg">Filter Reviews: </p>
@@ -97,13 +88,13 @@
           
 
 
-
+              <!-- ADDING OF REVIEW TO PROF -->
               <div class="ml-auto flex">
                 
                 <div class=" flex ">
 
                     <writeCommentModal :writeComment="showWriteCommentModal" @close="toggleWriteCommentModal">
-                      <div class="write-comment-container p-10">
+                      <div class="write-comment-container p-10  rounded-2xl">
 
                         <h1 class="text-xl text-center green-text mb-3">REVIEW THIS INSTRUCTOR</h1>
                         <hr class="line">
@@ -130,33 +121,22 @@
 
 
                     <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
-                          <div class="grid grid-rows-3">
-                            <div class="row-span-2 mt-4">
-                              <div class="flex justify-center">
-                                <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-                              </div>
-                              <div class="flex justify-center">
-                                <div>Numeric value:</div>
-                                <div class="ml-2">{{ state.rating }}</div>
-                              </div>
-                            </div>
-                            <p
-                              class="ml-10 text-red-500 manrope-bold text-left text-sm"
-                              v-if="state.error"
-                            >
-                              Error occured.
-                            </p>
-                            <div class="row-span-1 justify-self-center">
-                              <div class="">
-                                <button
-                                  class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg flex-shrink content-center"
-                                  @click="checkRating"
-                                >
-                                  Submit Rating
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                      <div class="rate-container p-10 rounded-2xl">
+                        <h1 class="text-xl text-center green-text mb-3">RATE THIS INSTRUCTOR</h1>
+                        <hr class="line">
+
+                        <p class="mt-7">How was your overall experience with this instructor?</p>
+
+                        <star-rating :star-size="40" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                          class="stars mx-auto self-center mt-5"
+                        ></star-rating>
+
+                        <div class="flex flex-row mt-10">
+                           <button class="cancel-button-rating mr-auto rounded-md p-2">Cancel</button>
+                           <button class="submit-button-rating ml-auto rounded-md p-2">Submit</button>
+                         </div>
+
+                      </div>
                     </writeModal>
                 
               </div>
@@ -322,6 +302,29 @@
   border: 2px solid var(--green);
   width: 100px;
 } 
+
+.submit-button-rating{
+  background-color: var(--green);
+  color: white;
+  width: 100px;
+}
+
+.cancel-button-rating{
+  background-color: white; 
+  color: var(--green);
+  border: 2px solid var(--green);
+  width: 100px;
+} 
+
+
+.rate-container{
+  background-color: white;
+  width: 100%;
+}
+
+.stars{ 
+  justify-content: center;
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -367,10 +370,12 @@ import NavBar from '../components/NavBar.vue';
 import profReview from '../components/profReview.vue';
 import { useRoute } from 'vue-router';
 import WriteCommentModal from '../components/writeCommentModal.vue';
+import StarRating from 'vue-star-rating'
+
 
 export default {
   name: 'View Professor',
-  components: { NavBar, writeModal, profReview, writeCommentModal, WriteCommentModal },
+  components: { NavBar, writeModal, profReview, writeCommentModal, WriteCommentModal, StarRating },
 
   setup() {
     const state = reactive({

@@ -3,38 +3,6 @@
     <div v-show="writeComment" class=" w-full h-full modal flex justify-center items-center">
      <transition name="modal-animation-inner">
         <div v-show="writeComment" class="sm:10/12 md:w-7/12 modal-inner flex flex-col flex-wrap">
-          <!-- modal header -->
-          <!-- <h1
-            class="
-              manrope-bold
-              absolute
-              top-2
-              left-2
-              px-2
-              text-green-600 text-left text-2xl
-            "
-          >
-            Add Rating
-          </h1>
-          <font-awesome-icon :icon="['far', 'times-circle']" @click="close" /> -->
-          <!-- <i @click="close" class="far fa-times-circle"></i> -->
-
-          <!-- horizontal divider -->
-          <!-- <hr
-            class="
-              border-green-700
-              bg-primary-green
-              manrope-bold
-              border-solid border-2
-              mb-0.5
-              absolute
-              top-10
-              right-0
-              w-full
-              justify-center
-            "
-          /> -->
-          <!-- write review content -->
           <slot />
         </div>
       </transition>
@@ -56,11 +24,9 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-
   position: fixed;
   top: 0;
   left: 0;
-  // background-color: red;
   background-color: rgba(113, 113, 122, 0.75);
   transition-property: opacity;
 }
