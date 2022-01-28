@@ -67,64 +67,65 @@
           <h1 class= "green-text text-4xl">Reviews</h1>
 
           <div class="reviews-container flex flex-col md:flex-row mt-4 mb-10">
-              <div class="filter-review-container flex flex-row">
+              <div class="filter-review-container flex flex-row sm:mb-5 md:mb-0 mt-10">
                 <p class="text-lg">Filter Reviews: </p>
                 <div class=" px-3">
-                  <select class="px-4 filter-options" v-model="state.filter" @change="filterReviews">
+                  <select class="px-4 filter-options mr-auto" v-model="state.filter" @change="filterReviews">
                     <option value="All" selected>All</option>
                     <option v-for="code in prof.tags" :value="code" :key="code">
                       {{ code }}
                     </option>
                   </select>
-                </div>
+                </div> 
               </div>
+              <div class="buttons-container ml-auto mt-5">
+                      <button
+                        class="review-button rounded-lg hover:bg-green-900 shadow-lg ml-3 p-2"
+                        @click="toggleWriteCommentModal"
+                      >
+                        Review
+                      </button>
+
+                      <button
+                        class="rate-button rounded-lg hover:bg-green-900 shadow-lg ml-3 p-2"
+                        @click="toggleWriteModal"
+                      >
+                        Rate
+                      </button>
+              </div>
+          </div>  <!-- end of reviews container -->
+          
+
+
 
               <div class="ml-auto flex">
                 
-                <div class="rate-button flex ">
+                <div class=" flex ">
 
-                     <button
-                      class="review px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
-                      @click="toggleWriteCommentModal"
-                    >
-                      Review
-                    </button>
-
-                    <button
-                      class="rate px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg"
-                      @click="toggleWriteModal"
-                    >
-                      Rate
-                    </button>
-<!-- should temporarily show modal similar to add rating but with red bg -->
                     <writeCommentModal :writeComment="showWriteCommentModal" @close="toggleWriteCommentModal">
-                          <div class="grid grid-rows-3">
-                            <div class="row-span-2 mt-4">
-                              <div class="flex justify-center">
-                                <vue3-star-ratings :disableClick="true" v-model="state.rating" />
-                              </div>
-                              <div class="flex justify-center">
-                                <div>Numeric value:</div>
-                                <div class="ml-2">{{ state.rating }}</div>
-                              </div>
-                            </div>
-                            <p
-                              class="ml-10 text-red-500 manrope-bold text-left text-sm"
-                              v-if="state.error"
-                            >
-                              Error occured.
-                            </p>
-                            <div class="row-span-1 justify-self-center">
-                              <div class="">
-                                <button
-                                  class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg flex-shrink content-center"
-                                  @click="checkRating"
-                                >
-                                  Submit Rating
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                      <div class="write-comment-container p-10">
+
+                        <h1 class="text-xl text-center green-text mb-3">REVIEW THIS INSTRUCTOR</h1>
+                        <hr class="line">
+
+                        <div class="course-code-comment-container flex mt-5">
+                            <p>Course code: </p>
+                            <input class="course-code mx-3 px-1 text-sm" placeholder="Ex. GERIZAL"> 
+                        </div>
+
+                        
+                        <!-- textarea tag should be in one line -->
+                         <textarea class="comment p-3 mt-3" id="comment" name="comment" placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "></textarea>
+                         
+                         <div class="flex flex-row">
+                           
+                           <button class="cancel-button mr-auto rounded-md p-2">Cancel</button>
+                           <button class="submit-button ml-auto rounded-md p-2">Submit</button>
+                         </div>
+                         
+                       
+                      </div>
+                          
                     </writeCommentModal>
 
 
@@ -158,8 +159,6 @@
                           </div>
                     </writeModal>
                 
-                
-                </div>
               </div>
             </div>
           
@@ -274,7 +273,55 @@
   border-radius: 5px;
 }
 
+.write-comment-container{
+  width: 100%;
+  border-radius: 15px;
+  background-color: white;
+}
 
+.line{
+  border-top: 3px solid var(--green);
+}
+
+.comment{
+  background-color: #F4F4F4;
+  width: 100%;
+  min-height: 300px;
+  height: 100%;
+  word-break: break-word;
+  border: none;
+}
+
+.course-code{
+  border:1px solid var(--gray);
+  background-color: none;
+  width: 100px;
+}
+
+.review-button {
+  background-color: var(--green);
+  color:white; 
+  width: 150px;
+}
+
+.rate-button {
+  background-color: var(--green);
+  color:white; 
+  width: 150px;
+}
+
+.submit-button{
+  background-color: var(--green);
+  color: white;
+  width: 100px;
+}
+
+.cancel-button{
+  background-color: white; 
+  color: var(--green);
+  border: 2px solid var(--green);
+  width: 100px;
+} 
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
