@@ -9,6 +9,8 @@ const router = express.Router();
 // route for logging in user to application
 router.get('/adminlist', adminController.getAdminList);
 router.post('/addadmin', adminController.postAddAdmin);
+router.post('/removeadmin', adminController.postRemoveAdmin);
+router.patch('/editprof', adminController.editProfessor);
 
 // export index routes
 export default router;

@@ -28,6 +28,21 @@ const instructorService = {
       { id: instructorID },
       { $addToSet: { reviews: reviewID } }
     ),
+
+  updateProfDetails: async (update) =>
+    Instructor.findOneAndUpdate(
+      { id: update.id },
+      {
+        $set: {
+          firstName: update.firstName,
+          lastName: update.lastName,
+          email: update.email,
+          college: update.college,
+          department: update.department,
+          status: update.status,
+        },
+      }
+    ),
 };
 
 export default instructorService;
