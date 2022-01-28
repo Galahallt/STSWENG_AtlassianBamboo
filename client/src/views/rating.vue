@@ -96,7 +96,7 @@
                     >
                       Rate
                     </button>
-
+<!-- should temporarily show modal similar to add rating but with red bg -->
                     <writeCommentModal :writeComment="showWriteCommentModal" @close="toggleWriteCommentModal">
                           <div class="grid grid-rows-3">
                             <div class="row-span-2 mt-4">
