@@ -39,6 +39,12 @@
   width: 90px;
 
 }
+
+.delete-btn:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+
+}
 </style>
 
 
