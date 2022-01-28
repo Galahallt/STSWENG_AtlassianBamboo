@@ -20,7 +20,7 @@
           <img
             class="rounded-full ml-14"
             style="width: 230px; height: 230px"
-            src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
+            v-bind:src="prof.profPic"
           />
         </div>
       </div>
@@ -258,6 +258,8 @@ export default {
 
     const router = useRoute();
     const prof = reactive({
+      profPic:
+        'https://res.cloudinary.com/stsweng-profstopick/image/upload/v1643367810/blank-profile-circle_ssopod.png',
       prof_id: router.params.profID,
       profLast: null,
       profFirst: null,
@@ -290,6 +292,7 @@ export default {
       try {
         const result = await api.getProf(router.params.profID);
         if (result) {
+          prof.profPic = result.data.profilePicture;
           prof.profLast = result.data.lastName;
           prof.profFirst = result.data.firstName;
           prof.email = result.data.email;

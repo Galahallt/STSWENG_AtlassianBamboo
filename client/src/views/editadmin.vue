@@ -15,7 +15,7 @@
           <img
             class="pt-5 rounded-full lg-shadow"
             style="width: 300px; height: 300px"
-            src="https://menlocoa.org/wp-content/uploads/2012/09/Screen-Shot-2012-09-20-at-11.54.59-AM.png"
+            src="https://res.cloudinary.com/stsweng-profstopick/image/upload/v1643367810/blank-profile-circle_ssopod.png"
           />
         </div>
 
