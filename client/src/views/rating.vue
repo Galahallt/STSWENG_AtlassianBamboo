@@ -15,7 +15,8 @@
         
         <!-- Professor info -->
         <div class=" prof-info-container flex flex-col md:flex-row "> 
-          <img src="../assets/woman.jpg" class="prof-pic object-cover center">
+          <!-- update src of img of prof -->
+          <img src="../assets/woman.jpg" class="prof-pic object-cover center shadow-lg">
           <div class="prof-info-text flex flex-col  md:px-10  md:mx-5 sm:mx-0 sm:mt-5 md:mt-0"> 
               <h1 class="prof-name text-5xl">{{ prof.profFirst }} {{ prof.profLast }}</h1>
 
@@ -127,13 +128,14 @@
 
                         <p class="mt-7">How was your overall experience with this instructor?</p>
 
-                        <star-rating :star-size="40" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
+                        <star-rating :rating="state.rating" :star-size="40" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"
                           class="stars mx-auto self-center mt-5"
                         ></star-rating>
 
                         <div class="flex flex-row mt-10">
-                           <button class="cancel-button-rating mr-auto rounded-md p-2">Cancel</button>
-                           <button class="submit-button-rating ml-auto rounded-md p-2">Submit</button>
+                          <!-- buttons do not work -->
+                           <button class="cancel-button-rating mr-auto rounded-md p-2"  @click="close">Cancel</button>
+                           <button class="submit-button-rating ml-auto rounded-md p-2"  @click="checkRating" >Submit</button>
                          </div>
 
                       </div>
