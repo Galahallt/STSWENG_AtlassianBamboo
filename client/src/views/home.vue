@@ -954,7 +954,7 @@ export default {
     const state = reactive({
       disable: null,
       error: null,
-      invalidEmail: null,
+      invalidEmail: [],
       invalidFile: null,
       empty: null,
       allProfs: [],
@@ -1124,7 +1124,7 @@ export default {
         console.log(error);
         state.error = error.response.data.message;
 
-        state.invalidEmail = addProfData.email;
+        state.invalidEmail.push(addProfData.email);
       }
     }
 
@@ -1176,7 +1176,8 @@ export default {
 
     function isValidProf() {
       state.error =
-        addProfData.email === state.invalidEmail && state.invalidEmail != null
+        state.invalidEmail.includes(addProfData.email) &&
+        state.invalidEmail != null
           ? 'Professor already exists.'
           : false;
     }
