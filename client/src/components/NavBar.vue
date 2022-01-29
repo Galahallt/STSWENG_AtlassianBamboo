@@ -1,5 +1,5 @@
 <template>
-  <nav class="dark_green">
+  <nav class="dark_green nav-font">
     <div class="px-2 sm:px-6 lg:px-8">
       <div class="relative flex items-center h-16">
         <!-- Profile dropdown -->
@@ -156,6 +156,12 @@
 </template>
 
 <style>
+.nav-font {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--light-green);
+  color: var(--gray);
+}
+
 .menu {
   display: flex;
   align-items: center;

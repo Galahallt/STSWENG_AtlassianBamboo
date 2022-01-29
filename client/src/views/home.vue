@@ -1,5 +1,5 @@
 <template>
-  <div class="background_all">
+  <div class="background_all home-container">
     <nav-bar />
 
     <div class="grid grid-cols-2">
@@ -46,7 +46,7 @@
             <svg
               width="18"
               height="18"
-              viewBox="4 2 24 24 "
+              viewBox="4 2 16 24 "
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="inline-flex items-center"
@@ -717,7 +717,7 @@
         <div class="mt-8">
           <label
             class="
-              px-6
+              px-8
               py-2
               text-green-600
               bg-white
@@ -732,7 +732,7 @@
         <div class="mt-8">
           <label
             class="
-              px-8
+              px-10
               py-2
               text-green-600
               bg-white
@@ -805,9 +805,17 @@
 </template>
 
 <style lang="postcss">
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap');
+
 .background_all {
   background-color: #edfff7;
   height: 100vh;
+}
+
+.home-container {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--light-green);
+  color: var(--gray);
 }
 
 .multiple_prof_color {
