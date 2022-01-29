@@ -1766,6 +1766,13 @@ vue-router@^4.0.12:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.18"
 
+vue-star-rating@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/vue-star-rating/-/vue-star-rating-2.1.0.tgz"
+  integrity sha512-LnhuQPi4hkRg7egKls+iqtL1U0RTN2gQkdLsJN7acyynMsSc9epHLzk8McJS+bR0OzfG98zNFq7mxAyuSb/okQ==
+  dependencies:
+    vue "^3.0.0"
+
 vue3-google-oauth2@^1.0.6:
   version "1.0.6"
   resolved "https://registry.npmjs.org/vue3-google-oauth2/-/vue3-google-oauth2-1.0.6.tgz"
@@ -1776,7 +1783,7 @@ vue3-star-ratings@^1.0.7:
   resolved "https://registry.npmjs.org/vue3-star-ratings/-/vue3-star-ratings-1.0.7.tgz"
   integrity sha512-CXuomv1R6LLc4SqpIqbzWfcnqBTf3kn61e4mZ9YKDWJ+XpIqIyD4J8sa4qv9z7l9VFbnBi2ORF5HlfKyvMiAhQ==
 
-vue@^3.2.16:
+vue@^3.0.0, vue@^3.2.16:
   version "3.2.22"
   resolved "https://registry.npmjs.org/vue/-/vue-3.2.22.tgz"
   integrity sha512-KD5nZpXVZquOC6926Xnp3zOvswrUyO9Rya7ZUoxWFQEjFDW4iACtwzubRB4Um2Om9kj6CaJOqAVRDSFlqLpdgw==

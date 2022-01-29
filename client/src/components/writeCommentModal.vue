@@ -1,9 +1,8 @@
 <template>
   <transition name="modal-animation">
-    <div v-show="writeReview" class=" w-full h-full modal flex justify-center items-center">
-      <transition name="modal-animation-inner">
-        <div v-show="writeReview" class="sm:10/12 md:w-4/12 modal-inner flex flex-col flex-wrap">
-        
+    <div v-show="writeComment" class=" w-full h-full modal flex justify-center items-center">
+     <transition name="modal-animation-inner">
+        <div v-show="writeComment" class="sm:10/12 md:w-7/12 modal-inner flex flex-col flex-wrap">
           <slot />
         </div>
       </transition>
@@ -13,7 +12,7 @@
 
 <script>
 export default {
-  props: ['writeReview'],
+  props: ['writeComment'],
   setup(props, { emit }) {
     const close = () => {
       emit('close');
@@ -34,7 +33,7 @@ export default {
 .modal-inner {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
+  }
 .modal-animation-enter-active,
 .modal-animation-leave-active {
   transition: all 0.3s cubic-bezier(0.52, 0.02, 0.19, 1.02);
