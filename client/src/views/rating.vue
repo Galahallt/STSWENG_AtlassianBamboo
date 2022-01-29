@@ -468,8 +468,8 @@ export default {
       tagString: '',
       error: false,
       avgRating: 0,
-      shownReviews: null,
-      allReviews: null,
+      shownReviews: [],
+      allReviews: [],
       emptyReviews: null,
     });
     const router = useRoute();
