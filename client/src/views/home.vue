@@ -456,7 +456,7 @@
           </div>
         </div>
         <div>
-          <div class="flex flex-row-reverse">
+          <div class="flex justify-center">
             <p
               class="
                 mt-20
@@ -474,8 +474,7 @@
               class="
                 px-6
                 py-2
-                mt-80
-                mr-4
+                mt-10
                 text-white
                 bg-green-600
                 rounded-lg
@@ -561,8 +560,7 @@
           class="
             px-6
             py-2
-            mt-48
-            mr-4
+            mt-10
             text-white
             bg-green-600
             rounded-lg
@@ -570,7 +568,7 @@
             shadow-lg
             flex-shrink
             content-center
-            place-self-end
+            place-self-center
           "
           @click="addProfsCsv"
           :disabled="!state.csvFile"
