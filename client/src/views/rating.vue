@@ -178,10 +178,7 @@
         <!-- ADDING OF REVIEW TO PROF -->
         <div class="ml-auto flex">
           <div class="flex">
-            <writeCommentModal
-              :writeComment="showWriteCommentModal"
-              @close="toggleWriteCommentModal"
-            >
+            <writeCommentModal :writeComment="showWriteCommentModal">
               <div class="write-comment-container p-10 rounded-2xl">
                 <h1 class="text-xl text-center green-text mb-3">
                   REVIEW THIS INSTRUCTOR
@@ -205,7 +202,10 @@
                 ></textarea>
 
                 <div class="flex flex-row">
-                  <button class="cancel-button mr-auto rounded-md p-2">
+                  <button
+                    class="cancel-button mr-auto rounded-md p-2"
+                    @click="toggleWriteCommentModal"
+                  >
                     Cancel
                   </button>
                   <button class="submit-button ml-auto rounded-md p-2">
@@ -215,7 +215,7 @@
               </div>
             </writeCommentModal>
 
-            <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+            <writeModal :writeReview="showWriteModal">
               <div class="rate-container p-10 rounded-2xl">
                 <h1 class="text-xl text-center green-text mb-3">
                   RATE THIS INSTRUCTOR
@@ -242,7 +242,7 @@
                   <!-- buttons do not work -->
                   <button
                     class="cancel-button-rating mr-auto rounded-md p-2"
-                    @click="close"
+                    @click="toggleWriteModal"
                   >
                     Cancel
                   </button>
