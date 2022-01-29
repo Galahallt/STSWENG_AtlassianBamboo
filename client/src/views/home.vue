@@ -714,6 +714,18 @@
             class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
           />
         </div>
+        <div class="mt-6 mb-1">
+          <label class="text-white">COURSE CODE</label>
+        </div>
+        <div>
+          <input
+            id="filterDept"
+            name="filterDept"
+            type="text"
+            v-model.trim="state.filterDept"
+            class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
+          />
+        </div>
         <div class="mt-8">
           <label
             class="
