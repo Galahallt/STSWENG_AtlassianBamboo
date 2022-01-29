@@ -4,7 +4,7 @@
 
     <div class="grid grid-cols-2">
       <div class="col-span-1 ml-10 mt-6 text-2xl font-bold hello_color">
-        Hello, Paolo
+        Hello, {{ user.givenName }}
       </div>
       <div
         class="col-span-1 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
@@ -916,6 +916,12 @@ export default {
       filterCourse: '',
       filterCol: '',
       isAdministrator: false,
+    });
+
+    const user = reactive({
+      givenName: JSON.parse(localStorage.getItem('user')).givenName.split(
+        ' '
+      )[0],
       email: JSON.parse(localStorage.getItem('user')).email,
     });
 
@@ -1105,7 +1111,7 @@ export default {
     }
     async function getUserAdminAccess() {
       try {
-        const result = await api.getUserByEmail(state.email);
+        const result = await api.getUserByEmail(user.email);
         if (result) {
           state.isAdministrator = result.data.isAdministrator;
         }
@@ -1297,6 +1303,7 @@ export default {
       file,
       onFileUpload,
       filterProfs,
+      user,
     };
   },
 };
