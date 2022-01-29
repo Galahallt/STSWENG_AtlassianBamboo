@@ -1177,7 +1177,7 @@ export default {
     function isValidProf() {
       state.error =
         state.invalidEmail.includes(addProfData.email) &&
-        state.invalidEmail != null
+        state.invalidEmail.length !== 0
           ? 'Professor already exists.'
           : false;
     }
