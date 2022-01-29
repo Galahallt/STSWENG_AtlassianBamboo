@@ -1,5 +1,5 @@
 <template>
- <div class="comment-container py-3 px-6 my-3">
+ <div class="comment-container py-3 px-6 my-3 shadow-md">
 
    <div class="name-delete flex flex-row">
     <p class="comment-name text-xl green-text mr-auto ">{{ state.userName }}</p>
@@ -37,6 +37,12 @@
   color: white;
   background-color: var(--green);
   width: 90px;
+
+}
+
+.delete-btn:hover{
+  cursor: pointer;
+  transform: scale(1.05);
 
 }
 </style>

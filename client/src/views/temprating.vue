@@ -1,91 +1,32 @@
-<template>
-  <div class="bg-gray-200 py-2" v-if="state.deleted == false">
-    <div class=""></div>
-    <div class="ml-8 text-blue-800 text font-bold">{{ state.userName }}</div>
-    <div class="grid grid-cols-10">
-      <div class="ml-8 col-span-9">
-        ({{ review.course_code }}) {{ review.review }}
-      </div>
-      <div class="ml-8 col-span-9">{{ review.review }}</div>
-      <div v-if="state.userID == state.loggedUser" class="mr-8 col-span-1">
-        <button
-          class="
-            px-4
-            py-2
-            text-white text-xs
-            bg-red-600
-            rounded-lg
-            hover:bg-gray-900
-          "
-          @click="deleteReview"
-        >
-          Delete
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<script>
-import { reactive, onMounted } from 'vue';
-import * as api from '../api';
-export default {
-  name: 'ProfReview',
-  props: {
-    review: {
-      type: Object,
-      required: true,
-    },
-  },
-  setup(props) {
-    const state = reactive({
-      deleted: false,
-      userName: null,
-      userID: null,
-      loggedUser: null,
-    });
-
-    async function loadUser() {
-      try {
-        const result = await api.getUserById(props.review.user_id);
-
-        if (result) {
-          state.userName = result.data.fullName;
-        }
-      } catch (err) {}
-    }
-
-    async function checkUser() {
-      try {
-        const email = JSON.parse(localStorage.getItem('user')).email;
-        const user = await api.getUserByEmail(email);
-        if (user) {
-          state.loggedUser = user.data.id;
-        }
-
-        state.userID = props.review.user_id;
-      } catch (err) {}
-    }
-
-    async function deleteReview() {
-      try {
-        console.log('-===========-');
-        console.log(props.review.id);
-
-        const res = await api.deleteReview(props.review.id);
-        if (res) {
-          state.deleted = true;
-          console.log(res);
-        }
-      } catch (err) {}
-    }
-
-    onMounted(() => {
-      loadUser();
-      checkUser();
-    });
-
-    return { state, deleteReview };
-  },
-};
-</script>
+ <writeModal :writeReview="showWriteModal" @close="toggleWriteModal">
+                      
+                          <div class="grid grid-rows-3">
+                            <div class="row-span-2 mt-4">
+                              <div class="flex justify-center">
+                                <!-- <vue3-star-ratings :disableClick="true" v-model="state.rating" /> -->
+                                <star-rating :star-size="50" :rounded-corners="true" :border-width="4" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]"></star-rating>
+                        
+                              </div>
+                              <div class="flex justify-center">
+                                <div>Numeric value:</div>
+                                <div class="ml-2">{{ state.rating }}</div>
+                              </div>
+                            </div>
+                            <p
+                              class="ml-10 text-red-500 manrope-bold text-left text-sm"
+                              v-if="state.error"
+                            >
+                              Error occured.
+                            </p>
+                            <div class="row-span-1 justify-self-center">
+                              <div class="">
+                                <button
+                                  class="px-6 py-2 mt-4 text-white bg-green-600 rounded-lg hover:bg-green-900 shadow-lg flex-shrink content-center"
+                                  @click="checkRating"
+                                >
+                                  Submit Rating
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                    </writeModal>

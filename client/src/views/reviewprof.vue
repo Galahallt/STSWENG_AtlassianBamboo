@@ -153,15 +153,10 @@ export default {
       prof_tags: null,
 
       comment: '',
-      course_code: '--Select Course Code--',
+      course_code: '',
       isCommentEmpty: false,
-      isSubjectCodeEmpty: false,
-
-      attempted: false,
-      comment_error: '',
-      code_error: '',
-
-      message: '',
+      isCourseCodeIncomplete: true,
+      isSubmitDisabled: true,
     });
 
     async function loadProf() {
@@ -178,46 +173,47 @@ export default {
     }
 
     async function addReview() {
-      state.attempted = true;
-
-      if (areFieldsValid()) {
         // TODO get instructor id, subject code, and comment and insert it to the DB
-        const email = JSON.parse(localStorage.getItem('user')).email;
-        const user = await api.getUserByEmail(email);
-        if (user) {
-          const review = {
-            user_id: user.data.id,
-            instructor_id: state.prof_id,
-            course_code: state.course_code,
-            review: state.comment,
-          };
-          console.log(review);
-          await api.addReview(review);
-          state.comment = '';
-          state.message = 'Success!';
-          redirect.push({ name: 'View Professor' });
-        }
-      } else {
-        if (state.comment.localeCompare('') == 0) {
-          state.isCommentEmpty = true;
-          state.comment_error = 'Please supply a comment!';
-        }
-        if (state.course_code.localeCompare('--Select Course Code--') == 0) {
-          state.isSubjectCodeEmpty = true;
-          state.code_error = 'Please enter a course code!';
-        }
+      const email = JSON.parse(localStorage.getItem('user')).email;
+      const user = await api.getUserByEmail(email);
+      if (user) {
+        const review = {
+          user_id: user.data.id,
+          instructor_id: state.prof_id,
+          course_code: state.course_code,
+          review: state.comment,
+        };
+        console.log(review);
+        await api.addReview(review);
+        state.comment = '';
+        state.message = 'Success!';
       }
     }
 
+    function checkCourseCode() {
+      if(state.course_code.length != 7) {
+        state.isCourseCodeIncomplete = true;
+        return true;
+      } else {
+        state.isCourseCodeIncomplete = false; 
+      }
+
+      return false;
+    }
+    function checkComment() {
+      if (state.comment.localeCompare('') == 0) {
+        state.isCommentEmpty = true;
+        return true;
+      }
+
+      return false;
+    }
     function areFieldsValid() {
-      if (
-        state.comment.localeCompare('') == 0 ||
-        state.course_code.localeCompare('--Select Course Code--') == 0
-      ) {
+      if (checkCourseCode() || checkComment()) {
+        state.isSubmitDisabled = true;
         return false;
       } else {
-        state.comment_error = '';
-        state.code_error = '';
+        state.isSubmitDisabled = false;
         return true;
       }
     }
