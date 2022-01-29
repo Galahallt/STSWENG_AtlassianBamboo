@@ -58,7 +58,14 @@
             <div
               class="flex md:px-9 flex-wrap relative tags-container max-w-full"
             >
-              <h1 class="course-tag text-lg p-2 m-1">{{ state.tagString }}</h1>
+              <h1
+                class="course-tag text-lg p-2 m-1"
+                v-for="code in prof.tags"
+                :value="code"
+                :key="code"
+              >
+                {{ code }}
+              </h1>
             </div>
           </div>
 

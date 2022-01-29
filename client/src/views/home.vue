@@ -4,7 +4,7 @@
 
     <div class="grid grid-cols-2">
       <div class="col-span-1 ml-10 mt-6 text-2xl font-bold hello_color">
-        Hello, {{ user.givenName }}
+        Hello, {{ user.firstName }}
       </div>
       <div
         class="col-span-1 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
@@ -949,7 +949,7 @@ export default {
     });
 
     const user = reactive({
-      givenName: JSON.parse(localStorage.getItem('user')).givenName.split(
+      firstName: JSON.parse(localStorage.getItem('user')).givenName.split(
         ' '
       )[0],
       email: JSON.parse(localStorage.getItem('user')).email,
