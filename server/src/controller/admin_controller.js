@@ -3,6 +3,8 @@ import InstructorService from '../service/instructor_service.js';
 import logger from '../logger/index.js';
 // get cloudinary for profile picture edit
 import cloudinary from '../config/cloudinary.js';
+// get uniqid for img name
+import uniqid from 'uniqid';
 
 const adminController = {
   getAdminList: async (req, res) => {
@@ -44,14 +46,20 @@ const adminController = {
 
   editProfessor: async (req, res) => {
     try {
+      const result = await cloudinary.v2.uploader.upload(req.file.path, {
+        public_id: `prof-${uniqid()}`,
+        folder: 'STSWENG-Atlassian',
+      });
+
       const editProf = {
-        id: req.body.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        college: req.body.college,
-        department: req.body.department,
-        status: req.body.status,
+        profilePicture: result.secure_url,
+        id: JSON.parse(JSON.stringify(req.body.id)),
+        firstName: JSON.parse(JSON.stringify(req.body.firstName)),
+        lastName: JSON.parse(JSON.stringify(req.body.lastName)),
+        email: JSON.parse(JSON.stringify(req.body.email)),
+        college: JSON.parse(JSON.stringify(req.body.college)),
+        department: JSON.parse(JSON.stringify(req.body.department)),
+        status: JSON.parse(JSON.stringify(req.body.status)),
       };
 
       const edit = await InstructorService.updateProfDetails(editProf);
@@ -59,6 +67,7 @@ const adminController = {
         return res.status(200).json({ message: 'Instructor edit successful' });
       }
     } catch (error) {
+      logger.error(error);
       return res.status(500).json({ message: 'Server Error' });
     }
   },

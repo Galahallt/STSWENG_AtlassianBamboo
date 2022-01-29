@@ -4,6 +4,13 @@ import mongoose from 'mongoose';
 
 const InstructorSchema = new mongoose.Schema(
   {
+    profilePicture: {
+      type: String,
+      required: true,
+      default:
+        'https://res.cloudinary.com/stsweng-profstopick/image/upload/v1643367810/blank-profile-circle_ssopod.png',
+    },
+
     id: {
       type: String,
       required: true,

@@ -15,18 +15,35 @@
           <img
             class="pt-5 rounded-full lg-shadow"
             style="width: 300px; height: 300px"
-            src="https://res.cloudinary.com/stsweng-profstopick/image/upload/v1643367810/blank-profile-circle_ssopod.png"
+            :src="placeholder.profilePicture"
           />
         </div>
 
         <br />
         <div class="ml-16">
-          <button
-            class="px-8 py-2 mt-4 text-white rounded"
-            style="background-color: #37b47e"
+          <input
+            id="image-file"
+            name="image-file"
+            type="file"
+            ref="file"
+            accept="image/*"
+            class="hidden"
+            @change="uploadImage"
+          />
+          <label
+            for="image-file"
+            class="
+              px-6
+              py-2
+              mt-4
+              text-white
+              bg-green-600
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+            "
+            >Upload Image</label
           >
-            Edit Profile
-          </button>
         </div>
       </div>
 
@@ -54,6 +71,7 @@
           class="input-text-field sm:w-16 md:w-32 lg:w-64"
           style="border-color: #546681; height: 30px; text-align: center"
           v-model.trim="profData.firstName"
+          :placeholder="placeholder.firstName"
           capitalize
         />
         <br />
@@ -66,6 +84,7 @@
           class="input-text-field sm:w-16 md:w-32 lg:w-64"
           style="border-color: #546681; height: 30px; text-align: center"
           v-model="profData.lastName"
+          :placeholder="placeholder.lastName"
           capitalize
         />
         <br />
@@ -79,6 +98,7 @@
           class="input-text-field sm:w-16 md:w-32 lg:w-64"
           style="border-color: #546681; height: 30px; text-align: center"
           v-model="profData.email"
+          :placeholder="placeholder.email"
           lowercase
         />
 
@@ -254,15 +274,13 @@
         <br />
         <br />
         <div>
-          <router-link :to="`/view/${profData.id}`">
-            <button
-              class="px-6 py-2 mt-4 text-white rounded"
-              style="background-color: #37b47e"
-              @click="editProf()"
-            >
-              Save
-            </button>
-          </router-link>
+          <button
+            class="px-6 py-2 mt-4 text-white rounded"
+            style="background-color: #37b47e"
+            @click="editProf()"
+          >
+            Save
+          </button>
           <router-link :to="`/view/${profData.id}`">
             <button
               class="
@@ -286,9 +304,9 @@
 </template>
 <script>
 import NavBar from '../components/NavBar.vue';
-import { reactive } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import * as api from '../api';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
   name: 'EditAdmin',
@@ -296,8 +314,23 @@ export default {
     NavBar,
   },
   setup() {
+    const file = ref(null);
     const router = useRoute();
+    const router2 = useRouter();
+
+    let state = reactive({
+      fileValidation: null,
+      imgFile: null,
+    });
+
+    let placeholder = reactive({
+      firstName: null,
+      lastName: null,
+      email: null,
+    });
+
     let profData = reactive({
+      profilePicture: null,
       id: router.params.profID,
       firstName: null,
       lastName: null,
@@ -307,20 +340,44 @@ export default {
       status: 'Choose One',
     });
 
+    onMounted(() => {
+      loadProf();
+    });
+
+    async function loadProf() {
+      try {
+        const result = await api.getProf(router.params.profID);
+        if (result) {
+          placeholder.profilePicture = result.data.profilePicture;
+          placeholder.firstName = result.data.firstName;
+          placeholder.lastName = result.data.lastName;
+          placeholder.email = result.data.email;
+          profData.college = result.data.college;
+          profData.department = result.data.department;
+          profData.status = result.data.status;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     async function editProf() {
       try {
-        const newInfo = {
-          id: profData.id,
-          firstName: profData.firstName,
-          lastName: profData.lastName,
-          email: profData.email,
-          college: profData.college,
-          department: profData.department,
-          status: profData.status,
-        };
+        const formData = new FormData();
+        formData.append('image-file', file.value.files[0]);
+        formData.append('id', profData.id);
+        formData.append('firstName', profData.firstName);
+        formData.append('lastName', profData.lastName);
+        formData.append('email', profData.email);
+        formData.append('college', profData.college);
+        formData.append('department', profData.department);
+        formData.append('status', profData.status);
+        console.log(formData);
+        console.log(file.value.files[0]);
 
-        const res = await api.editProf(newInfo);
+        const res = await api.editProf(formData);
         if (res) {
+          router2.push({ path: `/view/${profData.id}` });
           console.log('Update successful!');
         }
       } catch (err) {
@@ -328,9 +385,21 @@ export default {
       }
     }
 
+    function uploadImage() {
+      state.fileValidation = file.value.files.length == 0 ? false : true;
+      if (state.fileValidation) {
+        placeholder.profilePicture = URL.createObjectURL(file.value.files[0]);
+        console.log('file: ' + file.value.files[0].name);
+      }
+    }
+
     return {
+      file,
+      state,
+      placeholder,
       profData,
       editProf,
+      uploadImage,
     };
   },
 };

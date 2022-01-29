@@ -34,6 +34,7 @@ const instructorService = {
       { id: update.id },
       {
         $set: {
+          profilePicture: update.profilePicture,
           firstName: update.firstName,
           lastName: update.lastName,
           email: update.email,
