@@ -1114,17 +1114,25 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
-            state.shownProfs.push(res.data);
             state.shownProfs.sort(compareLastName);
+
             toggleAddProfModal();
+
+            if (state.allProfs.length !== 0) {
+              state.empty = false;
+            } else {
+              state.empty = true;
+            }
           }
           state.error = null;
         }
       } catch (error) {
         console.log(error);
         state.error = error.response.data.message;
-
-        state.invalidEmail.push(addProfData.email);
+        if (state.error === 'Professor already exists.') {
+          console.log('hello addprof');
+          state.invalidEmail.push(addProfData.email);
+        }
       }
     }
 
@@ -1203,7 +1211,13 @@ export default {
             for (let i = 0; i < res.data.length; i++) {
               state.allProfs.push(res.data[i]);
               state.shownProfs.push(res.data[i]);
-              state.shownProfs.sort(compareLastName);
+            }
+            state.shownProfs.sort(compareLastName);
+
+            if (state.allProfs.length !== 0) {
+              state.empty = false;
+            } else {
+              state.empty = true;
             }
           }
         }
