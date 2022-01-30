@@ -4,7 +4,7 @@
   "description": "- Product Owner & Scrum Master: Franchezka Cruz\r - Analysts: Paolo Montecillo, Vhino Ramos\r - Developers: Keil Finez, Paolo Espiritu, Vincent Ilagan \r - QAs: James Perez, Azriel Ortega",
   "main": "index.js",
   "scripts": {
-    "test": "cd server && npm install &&npm run test",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd server && npm install && npm run start"
   },
   "repository": {
