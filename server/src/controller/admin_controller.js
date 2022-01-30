@@ -1,5 +1,10 @@
 import UserService from '../service/user_service.js';
+import InstructorService from '../service/instructor_service.js';
 import logger from '../logger/index.js';
+// get cloudinary for profile picture edit
+import cloudinary from '../config/cloudinary.js';
+// get uniqid for img name
+import uniqid from 'uniqid';
 
 const adminController = {
   getAdminList: async (req, res) => {
