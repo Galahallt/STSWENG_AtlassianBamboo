@@ -10,22 +10,17 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
-
+  build:
+    name: Run Test Suites
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Yarn
-      working-directory: ./server
-    - uses: borales/actions-yarn@v2.3.0
-      with:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
+        with:
           cmd: install # will run `yarn install` command
-    - uses: borales/actions-yarn@v2.3.0
-      with:
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build # will run `yarn build` command
+      - uses: borales/actions-yarn@v2.3.0
+        with:
           cmd: test # will run `yarn test` command
