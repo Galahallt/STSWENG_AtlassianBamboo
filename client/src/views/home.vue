@@ -1333,13 +1333,16 @@ export default {
 
     // filter reviews of professor
     function filterProfs() {
+      console.log('filter');
       if (
-        state.filterDept === '' &&
+        (state.filterDept === '' || state.filterDept === 'Choose One') &&
         state.filterCourse === '' &&
-        state.filterCol === ''
+        (state.filterCol === '' || state.filterCourse === 'Choose One')
       ) {
         state.shownProfs = state.allProfs;
       } else {
+        state.filterProfs = state.allProfs;
+
         if (state.filterDept !== '' && state.filterDept !== 'Choose One') {
           state.shownProfs = computed(() => {
             return state.allProfs.filter((prof) => {
@@ -1350,22 +1353,25 @@ export default {
           });
         }
 
+        state.filterProfs = state.shownProfs;
+
         if (state.filterCol !== '' && state.filterCol !== 'Choose One') {
           state.shownProfs = computed(() => {
-            return state.allProfs.filter((prof) => {
+            return state.filterProfs.filter((prof) => {
               return (
                 prof.college.toUpperCase() === state.filterCol.toUpperCase()
               );
             });
           });
+        }
+        state.filterProfs = state.shownProfs;
 
-          if (state.filterCourse !== '') {
-            state.shownProfs = computed(() => {
-              return state.allProfs.filter((prof) => {
-                return prof.courses.includes(state.filterCourse.toUpperCase());
-              });
+        if (state.filterCourse !== '') {
+          state.shownProfs = computed(() => {
+            return state.filterProfs.filter((prof) => {
+              return prof.courses.includes(state.filterCourse.toUpperCase());
             });
-          }
+          });
         }
 
         state.filterProfs = state.shownProfs;
@@ -1382,6 +1388,7 @@ export default {
 
     // search professor
     function searchProfs() {
+      console.log('search');
       if (state.filterProfs.length === 0) {
         state.shownProfs = computed(() => {
           return state.allProfs.filter((prof) => {
@@ -1419,6 +1426,7 @@ export default {
 
     // clear filter values
     function clearFilter() {
+      console.log('clear');
       state.filterDept = 'Choose One';
       state.filterCourse = '';
       state.filterCol = 'Choose One';
@@ -1426,6 +1434,12 @@ export default {
       state.shownProfs = computed(() => {
         return state.allProfs;
       });
+
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+      }
     }
 
     return {
