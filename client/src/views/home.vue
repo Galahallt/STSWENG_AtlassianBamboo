@@ -1340,7 +1340,7 @@ export default {
       ) {
         state.shownProfs = state.allProfs;
       } else {
-        if (state.filterDept !== '') {
+        if (state.filterDept !== '' && state.filterDept !== 'Choose One') {
           state.shownProfs = computed(() => {
             return state.allProfs.filter((prof) => {
               return (
@@ -1350,7 +1350,7 @@ export default {
           });
         }
 
-        if (state.filterCol !== '') {
+        if (state.filterCol !== '' && state.filterCol !== 'Choose One') {
           state.shownProfs = computed(() => {
             return state.allProfs.filter((prof) => {
               return (
