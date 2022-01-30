@@ -5,6 +5,8 @@
     <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
       <!-- BACK BUTTON; may just add name/id here to be able to access the back page -->
       <router-link :to="`/home`">
+      
+      <div class="flex flex-row mb-5">
         <svg
           class="back-button"
           width="34"
@@ -17,6 +19,22 @@
             fill="#37B47E"
           />
         </svg>
+        <button 
+          class="edit-prof-button
+                rounded-lg
+                hover:bg-green-900
+                shadow-lg
+                ml-auto
+                flex flex-row
+                center
+                align-middle
+                p-2">
+            Edit Instructor 
+          </button>
+
+
+      </div>
+        
       </router-link>
 
       <!-- Professor info -->
@@ -387,6 +405,12 @@ body {
   background-color: var(--green);
   color: white;
   width: 100px;
+}
+.edit-prof-button{
+  background-color: var(--green);
+  color: white;
+  width: 130px;
+  text-align: center;
 }
 .cancel-button {
   background-color: white;
