@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       
-      - name: create env file
+      - name: Create .env file
         run: |
           touch .env
           echo MONGO_URI =${{ env.MONGO_URI }} >> .env
