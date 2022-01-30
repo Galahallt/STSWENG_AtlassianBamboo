@@ -43,22 +43,23 @@
         <br />
         <div class="flex">
           <div class="mr-4 font-bold">Course Code:</div>
-          <div>
-            <select
-              class="px-4"
-              v-model="state.course_code"
-            >
-              <option value="--Select Course Code--" selected>--Select Course Code--</option>
-              <option v-for="code in state.prof_tags" :value="code" :key="code">
-                {{ code }}
-              </option>              
-            </select>
-          </div>
+          <input
+            v-on:keyup="areFieldsValid"
+            v-model="state.course_code"
+            type="text"
+            style="border-radius: 10px; height: 30px; text-align: center"
+            minlength="7"
+            maxlength="7"
+            title="Field must be 7 characters long"
+            ref="course_code"
+          />
+          <p v-if="state.isCourseCodeIncomplete">*Must be 7 characters long</p>
         </div>
         <br />
         <br />
         <p class="font-bold">Comment</p>
         <textarea
+          v-on:keyup="areFieldsValid"
           v-model="state.comment"
           placeholder="Type your comment here"
           style="
@@ -68,42 +69,26 @@
             border-radius: 20px;
           "
         ></textarea>
-
-        <div v-if="state.attempted">
-          <h4
-            v-if="state.isCommentEmpty"
-            class="text-2l mt-2 font-bold text-center text-red-600"
-          >
-            {{ state.comment_error }}
-          </h4>
-          <h4 
-            v-if="state.isSubjectCodeEmpty"
-            class="text-2l mt-2 font-bold text-center text-red-600">
-            {{ state.code_error }}
-          </h4>
-        </div>
-        <div v-else>
-          <h4 class="mt-2"> </h4>
-          <h4 class="mt-2"> </h4>
-        </div>
-
         <br />
         <br />
         <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-          <button
-            @click="addReview"
-            class="
-              px-6
-              py-2
-              mt-4
-              text-white
-              bg-green-600
-              rounded-lg
-              hover:bg-gray-900
-            "
-          >
-            Publish
-          </button>
+          <router-link :to="`/view/${state.prof_id}`">
+            <button
+              @click="addReview"
+              class="
+                px-6
+                py-2
+                mt-4
+                text-white
+                bg-green-600
+                rounded-lg
+                hover:bg-gray-900
+              "
+              :disabled="state.isSubmitDisabled"
+            >
+              Publish
+            </button>
+          </router-link>
           <router-link :to="`/view/${state.prof_id}`">
             <button
               class="
@@ -153,15 +138,10 @@ export default {
       prof_tags: null,
 
       comment: '',
-      course_code: '--Select Course Code--',
+      course_code: '',
       isCommentEmpty: false,
-      isSubjectCodeEmpty: false,
-
-      attempted: false,
-      comment_error: '',
-      code_error: '',
-
-      message: '',
+      isCourseCodeIncomplete: true,
+      isSubmitDisabled: true,
     });
 
     async function loadProf() {
@@ -178,46 +158,49 @@ export default {
     }
 
     async function addReview() {
-      state.attempted = true;
-
-      if (areFieldsValid()) {
-        // TODO get instructor id, subject code, and comment and insert it to the DB
-        const email = JSON.parse(localStorage.getItem('user')).email;
-        const user = await api.getUserByEmail(email);
-        if (user) {
-          const review = {
-            user_id: user.data.id,
-            instructor_id: state.prof_id,
-            course_code: state.course_code,
-            review: state.comment,
-          };
-          console.log(review);
-          await api.addReview(review);
-          state.comment = '';
-          state.message = 'Success!';
-          redirect.push({ name: 'View Professor' });
-        }
-      } else {
-        if (state.comment.localeCompare('') == 0) {
-          state.isCommentEmpty = true;
-          state.comment_error = 'Please supply a comment!';
-        }
-        if (state.course_code.localeCompare('--Select Course Code--') == 0) {
-          state.isSubjectCodeEmpty = true;
-          state.code_error = 'Please enter a course code!';
-        }
+      // TODO get instructor id, subject code, and comment and insert it to the DB
+      const email = JSON.parse(localStorage.getItem('user')).email;
+      const user = await api.getUserByEmail(email);
+      if (user) {
+        const review = {
+          user_id: user.data.id,
+          instructor_id: state.prof_id,
+          course_code: state.course_code,
+          review: state.comment,
+        };
+        console.log(review);
+        await api.addReview(review);
+        state.comment = '';
+        state.message = 'Success!';
       }
     }
 
+    function checkCourseCode() {
+      if (state.course_code.length != 7) {
+        state.isCourseCodeIncomplete = true;
+        return true;
+      } else {
+        state.isCourseCodeIncomplete = false;
+      }
+
+      return false;
+    }
+
+    function checkComment() {
+      if (state.comment.localeCompare('') == 0) {
+        state.isCommentEmpty = true;
+        return true;
+      }
+
+      return false;
+    }
+
     function areFieldsValid() {
-      if (
-        state.comment.localeCompare('') == 0 ||
-        state.course_code.localeCompare('--Select Course Code--') == 0
-      ) {
+      if (checkCourseCode() || checkComment()) {
+        state.isSubmitDisabled = true;
         return false;
       } else {
-        state.comment_error = '';
-        state.code_error = '';
+        state.isSubmitDisabled = false;
         return true;
       }
     }
@@ -229,6 +212,7 @@ export default {
     return {
       state,
       addReview,
+      areFieldsValid,
     };
   },
 };

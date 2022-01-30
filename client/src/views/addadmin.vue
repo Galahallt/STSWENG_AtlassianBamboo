@@ -11,7 +11,7 @@
     "
   >
     <nav-bar />
-    <div v-if="state.isAdministrator">
+    <div>
       <div class="mt-40"></div>
       <div class="flex items-center justify-center">
         <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
@@ -59,7 +59,10 @@
               >
                 {{ state.message }}
               </h4>
-              <h4 v-else class="text-2l mt-2 font-bold text-center text-red-600">
+              <h4
+                v-else
+                class="text-2l mt-2 font-bold text-center text-green-600"
+              >
                 {{ state.message }}
               </h4>
             </template>
@@ -101,9 +104,6 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      Access Denied
-    </div>
   </div>
 </template>
 <script>
@@ -124,7 +124,7 @@ export default {
       message: '',
       error: false,
       isAdministrator: false,
-      email: JSON.parse(localStorage.getItem('user')).email,      
+      user_email: JSON.parse(localStorage.getItem('user')).email,
     });
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
@@ -150,20 +150,8 @@ export default {
         }
       }
     }
-    async function checkIfAdmin()
-    {
-      try {
-        const result = await api.getUserByEmail(state.email);
-        if(result) {
-          state.isAdministrator = result.data.isAdministrator;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    }    
-    onBeforeMount(() => {
-      checkIfAdmin();
-    });
+
+    onBeforeMount(() => {});
 
     return { state, addAdmin };
   },

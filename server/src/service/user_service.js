@@ -19,7 +19,7 @@ const UserService = {
   },
 
   updateAdministratorUser: async (email, flag) =>
-    User.updateOne({ email: email }, { $set: { isAdministrator: true } }),
+    User.updateOne({ email: email }, { $set: { isAdministrator: flag } }),
 };
 
 // export user service object

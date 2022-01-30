@@ -27,6 +27,9 @@ export const getProf = (profID) => API.get(`/professor/${profID}`);
 export const getAdminList = () => API.get('/admin/adminlist');
 export const postAddAdmin = (email) =>
   API.post('/admin/addadmin', { email: email });
+export const postRemoveAdmin = (email) =>
+  API.post('/admin/removeadmin', { email: email });
+export const editProf = (prof) => API.patch(`/admin/editprof`, prof);
 
 // rate api methods
 export const findRating = (rating) => API.post('/rating/findRating', rating);

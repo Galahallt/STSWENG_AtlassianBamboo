@@ -1,40 +1,9 @@
 <template>
   <transition name="modal-animation">
-    <div v-show="writeReview" class="modal flex justify-center items-center">
+    <div v-show="writeReview" class=" w-full h-full modal flex justify-center items-center">
       <transition name="modal-animation-inner">
-        <div v-show="writeReview" class="modal-inner flex flex-col">
-          <!-- modal header -->
-          <h1
-            class="
-              manrope-bold
-              absolute
-              top-2
-              left-2
-              px-2
-              text-green-600 text-left text-2xl
-            "
-          >
-            Add Rating
-          </h1>
-          <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
-          <!-- <i @click="close" class="far fa-times-circle"></i> -->
-
-          <!-- horizontal divider -->
-          <hr
-            class="
-              border-green-700
-              bg-primary-green
-              manrope-bold
-              border-solid border-2
-              mb-0.5
-              absolute
-              top-10
-              right-0
-              w-full
-              justify-center
-            "
-          />
-          <!-- write review content -->
+        <div v-show="writeReview" class="sm:10/12 md:w-4/12 modal-inner flex flex-col flex-wrap">
+        
           <slot />
         </div>
       </transition>
@@ -56,8 +25,6 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-  height: 100vh;
-  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -65,26 +32,8 @@ export default {
   transition-property: opacity;
 }
 .modal-inner {
-  position: relative;
-  max-width: 960px;
-  width: 20%;
-  height: 30%;
-  border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  background-color: #fff;
-  padding: 16px 16px;
-  .fa-times-circle {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #c52e14;
-    &:hover {
-      color: #0f4c81;
-    }
-  }
 }
 .modal-animation-enter-active,
 .modal-animation-leave-active {

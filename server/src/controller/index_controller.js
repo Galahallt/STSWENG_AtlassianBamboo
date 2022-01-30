@@ -36,6 +36,7 @@ const indexController = {
       }
     } catch (error) {
       logger.error(error);
+      return res.status(500).json({ message: 'Server Error' });
     }
   },
 };
