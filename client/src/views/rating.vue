@@ -542,6 +542,7 @@ export default {
           prof.rating = result.data.rating;
           prof.tags = result.data.courses;
           formatTags();
+          state.rating=1
           state.empty = false;
           console.log(prof.tags);
         }
