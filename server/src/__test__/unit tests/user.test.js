@@ -1,8 +1,13 @@
 /* eslint-disable node/no-unpublished-import */
 import request from 'supertest';
 import app from '../../app.js';
+import mongoose from 'mongoose';
 
 describe('Test User Routes', () => {
+  afterAll(async () => {
+    mongoose.disconnect();
+  });
+
   it('user id does not exist, should respond with 400 status code', async () => {
     const response = await request(app).post('/user/getUserById').send({
       id: 'asdasdsadasdasd',
