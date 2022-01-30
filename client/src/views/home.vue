@@ -1333,7 +1333,6 @@ export default {
 
     // filter reviews of professor
     function filterProfs() {
-      console.log('filter');
       if (
         (state.filterDept === '' || state.filterDept === 'Choose One') &&
         state.filterCourse === '' &&
@@ -1388,7 +1387,6 @@ export default {
 
     // search professor
     function searchProfs() {
-      console.log('search');
       if (state.filterProfs.length === 0) {
         state.shownProfs = computed(() => {
           return state.allProfs.filter((prof) => {
@@ -1426,7 +1424,6 @@ export default {
 
     // clear filter values
     function clearFilter() {
-      console.log('clear');
       state.filterDept = 'Choose One';
       state.filterCourse = '';
       state.filterCol = 'Choose One';
