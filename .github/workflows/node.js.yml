@@ -41,6 +41,7 @@ jobs:
           touch .env
           echo MONGO_URI=${{ secrets.MONGO_URI }} >> .env
           cat .env
+        working-directory: server
         
       - name: Run unit tests
         run: yarn test
