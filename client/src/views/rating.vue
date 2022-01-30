@@ -23,7 +23,7 @@
       <div class="prof-info-container flex flex-col md:flex-row">
         <!-- update src of img of prof -->
         <img
-          src="../assets/woman.jpg"
+          v-bind:src="prof.profPic"
           class="prof-pic object-cover center shadow-lg"
         />
         <div
@@ -475,6 +475,8 @@ export default {
     });
     const router = useRoute();
     const prof = reactive({
+      profPic:
+        'https://res.cloudinary.com/stsweng-profstopick/image/upload/v1643367810/blank-profile-circle_ssopod.png',
       prof_id: router.params.profID,
       profLast: null,
       profFirst: null,
@@ -505,6 +507,7 @@ export default {
       try {
         const result = await api.getProf(router.params.profID);
         if (result) {
+          prof.profPic = result.data.profilePicture;
           prof.profLast = result.data.lastName;
           prof.profFirst = result.data.firstName;
           prof.email = result.data.email;
