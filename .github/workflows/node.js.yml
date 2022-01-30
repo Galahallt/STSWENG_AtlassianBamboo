@@ -14,10 +14,12 @@ jobs:
     name: Run Test Suites
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test # will run `yarn test` command
+    - uses: actions/checkout@v2 
+    - name: Set up Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x, 14.x, 16.x
+    - run: yarn install
+      working-directory: /server
+    - run: yarn test
+      working-directory: /server
