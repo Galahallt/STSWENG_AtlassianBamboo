@@ -25,10 +25,6 @@ jobs:
           cd ./server
           npm install -g yarn
       - name: Install dependencies
-        run: |
-          cd ./server
-          yarn install
+        run: yarn install
       - name: Run test suites    
-        run: |
-          cd ./server
-          yarn test
+        run: yarn test
