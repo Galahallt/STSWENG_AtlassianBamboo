@@ -635,7 +635,7 @@
         </multipleAddProfModal>
         <div>
           <!-- Search bar -->
-          <div class="relative mx-auto text-gray-600 lg:block hidden mt-4">
+          <div class="text-gray-600 lg:block hidden mt-4">
             <input
               class="
                 border-2 border-gray-300
@@ -645,7 +645,7 @@
                 pr-8
                 rounded-lg
                 text-sm
-                w-96
+                w-80
                 focus:outline-none
               "
               type="search"
@@ -654,9 +654,9 @@
               v-model.trim="state.search"
               @keyup="searchProfs"
             />
-            <button type="submit" class="absolute right-0 top-0 mt-3 mr-2">
+            <button type="submit">
               <svg
-                class="text-green-600 h-4 w-4 fill-current"
+                class="text-green-600 h-4 w-4 fill-current -ml-7"
                 xmlns="http://www.w3.org/2000/svg"
                 version="1.1"
                 id="Capa_1"
