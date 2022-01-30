@@ -7,7 +7,6 @@ const userController = {
   // get user information by using user id
   getUserById: async (req, res) => {
     try {
-      logger.info('uc: ' + req.body.id);
       const result = await UserService.getUser({ id: req.body.id });
       if (result) {
         return res.status(200).json(result);
@@ -21,7 +20,6 @@ const userController = {
   // get user information by using user email
   getUserByEmail: async (req, res) => {
     try {
-      logger.info('uc: ' + req.body.email);
       const result = await UserService.getUser({ email: req.body.email });
       if (result) {
         return res.status(200).json(result);

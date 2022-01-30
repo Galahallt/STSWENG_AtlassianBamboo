@@ -1,7 +1,9 @@
 <template>
   <router-link :to="`/view/${prof.id}`">
     <div class="overscroll-auto">
-      <div class="grid grid-cols-10 bg-gray-100 gap-y-2 border border-gray-200">
+      <div
+        class="grid grid-cols-9 bg-white gap-y-2 border py-2 hover:bg-gray-200"
+      >
         <!-- insert professors here -->
         <div class="text-black px-1 col-span-2">
           {{ prof.lastName + ',  ' + prof.firstName }}

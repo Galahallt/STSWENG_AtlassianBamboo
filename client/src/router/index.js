@@ -6,25 +6,9 @@ import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import ViewProf from '../views/rating.vue';
 import ReviewProf from '../views/reviewprof.vue';
-import EditProf from '../views/editadmin.vue';
+import EditProf from '../views/editProf.vue';
 
 const routes = [
-  {
-    path: '/addadmin',
-    name: 'Add Admin',
-    component: AddAdmin,
-    meta: {
-      requiresAdmin: true,
-    },
-  },
-  {
-    path: '/adminlist',
-    name: 'Admin List',
-    component: AdminList,
-    meta: {
-      requiresAdmin: true,
-    },
-  },
   {
     path: '/home',
     name: 'Home',
@@ -65,6 +49,25 @@ const routes = [
       requiresAuth: true,
     },
   },
+<<<<<<< HEAD
+=======
+  {
+    path: '/addadmin',
+    name: 'Add Admin',
+    component: AddAdmin,
+    meta: {
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/adminlist',
+    name: 'Admin List',
+    component: AdminList,
+    meta: {
+      requiresAdmin: true,
+    },
+  },
+>>>>>>> frontend-fix
 ];
 
 const router = createRouter({
@@ -77,7 +80,13 @@ router.beforeEach(async (to, from, next) => {
   const hideForAuth = to.matched.some((record) => record.meta.hideForAuth);
   const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user'));
-  const dbUser = await api.getUserByEmail(user.email);
+  var dbUser;
+  
+  if (user) {
+    dbUser = await api.getUserByEmail(user.email);
+    console.log(dbUser);
+  }
+
   if (requiresAuth) {
     if (user != null) {
       next();

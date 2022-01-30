@@ -48,15 +48,12 @@
             v-model="state.course_code"
             type="text"
             style="border-radius: 10px; height: 30px; text-align: center"
-            minlength="7" maxlength="7"
+            minlength="7"
+            maxlength="7"
             title="Field must be 7 characters long"
             ref="course_code"
           />
-          <p
-            v-if="state.isCourseCodeIncomplete"
-          >
-            *Must be 7 characters long
-          </p>
+          <p v-if="state.isCourseCodeIncomplete">*Must be 7 characters long</p>
         </div>
         <br />
         <br />
@@ -161,7 +158,7 @@ export default {
     }
 
     async function addReview() {
-        // TODO get instructor id, subject code, and comment and insert it to the DB
+      // TODO get instructor id, subject code, and comment and insert it to the DB
       const email = JSON.parse(localStorage.getItem('user')).email;
       const user = await api.getUserByEmail(email);
       if (user) {
@@ -177,16 +174,18 @@ export default {
         state.message = 'Success!';
       }
     }
+
     function checkCourseCode() {
-      if(state.course_code.length != 7) {
+      if (state.course_code.length != 7) {
         state.isCourseCodeIncomplete = true;
         return true;
       } else {
-        state.isCourseCodeIncomplete = false; 
+        state.isCourseCodeIncomplete = false;
       }
 
       return false;
     }
+
     function checkComment() {
       if (state.comment.localeCompare('') == 0) {
         state.isCommentEmpty = true;
@@ -195,6 +194,7 @@ export default {
 
       return false;
     }
+
     function areFieldsValid() {
       if (checkCourseCode() || checkComment()) {
         state.isSubmitDisabled = true;
@@ -212,7 +212,7 @@ export default {
     return {
       state,
       addReview,
-      areFieldsValid
+      areFieldsValid,
     };
   },
 };
