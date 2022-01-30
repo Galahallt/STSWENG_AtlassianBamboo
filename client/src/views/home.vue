@@ -651,6 +651,8 @@
               type="search"
               name="search"
               placeholder="Search for an instructor"
+              v-model.trim="state.search"
+              @keyup="searchProfs"
             />
             <button type="submit" class="absolute right-0 top-0 mt-3 mr-2">
               <svg
@@ -686,7 +688,7 @@
           <label class="text-white">COLLEGE</label>
         </div>
         <div>
-          <select class="rounded-lg w-44 h-8 pl-2">
+          <select class="rounded-lg w-44 h-8 pl-2" v-model="state.filterCol">
             <option selected disabled hidden>Choose One</option>
             <option value="BAGCED">BAGCED</option>
             <option value="CCS">CCS</option>
@@ -699,75 +701,142 @@
             <option value="N/A">N/A</option>
           </select>
         </div>
-        <!-- <div>
-          <select
-            name="college"
-            id="college"
-            class="rounded-md border-gray-500 college_select"
-            :class="{
-              'border-red-500': v.college.$error,
-            }"
-            v-model="addProfData.college"
-          >
-            <option selected disabled hidden>Choose One</option>
-            <option value="BAGCED">BAGCED</option>
-            <option value="CCS">CCS</option>
-            <option value="COL">COL</option>
-            <option value="CLA">CLA</option>
-            <option value="COS">COS</option>
-            <option value="GCOE">GCOE</option>
-            <option value="RVR-COB">RVR-COB</option>
-            <option value="SOE">SOE</option>
-            <option value="N/A">N/A</option>
-          </select>
-          <p
-            class="
-              ml-16
-              text-red-500
-              manrope-bold
-              text-left text-sm
-              college_error
-            "
-            v-if="v.college.$error"
-          >
-            {{ v.college.$errors[0].$message }}
-          </p>
-        </div> -->
-        <!-- <div>
-          <input
-            id="filterCol"
-            name="filterCol"
-            type="text"
-            v-model.trim="state.filterCol"
-            class="manrope-regular rounded-lg"
-          />
-        </div> -->
         <div class="mt-6 mb-1">
           <label class="text-white">DEPARTMENT</label>
         </div>
         <div>
-          <input
-            id="filterDept"
-            name="filterDept"
-            type="text"
-            v-model.trim="state.filterDept"
-            class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
-          />
+          <select class="rounded-lg w-44 h-8 pl-2" v-model="state.filterDept">
+            <option selected disabled hidden>Choose One</option>
+            <!-- CCS -->
+            <optgroup
+              v-if="state.filterCol === 'CCS'"
+              label="College of Computer Studies"
+            >
+              <option value="Information Technology">
+                Information Technology
+              </option>
+              <option value="Computer Technology">Computer Technology</option>
+              <option value="Software Technology">Software Technology</option>
+            </optgroup>
+
+            <!-- BAGCED -->
+            <optgroup
+              v-if="state.filterCol === 'BAGCED'"
+              label="Brother Andrew Gonzales College of Education"
+            >
+              <option value="Counseling and Educational Psychology">
+                Counseling and Educational Psychology
+              </option>
+              <option value="Educational Leadership and Management">
+                Educational Leadership and Management
+              </option>
+              <option value="English and Applied Linguistics">
+                English and Applied Linguistics
+              </option>
+              <option value="Physical Education">Physical Education</option>
+              <option value="Science Education">Science Education</option>
+            </optgroup>
+
+            <!-- RVR-COB -->
+            <optgroup
+              v-if="state.filterCol === 'RVR-COB'"
+              label="Ramon V. del Rosario College of Business"
+            >
+              <option value="Accountancy">Accountancy</option>
+              <option value="Commercial Law">Commercial Law</option>
+              <option value="Decision Sciences and Innovation">
+                Decision Sciences and Innovation
+              </option>
+              <option value="Management of Financial Institutions">
+                Management of Financial Institutions
+              </option>
+              <option value="Management and Organization">
+                Management and Organization
+              </option>
+              <option value="Marketing Management">Marketing Management</option>
+            </optgroup>
+
+            <!-- CLA -->
+            <optgroup
+              v-if="state.filterCol === 'CLA'"
+              label="College of Liberal Arts"
+            >
+              <option value="Behavioral Science">Behavioral Science</option>
+              <option value="Communication">Communication</option>
+              <option value="Filipino">Filipino</option>
+              <option value="History">History</option>
+              <option value="International Studies">
+                International Studies
+              </option>
+              <option value="Literature">Literature</option>
+              <option value="Philosophy">Philosophy</option>
+              <option value="Political Science">Political Science</option>
+              <option value="Psychology">Psychology</option>
+              <option value="Theology and Religious Education">
+                Theology and Religious Education
+              </option>
+            </optgroup>
+
+            <!-- COS -->
+            <optgroup
+              v-if="state.filterCol === 'COS'"
+              label="College of Science"
+            >
+              <option value="Biology">Biology</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Physics">Physics</option>
+              <option value="Mathematics">Mathematics</option>
+            </optgroup>
+
+            <!-- SOE  -->
+            <optgroup
+              v-if="state.filterCol === 'SOE'"
+              label="School of Economics"
+            >
+              <option value="School of Economics">School of Economics</option>
+            </optgroup>
+
+            <!-- GCOE -->
+            <optgroup
+              v-if="state.filterCol === 'GCOE'"
+              label="Gokongwei College of Engineering"
+            >
+              <option value="Chemical Engineering">Chemical Engineering</option>
+              <option value="Civil Engineering">Civil Engineering</option>
+              <option value="Electronics and Communications Engineering">
+                Electronics and Communications Engineering
+              </option>
+              <option value="Mechanical Engineering">
+                Mechanical Engineering
+              </option>
+              <option value="Industrial Engineering">
+                Industrial Engineering
+              </option>
+              <option value="Manufacturing Engineering and Management">
+                Manufacturing Engineering and Management
+              </option>
+            </optgroup>
+
+            <!-- COL -->
+            <optgroup v-if="state.filterCol === 'COL'" label="College of Law">
+              <option value="College of Law">College of Law</option>
+            </optgroup>
+          </select>
         </div>
         <div class="mt-6 mb-1">
           <label class="text-white">COURSE CODE</label>
         </div>
         <div>
           <input
-            id="filterDept"
-            name="filterDept"
+            id="filterCourse"
+            name="filterCourse"
             type="text"
-            v-model.trim="state.filterDept"
+            v-model.trim="state.filterCourse"
             class="manrope-regular rounded-lg w-44 h-8 pl-2 pr-2"
           />
         </div>
         <div class="mt-8">
-          <label
+          <button
             class="
               px-8
               py-2
@@ -778,11 +847,13 @@
               hover:bg-gray-200
               shadow-lg
             "
-            >Submit</label
+            @click="filterProfs"
           >
+            Submit
+          </button>
         </div>
         <div class="mt-8">
-          <label
+          <button
             class="
               px-10
               py-2
@@ -793,38 +864,11 @@
               hover:bg-gray-200
               shadow-lg
             "
-            >Clear</label
+            @click="clearFilter"
           >
-        </div>
-        <!-- <div>
-          <label>Course</label>
-        </div>
-        <div>
-          <input
-            id="filterCourse"
-            name="filterCourse"
-            type="text"
-            v-model.trim="state.filterCourse"
-            class="manrope-regular"
-          />
-        </div>
-        <div>
-          <button
-            class="
-              px-6
-              py-2
-              mt-4
-              text-white
-              bg-green-600
-              rounded-lg
-              hover:bg-green-900
-              shadow-lg
-            "
-            @click="filterProfs"
-          >
-            Filter Professors
+            Clear
           </button>
-        </div> -->
+        </div>
       </div>
 
       <br />
@@ -980,7 +1024,15 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
+import {
+  ref,
+  watch,
+  nextTick,
+  onMounted,
+  reactive,
+  onBeforeMount,
+  computed,
+} from 'vue';
 
 export default {
   name: 'Home',
@@ -999,13 +1051,15 @@ export default {
       empty: null,
       allProfs: [],
       shownProfs: [],
+      filterProfs: [],
       fileExisting: null,
       csvFile: null,
       profExisting: null,
-      filterDept: '',
+      filterDept: 'Choose One',
       filterCourse: '',
-      filterCol: '',
+      filterCol: 'Choose One',
       isAdministrator: false,
+      search: null,
     });
 
     const user = reactive({
@@ -1267,117 +1321,6 @@ export default {
       }
     }
 
-    // filter reviews of professor
-    function filterProfs() {
-      const filteredProfs = [];
-      if (
-        state.filterDept === '' &&
-        state.filterCourse === '' &&
-        state.filterCol === ''
-      ) {
-        console.log('hi');
-        state.shownProfs = state.allProfs;
-        console.log(state.shownProfs);
-      } else if (
-        state.filterDept !== '' &&
-        state.filterCourse !== '' &&
-        state.filterCol !== ''
-      ) {
-        if (state.filterDept !== '') {
-          for (let i = 0; i < state.allProfs.length; i++) {
-            if (state.allProfs[i].department === titleCase(state.filterDept)) {
-              filteredProfs.push(state.allProfs[i]);
-            }
-          }
-        }
-
-        if (state.filterCourse !== '') {
-          for (let i = 0; i < state.allProfs.length; i++) {
-            if (
-              state.allProfs[i].courses.includes(
-                state.filterCourse.toUpperCase()
-              )
-            ) {
-              filteredProfs.push(state.allProfs[i]);
-            }
-          }
-        }
-
-        if (state.filterCol !== '') {
-          for (let i = 0; i < state.allProfs.length; i++) {
-            if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
-              filteredProfs.push(state.allProfs[i]);
-            }
-          }
-        }
-      } else if (state.filterDept !== '' && state.filterCourse !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (
-            state.allProfs[i].department === titleCase(state.filterDept) &&
-            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
-          ) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      } else if (state.filterDept !== '' && state.filterCol !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (
-            state.allProfs[i].department === titleCase(state.filterDept) &&
-            state.allProfs[i].college === state.filterCol.toUpperCase()
-          ) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      } else if (state.filterCol !== '' && state.filterCourse !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (
-            state.allProfs[i].college === state.filterCol.toUpperCase() &&
-            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
-          ) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      } else if (state.filterDept !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (state.allProfs[i].department === titleCase(state.filterDept)) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      } else if (state.filterCourse !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (
-            state.allProfs[i].courses.includes(state.filterCourse.toUpperCase())
-          ) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      } else if (state.filterCol !== '') {
-        for (let i = 0; i < state.allProfs.length; i++) {
-          if (state.allProfs[i].college === state.filterCol.toUpperCase()) {
-            filteredProfs.push(state.allProfs[i]);
-          }
-        }
-      }
-
-      if (
-        state.filterDept !== '' ||
-        state.filterCourse !== '' ||
-        state.filterCol !== ''
-      ) {
-        state.shownProfs = filteredProfs;
-      }
-
-      state.shownProfs.sort(compareLastName);
-
-      console.log('shownProfs length: ' + state.shownProfs.length);
-      if (state.shownProfs.length === 0) {
-        state.empty = true;
-      } else {
-        state.empty = false;
-        console.log('helloo');
-      }
-    }
-
     function compareLastName(a, b) {
       if (a.lastName < b.lastName) {
         return -1;
@@ -1388,8 +1331,107 @@ export default {
       return 0;
     }
 
+    // filter reviews of professor
+    function filterProfs() {
+      if (
+        state.filterDept === '' &&
+        state.filterCourse === '' &&
+        state.filterCol === ''
+      ) {
+        state.shownProfs = state.allProfs;
+      } else {
+        if (state.filterDept !== '') {
+          state.shownProfs = computed(() => {
+            return state.allProfs.filter((prof) => {
+              return (
+                prof.department.toUpperCase() === state.filterDept.toUpperCase()
+              );
+            });
+          });
+        }
+
+        if (state.filterCol !== '') {
+          state.shownProfs = computed(() => {
+            return state.allProfs.filter((prof) => {
+              return (
+                prof.college.toUpperCase() === state.filterCol.toUpperCase()
+              );
+            });
+          });
+
+          if (state.filterCourse !== '') {
+            state.shownProfs = computed(() => {
+              return state.allProfs.filter((prof) => {
+                return prof.courses.includes(state.filterCourse.toUpperCase());
+              });
+            });
+          }
+        }
+
+        state.filterProfs = state.shownProfs;
+      }
+
+      state.shownProfs.sort(compareLastName);
+
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+      }
+    }
+
+    // search professor
+    function searchProfs() {
+      if (state.filterProfs.length === 0) {
+        state.shownProfs = computed(() => {
+          return state.allProfs.filter((prof) => {
+            const fullName = (
+              prof.firstName +
+              ' ' +
+              prof.lastName
+            ).toUpperCase();
+
+            return fullName.match(state.search.toUpperCase());
+          });
+        });
+      } else {
+        state.shownProfs = computed(() => {
+          return state.filterProfs.filter((prof) => {
+            const fullName = (
+              prof.firstName +
+              ' ' +
+              prof.lastName
+            ).toUpperCase();
+
+            return fullName.match(state.search.toUpperCase());
+          });
+        });
+      }
+
+      state.shownProfs.sort(compareLastName);
+
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+      }
+    }
+
+    // clear filter values
+    function clearFilter() {
+      state.filterDept = 'Choose One';
+      state.filterCourse = '';
+      state.filterCol = 'Choose One';
+      state.filterProfs = [];
+      state.shownProfs = computed(() => {
+        return state.allProfs;
+      });
+    }
+
     return {
       state,
+      searchProfs,
+      clearFilter,
       toggleAddProfModal,
       toggleMultipleAddProfModal,
       showAddProfModal,
