@@ -74,7 +74,7 @@
           <div class="rating-cont flex flex-row mt-6">
             <h1 class="text-2xl rating-text">Rating:</h1>
             <h1 class="text-2xl md:pl-10 px-2 green-text">
-              {{ state.rating }}
+              {{ prof.rating }}
             </h1>
 
             <svg
@@ -236,7 +236,7 @@
                 </p>
 
                 <star-rating
-                  :rating="state.rating"
+                  v-model:rating="state.rating"
                   :star-size="40"
                   :rounded-corners="true"
                   :border-width="4"
@@ -277,6 +277,7 @@
             v-for="review in state.shownReviews"
             :key="review.id"
             :review="review"
+            @deleteReview="deleteReview(review.id)"
           />
         </div>
       </div>
@@ -617,6 +618,7 @@ export default {
     // update rating in backend
     async function updateRating() {
       try {
+        console.log(state.rating);
         const email = JSON.parse(localStorage.getItem('user')).email;
         const instructor = {
           rating: state.rating,
@@ -636,6 +638,20 @@ export default {
         console.log(err.response.data);
       }
     }
+
+    async function deleteReview(id) {
+      try {
+        console.log('-===========-');
+        console.log(id);
+
+        const res = await api.deleteReview(id);
+        if (res) {
+          loadReviews();
+          console.log(res);
+        }
+      } catch (err) {}
+    }
+
     // declare modal
     const showWriteModal = ref(false);
     const showWriteCommentModal = ref(false);
@@ -656,6 +672,7 @@ export default {
       toggleWriteModal,
       toggleWriteCommentModal,
       filterReviews,
+      deleteReview,
     };
   },
 };
