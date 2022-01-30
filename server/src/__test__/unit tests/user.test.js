@@ -12,15 +12,18 @@ describe('Test User Routes', () => {
     const response = await request(app).post('/user/getUserById').send({
       id: 'asdasdsadasdasd',
     });
+
     expect(response.statusCode).toBe(400);
   });
 
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/user/getUserById')
+
       .send({
         id: new Error('Server Error'),
       });
+
     expect(response.statusCode).toBe(500);
   });
 
@@ -28,15 +31,18 @@ describe('Test User Routes', () => {
     const response = await request(app).post('/user/getUserByEmail').send({
       email: 'pogi@dlsu.edu.ph',
     });
+
     expect(response.statusCode).toBe(400);
   });
 
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/user/getUserByEmail')
+
       .send({
         email: new Error('Server Error'),
       });
+
     expect(response.statusCode).toBe(500);
   });
 });
