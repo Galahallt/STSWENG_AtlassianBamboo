@@ -10,22 +10,6 @@ import EditProf from '../views/editProf.vue';
 
 const routes = [
   {
-    path: '/addadmin',
-    name: 'Add Admin',
-    component: AddAdmin,
-    meta: {
-      requiresAdmin: true,
-    },
-  },
-  {
-    path: '/adminlist',
-    name: 'Admin List',
-    component: AdminList,
-    meta: {
-      requiresAdmin: true,
-    },
-  },
-  {
     path: '/home',
     name: 'Home',
     component: Home,
@@ -65,6 +49,22 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: '/addadmin',
+    name: 'Add Admin',
+    component: AddAdmin,
+    meta: {
+      requiresAdmin: true,
+    },
+  },
+  {
+    path: '/adminlist',
+    name: 'Admin List',
+    component: AdminList,
+    meta: {
+      requiresAdmin: true,
+    },
+  },
 ];
 
 const router = createRouter({
@@ -77,9 +77,11 @@ router.beforeEach(async (to, from, next) => {
   const hideForAuth = to.matched.some((record) => record.meta.hideForAuth);
   const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user'));
+  var dbUser;
 
   if (user) {
-    const dbUser = await api.getUserByEmail(user.email);
+    dbUser = await api.getUserByEmail(user.email);
+    console.log(dbUser);
   }
 
   if (requiresAuth) {
@@ -95,7 +97,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else if (requiresAdmin) {
-    if (dbUser.isAdministrator) {
+    if (dbUser.data.isAdministrator) {
       next();
     } else {
       next({ name: 'Home' });
