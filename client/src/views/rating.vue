@@ -22,6 +22,7 @@
 
         <router-link :to="`/editprof/${prof.prof_id}`" class="ml-auto">
           <button
+            v-if="state.isUserAdmin"
             class="
               edit-prof-button
               rounded-lg
@@ -498,6 +499,7 @@ export default {
       shownReviews: [],
       allReviews: [],
       emptyReviews: null,
+      isUserAdmin: null,
     });
     const router = useRoute();
     const prof = reactive({
@@ -542,7 +544,7 @@ export default {
           prof.rating = result.data.rating;
           prof.tags = result.data.courses;
           formatTags();
-          state.rating=1
+          state.rating = 1;
           state.empty = false;
           console.log(prof.tags);
         }
@@ -571,10 +573,23 @@ export default {
         state.emptyReviews = false;
       }
     }
+    async function loadUserInfo() {
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const res = await api.getUserByEmail(email);
+        if (res) {
+          state.isUserAdmin = res.data.isAdministrator;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     // load after loading
     onMounted(() => {
       loadProf();
       loadReviews();
+      loadUserInfo();
     });
     // tag formatting for printing
     function formatTags() {
@@ -703,6 +718,7 @@ export default {
       toggleWriteCommentModal,
       filterReviews,
       deleteReview,
+      loadUserInfo,
     };
   },
 };
