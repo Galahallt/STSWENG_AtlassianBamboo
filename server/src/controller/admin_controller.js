@@ -45,23 +45,7 @@ const adminController = {
     }
   },
 
-<<<<<<< HEAD
-  /* edit professor info here
-  editProfessor: async (req, res) => {
-    try {
-      const id = req.body.id;
-      const editProf = {
-        firstName: req.body.fName,
-        lastName: req.body.lName,
-        email: req.body.email,
-        college: req.body.college,
-        department: req.body.dep,
-        status: req.body.status,
-        courses: req.body.courses,
-      }
-
-      const edit = await UserService.updateProfDetails(editProf);
-=======
+  // edit professor info here
   editProfessor: async (req, res) => {
     try {
       const result = await cloudinary.v2.uploader.upload(req.file.path, {
@@ -81,24 +65,13 @@ const adminController = {
       };
 
       const edit = await InstructorService.updateProfDetails(editProf);
->>>>>>> frontend-fix
       if (edit) {
         return res.status(200).json({ message: 'Instructor edit successful' });
       }
     } catch (error) {
-<<<<<<< HEAD
-      return res.status(500).json({ message: 'Server Error' });
-    }
-  }
-
-
-  */
-=======
-      logger.error(error);
       return res.status(500).json({ message: 'Server Error' });
     }
   },
->>>>>>> frontend-fix
 };
 
 export default adminController;

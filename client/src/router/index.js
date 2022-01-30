@@ -49,8 +49,6 @@ const routes = [
       requiresAuth: true,
     },
   },
-<<<<<<< HEAD
-=======
   {
     path: '/addadmin',
     name: 'Add Admin',
@@ -67,7 +65,6 @@ const routes = [
       requiresAdmin: true,
     },
   },
->>>>>>> frontend-fix
 ];
 
 const router = createRouter({
@@ -81,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
   const requiresAdmin = to.matched.some((record) => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user'));
   var dbUser;
-  
+
   if (user) {
     dbUser = await api.getUserByEmail(user.email);
     console.log(dbUser);
