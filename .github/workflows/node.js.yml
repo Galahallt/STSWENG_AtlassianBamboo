@@ -20,9 +20,8 @@ jobs:
       - uses: actions/checkout@v2 
       - name: Set up Node.js
         uses: actions/setup-node@v1
-      - run: npm install -g yarn
-        working-directory: ./server
-      - run: yarn install
-        working-directory: ./server
-      - run: yarn test
-        working-directory: ./server
+      - run: |
+          cd server
+          npm install -g yarn
+          yarn install
+          yarn test
