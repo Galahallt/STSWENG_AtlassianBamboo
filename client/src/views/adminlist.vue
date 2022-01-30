@@ -12,7 +12,7 @@
   >
     <nav-bar />
 
-    <div v-if="state.isAdministrator">
+    <div>
       <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
         <router-link
           class="
@@ -55,16 +55,36 @@
               <div class="text-black ml-3">11/20/2021</div>
               <div>
                 <button
+                  v-if="state.loggedUser != items.email"
                   class="
                     px-2
                     py-1
                     text-white
                     bg-red-600
                     rounded-lg
-                    hover:bg-green-900
+                    hover:bg-red-900
                     shadow-lg
                     mb-2
                     mt-2
+                  "
+                  @click="removeAdmin(items.email)"
+                >
+                  Remove
+                </button>
+                <button
+                  v-else
+                  class="
+                    px-2
+                    py-1
+                    text-white
+                    bg-red-600
+                    rounded-lg
+                    hover:bg-red-900
+                    shadow-lg
+                    mb-2
+                    mt-2
+                    opacity-50
+                    cursor-not-allowed
                   "
                 >
                   Remove
@@ -91,11 +111,6 @@
         </div>
       </div>
     </div>
-
-    <div v-else>
-      Access Denied
-    </div>
-
   </div>
 </template>
 <script>
@@ -114,12 +129,12 @@ export default {
       admins: null,
       error: false,
       isAdministrator: false,
-      email: JSON.parse(localStorage.getItem('user')).email,      
+      email: JSON.parse(localStorage.getItem('user')).email,
+      loggedUser: null,
     });
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
     const router = useRouter();
-
     async function getAdminList() {
       try {
         const result = await api.getAdminList();
@@ -129,13 +144,31 @@ export default {
         console.log(err);
       }
     }
-
+    async function removeAdmin(email) {
+      try {
+        const result = await api.postRemoveAdmin(email);
+        if (result) {
+          alert('Professor admin access removed!');
+          getAdminList();
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    async function loadCurrUser() {
+      try {
+        const result = await api.getUserByEmail(state.email);
+        state.loggedUser = result.data.email;
+      } catch (err) {
+        console.log(err);
+      }
+    }
     // this thing runs first thing before the page loads in
     onBeforeMount(() => {
       getAdminList();
+      loadCurrUser();
     });
-
-    return { state };
+    return { state, removeAdmin };
   },
 };
 </script>

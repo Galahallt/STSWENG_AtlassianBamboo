@@ -10,7 +10,7 @@
         class="col-span-1 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
       >
         <div v-if="state.isAdministrator">
-          <router-link to="/adminlist">
+          <router-link :to="`/adminlist`">
             <button
               class="
                 px-6
