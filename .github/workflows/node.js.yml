@@ -13,8 +13,6 @@ jobs:
   build:
     name: Run Test Suites
     runs-on: ubuntu-latest
-    env:
-      MONGO_URI: ${{ secrets.MONGO_URI }} 
       
     strategy:
       matrix:
@@ -38,3 +36,5 @@ jobs:
       - name: Run unit tests
         run: yarn test
         working-directory: server
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }} 
