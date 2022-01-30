@@ -23,16 +23,13 @@ jobs:
         uses: actions/setup-node@v2
 
       - name: Setup yarn
-        run: |
-          cd server
-          npm install -g yarn
+        run: npm install -g yarn
+        working-directory: server
 
       - name: Install dependencies
-        run: |
-          cd server
-          yarn install
+        run: yarn install
+        working-directory: server
         
       - name: Run unit tests
-        run: |
-          cd server
-          yarn test
+        run: yarn test
+        working-directory: server
