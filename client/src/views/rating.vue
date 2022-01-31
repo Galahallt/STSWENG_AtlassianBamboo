@@ -209,7 +209,7 @@
         <div class="ml-auto flex">
           <div class="flex">
             <writeCommentModal :writeComment="showWriteCommentModal">
-              <div class="write-comment-container p-10 rounded-2xl ml-auto">
+              <div class="write-comment-container p-10 rounded-2xl">
                 <h1 class="text-xl text-center green-text mb-3">
                   REVIEW THIS INSTRUCTOR
                 </h1>
