@@ -1246,7 +1246,7 @@ export default {
 
         const validated = await v.value.$validate();
 
-        if (validated && state.tagValidation) {
+        if (validated && !state.tagValidation) {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
