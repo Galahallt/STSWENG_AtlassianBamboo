@@ -2,12 +2,12 @@
   <div class="background_all home-container">
     <nav-bar />
 
-    <div class="grid grid-cols-2">
-      <div class="col-span-1 ml-10 mt-6 text-2xl font-bold hello_color">
+    <div class="grid grid-cols-10">
+      <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
       <div
-        class="col-span-1 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
+        class="col-span-8 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
       >
         <div v-if="state.isAdministrator">
           <router-link :to="`/adminlist`">
