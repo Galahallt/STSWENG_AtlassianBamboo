@@ -996,7 +996,7 @@ import addProfModal from '../components/addProfessorModal.vue';
 import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
-import { email, required, helpers } from '@vuelidate/validators';
+import { email, required, helpers, minLength } from '@vuelidate/validators';
 import {
   ref,
   watch,
@@ -1214,7 +1214,13 @@ export default {
           notDefault
         ),
       },
-      courses: { required },
+      courses: {
+        required,
+        $each: {
+          minLength: minLength(7),
+          maxLength: maxLength(7),
+        },
+      },
     };
 
     // create validation object
