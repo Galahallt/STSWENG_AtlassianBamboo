@@ -7,6 +7,7 @@ const reviewService = {
     const newReview = new Review({
       id: review.id,
       user_id: review.user_id,
+      userName: review.userName,
       instructor_id: review.instructor_id,
       course_code: review.course_code,
       review: review.review,
