@@ -377,16 +377,13 @@ export default {
       const domain = value.split('@').pop();
 
       if (domain != 'dlsu.edu.ph') {
-        console.log('INVALID EMAIL');
         return false;
       } else {
         for (let i = 0; i < state.allProfs.length; i++) {
           if (profData.email == state.allProfs[i].email) {
-            console.log('PROF EXISTS');
             return false;
           }
         }
-        console.log('EMAIL VALID');
         return true;
       }
     };
@@ -505,13 +502,10 @@ export default {
           formData.append('college', profData.college);
           formData.append('department', profData.department);
           formData.append('status', profData.status);
-          console.log(formData);
-          console.log(file.value.files[0]);
 
           const res = await api.editProf(formData);
           if (res) {
             router2.push({ path: `/view/${profData.id}` });
-            console.log('Update successful!');
           }
         }
       } catch (err) {
@@ -523,7 +517,6 @@ export default {
       state.fileValidation = file.value.files.length == 0 ? false : true;
       if (state.fileValidation) {
         placeholder.profilePicture = URL.createObjectURL(file.value.files[0]);
-        console.log('file: ' + file.value.files[0].name);
       }
     }
 

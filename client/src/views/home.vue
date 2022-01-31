@@ -1267,7 +1267,6 @@ export default {
         console.log(error);
         state.error = error.response.data.message;
         if (state.error === 'Professor already exists.') {
-          console.log('hello addprof');
           state.invalidEmail.push(addProfData.email);
         }
       }
@@ -1284,11 +1283,8 @@ export default {
     function checkTags() {
       state.tagValidation =
         addProfData.courses.filter(function (course) {
-          console.log('course length: ' + course.length);
           return course.length !== 7;
         }).length !== 0;
-
-      console.log(state.tagValidation);
     }
 
     function titleCase(str) {
@@ -1341,7 +1337,6 @@ export default {
       state.fileExisting = file.value.files.length != 0 ? true : false;
       if (state.fileExisting) {
         state.csvFile = file.value.files[0];
-        console.log('file: ' + file.value.files[0].name);
       }
     }
 
@@ -1353,7 +1348,6 @@ export default {
         const res = await api.addProfsCsv(formData);
         if (res) {
           toggleMultipleAddProfModal();
-          console.log(res);
           if (res.status == 200) {
             for (let i = 0; i < res.data.length; i++) {
               state.allProfs.push(res.data[i]);
@@ -1491,7 +1485,6 @@ export default {
         state.filterCourse === '' &&
         (state.filterCol === '' || state.filterCol === 'Choose One')
       ) {
-        console.log('hello');
         state.shownProfs = state.allProfs.filter((prof) => {
           const fullName = (prof.firstName + ' ' + prof.lastName).toUpperCase();
 
