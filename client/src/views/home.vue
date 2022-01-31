@@ -1371,6 +1371,8 @@ export default {
         addProfData.department = 'Accountancy';
       } else if (addProfData.college === 'SOE') {
         addProfData.department = 'School of Economics';
+      } else if (addProfData.college === 'N/A') {
+        addProfData.department = 'N/A';
       }
     }
 
@@ -1391,6 +1393,8 @@ export default {
         state.filterDept = 'Accountancy';
       } else if (state.filterCol === 'SOE') {
         state.filterDept = 'School of Economics';
+      } else if (state.filterCol === 'N/A') {
+        state.filterDept = 'N/A';
       }
     }
 
@@ -1455,8 +1459,9 @@ export default {
       if (
         (state.filterDept === '' || state.filterDept === 'Choose One') &&
         state.filterCourse === '' &&
-        (state.filterCol === '' || state.filterCourse === 'Choose One')
+        (state.filterCol === '' || state.filterCol === 'Choose One')
       ) {
+        console.log('hello');
         state.shownProfs = state.allProfs.filter((prof) => {
           const fullName = (prof.firstName + ' ' + prof.lastName).toUpperCase();
 
