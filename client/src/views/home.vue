@@ -1234,13 +1234,6 @@ export default {
       },
       courses: {
         required,
-<<<<<<< HEAD
-        $each: {
-          minLength: minLength(7),
-          maxLength: maxLength(7),
-        },
-=======
->>>>>>> frontend-fix
       },
     };
 
