@@ -9,9 +9,9 @@
 
     <br />
 
-    <div class="flex items-center justify-center space-x-12">
+    <div class="flex items-center justify-center">
       <div>
-        <div class="mr-3">
+        <div class="mr-15">
           <img
             class="pt-5 rounded-full lg-shadow"
             style="width: 300px; height: 300px"
@@ -52,7 +52,7 @@
       <br />
       <div
         class="
-          px-10
+          px-40
           py-6
           mt-10
           ml-20
@@ -63,7 +63,7 @@
         "
         style="border-radius: 50px; background-color: #ffffff"
       >
-        <h1 class="text-3xl font-bold text-center">Edit Professor Info</h1>
+        <h1 class="text-3xl font-bold text-center">Edit Instructor Information</h1>
         <br />
         <p class="font-bold">First Name</p>
         <input
