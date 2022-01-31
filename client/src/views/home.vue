@@ -1459,8 +1459,9 @@ export default {
       if (
         (state.filterDept === '' || state.filterDept === 'Choose One') &&
         state.filterCourse === '' &&
-        (state.filterCol === '' || state.filterCourse === 'Choose One')
+        (state.filterCol === '' || state.filterCol === 'Choose One')
       ) {
+        console.log('hello');
         state.shownProfs = state.allProfs.filter((prof) => {
           const fullName = (prof.firstName + ' ' + prof.lastName).toUpperCase();
 
