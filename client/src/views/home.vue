@@ -421,7 +421,7 @@
                     courses_input
                     px-2
                   "
-                  v-model="newTag"
+                  v-model.trim="newTag"
                   type="text"
                   @keydown.enter="addTag(newTag)"
                   @keydown.prevent.tab="addTag(newTag)"
