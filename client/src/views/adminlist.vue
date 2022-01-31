@@ -91,23 +91,6 @@
                 >
                   Remove
                 </button>
-                <button
-                  class="
-                    px-2
-                    py-1
-                    ml-3
-                    text-white
-                    bg-gray-600
-                    rounded-lg
-                    hover:bg-green-900
-                    shadow-lg
-                    mb-2
-                    mt-2
-                  "
-                  v-bind:name="'mod-'+items.email"
-                >
-                  Modify
-                </button>
               </div>
             </div>
           </div>

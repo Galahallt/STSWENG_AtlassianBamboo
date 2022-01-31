@@ -37,7 +37,7 @@ ${REMOVED}        Professor admin access removed!
 
 *** Keywords ***
 Login
-    [Arguments]    ${email}    ${pass}    ${current}
+    [Arguments]    ${email}    ${pass}
     Set Selenium Speed    ${DELAY}
     Open Browser    ${LOGIN}    ${BROWSER}
     Maximize Browser Window
@@ -50,11 +50,12 @@ Login
     Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
-    Click Button    name:adminAccessBtn
-    Check Current Page    ${current}
+    Check Current Page    ${HOME}
 
 Open Browser To Admin Page
-    Login    ${SELF}    ${PASS1}    ${ADMIN_PAGE}
+    Login    ${SELF}    ${PASS1}
+    Click Button    name:adminAccessBtn
+    Check Current Page    ${ADMIN_PAGE}
     Page Should Contain    ${SELF}
 
 Go Back to Admin Page
