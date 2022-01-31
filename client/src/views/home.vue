@@ -431,7 +431,9 @@
                   :style="{
                     'padding-left': `${paddingLeft}px`,
                   }"
-                  :class="{ 'border-red-500': v.courses.$error }"
+                  :class="{
+                    'border-red-500': v.courses.$error || state.tagValidation,
+                  }"
                 />
 
                 <ul class="tags ml-14" ref="tagsUl">
@@ -455,6 +457,18 @@
                   v-if="v.courses.$error"
                 >
                   {{ v.courses.$errors[0].$message }}
+                </p>
+                <p
+                  class="
+                    ml-14
+                    text-red-500
+                    manrope-bold
+                    text-left text-sm
+                    courses_error
+                  "
+                  v-if="state.tagValidation"
+                >
+                  Each course should contain at least 7 characters.
                 </p>
               </div>
             </div>
@@ -1011,6 +1025,7 @@ export default {
       filterCol: 'Choose One',
       isAdministrator: false,
       search: null,
+      tagValidation: false,
     });
 
     const user = reactive({
@@ -1109,12 +1124,14 @@ export default {
       if (tag) {
         addProfData.courses.push(tag.toUpperCase());
         newTag.value = '';
+        checkTags();
       }
     }
 
     // remove the latest tag from the tags array
     function removeTag(index) {
       addProfData.courses.splice(index, 1);
+      checkTags();
     }
 
     // toggles add professor modal
@@ -1129,6 +1146,7 @@ export default {
         }
       }
       showAddProfModal.value = !showAddProfModal.value;
+      state.tagValidation = false;
     }
 
     // toggles multiple add professor modal
@@ -1193,16 +1211,11 @@ export default {
       },
       courses: {
         required,
-        $each: {
-          minLength: minLength(7),
-          maxLength: maxLength(7),
-        },
       },
     };
 
     // create validation object
     const v = useVuelidate(addProfRules, addProfData);
-    console.log;
 
     async function addProf() {
       try {
@@ -1210,7 +1223,7 @@ export default {
 
         const validated = await v.value.$validate();
 
-        if (validated) {
+        if (validated && state.tagValidation) {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
@@ -1242,6 +1255,16 @@ export default {
         addProfData.firstName = titleCase(addProfData.firstName);
         addProfData.email = addProfData.email.toLowerCase();
       }
+    }
+
+    function checkTags() {
+      state.tagValidation =
+        addProfData.courses.filter(function (course) {
+          console.log('course length: ' + course.length);
+          return course.length !== 7;
+        }).length !== 0;
+
+      console.log(state.tagValidation);
     }
 
     function titleCase(str) {
