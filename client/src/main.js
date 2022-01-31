@@ -24,5 +24,4 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(router);
 app.use(store);
 app.use(gAuth, gAuthOptions);
-app.component('vue3-star-ratings', vue3StarRatings);
 app.mount('#app');
