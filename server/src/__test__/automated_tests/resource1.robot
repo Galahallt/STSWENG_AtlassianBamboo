@@ -34,6 +34,7 @@ ${UNVERIFIED}     Cannot find email!
 ${ALREADY}        User is already an Administrator!
 ${ADMIN_INPUT}    //*[@id="app"]/div/div/div/div[2]/div/div[2]/input
 ${REMOVED}        Professor admin access removed!
+${PROF1}          bob.enriquez@dlsu.edu.ph
 
 *** Keywords ***
 Login

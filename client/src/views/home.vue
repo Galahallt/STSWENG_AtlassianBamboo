@@ -859,6 +859,7 @@
           v-for="prof in state.shownProfs"
           :key="prof.id"
           :prof="prof"
+          v-bind:name="'prof-'+prof.email"
         />
       </div>
     </div>
