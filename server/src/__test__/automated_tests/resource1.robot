@@ -33,6 +33,7 @@ ${VERIFIED}       Verified!
 ${UNVERIFIED}     Cannot find email!
 ${ALREADY}        User is already an Administrator!
 ${ADMIN_INPUT}    //*[@id="app"]/div/div/div/div[2]/div/div[2]/input
+${REMOVED}        Professor admin access removed!
 
 *** Keywords ***
 Login
@@ -49,7 +50,7 @@ Login
     Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
-    Click Button    //*[@id="app"]/div/div/div[1]/div[1]/a/button
+    Click Button    name:adminAccessBtn
     Check Current Page    ${current}
 
 Open Browser To Admin Page

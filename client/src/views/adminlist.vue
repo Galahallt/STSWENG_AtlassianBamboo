@@ -49,7 +49,7 @@
             class="overscroll-auto"
           >
             <div class="grid grid-cols-4 bg-gray-100">
-              <!-- insert professors here -->
+              <!-- insert admins here -->
               <div class="text-black ml-3">{{ items.fullName }}</div>
               <div class="text-black ml-3">{{ items.email }}</div>
               <div class="text-black ml-3">11/20/2021</div>
@@ -67,6 +67,7 @@
                     mb-2
                     mt-2
                   "
+                  v-bind:name="'rmv-'+items.email"
                   @click="removeAdmin(items.email)"
                 >
                   Remove
@@ -86,6 +87,7 @@
                     opacity-50
                     cursor-not-allowed
                   "
+                  v-bind:name="'rmv-'+items.email"
                 >
                   Remove
                 </button>
@@ -102,6 +104,7 @@
                     mb-2
                     mt-2
                   "
+                  v-bind:name="'mod-'+items.email"
                 >
                   Modify
                 </button>

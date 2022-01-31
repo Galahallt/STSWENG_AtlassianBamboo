@@ -12,10 +12,10 @@ Suite Teardown    Close Browser
 Resource          ${CURDIR}${/}..\\resource1.robot
 
 *** Test Cases ***      EMAIL             PROMPT
-#Valid Email             ${VALID1}         ${VERIFIED}
-#Not User (DLSU)         ${NOT_USER}       ${UNVERIFIED}
-#Not User (Non-DLSU)     ${NOT_DLSU}       ${UNVERIFIED}
-#Duplicate               ${VALID1}          ${ALREADY}
+Valid Email             ${VALID1}         ${VERIFIED}
+Not User (DLSU)         ${NOT_USER}       ${UNVERIFIED}
+Not User (Non-DLSU)     ${NOT_DLSU}       ${UNVERIFIED}
+Duplicate               ${VALID1}          ${ALREADY}
 Empty                   ${EMPTY}          ${UNVERIFIED}
 Blank                   ${SPACE}          ${UNVERIFIED}
 
