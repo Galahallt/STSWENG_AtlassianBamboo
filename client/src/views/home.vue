@@ -22,6 +22,7 @@
                 hover:bg-green-900
                 shadow-lg
               "
+              name="adminAccessBtn"
             >
               Admin Access
             </button>
@@ -219,6 +220,7 @@
                     'border-red-500': v.college.$error,
                   }"
                   v-model="addProfData.college"
+                  @change="checkAddCollege"
                 >
                   <option selected disabled hidden>Choose One</option>
                   <option value="BAGCED">BAGCED</option>
@@ -277,14 +279,12 @@
                     v-if="addProfData.college === 'CCS'"
                     label="College of Computer Studies"
                   >
-                    <option value="Information Technology">
-                      Information Technology
-                    </option>
-                    <option value="Computer Technology">
-                      Computer Technology
-                    </option>
-                    <option value="Software Technology">
-                      Software Technology
+                    <option
+                      v-for="dept in colleges.CCS"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
                   </optgroup>
 
@@ -293,19 +293,13 @@
                     v-if="addProfData.college === 'BAGCED'"
                     label="Brother Andrew Gonzales College of Education"
                   >
-                    <option value="Counseling and Educational Psychology">
-                      Counseling and Educational Psychology
+                    <option
+                      v-for="dept in colleges.BAGCED"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
-                    <option value="Educational Leadership and Management">
-                      Educational Leadership and Management
-                    </option>
-                    <option value="English and Applied Linguistics">
-                      English and Applied Linguistics
-                    </option>
-                    <option value="Physical Education">
-                      Physical Education
-                    </option>
-                    <option value="Science Education">Science Education</option>
                   </optgroup>
 
                   <!-- RVR-COB -->
@@ -313,19 +307,12 @@
                     v-if="addProfData.college === 'RVR-COB'"
                     label="Ramon V. del Rosario College of Business"
                   >
-                    <option value="Accountancy">Accountancy</option>
-                    <option value="Commercial Law">Commercial Law</option>
-                    <option value="Decision Sciences and Innovation">
-                      Decision Sciences and Innovation
-                    </option>
-                    <option value="Management of Financial Institutions">
-                      Management of Financial Institutions
-                    </option>
-                    <option value="Management and Organization">
-                      Management and Organization
-                    </option>
-                    <option value="Marketing Management">
-                      Marketing Management
+                    <option
+                      v-for="dept in colleges.RVRCOB"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
                   </optgroup>
 
@@ -334,21 +321,12 @@
                     v-if="addProfData.college === 'CLA'"
                     label="College of Liberal Arts"
                   >
-                    <option value="Behavioral Science">
-                      Behavioral Science
-                    </option>
-                    <option value="Communication">Communication</option>
-                    <option value="Filipino">Filipino</option>
-                    <option value="History">History</option>
-                    <option value="International Studies">
-                      International Studies
-                    </option>
-                    <option value="Literature">Literature</option>
-                    <option value="Philosophy">Philosophy</option>
-                    <option value="Political Science">Political Science</option>
-                    <option value="Psychology">Psychology</option>
-                    <option value="Theology and Religious Education">
-                      Theology and Religious Education
+                    <option
+                      v-for="dept in colleges.CLA"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
                   </optgroup>
 
@@ -357,10 +335,13 @@
                     v-if="addProfData.college === 'COS'"
                     label="College of Science"
                   >
-                    <option value="Biology">Biology</option>
-                    <option value="Chemistry">Chemistry</option>
-                    <option value="Physics">Physics</option>
-                    <option value="Mathematics">Mathematics</option>
+                    <option
+                      v-for="dept in colleges.COS"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
+                    </option>
                   </optgroup>
 
                   <!-- SOE  -->
@@ -368,8 +349,12 @@
                     v-if="addProfData.college === 'SOE'"
                     label="School of Economics"
                   >
-                    <option value="School of Economics">
-                      School of Economics
+                    <option
+                      v-for="dept in colleges.SOE"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
                   </optgroup>
 
@@ -378,21 +363,12 @@
                     v-if="addProfData.college === 'GCOE'"
                     label="Gokongwei College of Engineering"
                   >
-                    <option value="Chemical Engineering">
-                      Chemical Engineering
-                    </option>
-                    <option value="Civil Engineering">Civil Engineering</option>
-                    <option value="Electronics and Communications Engineering">
-                      Electronics and Communications Engineering
-                    </option>
-                    <option value="Mechanical Engineering">
-                      Mechanical Engineering
-                    </option>
-                    <option value="Industrial Engineering">
-                      Industrial Engineering
-                    </option>
-                    <option value="Manufacturing Engineering and Management">
-                      Manufacturing Engineering and Management
+                    <option
+                      v-for="dept in colleges.GCOE"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
                     </option>
                   </optgroup>
 
@@ -401,8 +377,15 @@
                     v-if="addProfData.college === 'COL'"
                     label="College of Law"
                   >
-                    <option value="College of Law">College of Law</option>
+                    <option
+                      v-for="dept in colleges.COL"
+                      :value="dept"
+                      :key="dept"
+                    >
+                      {{ dept }}
+                    </option>
                   </optgroup>
+
                   <option value="N/A">N/A</option>
                 </select>
                 <p
@@ -439,7 +422,7 @@
                     courses_input
                     px-2
                   "
-                  v-model="newTag"
+                  v-model.trim="newTag"
                   type="text"
                   @keydown.enter="addTag(newTag)"
                   @keydown.prevent.tab="addTag(newTag)"
@@ -449,7 +432,9 @@
                   :style="{
                     'padding-left': `${paddingLeft}px`,
                   }"
-                  :class="{ 'border-red-500': v.courses.$error }"
+                  :class="{
+                    'border-red-500': v.courses.$error || state.tagValidation,
+                  }"
                 />
 
                 <ul class="tags ml-14" ref="tagsUl">
@@ -473,6 +458,18 @@
                   v-if="v.courses.$error"
                 >
                   {{ v.courses.$errors[0].$message }}
+                </p>
+                <p
+                  class="
+                    ml-14
+                    text-red-500
+                    manrope-bold
+                    text-left text-sm
+                    courses_error
+                  "
+                  v-if="state.tagValidation"
+                >
+                  Each course should contain at least 7 characters.
                 </p>
               </div>
             </div>
@@ -711,7 +708,11 @@
           <label class="text-white">COLLEGE</label>
         </div>
         <div>
-          <select class="rounded-lg w-44 h-8 pl-2" v-model="state.filterCol">
+          <select
+            class="rounded-lg w-44 h-8 pl-2"
+            v-model="state.filterCol"
+            @change="checkFilterCollege"
+          >
             <option selected disabled hidden>Choose One</option>
             <option value="BAGCED">BAGCED</option>
             <option value="CCS">CCS</option>
@@ -735,11 +736,9 @@
               v-if="state.filterCol === 'CCS'"
               label="College of Computer Studies"
             >
-              <option value="Information Technology">
-                Information Technology
+              <option v-for="dept in colleges.CCS" :value="dept" :key="dept">
+                {{ dept }}
               </option>
-              <option value="Computer Technology">Computer Technology</option>
-              <option value="Software Technology">Software Technology</option>
             </optgroup>
 
             <!-- BAGCED -->
@@ -747,17 +746,9 @@
               v-if="state.filterCol === 'BAGCED'"
               label="Brother Andrew Gonzales College of Education"
             >
-              <option value="Counseling and Educational Psychology">
-                Counseling and Educational Psychology
+              <option v-for="dept in colleges.BAGCED" :value="dept" :key="dept">
+                {{ dept }}
               </option>
-              <option value="Educational Leadership and Management">
-                Educational Leadership and Management
-              </option>
-              <option value="English and Applied Linguistics">
-                English and Applied Linguistics
-              </option>
-              <option value="Physical Education">Physical Education</option>
-              <option value="Science Education">Science Education</option>
             </optgroup>
 
             <!-- RVR-COB -->
@@ -765,18 +756,9 @@
               v-if="state.filterCol === 'RVR-COB'"
               label="Ramon V. del Rosario College of Business"
             >
-              <option value="Accountancy">Accountancy</option>
-              <option value="Commercial Law">Commercial Law</option>
-              <option value="Decision Sciences and Innovation">
-                Decision Sciences and Innovation
+              <option v-for="dept in colleges.RVRCOB" :value="dept" :key="dept">
+                {{ dept }}
               </option>
-              <option value="Management of Financial Institutions">
-                Management of Financial Institutions
-              </option>
-              <option value="Management and Organization">
-                Management and Organization
-              </option>
-              <option value="Marketing Management">Marketing Management</option>
             </optgroup>
 
             <!-- CLA -->
@@ -784,19 +766,8 @@
               v-if="state.filterCol === 'CLA'"
               label="College of Liberal Arts"
             >
-              <option value="Behavioral Science">Behavioral Science</option>
-              <option value="Communication">Communication</option>
-              <option value="Filipino">Filipino</option>
-              <option value="History">History</option>
-              <option value="International Studies">
-                International Studies
-              </option>
-              <option value="Literature">Literature</option>
-              <option value="Philosophy">Philosophy</option>
-              <option value="Political Science">Political Science</option>
-              <option value="Psychology">Psychology</option>
-              <option value="Theology and Religious Education">
-                Theology and Religious Education
+              <option v-for="dept in colleges.CLA" :value="dept" :key="dept">
+                {{ dept }}
               </option>
             </optgroup>
 
@@ -805,10 +776,9 @@
               v-if="state.filterCol === 'COS'"
               label="College of Science"
             >
-              <option value="Biology">Biology</option>
-              <option value="Chemistry">Chemistry</option>
-              <option value="Physics">Physics</option>
-              <option value="Mathematics">Mathematics</option>
+              <option v-for="dept in colleges.COS" :value="dept" :key="dept">
+                {{ dept }}
+              </option>
             </optgroup>
 
             <!-- SOE  -->
@@ -816,7 +786,9 @@
               v-if="state.filterCol === 'SOE'"
               label="School of Economics"
             >
-              <option value="School of Economics">School of Economics</option>
+              <option v-for="dept in colleges.SOE" :value="dept" :key="dept">
+                {{ dept }}
+              </option>
             </optgroup>
 
             <!-- GCOE -->
@@ -824,26 +796,19 @@
               v-if="state.filterCol === 'GCOE'"
               label="Gokongwei College of Engineering"
             >
-              <option value="Chemical Engineering">Chemical Engineering</option>
-              <option value="Civil Engineering">Civil Engineering</option>
-              <option value="Electronics and Communications Engineering">
-                Electronics and Communications Engineering
-              </option>
-              <option value="Mechanical Engineering">
-                Mechanical Engineering
-              </option>
-              <option value="Industrial Engineering">
-                Industrial Engineering
-              </option>
-              <option value="Manufacturing Engineering and Management">
-                Manufacturing Engineering and Management
+              <option v-for="dept in colleges.GCOE" :value="dept" :key="dept">
+                {{ dept }}
               </option>
             </optgroup>
 
             <!-- COL -->
             <optgroup v-if="state.filterCol === 'COL'" label="College of Law">
-              <option value="College of Law">College of Law</option>
+              <option v-for="dept in colleges.COL" :value="dept" :key="dept">
+                {{ dept }}
+              </option>
             </optgroup>
+
+            <option value="N/A">N/A</option>
           </select>
         </div>
         <div class="mt-6 mb-1">
@@ -1046,7 +1011,7 @@ import addProfModal from '../components/addProfessorModal.vue';
 import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
-import { email, required, helpers } from '@vuelidate/validators';
+import { email, required, helpers, minLength } from '@vuelidate/validators';
 import {
   ref,
   watch,
@@ -1075,6 +1040,7 @@ export default {
       allProfs: [],
       shownProfs: [],
       filterProfs: [],
+      searchProfs: [],
       fileExisting: null,
       csvFile: null,
       profExisting: null,
@@ -1083,6 +1049,7 @@ export default {
       filterCol: 'Choose One',
       isAdministrator: false,
       search: null,
+      tagValidation: false,
     });
 
     const user = reactive({
@@ -1100,6 +1067,55 @@ export default {
       department: 'Choose One',
       courses: [],
     });
+
+    const colleges = {
+      BAGCED: [
+        'Counseling and Educational Psychology',
+        'Educational Leadership and Management',
+        'English and Applied Linguistics',
+        'Physical Education',
+        'Science Education',
+      ],
+      CCS: [
+        'Information Technology',
+        'Computer Technology',
+        'Software Technology',
+      ],
+      COL: ['College of Law'],
+      CLA: [
+        'Behavioral Science',
+        'Communication',
+        'Filipino',
+        'History',
+        'International Studies',
+        'Literature',
+        'Philosophy',
+        'Political Science',
+        'Psychology',
+        'Theology and Religious Education',
+      ],
+      COS: ['Biology', 'Chemistry', 'Physics', 'Mathematics'],
+      GCOE: [
+        'Chemical Engineering',
+        'Civil Engineering',
+        'Electronics and Communications Engineering',
+        'Mechanical Engineering',
+        'Industrial Engineering',
+        'Manufacturing Engineering and Management',
+      ],
+      RVRCOB: [
+        'Accountancy',
+        'Commercial Law',
+        'Decision Sciences and Innovation',
+
+        'Management of Financial Institutions',
+
+        'Management and Organization',
+
+        'Marketing Management',
+      ],
+      SOE: ['School of Economics'],
+    };
 
     const file = ref(null);
 
@@ -1132,12 +1148,14 @@ export default {
       if (tag) {
         addProfData.courses.push(tag.toUpperCase());
         newTag.value = '';
+        checkTags();
       }
     }
 
     // remove the latest tag from the tags array
     function removeTag(index) {
       addProfData.courses.splice(index, 1);
+      checkTags();
     }
 
     // toggles add professor modal
@@ -1152,6 +1170,7 @@ export default {
         }
       }
       showAddProfModal.value = !showAddProfModal.value;
+      state.tagValidation = false;
     }
 
     // toggles multiple add professor modal
@@ -1214,12 +1233,13 @@ export default {
           notDefault
         ),
       },
-      courses: { required },
+      courses: {
+        required,
+      },
     };
 
     // create validation object
     const v = useVuelidate(addProfRules, addProfData);
-    console.log;
 
     async function addProf() {
       try {
@@ -1227,7 +1247,7 @@ export default {
 
         const validated = await v.value.$validate();
 
-        if (validated) {
+        if (validated && !state.tagValidation) {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
@@ -1259,6 +1279,16 @@ export default {
         addProfData.firstName = titleCase(addProfData.firstName);
         addProfData.email = addProfData.email.toLowerCase();
       }
+    }
+
+    function checkTags() {
+      state.tagValidation =
+        addProfData.courses.filter(function (course) {
+          console.log('course length: ' + course.length);
+          return course.length !== 7;
+        }).length !== 0;
+
+      console.log(state.tagValidation);
     }
 
     function titleCase(str) {
@@ -1354,41 +1384,92 @@ export default {
       return 0;
     }
 
+    function checkAddCollege() {
+      if (addProfData.college === 'BAGCED') {
+        addProfData.department = 'Counseling and Educational Psychology';
+      } else if (addProfData.college === 'CCS') {
+        addProfData.department = 'Information Technology';
+      } else if (addProfData.college === 'COL') {
+        addProfData.department = 'College of Law';
+      } else if (addProfData.college === 'CLA') {
+        addProfData.department = 'Behavioral Science';
+      } else if (addProfData.college === 'COS') {
+        addProfData.department = 'Biology';
+      } else if (addProfData.college === 'GCOE') {
+        addProfData.department = 'Chemical Engineering';
+      } else if (addProfData.college === 'RVR-COB') {
+        addProfData.department = 'Accountancy';
+      } else if (addProfData.college === 'SOE') {
+        addProfData.department = 'School of Economics';
+      } else if (addProfData.college === 'N/A') {
+        addProfData.department = 'N/A';
+      }
+    }
+
+    function checkFilterCollege() {
+      if (state.filterCol === 'BAGCED') {
+        state.filterDept = 'Counseling and Educational Psychology';
+      } else if (state.filterCol === 'CCS') {
+        state.filterDept = 'Information Technology';
+      } else if (state.filterCol === 'COL') {
+        state.filterDept = 'College of Law';
+      } else if (state.filterCol === 'CLA') {
+        state.filterDept = 'Behavioral Science';
+      } else if (state.filterCol === 'COS') {
+        state.filterDept = 'Biology';
+      } else if (state.filterCol === 'GCOE') {
+        state.filterDept = 'Chemical Engineering';
+      } else if (state.filterCol === 'RVR-COB') {
+        state.filterDept = 'Accountancy';
+      } else if (state.filterCol === 'SOE') {
+        state.filterDept = 'School of Economics';
+      } else if (state.filterCol === 'N/A') {
+        state.filterDept = 'N/A';
+      }
+    }
+
     // filter reviews of professor
     function filterProfs() {
       if (
-        state.filterDept === '' &&
+        (state.filterDept === '' || state.filterDept === 'Choose One') &&
         state.filterCourse === '' &&
-        state.filterCol === ''
+        (state.filterCol === '' || state.filterCourse === 'Choose One')
       ) {
-        state.shownProfs = state.allProfs;
+        if (state.search) {
+          state.shownProfs = state.searchProfs;
+        } else {
+          state.shownProfs = state.allProfs;
+        }
       } else {
+        if (state.search) {
+          state.shownProfs = state.searchProfs;
+          state.filterProfs = state.searchProfs;
+        } else {
+          state.shownProfs = state.allProfs;
+          state.filterProfs = state.allProfs;
+        }
+
         if (state.filterDept !== '' && state.filterDept !== 'Choose One') {
-          state.shownProfs = computed(() => {
-            return state.allProfs.filter((prof) => {
-              return (
-                prof.department.toUpperCase() === state.filterDept.toUpperCase()
-              );
-            });
+          state.shownProfs = state.filterProfs.filter(function (prof) {
+            return (
+              prof.department.toUpperCase() === state.filterDept.toUpperCase()
+            );
+          });
+        }
+        state.filterProfs = state.shownProfs;
+
+        if (state.filterCol !== '' && state.filterCol !== 'Choose One') {
+          state.shownProfs = state.filterProfs.filter((prof) => {
+            return prof.college.toUpperCase() === state.filterCol.toUpperCase();
           });
         }
 
-        if (state.filterCol !== '' && state.filterCol !== 'Choose One') {
-          state.shownProfs = computed(() => {
-            return state.allProfs.filter((prof) => {
-              return (
-                prof.college.toUpperCase() === state.filterCol.toUpperCase()
-              );
-            });
-          });
+        state.filterProfs = state.shownProfs;
 
-          if (state.filterCourse !== '') {
-            state.shownProfs = computed(() => {
-              return state.allProfs.filter((prof) => {
-                return prof.courses.includes(state.filterCourse.toUpperCase());
-              });
-            });
-          }
+        if (state.filterCourse !== '') {
+          state.shownProfs = state.filterProfs.filter((prof) => {
+            return prof.courses.includes(state.filterCourse.toUpperCase());
+          });
         }
 
         state.filterProfs = state.shownProfs;
@@ -1405,31 +1486,26 @@ export default {
 
     // search professor
     function searchProfs() {
-      if (state.filterProfs.length === 0) {
-        state.shownProfs = computed(() => {
-          return state.allProfs.filter((prof) => {
-            const fullName = (
-              prof.firstName +
-              ' ' +
-              prof.lastName
-            ).toUpperCase();
+      if (
+        (state.filterDept === '' || state.filterDept === 'Choose One') &&
+        state.filterCourse === '' &&
+        (state.filterCol === '' || state.filterCol === 'Choose One')
+      ) {
+        console.log('hello');
+        state.shownProfs = state.allProfs.filter((prof) => {
+          const fullName = (prof.firstName + ' ' + prof.lastName).toUpperCase();
 
-            return fullName.match(state.search.toUpperCase());
-          });
+          return fullName.match(state.search.toUpperCase());
         });
       } else {
-        state.shownProfs = computed(() => {
-          return state.filterProfs.filter((prof) => {
-            const fullName = (
-              prof.firstName +
-              ' ' +
-              prof.lastName
-            ).toUpperCase();
+        state.shownProfs = state.filterProfs.filter((prof) => {
+          const fullName = (prof.firstName + ' ' + prof.lastName).toUpperCase();
 
-            return fullName.match(state.search.toUpperCase());
-          });
+          return fullName.match(state.search.toUpperCase());
         });
       }
+
+      state.searchProfs = state.shownProfs;
 
       state.shownProfs.sort(compareLastName);
 
@@ -1446,9 +1522,13 @@ export default {
       state.filterCourse = '';
       state.filterCol = 'Choose One';
       state.filterProfs = [];
-      state.shownProfs = computed(() => {
-        return state.allProfs;
-      });
+      state.shownProfs = state.allProfs;
+
+      if (state.shownProfs.length === 0) {
+        state.empty = true;
+      } else {
+        state.empty = false;
+      }
     }
 
     return {
@@ -1474,6 +1554,9 @@ export default {
       onFileUpload,
       filterProfs,
       user,
+      colleges,
+      checkFilterCollege,
+      checkAddCollege,
     };
   },
 };
