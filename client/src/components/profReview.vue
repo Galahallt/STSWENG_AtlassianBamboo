@@ -2,7 +2,7 @@
   <div class="comment-container py-3 px-6 my-3 shadow-md">
     <div class="name-delete flex flex-row">
       <p class="comment-name text-xl green-text mr-auto">
-        {{ state.userName }}
+        {{ review.userName }}
       </p>
 
       <svg
@@ -102,16 +102,6 @@ export default {
       loggedUser: null,
     });
 
-    async function loadUser() {
-      try {
-        const result = await api.getUserById(props.review.user_id);
-
-        if (result) {
-          state.userName = result.data.fullName;
-        }
-      } catch (err) {}
-    }
-
     async function checkUser() {
       try {
         const email = JSON.parse(localStorage.getItem('user')).email;
@@ -129,7 +119,6 @@ export default {
     }
 
     onMounted(() => {
-      loadUser();
       checkUser();
     });
 

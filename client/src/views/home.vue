@@ -22,6 +22,7 @@
                 hover:bg-green-900
                 shadow-lg
               "
+              name="adminAccessBtn"
             >
               Admin Access
             </button>

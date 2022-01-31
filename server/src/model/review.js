@@ -10,6 +10,10 @@ const ReviewSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userName: {
+    type: String,
+    required: true,
+  },
   instructor_id: {
     type: String,
     required: true,
@@ -24,6 +28,7 @@ const ReviewSchema = new mongoose.Schema({
   },
   Date: {
     type: Date,
+    required: true,
     default: Date.now(),
   },
 });
