@@ -27,13 +27,16 @@ const reviewController = {
       const review = {
         id: uniqid(),
         user_id: req.body.user_id,
+        userName: req.body.userName,
         instructor_id: req.body.instructor_id,
         course_code: req.body.course_code,
         review: req.body.review,
-        date: Date.now(),
       };
       logger.info(JSON.stringify(review));
-      await ReviewService.addReview(review);
+      const result = await ReviewService.addReview(review);
+      if (result) {
+        return res.status(200).json(result);
+      }
       // use review.id and the id and add it to the Instructor's id
       // add review and add the new review's ID into the Instructor's
     } catch (err) {

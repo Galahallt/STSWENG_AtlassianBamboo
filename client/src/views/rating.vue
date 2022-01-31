@@ -219,18 +219,17 @@
                   <p>Course code:</p>
                   <input
                     v-on:keyup="areFieldsValid"
-                    v-model="state.course_code"                            
-                    class="course-code mx-3 px-1 text-sm" 
+                    v-model="state.course_code"
+                    class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
-                    minlength="7" maxlength="7"
+                    minlength="7"
+                    maxlength="7"
                     title="Field must be 7 characters long"
                     ref="course_code"
                   />
-                  <p
-                    v-if="state.isCourseCodeIncomplete"
-                  >
-                    *Must be 7 characters long                            
-                  </p>                
+                  <p v-if="state.isCourseCodeIncomplete">
+                    *Must be 7 characters long
+                  </p>
                 </div>
 
                 <!-- textarea tag should be in one line -->
@@ -240,7 +239,7 @@
                   name="comment"
                   placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "
                   v-on:keyup="areFieldsValid"
-                  v-model="state.comment"                  
+                  v-model="state.comment"
                 ></textarea>
 
                 <div class="flex flex-row">
@@ -250,10 +249,10 @@
                   >
                     Cancel
                   </button>
-                  <button 
+                  <button
                     class="submit-button ml-auto rounded-md p-2"
-                    @click="addReview(); toggleWriteCommentModal();"
-                    :disabled="state.isSubmitDisabled"                    
+                    @click="addReview"
+                    :disabled="state.isSubmitDisabled"
                   >
                     Submit
                   </button>
@@ -520,7 +519,7 @@ export default {
       course_code: '',
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
-      isSubmitDisabled: true,      
+      isSubmitDisabled: true,
     });
     const router = useRoute();
     const prof = reactive({
@@ -718,31 +717,39 @@ export default {
       } catch (err) {}
     }
     async function addReview() {
-        // TODO get instructor id, subject code, and comment and insert it to the DB
-      const email = JSON.parse(localStorage.getItem('user')).email;
-      const user = await api.getUserByEmail(email);
-      if (user) {
-        const review = {
-          user_id: user.data.id,
-          instructor_id: prof.prof_id,
-          course_code: state.course_code,
-          review: state.comment,
-        };
-        console.log(review);
-        await api.addReview(review);
-        // this doesn't work :(
-        await loadReviews();
-        state.comment = '';
-        state.course_code = '';
+      try {
+        const email = JSON.parse(localStorage.getItem('user')).email;
+        const user = await api.getUserByEmail(email);
+        if (user) {
+          const review = {
+            user_id: user.data.id,
+            userName: user.data.fullName,
+            instructor_id: prof.prof_id,
+            course_code: state.course_code,
+            review: state.comment,
+          };
+          console.log(review);
+          const res = await api.addReview(review);
+          if (res) {
+            state.emptyReviews = false;
+            toggleWriteCommentModal();
+            state.shownReviews.push(res.data);
+            state.comment = '';
+            state.course_code = '';
+            areFieldsValid();
+          }
+        }
+      } catch (err) {
+        console.log(err);
       }
     }
 
     function checkCourseCode() {
-      if(state.course_code.length != 7) {
+      if (state.course_code.length != 7) {
         state.isCourseCodeIncomplete = true;
         return true;
       } else {
-        state.isCourseCodeIncomplete = false; 
+        state.isCourseCodeIncomplete = false;
       }
 
       return false;
@@ -786,6 +793,8 @@ export default {
       filterReviews,
       deleteReview,
       loadUserInfo,
+      areFieldsValid,
+      addReview,
     };
   },
 };
