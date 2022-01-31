@@ -13,5 +13,7 @@ Resource          ${CURDIR}${/}..\\resource1.robot
 *** Test Cases ***
 Rate 1
     Click Element    prof-@{PROF1}
+    Click Button    name:rateBtn
+    
 
 *** KEYWORDS ***

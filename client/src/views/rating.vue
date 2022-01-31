@@ -183,7 +183,7 @@
               "
               @click="toggleWriteModal"
             >
-              <div class="flex center align-middle">
+              <div class="flex center align-middle" name="rateBtn">
                 <svg
                   width="25"
                   height="25"
