@@ -55,11 +55,11 @@ const reviewController = {
           const result2 = await InstructorService.addCourse(newCourse);
           if (result2) {
             logger.info(JSON.stringify(review));
-            const result3 = await ReviewService.addReview(review);
-            if (result3) {
-              return res.status(200).json(result3);
-            }
           }
+        }
+        const result3 = await ReviewService.addReview(review);
+        if (result3) {
+          return res.status(200).json(result3);
         }
       }
       // use review.id and the id and add it to the Instructor's id
