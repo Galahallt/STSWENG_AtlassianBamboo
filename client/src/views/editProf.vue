@@ -15,7 +15,7 @@
           <img
             class="pt-5 rounded-full lg-shadow"
             style="width: 300px; height: 300px"
-            :src="placeholder.profilePicture"
+            :src="profData.profilePicture"
           />
         </div>
 
@@ -63,7 +63,9 @@
         "
         style="border-radius: 50px; background-color: #ffffff"
       >
-        <h1 class="text-3xl font-bold text-center">Edit Instructor Information</h1>
+        <h1 class="text-3xl font-bold text-center">
+          Edit Instructor Information
+        </h1>
         <br />
         <p class="font-bold">First Name</p>
         <input
@@ -369,7 +371,7 @@ export default {
           inputEmail
         ),
         dlsuEmail: helpers.withMessage(
-          'Value must be unregistered email',
+          'Value must be valid/unregistered DLSU email',
           dlsuEmail
         ),
       },
@@ -408,7 +410,7 @@ export default {
 
         const result = await api.getProf(router.params.profID);
         if (result) {
-          placeholder.profilePicture = result.data.profilePicture;
+          profData.profilePicture = result.data.profilePicture;
           placeholder.firstName = result.data.firstName;
           placeholder.lastName = result.data.lastName;
           placeholder.email = result.data.email;
@@ -436,7 +438,13 @@ export default {
           }
 
           const formData = new FormData();
-          formData.append('image-file', file.value.files[0]);
+
+          if (!file.value.files[0]) {
+            formData.append('profilePicture', profData.profilePicture);
+          } else {
+            formData.append('image-file', file.value.files[0]);
+          }
+
           formData.append('id', profData.id);
           formData.append('firstName', profData.firstName);
           formData.append('lastName', profData.lastName);
@@ -444,7 +452,7 @@ export default {
           formData.append('college', profData.college);
           formData.append('department', profData.department);
           formData.append('status', profData.status);
-          console.log(formData);
+          console.log('---------------');
           console.log(file.value.files[0]);
 
           const res = await api.editProf(formData);
@@ -461,7 +469,7 @@ export default {
     function uploadImage() {
       state.fileValidation = file.value.files.length == 0 ? false : true;
       if (state.fileValidation) {
-        placeholder.profilePicture = URL.createObjectURL(file.value.files[0]);
+        profData.profilePicture = URL.createObjectURL(file.value.files[0]);
         console.log('file: ' + file.value.files[0].name);
       }
     }
