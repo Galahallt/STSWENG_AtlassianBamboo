@@ -19,6 +19,7 @@ describe('Test Index Route', () => {
     });
     expect(response.statusCode).toBe(400);
   });
+
   it('valid DLSU email, should respond with 200 status code', async () => {
     const response = await request(app).post('/login').send({
       fullName: 'Keil Finez',
@@ -30,6 +31,7 @@ describe('Test Index Route', () => {
     });
     expect(response.statusCode).toBe(200);
   });
+
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/login')

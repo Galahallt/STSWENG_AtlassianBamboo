@@ -12,7 +12,7 @@ Documentation     A resource file with reusable
 ...               email as not admin initially. ${NOT
 ...               USER} must be a DLSU email that is
 ...               a user.
-Library           SeleniumLibrary
+Library           SeleniumLibrary  run_on_failure=Nothing
 
 *** Variables ***
 ${BROWSER}        Chrome
@@ -35,6 +35,11 @@ ${ALREADY}        User is already an Administrator!
 ${ADMIN_INPUT}    //*[@id="app"]/div/div/div/div[2]/div/div[2]/input
 ${REMOVED}        Professor admin access removed!
 ${PROF1}          bob.enriquez@dlsu.edu.ph
+${PROF2}          ann.marie@dlsu.edu.ph
+${CODE1}          CCDSTRU
+${CODE2}          CCDSALG
+${COMMENT1}       Very nice prof! Teaches well.
+${COMMENT2}       Easy to understand. Lessons are clear.
 
 *** Keywords ***
 Login

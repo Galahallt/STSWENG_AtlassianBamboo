@@ -59,7 +59,7 @@
                 stroke-linecap="round"
               />
             </svg>
-            Add Professor
+            Single Instructor
           </button>
         </div>
         <addProfModal :addProf="showAddProfModal" @close="toggleAddProfModal">
@@ -542,7 +542,7 @@
             />
           </svg>
 
-          <div>Add Multiple Professors</div>
+          <div>Multiple Instructors</div>
         </button>
         <multipleAddProfModal
           :multipleAddProf="showMultipleAddProfModal"
@@ -817,7 +817,7 @@
             Submit
           </button>
         </div>
-        <div class="mt-8">
+        <div class="mt-3">
           <button
             class="
               px-10
