@@ -50,6 +50,7 @@
               text-lg
             "
             :to="`/home`"
+            name="homeLnk"
             >Home</router-link
           >
 
