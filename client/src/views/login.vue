@@ -75,7 +75,7 @@ button:disabled {
 .bg-effect{
 position: relative;
 z-index: 1;
-width: 40%;
+width: 33%;
 height: auto;
 margin-top: -50%;
 margin-left: -15%;
@@ -88,11 +88,11 @@ margin-left: -15%;
   
 }
 .login-container{
-  position: relative;
+  position:sticky;
   z-index: 9999; 
   background-color: red;
   min-width: 500px;
-  margin: auto;
+  margin-left: auto;
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   
