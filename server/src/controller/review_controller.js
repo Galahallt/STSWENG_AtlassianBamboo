@@ -1,5 +1,8 @@
 import logger from '../logger/index.js';
 
+// get instructor service methods from service folder
+import InstructorService from '../service/instructor_service.js';
+
 // get review service methods from service folder
 import ReviewService from '../service/review_service.js';
 
@@ -23,7 +26,6 @@ const reviewController = {
   },
   addReview: async (req, res) => {
     try {
-      logger.info(req.body.user_id);
       const review = {
         id: uniqid(),
         user_id: req.body.user_id,
@@ -32,10 +34,33 @@ const reviewController = {
         course_code: req.body.course_code,
         review: req.body.review,
       };
-      logger.info(JSON.stringify(review));
-      const result = await ReviewService.addReview(review);
+
+      const result = await InstructorService.getProf({
+        id: review.instructor_id,
+      });
+
       if (result) {
-        return res.status(200).json(result);
+        if (!result.courses.includes(review.course_code)) {
+          const newCourses = result.courses;
+          logger.info('-----');
+          logger.info(newCourses);
+          logger.info('+++++');
+          newCourses.push(review.course_code);
+
+          const newCourse = {
+            id: review.instructor_id,
+            courses: newCourses,
+          };
+
+          const result2 = await InstructorService.addCourse(newCourse);
+          if (result2) {
+            logger.info(JSON.stringify(review));
+            const result3 = await ReviewService.addReview(review);
+            if (result3) {
+              return res.status(200).json(result3);
+            }
+          }
+        }
       }
       // use review.id and the id and add it to the Instructor's id
       // add review and add the new review's ID into the Instructor's

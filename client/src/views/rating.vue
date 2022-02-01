@@ -734,6 +734,9 @@ export default {
             state.emptyReviews = false;
             toggleWriteCommentModal();
             state.shownReviews.push(res.data);
+            if (!prof.tags.includes(review.course_code)) {
+              prof.tags.push(review.course_code);
+            }
             state.comment = '';
             state.course_code = '';
             areFieldsValid();
