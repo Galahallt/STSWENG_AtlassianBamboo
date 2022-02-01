@@ -219,7 +219,7 @@
                   <p>Course code:</p>
                   <input
                     v-on:keyup="areFieldsValid"
-                    v-model="state.course_code"
+                    v-model.trim="state.course_code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
                     minlength="7"
@@ -239,7 +239,7 @@
                   name="comment"
                   placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "
                   v-on:keyup="areFieldsValid"
-                  v-model="state.comment"
+                  v-model.trim="state.comment"
                 ></textarea>
 
                 <div class="flex flex-row">
