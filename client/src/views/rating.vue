@@ -148,6 +148,7 @@
                 center
                 align-middle
               "
+              name="reviewBtn"
               @click="toggleWriteCommentModal"
             >
               <div class="flex center align-middle">
@@ -226,6 +227,7 @@
                     maxlength="7"
                     title="Field must be 7 characters long"
                     ref="course_code"
+                    name="codeInp"
                   />
                   <p v-if="state.isCourseCodeIncomplete">
                     *Must be 7 characters long
@@ -236,7 +238,7 @@
                 <textarea
                   class="comment p-3 mt-3"
                   id="comment"
-                  name="comment"
+                  name="commentInp"
                   placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "
                   v-on:keyup="areFieldsValid"
                   v-model.trim="state.comment"
@@ -253,6 +255,7 @@
                     class="submit-button ml-auto rounded-md p-2"
                     @click="addReview"
                     :disabled="state.isSubmitDisabled"
+                    name="submitBtn"
                   >
                     Submit
                   </button>
