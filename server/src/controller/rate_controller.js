@@ -36,30 +36,26 @@ const rateController = {
         req.body.instructorID
       );
 
-      if (ratings.length != 0) {
-        let avg = 0;
-        for (let i = 0; i < ratings.length; i++) {
-          avg += ratings[i].rating;
-        }
-
-        avg /= ratings.length;
-        avg = avg.toFixed(2);
-
-        const prof = {
-          profID: req.body.instructorID,
-        };
-
-        const update = {
-          rating: avg,
-        };
-
-        const result = await instructorService.updateRating(prof, update);
-
-        // if there are existing ratings of this instructor from the database
-        return res.status(200).json(result.rating);
+      let avg = 0;
+      for (let i = 0; i < ratings.length; i++) {
+        avg += ratings[i].rating;
       }
 
-      return res.status(200).json({ message: 'No ratings found' });
+      avg /= ratings.length;
+      avg = avg.toFixed(2);
+
+      const prof = {
+        profID: req.body.instructorID,
+      };
+
+      const update = {
+        rating: avg,
+      };
+
+      const result = await instructorService.updateRating(prof, update);
+
+      // if there are existing ratings of this instructor from the database
+      return res.status(200).json(result.rating);
     } catch (err) {
       // if error has occured, send server error status and message
       return res.status(500).json({ message: 'Server Error' });

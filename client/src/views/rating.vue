@@ -317,7 +317,7 @@
             v-for="review in state.shownReviews"
             :key="review.id"
             :review="review"
-            v-bind:name="review.userName+review.course_code+review.review"
+            v-bind:name="review.userName + review.course_code + review.review"
             @deleteReview="deleteReview(review.id)"
           />
         </div>

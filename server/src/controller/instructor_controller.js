@@ -134,6 +134,7 @@ const instructorController = {
       // retrieve professors from the database
       const profID = req.params.profID;
       const prof = await instructorService.getProf({ id: profID });
+
       // if there are existing professors in the database
       if (prof) {
         return res.status(200).json(prof);
