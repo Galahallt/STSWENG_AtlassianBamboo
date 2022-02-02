@@ -1,11 +1,15 @@
 /* eslint-disable node/no-unpublished-import */
 import request from 'supertest';
 import app from '../../app.js';
-import mongoose from 'mongoose';
+import mockDB from '../../config/mockDB.js';
 
 describe('Test Rating Routes', () => {
+  afterEach(async () => {
+    mockDB.clearDatabase();
+  });
+
   afterAll(async () => {
-    mongoose.disconnect();
+    mockDB.closeDatabase();
   });
 
   // to modify
