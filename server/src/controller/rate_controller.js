@@ -22,7 +22,7 @@ const rateController = {
       }
 
       // send the empty array of ratings back to the client with appropriate status code
-      return res.status(404).json(ratings);
+      return res.status(400).json(ratings);
     } catch (err) {
       // if error has occured, send server error status and message
       return res.status(500).json({ message: 'Server Error' });
@@ -106,7 +106,7 @@ const rateController = {
 
       const addRate = await rateService.addRating(rate);
 
-      return res.status(201).json(addRate);
+      return res.status(200).json(addRate);
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
     }
@@ -131,7 +131,7 @@ const rateController = {
 
       const result = await rateService.updateRating(find, update);
 
-      return res.status(204).json(result);
+      return res.status(200).json(result);
     } catch (err) {
       logger.error(err);
       return res.status(500).json({ message: 'Server Error' });

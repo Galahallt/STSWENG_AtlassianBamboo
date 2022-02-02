@@ -7,12 +7,13 @@ Documentation     1st test suite for User Story #3
 ...               list.
 ...               
 ...               By James Andrew F. Perez
-Test Template     Login
 Test Teardown     Close Browser
 Resource          ${CURDIR}${/}..\\resource1.robot
 
-*** Test Cases ***      EMAIL           PASSWORD        PAGE
-Admin                   ${SELF}         ${PASS1}        ${ADMIN_PAGE}
+*** Test Cases ***
+Admin
+    Open Browser To Admin Page
+    
 # Non-Admin               ${VALID1}       ${PASS2}        ${HOME}
 
 *** KEYWORDS ***

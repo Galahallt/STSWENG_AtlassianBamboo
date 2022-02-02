@@ -148,6 +148,7 @@
                 center
                 align-middle
               "
+              name="reviewBtn"
               @click="toggleWriteCommentModal"
             >
               <div class="flex center align-middle">
@@ -183,7 +184,7 @@
               "
               @click="toggleWriteModal"
             >
-              <div class="flex center align-middle">
+              <div class="flex center align-middle" name="rateBtn">
                 <svg
                   width="25"
                   height="25"
@@ -219,13 +220,14 @@
                   <p>Course code:</p>
                   <input
                     v-on:keyup="areFieldsValid"
-                    v-model="state.course_code"
+                    v-model.trim="state.course_code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
                     minlength="7"
                     maxlength="7"
                     title="Field must be 7 characters long"
                     ref="course_code"
+                    name="codeInp"
                   />
                   <p v-if="state.isCourseCodeIncomplete">
                     *Must be 7 characters long
@@ -236,10 +238,10 @@
                 <textarea
                   class="comment p-3 mt-3"
                   id="comment"
-                  name="comment"
+                  name="commentInp"
                   placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "
                   v-on:keyup="areFieldsValid"
-                  v-model="state.comment"
+                  v-model.trim="state.comment"
                 ></textarea>
 
                 <div class="flex flex-row">
@@ -253,6 +255,7 @@
                     class="submit-button ml-auto rounded-md p-2"
                     @click="addReview"
                     :disabled="state.isSubmitDisabled"
+                    name="submitBtn"
                   >
                     Submit
                   </button>
@@ -734,6 +737,9 @@ export default {
             state.emptyReviews = false;
             toggleWriteCommentModal();
             state.shownReviews.push(res.data);
+            if (!prof.tags.includes(review.course_code)) {
+              prof.tags.push(review.course_code);
+            }
             state.comment = '';
             state.course_code = '';
             areFieldsValid();
