@@ -124,6 +124,7 @@
             <p class="text-lg">Filter Reviews:</p>
             <div class="px-3">
               <select
+                name = "filter-review"
                 class="px-4 filter-options mr-auto"
                 v-model="state.filter"
                 @change="filterReviews"
@@ -137,6 +138,7 @@
           </div>
           <div class="buttons-container ml-auto mt-5 flex">
             <button
+              name = "review-button"
               class="
                 review-button
                 rounded-lg
@@ -220,6 +222,7 @@
                   <input
                     v-on:keyup="areFieldsValid"
                     v-model="state.course_code"
+                    name = "course-code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
                     minlength="7"
@@ -250,6 +253,7 @@
                     Cancel
                   </button>
                   <button
+                    name = "submit-button"
                     class="submit-button ml-auto rounded-md p-2"
                     @click="addReview"
                     :disabled="state.isSubmitDisabled"
@@ -303,7 +307,7 @@
           </div>
         </div>
 
-        <p class="text-center text-xl" v-if="state.emptyReviews">
+        <p class="c text-center text-xl" v-if="state.emptyReviews">
           No reviews yet. Be the first one to share your experience with this
           instructor!
         </p>

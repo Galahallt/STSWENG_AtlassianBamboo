@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.8.5 on win32)" generated="20220202 15:03:29.470" rpa="false" schemaversion="2">
+<suite id="s1" name="US-06" source="D:\Documents\DLSU_Files\TERM 7\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-06">
+<suite id="s1-s1" name="Us6" source="D:\Documents\DLSU_Files\TERM 7\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-06\us6.robot">
+<test id="s1-s1-t1" name="[6-02] View Profile of Instructor that has reviews">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 15:03:29.684" endtime="20220202 15:03:29.684"/>
+</kw>
+<kw name="Login to PTP">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 15:03:29.685" endtime="20220202 15:03:29.685"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://localhost:3000</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220202 15:03:29.685" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220202 15:03:29.685" endtime="20220202 15:03:35.499"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220202 15:03:35.499" endtime="20220202 15:03:42.410"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login with Google Account</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:03:42.411" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220202 15:03:42.410" endtime="20220202 15:03:46.564"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<var>${TAB}</var>
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<msg timestamp="20220202 15:03:50.603" level="INFO">${TAB} = CDwindow-925E88387652F61B1EDD0A34FB016AD6</msg>
+<status status="PASS" starttime="20220202 15:03:46.564" endtime="20220202 15:03:50.603"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>identifierId</arg>
+<arg>azriel_ortega@dlsu.edu.ph</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:03:50.604" level="INFO">Typing text 'azriel_ortega@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220202 15:03:50.603" endtime="20220202 15:03:55.513"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>identifierNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 15:03:55.513" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220202 15:03:55.513" endtime="20220202 15:03:57.581"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>//*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>MasterJason18!</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:03:57.582" level="INFO">Typing password into text field '//*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<msg timestamp="20220202 15:04:01.294" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220202 15:04:02.355" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220202 15:03:57.581" endtime="20220202 15:04:02.355"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>passwordNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:02.356" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220202 15:04:02.355" endtime="20220202 15:04:04.440"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>${TAB}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220202 15:04:04.440" endtime="20220202 15:04:08.486"/>
+</kw>
+<status status="PASS" starttime="20220202 15:03:29.684" endtime="20220202 15:04:08.487"/>
+</kw>
+<kw name="Add Professor">
+<arg>Hwang</arg>
+<arg>Yeji</arg>
+<arg>yeji_hwang@dlsu.edu.ph</arg>
+<arg>4</arg>
+<arg>2</arg>
+<arg>SWIPE19</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>addProfessorButton</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:08.489" level="INFO">Clicking button 'addProfessorButton'.</msg>
+<status status="PASS" starttime="20220202 15:04:08.488" endtime="20220202 15:04:12.581"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>lastName</arg>
+<arg>${LAST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:12.582" level="INFO">Typing text 'Yeji' into text field 'lastName'.</msg>
+<status status="PASS" starttime="20220202 15:04:12.581" endtime="20220202 15:04:15.689"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>firstName</arg>
+<arg>${FIRST_NAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:15.690" level="INFO">Typing text 'Hwang' into text field 'firstName'.</msg>
+<status status="PASS" starttime="20220202 15:04:15.689" endtime="20220202 15:04:18.801"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>email</arg>
+<arg>${EMAIL}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:18.802" level="INFO">Typing text 'yeji_hwang@dlsu.edu.ph' into text field 'email'.</msg>
+<status status="PASS" starttime="20220202 15:04:18.801" endtime="20220202 15:04:21.913"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>class:college_select</arg>
+<arg>${COLLEGE}</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20220202 15:04:21.914" level="INFO">Selecting options from selection list 'class:college_select' by index 4.</msg>
+<status status="PASS" starttime="20220202 15:04:21.913" endtime="20220202 15:04:34.156"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>class:department_select</arg>
+<arg>${DEPARTMENT}</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20220202 15:04:34.157" level="INFO">Selecting options from selection list 'class:department_select' by index 2.</msg>
+<status status="PASS" starttime="20220202 15:04:34.156" endtime="20220202 15:04:44.319"/>
+</kw>
+<kw name="Input_Course">
+<arg>${COURSE}</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>courses</arg>
+<arg>${COURSE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:44.320" level="INFO">Typing text 'SWIPE19' into text field 'courses'.</msg>
+<status status="PASS" starttime="20220202 15:04:44.320" endtime="20220202 15:04:47.420"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>class:courses_input</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20220202 15:04:47.420" level="INFO">Sending key(s) ('ENTER',) to class:courses_input element.</msg>
+<msg timestamp="20220202 15:04:49.703" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20220202 15:04:49.703" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20220202 15:04:47.420" endtime="20220202 15:04:50.733"/>
+</kw>
+<status status="PASS" starttime="20220202 15:04:44.319" endtime="20220202 15:04:50.733"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>confirm_addProfessorBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:50.734" level="INFO">Clicking button 'confirm_addProfessorBtn'.</msg>
+<status status="PASS" starttime="20220202 15:04:50.734" endtime="20220202 15:04:54.808"/>
+</kw>
+<status status="PASS" starttime="20220202 15:04:08.488" endtime="20220202 15:04:54.808"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath=//div[@id='app']/div/div/div[2]/div[2]/a/div/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:54.809" level="INFO">Clicking element 'xpath=//div[@id='app']/div/div/div[2]/div[2]/a/div/div'.</msg>
+<status status="PASS" starttime="20220202 15:04:54.809" endtime="20220202 15:04:56.870"/>
+</kw>
+<kw name="Add Review">
+<arg>SWIPE19</arg>
+<arg>Comment number 1</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>review-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:04:56.871" level="INFO">Clicking button 'review-button'.</msg>
+<status status="PASS" starttime="20220202 15:04:56.871" endtime="20220202 15:05:00.959"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>course-code</arg>
+<arg>${COURSE_CODE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:00.960" level="INFO">Typing text 'SWIPE19' into text field 'course-code'.</msg>
+<status status="PASS" starttime="20220202 15:05:00.959" endtime="20220202 15:05:04.081"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>comment</arg>
+<arg>${COMMENT}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:04.082" level="INFO">Typing text 'Comment number 1' into text field 'comment'.</msg>
+<status status="PASS" starttime="20220202 15:05:04.081" endtime="20220202 15:05:07.213"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>submit-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:07.214" level="INFO">Clicking button 'submit-button'.</msg>
+<status status="PASS" starttime="20220202 15:05:07.213" endtime="20220202 15:05:11.298"/>
+</kw>
+<status status="PASS" starttime="20220202 15:04:56.870" endtime="20220202 15:05:11.298"/>
+</kw>
+<kw name="Add Review">
+<arg>SWIPE19</arg>
+<arg>Comment number 2</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>review-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:11.298" level="INFO">Clicking button 'review-button'.</msg>
+<status status="PASS" starttime="20220202 15:05:11.298" endtime="20220202 15:05:15.384"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>course-code</arg>
+<arg>${COURSE_CODE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:15.385" level="INFO">Typing text 'SWIPE19' into text field 'course-code'.</msg>
+<status status="PASS" starttime="20220202 15:05:15.384" endtime="20220202 15:05:18.469"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>comment</arg>
+<arg>${COMMENT}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:18.470" level="INFO">Typing text 'Comment number 2' into text field 'comment'.</msg>
+<status status="PASS" starttime="20220202 15:05:18.469" endtime="20220202 15:05:21.577"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>submit-button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 15:05:21.578" level="INFO">Clicking button 'submit-button'.</msg>
+<status status="PASS" starttime="20220202 15:05:21.577" endtime="20220202 15:05:25.675"/>
+</kw>
+<status status="PASS" starttime="20220202 15:05:11.298" endtime="20220202 15:05:25.675"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>No reviews yet. Be the first one to share your experience with this instructor!</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20220202 15:05:31.803" level="INFO">Current page does not contain text 'No reviews yet. Be the first one to share your experience with this instructor!'.</msg>
+<status status="PASS" starttime="20220202 15:05:25.676" endtime="20220202 15:05:31.803"/>
+</kw>
+<status status="PASS" starttime="20220202 15:03:29.683" endtime="20220202 15:05:31.804"/>
+</test>
+<doc>US # 6 test cases for the Profs to Pick Website
+
+These are the test cases that deal with the feature adding a
+professor to the web application, Profs top Pick DLSU
+
+
+By Azriel Matthew O. Ortega</doc>
+<status status="PASS" starttime="20220202 15:03:29.503" endtime="20220202 15:05:31.807"/>
+</suite>
+<status status="PASS" starttime="20220202 15:03:29.473" endtime="20220202 15:05:31.810"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="US-06">US-06</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Us6">US-06.Us6</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
