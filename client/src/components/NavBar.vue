@@ -50,6 +50,7 @@
               text-lg
             "
             :to="`/home`"
+            name="homeLnk"
             >Home</router-link
           >
 
@@ -102,7 +103,7 @@
         </div>
 
         <!-- Profile dropdown -->
-        <div class="ml-8">
+        <div class="ml-auto">
           <button
             type="button"
             class="
@@ -115,6 +116,7 @@
               focus:ring-offset-2
               focus:ring-offset-gray-800
               focus:ring-white
+              ml-auto
             "
             id="user-menu-button"
             aria-expanded="false"
@@ -131,6 +133,9 @@
 </template>
 
 <style>
+body{
+  font-family: 'Manrope', sans-serif;
+}
 .nav-font {
   font-family: 'Manrope', sans-serif;
   background-color: var(--light-green);

@@ -9,13 +9,13 @@
 
     <br />
 
-    <div class="flex items-center justify-center space-x-12">
+    <div class="flex items-center justify-center">
       <div>
-        <div class="mr-3">
+        <div class="mr-15">
           <img
             class="pt-5 rounded-full lg-shadow"
             style="width: 300px; height: 300px"
-            :src="placeholder.profilePicture"
+            :src="profData.profilePicture"
           />
         </div>
 
@@ -29,7 +29,6 @@
             accept="image/*"
             class="hidden"
             @change="uploadImage"
-            :class="{ 'is-invalid': v.imageFile.$error }"
           />
           <label
             for="image-file"
@@ -48,21 +47,12 @@
           <br />
           <br />
         </div>
-        <div class="ml-16">
-          <p
-            class="text-red-500 manrope-bold text-left text-sm"
-            v-if="v.imageFile.$error"
-          >
-            Please upload a new image.
-          </p>
-          <p v-else></p>
-        </div>
       </div>
 
       <br />
       <div
         class="
-          px-10
+          px-40
           py-6
           mt-10
           ml-20
@@ -73,7 +63,9 @@
         "
         style="border-radius: 50px; background-color: #ffffff"
       >
-        <h1 class="text-3xl font-bold text-center">Edit Professor Info</h1>
+        <h1 class="text-3xl font-bold text-center">
+          Edit Instructor Information
+        </h1>
         <br />
         <p class="font-bold">First Name</p>
         <input
@@ -85,17 +77,7 @@
           v-model.trim="profData.firstName"
           :placeholder="placeholder.firstName"
           capitalize
-          :class="{
-            'border-red-500': v.firstName.$error,
-          }"
         />
-        <p
-          class="text-red-500 manrope-bold text-center text-sm"
-          v-if="v.firstName.$error"
-        >
-          {{ v.firstName.$errors[0].$message }}
-        </p>
-        <p v-else></p>
         <br />
         <br />
 
@@ -106,20 +88,10 @@
           type="text"
           class="input-text-field sm:w-16 md:w-32 lg:w-64"
           style="border-color: #546681; height: 30px; text-align: center"
-          v-model="profData.lastName"
+          v-model.trim="profData.lastName"
           :placeholder="placeholder.lastName"
           capitalize
-          :class="{
-            'border-red-500': v.lastName.$error,
-          }"
         />
-        <p
-          class="text-red-500 manrope-bold text-center text-sm"
-          v-if="v.lastName.$error"
-        >
-          {{ v.lastName.$errors[0].$message }}
-        </p>
-        <p v-else></p>
         <br />
         <br />
 
@@ -130,7 +102,7 @@
           type="email"
           class="input-text-field sm:w-16 md:w-32 lg:w-64"
           style="border-color: #546681; height: 30px; text-align: center"
-          v-model="profData.email"
+          v-model.trim="profData.email"
           :placeholder="placeholder.email"
           lowercase
           :class="{
@@ -154,9 +126,6 @@
             name="college"
             class="rounded-md border-4 border-indigo-500/100 lg:w-64"
             v-model="profData.college"
-            :class="{
-              'border-red-500': v.college.$error,
-            }"
           >
             <option selected disabled hidden>Choose One</option>
             <option value="BAGCED">BAGCED</option>
@@ -179,9 +148,6 @@
             id="department"
             class="rounded-md border-4 border-indigo-500/100 lg:w-64"
             v-model="profData.department"
-            :class="{
-              'border-red-500': v.department.$error,
-            }"
           >
             <option selected disabled hidden>Choose One</option>
 
@@ -312,9 +278,6 @@
             name="status"
             class="rounded-md border-4 border-indigo-500/100 lg:w-64"
             v-model="profData.status"
-            :class="{
-              'border-red-500': v.status.$error,
-            }"
           >
             <option selected disabled hidden>Choose One</option>
             <option value="Active">Active</option>
@@ -359,7 +322,7 @@ import { ref, reactive, onMounted } from 'vue';
 import * as api from '../api';
 import { useRoute, useRouter } from 'vue-router';
 import useVuelidate from '@vuelidate/core';
-import { email, required, helpers } from '@vuelidate/validators';
+import { email, helpers } from '@vuelidate/validators';
 
 export default {
   name: 'EditAdmin',
@@ -371,8 +334,6 @@ export default {
     const router = useRoute();
     const router2 = useRouter();
 
-    const validName = (value) => (/^[a-zA-Z ]*$/.test(value) ? true : false);
-
     const dlsuEmail = (value) => {
       const domain = value.split('@').pop();
 
@@ -382,6 +343,10 @@ export default {
       } else {
         for (let i = 0; i < state.allProfs.length; i++) {
           if (profData.email == state.allProfs[i].email) {
+            if (profData.email == placeholder.email) {
+              console.log('EMAIL VALID');
+              return true;
+            }
             console.log('PROF EXISTS');
             return false;
           }
@@ -391,54 +356,23 @@ export default {
       }
     };
 
-    const notDefault = (value) => !value.includes('Choose One');
-
-    function imgCheck() {
-      return state.fileValidation;
-    }
+    const inputEmail = (value) => {
+      if (value.trim() == '' || value.trim() == null) {
+        return false;
+      }
+      return true;
+    };
 
     const editRules = {
-      imageFile: {
-        imgCheck,
-      },
-      firstName: {
-        required,
-        validName: helpers.withMessage(
-          'Value must contain alphabet characters.',
-          validName
-        ),
-      },
-      lastName: {
-        required,
-        validName: helpers.withMessage(
-          'Value must contain alphabet characters.',
-          validName
-        ),
-      },
       email: {
         email,
-        required,
+        inputEmail: helpers.withMessage(
+          'Enter email if you wish to retain it',
+          inputEmail
+        ),
         dlsuEmail: helpers.withMessage(
           'Value must be valid/unregistered DLSU email',
           dlsuEmail
-        ),
-      },
-      college: {
-        notDefault: helpers.withMessage(
-          'Value must not be default',
-          notDefault
-        ),
-      },
-      department: {
-        notDefault: helpers.withMessage(
-          'Value must not be default',
-          notDefault
-        ),
-      },
-      status: {
-        notDefault: helpers.withMessage(
-          'Value must not be default',
-          notDefault
         ),
       },
     };
@@ -476,7 +410,7 @@ export default {
 
         const result = await api.getProf(router.params.profID);
         if (result) {
-          placeholder.profilePicture = result.data.profilePicture;
+          profData.profilePicture = result.data.profilePicture;
           placeholder.firstName = result.data.firstName;
           placeholder.lastName = result.data.lastName;
           placeholder.email = result.data.email;
@@ -496,8 +430,21 @@ export default {
         const validated = await v.value.$validate();
 
         if (validated) {
+          if (profData.firstName == null || profData.firstName == '') {
+            profData.firstName = placeholder.firstName;
+          }
+          if (profData.lastName == null || profData.lastName == '') {
+            profData.lastName = placeholder.lastName;
+          }
+
           const formData = new FormData();
-          formData.append('image-file', file.value.files[0]);
+
+          if (!file.value.files[0]) {
+            formData.append('profilePicture', profData.profilePicture);
+          } else {
+            formData.append('image-file', file.value.files[0]);
+          }
+
           formData.append('id', profData.id);
           formData.append('firstName', profData.firstName);
           formData.append('lastName', profData.lastName);
@@ -505,7 +452,7 @@ export default {
           formData.append('college', profData.college);
           formData.append('department', profData.department);
           formData.append('status', profData.status);
-          console.log(formData);
+          console.log('---------------');
           console.log(file.value.files[0]);
 
           const res = await api.editProf(formData);
@@ -522,7 +469,7 @@ export default {
     function uploadImage() {
       state.fileValidation = file.value.files.length == 0 ? false : true;
       if (state.fileValidation) {
-        placeholder.profilePicture = URL.createObjectURL(file.value.files[0]);
+        profData.profilePicture = URL.createObjectURL(file.value.files[0]);
         console.log('file: ' + file.value.files[0].name);
       }
     }

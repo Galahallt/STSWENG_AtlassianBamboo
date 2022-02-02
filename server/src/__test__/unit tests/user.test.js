@@ -1,11 +1,21 @@
 /* eslint-disable node/no-unpublished-import */
 import request from 'supertest';
 import app from '../../app.js';
-import mongoose from 'mongoose';
+import mockDB from '../../config/mockDB.js';
 
 describe('Test User Routes', () => {
+  /**
+   * Clear all test data after every test.
+   */
+  afterEach(async () => {
+    await mockDB.clearDatabase();
+  });
+
+  /**
+   * Remove and close the db and server.
+   */
   afterAll(async () => {
-    mongoose.disconnect();
+    await mockDB.closeDatabase();
   });
 
   it('user id does not exist, should respond with 400 status code', async () => {
