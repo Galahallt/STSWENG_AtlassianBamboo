@@ -48,25 +48,48 @@ const adminController = {
   // edit professor info here
   editProfessor: async (req, res) => {
     try {
-      const result = await cloudinary.v2.uploader.upload(req.file.path, {
-        public_id: `prof-${uniqid()}`,
-        folder: 'STSWENG-Atlassian',
-      });
+      logger.info(req.file);
+      if (req.file) {
+        const result = await cloudinary.v2.uploader.upload(req.file.path, {
+          public_id: `prof-${uniqid()}`,
+          folder: 'STSWENG-Atlassian',
+        });
 
-      const editProf = {
-        profilePicture: result.secure_url,
-        id: JSON.parse(JSON.stringify(req.body.id)),
-        firstName: JSON.parse(JSON.stringify(req.body.firstName)),
-        lastName: JSON.parse(JSON.stringify(req.body.lastName)),
-        email: JSON.parse(JSON.stringify(req.body.email)),
-        college: JSON.parse(JSON.stringify(req.body.college)),
-        department: JSON.parse(JSON.stringify(req.body.department)),
-        status: JSON.parse(JSON.stringify(req.body.status)),
-      };
+        const editProf = {
+          profilePicture: result.secure_url,
+          id: JSON.parse(JSON.stringify(req.body.id)),
+          firstName: JSON.parse(JSON.stringify(req.body.firstName)),
+          lastName: JSON.parse(JSON.stringify(req.body.lastName)),
+          email: JSON.parse(JSON.stringify(req.body.email)),
+          college: JSON.parse(JSON.stringify(req.body.college)),
+          department: JSON.parse(JSON.stringify(req.body.department)),
+          status: JSON.parse(JSON.stringify(req.body.status)),
+        };
 
-      const edit = await InstructorService.updateProfDetails(editProf);
-      if (edit) {
-        return res.status(200).json({ message: 'Instructor edit successful' });
+        const edit = await InstructorService.updateProfDetails(editProf);
+        if (edit) {
+          return res
+            .status(200)
+            .json({ message: 'Instructor edit successful' });
+        }
+      } else {
+        const editProf = {
+          profilePicture: JSON.parse(JSON.stringify(req.body.profilePicture)),
+          id: JSON.parse(JSON.stringify(req.body.id)),
+          firstName: JSON.parse(JSON.stringify(req.body.firstName)),
+          lastName: JSON.parse(JSON.stringify(req.body.lastName)),
+          email: JSON.parse(JSON.stringify(req.body.email)),
+          college: JSON.parse(JSON.stringify(req.body.college)),
+          department: JSON.parse(JSON.stringify(req.body.department)),
+          status: JSON.parse(JSON.stringify(req.body.status)),
+        };
+
+        const edit = await InstructorService.updateProfDetails(editProf);
+        if (edit) {
+          return res
+            .status(200)
+            .json({ message: 'Instructor edit successful' });
+        }
       }
     } catch (error) {
       return res.status(500).json({ message: 'Server Error' });

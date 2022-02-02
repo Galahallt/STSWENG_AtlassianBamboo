@@ -1,15 +1,5 @@
 <template>
-  <div
-    class="
-      bg-gradient-to-tr
-      via-blue-300
-      from-green-500
-      to-purple-to-tr
-      w-full
-      h-screen
-      block
-    "
-  >
+  <div class="min-h-screen justify-center" style="background-color: #edfff7">
     <nav-bar />
 
     <div>
@@ -20,13 +10,28 @@
             py-2
             mt-4
             text-white
-            bg-green-600
+            dark_green
             rounded-lg
             hover:bg-green-900
             shadow-lg
           "
           to="/addadmin"
         >
+          <svg
+            width="18"
+            height="18"
+            viewBox="4 2 16 24 "
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="inline-flex items-center"
+          >
+            <path
+              d="M12 12H4M12 20V12V20ZM12 12V4V12ZM12 12H20H12Z"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
           New Admin
         </router-link>
       </div>
@@ -59,15 +64,16 @@
                   class="
                     px-2
                     py-1
-                    text-white
-                    bg-red-600
+                    mt-2
+                    text-green-600
+                    bg-white
                     rounded-lg
-                    hover:bg-red-900
+                    border-2 border-green-600
+                    hover:bg-gray-200
                     shadow-lg
                     mb-2
-                    mt-2
                   "
-                  v-bind:name="'rmv-'+items.email"
+                  v-bind:name="'rmv-' + items.email"
                   @click="removeAdmin(items.email)"
                 >
                   Remove
@@ -77,17 +83,17 @@
                   class="
                     px-2
                     py-1
-                    text-white
-                    bg-red-600
+                    mt-2
+                    text-green-600
+                    bg-white
                     rounded-lg
-                    hover:bg-red-900
+                    border-2 border-green-600
+                    hover:bg-gray-200
                     shadow-lg
                     mb-2
-                    mt-2
-                    opacity-50
                     cursor-not-allowed
                   "
-                  v-bind:name="'rmv-'+items.email"
+                  v-bind:name="'rmv-' + items.email"
                 >
                   Remove
                 </button>
