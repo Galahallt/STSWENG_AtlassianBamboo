@@ -18,7 +18,6 @@ describe('Test Instructor Routes', () => {
     await mockDB.closeDatabase();
   });
 
-  // to modify
   it('valid professor, should respond with 200 status code', async () => {
     const response = await request(app)
       .post('/professor/addProf')
@@ -31,6 +30,31 @@ describe('Test Instructor Routes', () => {
         courses: ['STSWENG', 'CSSWENG'],
       });
     expect(response.statusCode).toBe(200);
+  });
+
+  it('professor exists, should respond with 400 status code', async () => {
+    await request(app)
+      .post('/professor/addProf')
+      .send({
+        lastName: 'Espiritu',
+        firstName: 'Paolo',
+        email: 'paoloEspiritu@dlsu.edu.ph',
+        college: 'CCS',
+        department: 'Software Technology',
+        courses: ['STSWENG', 'CSSWENG'],
+      });
+
+    const response = await request(app)
+      .post('/professor/addProf')
+      .send({
+        lastName: 'Espiritu',
+        firstName: 'Paolo',
+        email: 'paoloEspiritu@dlsu.edu.ph',
+        college: 'CCS',
+        department: 'Software Technology',
+        courses: ['STSWENG', 'CSSWENG'],
+      });
+    expect(response.statusCode).toBe(400);
   });
 
   it('bad request, should respond with 500 status code', async () => {
