@@ -3,15 +3,15 @@ import request from 'supertest';
 import app from '../../app.js';
 import mockDB from '../../config/mockDB.js';
 
+afterEach(async () => {
+  await mockDB.clearDatabase();
+});
+
+afterAll(async () => {
+  await mockDB.closeDatabase();
+});
+
 describe('Test Instructor Routes', () => {
-  afterEach(async () => {
-    mockDB.clearDatabase();
-  });
-
-  afterAll(async () => {
-    mockDB.closeDatabase();
-  });
-
   // to modify
   // it('valid professor, should respond with 200 status code', async () => {
   //   const response = await request(app)
@@ -51,10 +51,10 @@ describe('Test Instructor Routes', () => {
     expect(response.statusCode).toBe(500);
   });
 
-  it('function called, should respond with 200 status code', async () => {
-    const response = await request(app).get('/professor/getAllProfs');
-    expect(response.statusCode).toBe(200);
-  });
+  // it('function called, should respond with 200 status code', async () => {
+  //   const response = await request(app).get('/professor/getAllProfs');
+  //   expect(response.statusCode).toBe(200);
+  // });
 
   // to modify
   // it('function called, should respond with 200 status code', async () => {

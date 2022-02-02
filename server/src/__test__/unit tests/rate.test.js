@@ -3,15 +3,15 @@ import request from 'supertest';
 import app from '../../app.js';
 import mockDB from '../../config/mockDB.js';
 
+afterEach(async () => {
+  await mockDB.clearDatabase();
+});
+
+afterAll(async () => {
+  await mockDB.closeDatabase();
+});
+
 describe('Test Rating Routes', () => {
-  afterEach(async () => {
-    mockDB.clearDatabase();
-  });
-
-  afterAll(async () => {
-    mockDB.closeDatabase();
-  });
-
   // to modify
   // it('rating found, should respond with 200 status code', async () => {
   //   const response = await request(app).post('/rating/findRating').send({

@@ -3,15 +3,15 @@ import request from 'supertest';
 import app from '../../app.js';
 import mockDB from '../../config/mockDB.js';
 
+afterEach(async () => {
+  await mockDB.clearDatabase();
+});
+
+afterAll(async () => {
+  await mockDB.closeDatabase();
+});
+
 describe('Test Index Route', () => {
-  afterEach(async () => {
-    mockDB.clearDatabase();
-  });
-
-  afterAll(async () => {
-    mockDB.closeDatabase();
-  });
-
   it('invalid DLSU email, should respond with 400 status code', async () => {
     const response = await request(app).post('/login').send({
       fullName: 'Keil Finez',
