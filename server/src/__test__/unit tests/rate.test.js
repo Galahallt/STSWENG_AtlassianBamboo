@@ -31,7 +31,6 @@ describe('Test Rating Routes', () => {
     await request(app)
       .post('/professor/addProf')
       .send({
-        id: 'asidasio91213',
         lastName: 'Espiritu',
         firstName: 'Paolo',
         email: 'paoloEspiritu@dlsu.edu.ph',
@@ -74,7 +73,6 @@ describe('Test Rating Routes', () => {
     await request(app)
       .post('/professor/addProf')
       .send({
-        id: 'asidasio91213',
         lastName: 'Espiritu',
         firstName: 'Paolo',
         email: 'paoloEspiritu@dlsu.edu.ph',
@@ -98,27 +96,6 @@ describe('Test Rating Routes', () => {
     expect(response.statusCode).toBe(500);
   });
 
-  // to modify
-  it('professor not found, should respond with 400 status code', async () => {
-    await request(app)
-      .post('/professor/addProf')
-      .send({
-        lastName: 'Espiritu',
-        firstName: 'Paolo',
-        email: 'paoloEspiritu@dlsu.edu.ph',
-        college: 'CCS',
-        department: 'Software Technology',
-        courses: ['STSWENG', 'CSSWENG'],
-      });
-
-    const response = await request(app)
-      .patch('/rating/getInstructorRatings')
-      .send({
-        instructorID: 'asidasio91213',
-      });
-    expect(response.statusCode).toBe(400);
-  });
-
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .patch('/rating/getInstructorRatings')
@@ -126,7 +103,6 @@ describe('Test Rating Routes', () => {
     expect(response.statusCode).toBe(500);
   });
 
-  // to modify
   it('rating updated, should respond with 200 status code', async () => {
     await request(app).post('/login').send({
       fullName: 'Keil Finez',

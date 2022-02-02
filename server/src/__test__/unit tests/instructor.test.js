@@ -23,7 +23,6 @@ describe('Test Instructor Routes', () => {
     const response = await request(app)
       .post('/professor/addProf')
       .send({
-        id: 'asidasio91213',
         lastName: 'Espiritu',
         firstName: 'Paolo',
         email: 'paoloEspiritu@dlsu.edu.ph',
@@ -61,7 +60,6 @@ describe('Test Instructor Routes', () => {
     await request(app)
       .post('/professor/addProf')
       .send({
-        id: 'asidasio91213',
         lastName: 'Espiritu',
         firstName: 'Paolo',
         email: 'paoloEspiritu@dlsu.edu.ph',
