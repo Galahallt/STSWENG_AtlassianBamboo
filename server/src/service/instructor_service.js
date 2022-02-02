@@ -43,6 +43,11 @@ const instructorService = {
         },
       }
     ),
+  addCourse: async (update) =>
+    Instructor.findOneAndUpdate(
+      { id: update.id },
+      { $set: { courses: update.courses } }
+    ),
 };
 
 export default instructorService;

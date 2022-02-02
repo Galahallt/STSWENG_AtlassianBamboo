@@ -2,12 +2,12 @@
   <div class="background_all home-container">
     <nav-bar />
 
-    <div class="grid grid-cols-2">
-      <div class="col-span-1 ml-10 mt-6 text-2xl font-bold hello_color">
+    <div class="grid grid-cols-10">
+      <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
       <div
-        class="col-span-1 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
+        class="col-span-8 flex space-x-4 space-x-reverse flex-row-reverse mr-8"
       >
         <div v-if="state.isAdministrator">
           <router-link :to="`/adminlist`">
@@ -59,7 +59,7 @@
                 stroke-linecap="round"
               />
             </svg>
-            Add Professor
+            Single Instructor
           </button>
         </div>
         <addProfModal :addProf="showAddProfModal" @close="toggleAddProfModal">
@@ -542,7 +542,7 @@
             />
           </svg>
 
-          <div>Add Multiple Professors</div>
+          <div>Multiple Instructors</div>
         </button>
         <multipleAddProfModal
           :multipleAddProf="showMultipleAddProfModal"
@@ -840,7 +840,7 @@
             Submit
           </button>
         </div>
-        <div class="mt-8">
+        <div class="mt-3">
           <button
             class="
               px-10
@@ -882,6 +882,7 @@
           v-for="prof in state.shownProfs"
           :key="prof.id"
           :prof="prof"
+          v-bind:name="'prof-'+prof.email"
         />
       </div>
     </div>
