@@ -3,15 +3,21 @@ import request from 'supertest';
 import app from '../../app.js';
 import mockDB from '../../config/mockDB.js';
 
-afterEach(async () => {
-  await mockDB.clearDatabase();
-});
-
-afterAll(async () => {
-  await mockDB.closeDatabase();
-});
-
 describe('Test User Routes', () => {
+  /**
+   * Clear all test data after every test.
+   */
+  afterEach(async () => {
+    await mockDB.clearDatabase();
+  });
+
+  /**
+   * Remove and close the db and server.
+   */
+  afterAll(async () => {
+    await mockDB.closeDatabase();
+  });
+
   it('user id does not exist, should respond with 400 status code', async () => {
     const response = await request(app).post('/user/getUserById').send({
       id: 'asdasdsadasdasd',
