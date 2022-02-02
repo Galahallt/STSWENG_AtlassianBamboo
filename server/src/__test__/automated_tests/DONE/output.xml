@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.8.8 on win32)" generated="20220202 20:46:49.074" rpa="false" schemaversion="2">
+<suite id="s1" name="US-05" source="D:\ACADS\TERM7\STSWENG\Github\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\DONE\US-05">
+<suite id="s1-s1" name="Us5 Addreview" source="D:\ACADS\TERM7\STSWENG\Github\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\DONE\US-05\us5_addreview.robot">
+<kw name="Login" library="resource1" type="SETUP">
+<arg>${SELF}</arg>
+<arg>${PASS1}</arg>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 20:46:49.675" endtime="20220202 20:46:49.676"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${LOGIN}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220202 20:46:49.678" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<msg timestamp="20220202 20:46:59.986" level="FAIL">WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</msg>
+<status status="FAIL" starttime="20220202 20:46:49.677" endtime="20220202 20:46:59.986"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.986" endtime="20220202 20:46:59.986"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.986" endtime="20220202 20:46:59.986"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login with Google Account</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<var>${TAB}</var>
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>identifierId</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>identifierNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>name:password</arg>
+<arg>${pass}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.987"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>passwordNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.987" endtime="20220202 20:46:59.988"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>${TAB}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.988" endtime="20220202 20:46:59.988"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220202 20:46:59.988" endtime="20220202 20:46:59.988"/>
+</kw>
+<kw name="Check Current Page" library="resource1">
+<arg>${HOME}</arg>
+<status status="NOT RUN" starttime="20220202 20:46:59.988" endtime="20220202 20:46:59.988"/>
+</kw>
+<status status="FAIL" starttime="20220202 20:46:49.672" endtime="20220202 20:46:59.989"/>
+</kw>
+<test id="s1-s1-t1" name="Valid">
+<status status="FAIL" starttime="20220202 20:46:59.989" endtime="20220202 20:47:00.010">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t2" name="Same Code">
+<status status="FAIL" starttime="20220202 20:47:00.021" endtime="20220202 20:47:00.023">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t3" name="Different Code">
+<status status="FAIL" starttime="20220202 20:47:00.031" endtime="20220202 20:47:00.032">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t4" name="Blank Comment">
+<status status="FAIL" starttime="20220202 20:47:00.071" endtime="20220202 20:47:00.073">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t5" name="Blank Code">
+<status status="FAIL" starttime="20220202 20:47:00.077" endtime="20220202 20:47:00.078">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t6" name="All Empty">
+<status status="FAIL" starttime="20220202 20:47:00.080" endtime="20220202 20:47:00.080">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t7" name="New Code">
+<status status="FAIL" starttime="20220202 20:47:00.082" endtime="20220202 20:47:00.083">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t8" name="Invalid Code">
+<status status="FAIL" starttime="20220202 20:47:00.084" endtime="20220202 20:47:00.085">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<test id="s1-s1-t9" name="Cancel">
+<status status="FAIL" starttime="20220202 20:47:00.086" endtime="20220202 20:47:00.087">Parent suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+</status>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<msg timestamp="20220202 20:47:02.165" level="ERROR">When closing browser, received exception: Execution terminated by signal</msg>
+<status status="FAIL" starttime="20220202 20:47:00.089" endtime="20220202 20:47:02.166">Execution terminated by signal</status>
+</kw>
+<doc>Test suite for User Story #5
+
+These are test cases deals with going
+to professor's page as an admin and
+adding a review.
+
+By James Andrew F. Perez</doc>
+<status status="FAIL" starttime="20220202 20:46:49.118" endtime="20220202 20:47:02.166">Suite setup failed:
+WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: unable to send message to renderer
+  (Session info: chrome=97.0.4692.99)
+
+
+Also suite teardown failed:
+Execution terminated by signal</status>
+</suite>
+<status status="FAIL" starttime="20220202 20:46:49.077" endtime="20220202 20:47:02.176"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="9" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="9" skip="0" id="s1" name="US-05">US-05</stat>
+<stat pass="0" fail="9" skip="0" id="s1-s1" name="Us5 Addreview">US-05.Us5 Addreview</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20220202 20:47:02.165" level="ERROR">When closing browser, received exception: Execution terminated by signal</msg>
+</errors>
+</robot>
