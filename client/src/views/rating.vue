@@ -124,6 +124,7 @@
             <p class="text-lg">Filter Reviews:</p>
             <div class="px-3">
               <select
+                name = "filter-review"
                 class="px-4 filter-options mr-auto"
                 v-model="state.filter"
                 @change="filterReviews"
@@ -137,6 +138,7 @@
           </div>
           <div class="buttons-container ml-auto mt-5 flex">
             <button
+              name = "review-button"
               class="
                 review-button
                 rounded-lg
@@ -148,6 +150,7 @@
                 center
                 align-middle
               "
+              name="reviewBtn"
               @click="toggleWriteCommentModal"
             >
               <div class="flex center align-middle">
@@ -183,7 +186,7 @@
               "
               @click="toggleWriteModal"
             >
-              <div class="flex center align-middle">
+              <div class="flex center align-middle" name="rateBtn">
                 <svg
                   width="25"
                   height="25"
@@ -220,12 +223,14 @@
                   <input
                     v-on:keyup="areFieldsValid"
                     v-model="state.course_code"
+                    name = "course-code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
                     minlength="7"
                     maxlength="7"
                     title="Field must be 7 characters long"
                     ref="course_code"
+                    name="codeInp"
                   />
                   <p v-if="state.isCourseCodeIncomplete">
                     *Must be 7 characters long
@@ -236,23 +241,26 @@
                 <textarea
                   class="comment p-3 mt-3"
                   id="comment"
-                  name="comment"
+                  name="commentInp"
                   placeholder="How was your experience with this professor? Did you have a great time in the course you took? Feel free to share them here but don’t forget to be respectful :) "
                   v-on:keyup="areFieldsValid"
-                  v-model="state.comment"
+                  v-model.trim="state.comment"
                 ></textarea>
 
                 <div class="flex flex-row">
                   <button
                     class="cancel-button mr-auto rounded-md p-2"
                     @click="toggleWriteCommentModal"
+                    name="cancelBtn"
                   >
                     Cancel
                   </button>
                   <button
+                    name = "submit-button"
                     class="submit-button ml-auto rounded-md p-2"
                     @click="addReview"
                     :disabled="state.isSubmitDisabled"
+                    name="submitBtn"
                   >
                     Submit
                   </button>
@@ -303,7 +311,7 @@
           </div>
         </div>
 
-        <p class="text-center text-xl" v-if="state.emptyReviews">
+        <p class="c text-center text-xl" v-if="state.emptyReviews">
           No reviews yet. Be the first one to share your experience with this
           instructor!
         </p>
@@ -313,6 +321,7 @@
             v-for="review in state.shownReviews"
             :key="review.id"
             :review="review"
+            v-bind:name="review.userName + review.course_code + review.review"
             @deleteReview="deleteReview(review.id)"
           />
         </div>
@@ -734,6 +743,9 @@ export default {
             state.emptyReviews = false;
             toggleWriteCommentModal();
             state.shownReviews.push(res.data);
+            if (!prof.tags.includes(review.course_code)) {
+              prof.tags.push(review.course_code);
+            }
             state.comment = '';
             state.course_code = '';
             areFieldsValid();

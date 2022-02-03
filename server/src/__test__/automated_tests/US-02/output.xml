@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.8.5 on win32)" generated="20220202 12:23:13.914" rpa="false" schemaversion="2">
+<suite id="s1" name="US-02" source="D:\Documents\DLSU_Files\TERM 7\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-02">
+<suite id="s1-s1" name="Us2" source="D:\Documents\DLSU_Files\TERM 7\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-02\us2.robot">
+<test id="s1-s1-t1" name="[2-10] User adds Professor with Complete Input">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 12:23:14.393" endtime="20220202 12:23:14.393"/>
+</kw>
+<kw name="Login to PTP">
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>1</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 12:23:14.393" endtime="20220202 12:23:14.393"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>http://localhost:3000</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220202 12:23:14.394" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220202 12:23:14.393" endtime="20220202 12:23:18.916"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220202 12:23:18.916" endtime="20220202 12:23:20.072"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login with Google Account</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:20.072" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220202 12:23:20.072" endtime="20220202 12:23:24.414"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<var>${TAB}</var>
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<msg timestamp="20220202 12:23:28.461" level="INFO">${TAB} = CDwindow-62D710262FDBBE93E6881CD44C1CB2A3</msg>
+<status status="PASS" starttime="20220202 12:23:24.415" endtime="20220202 12:23:28.461"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>identifierId</arg>
+<arg>azriel_ortega@dlsu.edu.ph</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:28.462" level="INFO">Typing text 'azriel_ortega@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220202 12:23:28.461" endtime="20220202 12:23:31.664"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>identifierNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:31.665" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220202 12:23:31.664" endtime="20220202 12:23:33.743"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>//*[@id="password"]/div[1]/div/div[1]/input</arg>
+<arg>MasterJason18!</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:33.743" level="INFO">Typing password into text field '//*[@id="password"]/div[1]/div/div[1]/input'.</msg>
+<msg timestamp="20220202 12:23:35.811" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220202 12:23:36.880" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220202 12:23:33.743" endtime="20220202 12:23:36.880"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>passwordNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:36.881" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220202 12:23:36.881" endtime="20220202 12:23:38.953"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>${TAB}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220202 12:23:38.953" endtime="20220202 12:23:42.994"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>addProfessorButton</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:42.994" level="INFO">Clicking button 'addProfessorButton'.</msg>
+<status status="PASS" starttime="20220202 12:23:42.994" endtime="20220202 12:23:47.095"/>
+</kw>
+<status status="PASS" starttime="20220202 12:23:14.393" endtime="20220202 12:23:47.095"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>lastName</arg>
+<arg>Chou</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:47.097" level="INFO">Typing text 'Chou' into text field 'lastName'.</msg>
+<status status="PASS" starttime="20220202 12:23:47.095" endtime="20220202 12:23:50.233"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>firstName</arg>
+<arg>Tzuyu</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:50.234" level="INFO">Typing text 'Tzuyu' into text field 'firstName'.</msg>
+<status status="PASS" starttime="20220202 12:23:50.233" endtime="20220202 12:23:53.340"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>email</arg>
+<arg>Tzuyu_Chou@dlsu.edu.ph</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:23:53.341" level="INFO">Typing text 'Tzuyu_Chou@dlsu.edu.ph' into text field 'email'.</msg>
+<status status="PASS" starttime="20220202 12:23:53.341" endtime="20220202 12:23:56.464"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>class:college_select</arg>
+<arg>7</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20220202 12:23:56.465" level="INFO">Selecting options from selection list 'class:college_select' by index 7.</msg>
+<status status="PASS" starttime="20220202 12:23:56.465" endtime="20220202 12:24:11.740"/>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<arg>class:department_select</arg>
+<arg>5</arg>
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<msg timestamp="20220202 12:24:11.741" level="INFO">Selecting options from selection list 'class:department_select' by index 5.</msg>
+<status status="PASS" starttime="20220202 12:24:11.741" endtime="20220202 12:24:25.001"/>
+</kw>
+<kw name="Input_Course">
+<arg>COBLAW1</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>courses</arg>
+<arg>${COURSE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:24:25.002" level="INFO">Typing text 'COBLAW1' into text field 'courses'.</msg>
+<status status="PASS" starttime="20220202 12:24:25.002" endtime="20220202 12:24:28.106"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>class:courses_input</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20220202 12:24:28.107" level="INFO">Sending key(s) ('ENTER',) to class:courses_input element.</msg>
+<msg timestamp="20220202 12:24:30.536" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20220202 12:24:30.536" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20220202 12:24:28.106" endtime="20220202 12:24:31.566"/>
+</kw>
+<status status="PASS" starttime="20220202 12:24:25.002" endtime="20220202 12:24:31.566"/>
+</kw>
+<kw name="Input_Course">
+<arg>COBLAW2</arg>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>courses</arg>
+<arg>${COURSE}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 12:24:31.568" level="INFO">Typing text 'COBLAW2' into text field 'courses'.</msg>
+<status status="PASS" starttime="20220202 12:24:31.567" endtime="20220202 12:24:34.657"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>class:courses_input</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20220202 12:24:34.658" level="INFO">Sending key(s) ('ENTER',) to class:courses_input element.</msg>
+<msg timestamp="20220202 12:24:36.958" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20220202 12:24:36.958" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20220202 12:24:34.657" endtime="20220202 12:24:37.971"/>
+</kw>
+<status status="PASS" starttime="20220202 12:24:31.567" endtime="20220202 12:24:37.971"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>confirm_addProfessorBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 12:24:37.973" level="INFO">Clicking button 'confirm_addProfessorBtn'.</msg>
+<status status="PASS" starttime="20220202 12:24:37.972" endtime="20220202 12:24:42.070"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220202 12:24:42.071" endtime="20220202 12:24:45.213"/>
+</kw>
+<status status="PASS" starttime="20220202 12:23:14.392" endtime="20220202 12:24:45.214"/>
+</test>
+<doc>US # 2 test cases for the Profs to Pick Website
+
+These are the test cases that deal with the feature adding a
+professor to the web application, Profs top Pick DLSU
+
+
+By Azriel Matthew O. Ortega</doc>
+<status status="PASS" starttime="20220202 12:23:13.940" endtime="20220202 12:24:45.216"/>
+</suite>
+<status status="PASS" starttime="20220202 12:23:13.916" endtime="20220202 12:24:45.217"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="US-02">US-02</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Us2">US-02.Us2</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -1,11 +1,21 @@
 /* eslint-disable node/no-unpublished-import */
 import request from 'supertest';
 import app from '../../app.js';
-import mongoose from 'mongoose';
+import mockDB from '../../config/mockDB.js';
 
 describe('Test Index Route', () => {
+  /**
+   * Clear all test data after every test.
+   */
+  afterEach(async () => {
+    await mockDB.clearDatabase();
+  });
+
+  /**
+   * Remove and close the db and server.
+   */
   afterAll(async () => {
-    mongoose.disconnect();
+    await mockDB.closeDatabase();
   });
 
   it('invalid DLSU email, should respond with 400 status code', async () => {
@@ -19,6 +29,7 @@ describe('Test Index Route', () => {
     });
     expect(response.statusCode).toBe(400);
   });
+
   it('valid DLSU email, should respond with 200 status code', async () => {
     const response = await request(app).post('/login').send({
       fullName: 'Keil Finez',
@@ -30,6 +41,7 @@ describe('Test Index Route', () => {
     });
     expect(response.statusCode).toBe(200);
   });
+
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/login')

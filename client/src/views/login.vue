@@ -1,35 +1,22 @@
 <template>
   <div
     class="
+      login-body
       flex
-      items-center
-      justify-center
       min-h-screen
-      bg-gradient-to-tr
-      via-blue-300
-      from-green-500
-      to-purple-to-tr
+      flex
     "
   >
-    <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
-      <div class="flex justify-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="w-20 h-20 text-green-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M12 14l9-5-9-5-9 5 9 5z" />
-          <path
-            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-          />
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-          />
+
+  <svg class="bg-effect mr-auto invisible md:visible" viewBox="250 20 870 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.0500488" y="614.1" width="969.278" height="255.764" rx="127.882" transform="rotate(-39.3136 0.0500488 614.1)" fill="#B1E9D6"/>
+    <path d="M171.021 837.382C126.274 782.738 134.297 702.167 188.941 657.42L651.029 279.022C705.672 234.275 786.244 242.297 830.991 296.941V296.941C875.738 351.584 867.715 432.156 813.072 476.903L350.984 855.301C296.34 900.048 215.768 892.025 171.021 837.382V837.382Z" fill="#5DA3BC"/>
+  </svg>
+
+    <div class="login-container px-8 py-6 bg-white shadow-lg rounded-lg m-auto">
+      <div class="flex justify-center mx-auto my-4">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 48L57.3333 6.66666M54.4667 58.56L52.368 58.1413C49.2347 57.5147 47.808 53.332 48.804 50.296C51.4093 42.3493 49.5 32.1493 48.444 27.7453C48.116 26.38 47.0333 25.3533 45.6707 25.012L42.6533 24.2587C41.9499 24.0828 41.3075 23.7191 40.7949 23.2065C40.2822 22.6938 39.9185 22.0514 39.7427 21.348L38.9893 18.332C38.648 16.968 37.6227 15.8867 36.256 15.5587C31.8533 14.5027 21.6507 12.592 13.7053 15.1987C10.6707 16.1947 6.488 14.7667 5.86134 11.6333L5.44 9.53466L54.4667 58.56ZM8 14.6667L50.6667 57.3333L8 14.6667Z" stroke="#37B47E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <h3 class="text-2xl font-bold text-center">
@@ -61,13 +48,53 @@
         </p>
       </div>
     </div>
+  <img class="teacher ml-auto mt-auto sm:invisible invisible md:visible" src="../assets/teacher.png" alt="">
+
+
+
+
   </div>
 </template>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap');
+:root {
+  --green: #37b47e;
+  --light-green: #edfff7;
+  --gray: #546681;
+}
+.login-body{
+  background-color: var(--light-green);
+  z-index: -9999;
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.bg-effect{
+position: static;
+z-index: 1;
+width: 300px;
+height: auto;
+margin-top: -50%;
+}
+.teacher{
+  position: static;
+  z-index: 1;
+  width: 300px;
+  height: fit-content;
+  
+}
+.login-container{
+  position:static;
+  z-index: 9999; 
+  background-color: red;
+  min-width: 500px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 800;
+  justify-self: center;
+
 }
 </style>
 
