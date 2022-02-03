@@ -859,7 +859,7 @@
           v-for="prof in state.shownProfs"
           :key="prof.id"
           :prof="prof"
-          v-bind:name="'prof-'+prof.email"
+          v-bind:name="'prof-' + prof.email"
         />
       </div>
     </div>
@@ -1229,6 +1229,7 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
+            state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
             toggleAddProfModal();
@@ -1337,6 +1338,7 @@ export default {
               state.allProfs.push(res.data[i]);
               state.shownProfs.push(res.data[i]);
             }
+            state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
             if (state.allProfs.length !== 0) {
