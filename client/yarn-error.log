@@ -1,20 +1,20 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Tongki\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js dev
 
 PATH: 
-  C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Python\Scripts\;C:\Python\;C:\Program Files\Java\jdk-14.0.2\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\MinGW\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\Tongki\anaconda3;C:\Users\Tongki\anaconda3\Library\mingw-w64\bin;C:\Users\Tongki\anaconda3\Library\usr\bin;C:\Users\Tongki\anaconda3\Library\bin;C:\Users\Tongki\anaconda3\Scripts;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\Tongki\AppData\Local\Microsoft\WindowsApps;C:\Users\Tongki\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Tongki\AppData\Local\GitHubDesktop\bin;C:\Users\Tongki\AppData\Local\Microsoft\WindowsApps;C:\Program Files\heroku\bin;C:\Users\Tongki\AppData\Roaming\npm
+  C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-11.0.13\bin;C:\Users\JAMES ANDREW PEREZ\Documents\webdrivers;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-11.0.13\bin;C:\Users\JAMES ANDREW PEREZ\Documents\webdrivers;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-11.0.13\bin;C:\Users\JAMES ANDREW PEREZ\AppData\Local\Programs\Python\Python39;C:\Users\JAMES ANDREW PEREZ\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\JAMES ANDREW PEREZ\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\JAMES ANDREW PEREZ\AppData\Local\Yarn\bin;;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.3.1\bin;
 
 Yarn version: 
-  1.22.17
+  1.22.15
 
 Node version: 
-  16.13.0
+  16.10.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, rmdir 'C:\Users\Tongki\Desktop\A.Y. 2021-2022\STSWENG\Profs to Pick\STSWENG_AtlassianBamboo\client\node_modules\.bin'
+  Error: EPERM: operation not permitted, mkdir 'C:\Users\JAMESA~1'
 
 npm manifest: 
   {
