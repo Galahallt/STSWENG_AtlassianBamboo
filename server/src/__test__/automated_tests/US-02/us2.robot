@@ -10,16 +10,16 @@ Resource        ${CURDIR}${/}..\\resource2.robot
 Test Teardown    Close Browser
 
 *** Test Cases ***
-# [2-02] User adds Professor with Complete Input
-#     Set Selenium Speed  1
-#     Login to PTP
-#     Input Text  lastName  Ortega
-#     Input Text  firstName   Azriel Matthew
-#     Input Text  email   azriel_ortega@dlsu.edu.ph
-#     Select From List By Index   class:college_select        2
-#     Select From List By Index   class:department_select        1
-#     Input Course    STSWENG
-#     Click Button    confirm_addProfessorBtn
+[2-02] User adds Professor with Complete Input
+    Set Selenium Speed  1
+    Login to PTP
+    Input Text  lastName  Ortega
+    Input Text  firstName   Azriel Matthew
+    Input Text  email   azriel_ortega@dlsu.edu.ph
+    Select From List By Index   class:college_select        2
+    Select From List By Index   class:department_select        1
+    Input Course    STSWENG
+    Click Button    confirm_addProfessorBtn
 
 [2-03] User adds professor without Input
     Set Selenium Speed  1
@@ -32,43 +32,67 @@ Test Teardown    Close Browser
     Element Text Should Be  class:department_error  Value must not be default
     Element Text Should Be  class:courses_error  Value is required
 
-# [2-04] User adds professor with Incomplete Input
-#     Set Selenium Speed  1
-#     Login to PTP
-#     Input Course    CSSWENG
-#     Input Text  lastName  Camacho
-#     Select From List By Index   class:college_select        3
-#     Click Button    confirm_addProfessorBtn
-#     Element Text Should Be  class:firstname_error  Value is required
-#     Element Text Should Be  class:email_error  Value is required
-#     Element Text Should Be  class:department_error  Value must not be default
+[2-04] User adds professor with Incomplete Input
+    Set Selenium Speed  1
+    Login to PTP
+    Input Course    CSSWENG
+    Input Text  lastName  Camacho
+    Select From List By Index   class:college_select        3
+    Click Button    confirm_addProfessorBtn
+    Element Text Should Be  class:firstname_error  Value is required
+    Element Text Should Be  class:email_error  Value is required
 
-# [2-05] User adds professor with invalid email address
-#     Set Selenium Speed  1
-#     Login to PTP
-#     Input Text  lastName  Chu
-#     Input Text  firstName   TIn
-#     Input Text  email   tin_chu@dlsu.edu.ph123
-#     Select From List By Index   class:college_select        2
-#     Select From List By Index   class:department_select        1
-#     Input Course    CLLAW123
-#     Click Button    confirm_addProfessorBtn
-#     Element Text Should Be  class:email_error  Value must contain DLSU e-mail.
-#     Input Text  email   tin_chu@gmail.com
-#     Element Text Should Be  class:email_error  Value must contain DLSU e-mail.
-#     Input Text  email   tin_chu@dlsu.edu.ph
+[2-05] User adds professor with invalid email address
+    Set Selenium Speed  1
+    Login to PTP
+    Input Text  lastName  Chu
+    Input Text  firstName   TIn
+    Input Text  email   tin_chu@dlsu.edu.ph123
+    Select From List By Index   class:college_select        2
+    Select From List By Index   class:department_select        1
+    Input Course    CLAWS23
+    Click Button    confirm_addProfessorBtn
+    Element Text Should Be  class:email_error  Value must contain DLSU e-mail.
+    Input Text  email   tin_chu@gmail.com
+    Element Text Should Be  class:email_error  Value must contain DLSU e-mail.
+    Input Text  email   tin_chu@dlsu.edu.ph
 
-# [2-06] Website can't accept duplicate Irobnputs
-#     Set Selenium Speed  1
-#     Login to PTP
-#     Input Text  lastName  Ortega
-#     Input Text  firstName   Azriel Matthew
-#     Input Text  email   azriel_ortega@dlsu.edu.ph
-#     Select From List By Index   class:college_select        2
-#     Select From List By Index   class:department_select        1
-#     Input Course    STSWENG
-#     Click Button    confirm_addProfessorBtn
-#     Element Text Should Be  class:professor_error  Professor already exists.
+[2-06] Website can't accept duplicate Irobnputs
+    Set Selenium Speed  1
+    Login to PTP
+    Input Text  lastName  Ortega
+    Input Text  firstName   Azriel Matthew
+    Input Text  email   azriel_ortega@dlsu.edu.ph
+    Select From List By Index   class:college_select        2
+    Select From List By Index   class:department_select        1
+    Input Course    STSWENG
+    Click Button    confirm_addProfessorBtn
+    Element Text Should Be  class:professor_error  Professor already exists.
+
+[2-09] Website can't accept duplicate Irobnputs
+    Set Selenium Speed  1
+    Login to PTP
+    Input Text  lastName  Ortega
+    Input Text  firstName   Amiel Monique
+    Input Text  email   amiel_ortega@dlsu.edu.ph
+    Select From List By Index   class:college_select        4
+    Select From List By Index   class:department_select     2
+    Input Course    CSSSWENG
+    Input Course    MOBDEVE
+    Click Button    confirm_addProfessorBtn
+    Element Text Should Be  class:courses_error  Each course should contain at least 7 characters.
+
+[2-10] User adds Professor with Complete Input
+    Set Selenium Speed  1
+    Login to PTP
+    Input Text  lastName  Chou
+    Input Text  firstName   Tzuyu
+    Input Text  email   Tzuyu_Chou@dlsu.edu.ph
+    Select From List By Index   class:college_select        7
+    Select From List By Index   class:department_select        5
+    Input Course    COBLAW1
+    Input Course    COBLAW2
+    Click Button    confirm_addProfessorBtn
 
 *** Keywords ***
 Input_Course

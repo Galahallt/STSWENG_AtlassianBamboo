@@ -882,7 +882,7 @@
           v-for="prof in state.shownProfs"
           :key="prof.id"
           :prof="prof"
-          v-bind:name="'prof-'+prof.email"
+          v-bind:name="'prof-' + prof.email"
         />
       </div>
     </div>
@@ -1012,7 +1012,7 @@ import addProfModal from '../components/addProfessorModal.vue';
 import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
-import { email, required, helpers } from '@vuelidate/validators';
+import { email, required, helpers, minLength } from '@vuelidate/validators';
 import {
   ref,
   watch,
@@ -1252,6 +1252,7 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
+            state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
             toggleAddProfModal();
@@ -1354,6 +1355,7 @@ export default {
               state.allProfs.push(res.data[i]);
               state.shownProfs.push(res.data[i]);
             }
+            state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
             if (state.allProfs.length !== 0) {

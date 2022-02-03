@@ -3,10 +3,6 @@ import Rate from '../model/Rate.js';
 
 // create instructor receipt model that contains methods for rating receipt data manipulation
 const rateService = {
-  // this retrieves and returns all rating receipt data in the database
-  // from most to least recent
-  getAllRatings: async () => Rate.find({}),
-
   // this method retrieves all instructor ratings
   // from most to least recent
   getInstructorRatings: async (instructorID) =>
