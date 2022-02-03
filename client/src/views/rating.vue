@@ -248,6 +248,7 @@
                   <button
                     class="cancel-button mr-auto rounded-md p-2"
                     @click="toggleWriteCommentModal"
+                    name="cancelBtn"
                   >
                     Cancel
                   </button>
@@ -316,6 +317,7 @@
             v-for="review in state.shownReviews"
             :key="review.id"
             :review="review"
+            v-bind:name="review.userName + review.course_code + review.review"
             @deleteReview="deleteReview(review.id)"
           />
         </div>

@@ -17,13 +17,14 @@ Library           SeleniumLibrary  run_on_failure=Nothing
 *** Variables ***
 ${BROWSER}        Chrome
 ${DELAY}          1
-${TITLE}          Profs to Pick
+${TITLE}          DLSU Profs to Pick
 ${LOGIN}          http://localhost:3000
 ${HOME}           http://localhost:3000/home
 ${ADMIN_PAGE}     http://localhost:3000/adminlist
 ${VALID1}         paolo_edni_v_espiritu@dlsu.edu.ph
 ${VALID2}         gio_montecillo@dlsu.edu.ph
 ${SELF}           james_perez@dlsu.edu.ph
+${SELF_NAME}      James Andrew Perez
 ${ADMIN_USER}     keil_christopher_finez@dlsu.edu.ph
 ${NOT_USER}       franchezka_cruz@dlsu.edu.ph
 ${NOT_DLSU}       jamesandrewfperez@gmail.com
@@ -38,8 +39,12 @@ ${PROF1}          bob.enriquez@dlsu.edu.ph
 ${PROF2}          ann.marie@dlsu.edu.ph
 ${CODE1}          CCDSTRU
 ${CODE2}          CCDSALG
+${CODE3}          CCPROG3
+${INVALID_CODE}   AAA
 ${COMMENT1}       Very nice prof! Teaches well.
 ${COMMENT2}       Easy to understand. Lessons are clear.
+${COMMENT3}       Overall good prof. Highly recommend.
+${COMMENT4}       Easy 4.0!
 
 *** Keywords ***
 Login
@@ -56,6 +61,7 @@ Login
     Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
+    Sleep    2
     Check Current Page    ${HOME}
 
 Open Browser To Admin Page

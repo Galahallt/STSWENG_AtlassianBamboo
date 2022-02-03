@@ -4,7 +4,7 @@
 
     <div>
       <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
-        <router-link
+        <button
           class="
             px-6
             py-2
@@ -15,7 +15,7 @@
             hover:bg-green-900
             shadow-lg
           "
-          to="/addadmin"
+          @click="toggleAddAdminModal"
         >
           <svg
             width="18"
@@ -33,8 +33,37 @@
             />
           </svg>
           New Admin
-        </router-link>
+        </button>
       </div>
+
+      <addAdmin :addAdmin="showAddAdminModal" @close="toggleAddAdminModal">
+        <div class="mt-4 justify-center">
+          <input
+            type="text"
+            placeholder="Email"
+            class="
+              w-full
+              px-4
+              py-2
+              mt-2
+              border
+              rounded-md
+              focus:outline-none focus:ring-1 focus:ring-green-600
+            "
+          />
+        </div>
+        <div class="mt-2 ml-1">
+          <h1 style="color: red">Invalid Email!</h1>
+        </div>
+
+        <button
+          @click="addAdmin"
+          class="px-2 py-2 mt-4 text-white rounded-lg hover:bg-gray-900"
+          style="background-color: #37b47e"
+        >
+          Save
+        </button>
+      </addAdmin>
 
       <br />
 
@@ -107,14 +136,16 @@
 </template>
 <script>
 import NavBar from '../components/NavBar.vue';
+import addAdmin from '../components/addAdminModal.vue';
 import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
 import { useRouter } from 'vue-router';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import * as api from '../api';
 export default {
   name: 'Admin List',
   components: {
     NavBar,
+    addAdmin,
   },
   setup() {
     let state = reactive({
@@ -127,6 +158,7 @@ export default {
     //if theres no entries make `error` true and display error msg
     const app = getCurrentInstance();
     const router = useRouter();
+    const showAddAdminModal = ref(false);
     async function getAdminList() {
       try {
         const result = await api.getAdminList();
@@ -147,6 +179,12 @@ export default {
         console.log(err);
       }
     }
+
+    function toggleAddAdminModal() {
+      showAddAdminModal.value = !showAddAdminModal.value;
+      console.log(showAddAdminModal.value);
+    }
+
     async function loadCurrUser() {
       try {
         const result = await api.getUserByEmail(state.email);
@@ -160,7 +198,7 @@ export default {
       getAdminList();
       loadCurrUser();
     });
-    return { state, removeAdmin };
+    return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin };
   },
 };
 </script>
