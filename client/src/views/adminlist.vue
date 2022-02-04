@@ -43,6 +43,7 @@
       <addAdmin :addAdmin="showAddAdminModal" @close="toggleAddAdminModal">
         <div class="mt-4 justify-center">
           <input
+            v-model="state.email"
             type="text"
             placeholder="Email"
             class="
@@ -56,8 +57,11 @@
             "
           />
         </div>
-        <div class="mt-2 ml-1">
-          <h1 style="color: red">Invalid Email!</h1>
+        <div 
+          v-if="state.isAddAdminAttempted"
+          class="mt-2 ml-1"
+        >
+          <h1 style="color: red">{{ state.message }}</h1>
         </div>
 
         <button
@@ -154,8 +158,9 @@ export default {
     let state = reactive({
       admins: null,
       error: false,
+      isAddAdminAttempted: false,
+      message: '',
       isAdministrator: false,
-      email: JSON.parse(localStorage.getItem('user')).email,
       loggedUser: null,
       render: null,
     });
@@ -170,6 +175,26 @@ export default {
         console.log(err);
       }
     }
+    async function addAdmin() {
+      const email = state.email;
+      state.isAddAdminAttempted = true;
+      const res = await api.postAddAdmin(email);
+      // when getting stuff from SERVER, use res.data prefix
+
+      if (res.data.matchedCount == 0) {
+        state.error = true;
+        state.email = '';
+        state.message = 'Cannot find email!';
+      } else {
+        state.email = '';
+        if (res.data.modifiedCount == 1) {
+          state.message = 'Verified!';
+        } else {
+          state.error = true;
+          state.message = 'User is already an Administrator!';
+        }
+      }
+    }    
     async function removeAdmin(email) {
       try {
         const result = await api.postRemoveAdmin(email);
@@ -201,7 +226,7 @@ export default {
       getAdminList();
       loadCurrUser();
     });
-    return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin };
+    return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin, addAdmin };
   },
 };
 </script>
