@@ -1347,10 +1347,14 @@ export default {
         console.log(err);
       }
     }
+
+    onMounted(() => {
+      state.render = false;
+    });
+
     onBeforeMount(() => {
       initProfs();
       getUserAdminAccess();
-      state.render = false;
     });
 
     function isValidProf() {
