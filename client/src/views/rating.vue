@@ -2,12 +2,10 @@
   <div class="rating-body w-full h-screen">
     <NavBar />
 
-    <p v-if="state.render == null" class="hello_color font-bold">
-      Rendering page...
-    </p>
+    <p v-if="state.empty" class="hello_color font-bold">Rendering page...</p>
 
     <div
-      v-if="state.render != null"
+      v-if="!state.empty"
       class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1"
     >
       <!-- BACK BUTTON; may just add name/id here to be able to access the back page -->
@@ -565,7 +563,6 @@ export default {
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
-      render: null,
     });
     const router = useRoute();
     const prof = reactive({
