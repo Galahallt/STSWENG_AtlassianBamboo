@@ -1229,6 +1229,7 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
+            clearFilter();
             state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
@@ -1320,7 +1321,6 @@ export default {
       state.fileExisting = file.value.files.length != 0 ? true : false;
       if (state.fileExisting) {
         state.csvFile = file.value.files[0];
-        console.log('file: ' + file.value.files[0].name);
       }
     }
 
@@ -1338,6 +1338,7 @@ export default {
               state.allProfs.push(res.data[i]);
               state.shownProfs.push(res.data[i]);
             }
+            clearFilter();
             state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 

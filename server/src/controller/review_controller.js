@@ -42,9 +42,6 @@ const reviewController = {
       if (result) {
         if (!result.courses.includes(review.course_code)) {
           const newCourses = result.courses;
-          logger.info('-----');
-          logger.info(newCourses);
-          logger.info('+++++');
           newCourses.push(review.course_code);
 
           const newCourse = {
