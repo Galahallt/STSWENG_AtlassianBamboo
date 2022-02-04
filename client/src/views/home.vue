@@ -1350,6 +1350,9 @@ export default {
     onBeforeMount(() => {
       initProfs();
       getUserAdminAccess();
+    });
+
+    onMounted(() => {
       state.render = false;
     });
 
