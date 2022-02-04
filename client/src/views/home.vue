@@ -20,7 +20,7 @@
                 py-2
                 mt-4
                 text-white
-                bg-green-600
+                dark_green
                 rounded-lg
                 hover:bg-green-900
                 shadow-lg
@@ -889,12 +889,7 @@
       </div>
 
       <br />
-      <p
-        v-if="state.empty"
-        class="mt-20 text-red-500 manrope-bold text-center text-sm"
-      >
-        No results.
-      </p>
+      <p v-if="state.empty" class="manrope-bold text-xl ml-8">No results.</p>
       <div
         class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
         v-if="!state.empty"
