@@ -1043,7 +1043,7 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import { ref, watch, nextTick, reactive, onBeforeMount } from 'vue';
+import { ref, watch, nextTick, reactive, onBeforeMount, onMounted } from 'vue';
 
 export default {
   name: 'Home',
