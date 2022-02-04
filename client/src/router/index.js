@@ -1,6 +1,5 @@
 import * as api from '../api/index.js';
 import { createRouter, createWebHistory } from 'vue-router';
-import AddAdmin from '../views/addadmin.vue';
 import AdminList from '../views/adminlist.vue';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
@@ -47,14 +46,6 @@ const routes = [
     component: EditProf,
     meta: {
       requiresAuth: true,
-    },
-  },
-  {
-    path: '/addadmin',
-    name: 'Add Admin',
-    component: AddAdmin,
-    meta: {
-      requiresAdmin: true,
     },
   },
   {

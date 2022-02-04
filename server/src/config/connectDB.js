@@ -7,6 +7,8 @@ dotenv.config();
 
 const connectDB = async () => {
   try {
+    // add the line below when running unit tests
+    // process.env.NODE_ENV = 'test';
     if (process.env.NODE_ENV !== 'test') {
       const conn = await mongoose.connect(process.env.MONGO_URI);
       logger.info(`DB Connected: ${conn.connection.host}`);

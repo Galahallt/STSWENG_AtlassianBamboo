@@ -2,7 +2,7 @@
   <div class="background_all home-container">
     <nav-bar />
 
-    <div class="grid grid-cols-10">
+    <div class="grid grid-cols-10" v-if="state.render != null">
       <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
@@ -605,12 +605,6 @@
           </div>
           <div>
             <div class="flex justify-center">
-              <p
-                class="mt-8 text-red-500 manrope-bold text-center text-sm"
-                v-if="state.profExisting"
-              >
-                {{ state.profExisting }}
-              </p>
               <button
                 name="confirm_addProfessorBtn"
                 class="
@@ -650,7 +644,40 @@
             >
               Submit
             </button>
+            <p
+              v-if="state.fileValidation"
+              class="mt-8 text-red-500 text-center manrope-bold text-sm"
+            >
+              Only .csv files are allowed.
+            </p>
+            <p
+              class="mt-8 text-red-500 manrope-bold text-center text-sm"
+              v-if="state.profExisting"
+            >
+              {{ state.profExisting }}
+            </p>
           </div>
+          <button
+            class="
+              px-6
+              py-2
+              mt-10
+              text-white
+              dark_green
+              rounded-lg
+              hover:bg-green-900
+              shadow-lg
+              flex-shrink
+              content-center
+              place-self-center
+              w-36
+            "
+            @click="addProfsCsv"
+            :disabled="!state.csvFile || state.fileValidation"
+          >
+            Submit
+          </button>
+          >>>>>>> frontend-fix
         </multipleAddProfModal>
 
         <div>
@@ -1012,16 +1039,8 @@ import addProfModal from '../components/addProfessorModal.vue';
 import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
-import { email, required, helpers, minLength } from '@vuelidate/validators';
-import {
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-  reactive,
-  onBeforeMount,
-  computed,
-} from 'vue';
+import { email, required, helpers } from '@vuelidate/validators';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
@@ -1044,6 +1063,7 @@ export default {
       searchProfs: [],
       fileExisting: null,
       csvFile: null,
+      fileValidation: null,
       profExisting: null,
       filterDept: 'Choose One',
       filterCourse: '',
@@ -1051,6 +1071,7 @@ export default {
       isAdministrator: false,
       search: null,
       tagValidation: false,
+      render: null,
     });
 
     const user = reactive({
@@ -1252,6 +1273,7 @@ export default {
           const res = await api.addProf(addProfData);
           if (res) {
             state.allProfs.push(res.data);
+            clearFilter();
             state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 
@@ -1325,6 +1347,7 @@ export default {
     onBeforeMount(() => {
       initProfs();
       getUserAdminAccess();
+      state.render = false;
     });
 
     function isValidProf() {
@@ -1339,6 +1362,11 @@ export default {
       state.fileExisting = file.value.files.length != 0 ? true : false;
       if (state.fileExisting) {
         state.csvFile = file.value.files[0];
+        if (state.csvFile.name.split('.')[1] !== 'csv') {
+          state.fileValidation = true;
+        } else {
+          state.fileValidation = false;
+        }
       }
     }
 
@@ -1353,8 +1381,8 @@ export default {
           if (res.status == 200) {
             for (let i = 0; i < res.data.length; i++) {
               state.allProfs.push(res.data[i]);
-              state.shownProfs.push(res.data[i]);
             }
+            clearFilter();
             state.shownProfs = state.allProfs;
             state.shownProfs.sort(compareLastName);
 

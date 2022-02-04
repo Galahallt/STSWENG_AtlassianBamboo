@@ -44,8 +44,18 @@
             "
             >Upload Image</label
           >
+
           <br />
           <br />
+        </div>
+        <div class="ml-15">
+          <p
+            class="text-red-500 manrope-bold text-center text-sm"
+            v-if="!state.isValidFile"
+          >
+            File uploaded is not an image file.
+          </p>
+          <p v-else></p>
         </div>
       </div>
 
@@ -378,6 +388,7 @@ export default {
     let state = reactive({
       fileValidation: null,
       allProfs: null,
+      isValidFile: true,
     });
 
     let placeholder = reactive({
@@ -411,7 +422,7 @@ export default {
           profData.profilePicture = result.data.profilePicture;
           placeholder.firstName = result.data.firstName;
           placeholder.lastName = result.data.lastName;
-          placeholder.email = result.data.email;
+          placeholder.email = profData.email = result.data.email;
           profData.college = result.data.college;
           profData.department = result.data.department;
           profData.status = result.data.status;
@@ -466,8 +477,21 @@ export default {
     function uploadImage() {
       state.fileValidation = file.value.files.length == 0 ? false : true;
       if (state.fileValidation) {
-        profData.profilePicture = URL.createObjectURL(file.value.files[0]);
-        console.log('file: ' + file.value.files[0].name);
+        const fileName = file.value.files[0].name;
+        const fileExt = fileName.split('.');
+        if (
+          fileExt[1] == 'jpg' ||
+          fileExt[1] == 'jpeg' ||
+          fileExt[1] == 'png' ||
+          fileExt[1] == 'gif'
+        ) {
+          profData.profilePicture = URL.createObjectURL(file.value.files[0]);
+          state.isValidFile = true;
+          console.log('file: ' + file.value.files[0].name);
+        } else {
+          state.isValidFile = false;
+          console.log('FILE IS NOT AN IMAGE FILE');
+        }
       }
     }
 
