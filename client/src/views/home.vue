@@ -627,7 +627,7 @@
                 Add Professor
               </button>
             </div>
-            <button
+            <!-- <button
               class="
                 px-6
                 py-2
@@ -646,7 +646,7 @@
               :disabled="!state.csvFile"
             >
               Submit
-            </button>
+            </button> -->
             <p
               v-if="state.fileValidation"
               class="mt-8 text-red-500 text-center manrope-bold text-sm"
@@ -673,7 +673,7 @@
               flex-shrink
               content-center
               place-self-center
-              w-36
+              w-40
             "
             @click="addProfsCsv"
             :disabled="!state.csvFile || state.fileValidation"
