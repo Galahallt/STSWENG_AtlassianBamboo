@@ -18,7 +18,7 @@ describe('Test Index Route', () => {
     await mockDB.closeDatabase();
   });
 
-  it('invalid DLSU email, should respond with 400 status code', async () => {
+  it('should respond with 400 status code | invalid DLSU email', async () => {
     const response = await request(app).post('/login').send({
       fullName: 'Keil Finez',
       givenName: 'Keil Christopher',
@@ -30,7 +30,7 @@ describe('Test Index Route', () => {
     expect(response.statusCode).toBe(400);
   });
 
-  it('valid DLSU email, should respond with 200 status code', async () => {
+  it('should respond with 200 status code | valid DLSU email', async () => {
     const response = await request(app).post('/login').send({
       fullName: 'Keil Finez',
       givenName: 'Keil Christopher',

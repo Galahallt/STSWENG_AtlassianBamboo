@@ -680,7 +680,6 @@
           >
             Submit
           </button>
-          >>>>>>> frontend-fix
         </multipleAddProfModal>
 
         <div>
