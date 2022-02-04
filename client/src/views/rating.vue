@@ -2,7 +2,14 @@
   <div class="rating-body w-full h-screen">
     <NavBar />
 
-    <div class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1">
+    <p v-if="state.render == null" class="hello_color font-bold">
+      Rendering page...
+    </p>
+
+    <div
+      v-if="state.render != null"
+      class="rating-container py-10 px-5 md:w-4/5 mx-auto md:px-1"
+    >
       <!-- BACK BUTTON; may just add name/id here to be able to access the back page -->
       <div class="flex flex-row mb-5">
         <router-link :to="`/home`">
@@ -337,62 +344,81 @@
   --light-green: #edfff7;
   --gray: #546681;
 }
+
+.hello_color {
+  color: #546681;
+}
+
 body {
   background-color: var(--light-green);
 }
+
 .tags-container {
   max-width: 300px;
 }
+
 .back-button:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
+
 .label {
   min-width: 150px;
 }
+
 .rating-body {
   background-color: var(--light-green);
 }
+
 .rating-container {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   background-color: var(--light-green);
   color: var(--gray);
 }
+
 .prof-pic {
   width: 350px;
   height: 350px;
   border-radius: 500px;
   min-width: 350px;
 }
+
 .prof-name {
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   color: var(--green);
 }
+
 .course-tag {
   background-color: var(--green);
   color: #ffffff;
 }
+
 .rating-text {
   color: var(--green);
   width: 150px;
 }
+
 .green-text {
   color: var(--green);
 }
+
 .filter-options {
   border: 2px solid var(--gray);
   border-radius: 5px;
 }
+
 .write-comment-container {
   width: 100%;
   border-radius: 15px;
   background-color: white;
 }
+
 .line {
   border-top: 3px solid var(--green);
 }
+
 .comment {
   background-color: #f4f4f4;
   width: 100%;
@@ -401,11 +427,13 @@ body {
   word-break: break-word;
   border: none;
 }
+
 .course-code {
   border: 1px solid var(--gray);
   background-color: none;
   width: 100px;
 }
+
 .review-button {
   background-color: var(--green);
   color: white;
@@ -415,6 +443,7 @@ body {
   height: 40px;
   padding-top: 7px;
 }
+
 .rate-button {
   background-color: var(--green);
   color: white;
@@ -425,45 +454,54 @@ body {
   vertical-align: middle;
   padding-top: 7px;
 }
+
 .submit-button {
   background-color: var(--green);
   color: white;
   width: 100px;
 }
+
 .edit-prof-button {
   background-color: var(--green);
   color: white;
   width: 130px;
   text-align: center;
 }
+
 .cancel-button {
   background-color: white;
   color: var(--green);
   border: 2px solid var(--green);
   width: 100px;
 }
+
 .submit-button-rating {
   background-color: var(--green);
   color: white;
   width: 100px;
 }
+
 .cancel-button-rating {
   background-color: white;
   color: var(--green);
   border: 2px solid var(--green);
   width: 100px;
 }
+
 .rate-container {
   background-color: white;
   width: 100%;
 }
+
 .stars {
   justify-content: center;
 }
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 .update-btn {
   position: absolute;
   background-color: #0f4c81;
@@ -476,6 +514,7 @@ button:disabled {
   vertical-align: middle;
   outline: none;
 }
+
 .edit-btn {
   background-color: #0f4c81;
   color: white;
@@ -526,6 +565,7 @@ export default {
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
+      render: null,
     });
     const router = useRoute();
     const prof = reactive({
@@ -616,7 +656,9 @@ export default {
       loadProf();
       loadReviews();
       loadUserInfo();
+      state.render = false;
     });
+
     // tag formatting for printing
     function formatTags() {
       if (state.tagString == '') {
