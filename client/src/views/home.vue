@@ -889,7 +889,9 @@
       </div>
 
       <br />
-      <p v-if="state.empty" class="manrope-bold text-xl ml-8">No results.</p>
+      <div>
+        <p v-if="state.empty" class="manrope-bold text-xl ml-8">No results.</p>
+      </div>
       <div
         class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
         v-if="!state.empty"
