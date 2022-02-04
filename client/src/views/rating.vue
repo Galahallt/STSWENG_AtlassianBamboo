@@ -124,7 +124,7 @@
             <p class="text-lg">Filter Reviews:</p>
             <div class="px-3">
               <select
-                name = "filter-review"
+                name="filter-review"
                 class="px-4 filter-options mr-auto"
                 v-model="state.filter"
                 @change="filterReviews"
@@ -138,7 +138,7 @@
           </div>
           <div class="buttons-container ml-auto mt-5 flex">
             <button
-              name = "review-button"
+              name="review-button"
               class="
                 review-button
                 rounded-lg
@@ -150,7 +150,6 @@
                 center
                 align-middle
               "
-              name="reviewBtn"
               @click="toggleWriteCommentModal"
             >
               <div class="flex center align-middle">
@@ -223,14 +222,13 @@
                   <input
                     v-on:keyup="areFieldsValid"
                     v-model="state.course_code"
-                    name = "course-code"
+                    name="course-code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
                     minlength="7"
                     maxlength="7"
                     title="Field must be 7 characters long"
                     ref="course_code"
-                    name="codeInp"
                   />
                   <p v-if="state.isCourseCodeIncomplete">
                     *Must be 7 characters long
@@ -256,11 +254,10 @@
                     Cancel
                   </button>
                   <button
-                    name = "submit-button"
+                    name="submit-button"
                     class="submit-button ml-auto rounded-md p-2"
                     @click="addReview"
                     :disabled="state.isSubmitDisabled"
-                    name="submitBtn"
                   >
                     Submit
                   </button>
