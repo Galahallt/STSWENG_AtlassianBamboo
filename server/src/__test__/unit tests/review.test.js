@@ -17,6 +17,7 @@ describe('Test Index Route', () => {
   afterAll(async () => {
     await mockDB.closeDatabase();
   });
+
   it('function returns prof, should respond with 200 status code', async () => {
     await request(app)
       .post('/professor/addProf')
@@ -35,12 +36,14 @@ describe('Test Index Route', () => {
     });
     expect(response.statusCode).toBe(200);
   });
+
   it('Professor does not exist, should respond with 400 status code', async () => {
     const response = await request(app).post('/review/reviews').send({
       instructorID: '11812345',
     });
     expect(response.statusCode).toBe(400);
   });
+
   it('add review sucessful, should respond with 200 status code', async () => {
     await request(app).post('/login').send({
       fullName: 'Tongki Ilagan',
@@ -50,6 +53,7 @@ describe('Test Index Route', () => {
       email: 'vincent_ilagan@dlsu.edu.ph@dlsu.edu.ph',
       accessToken: 'asdasdasdasd',
     });
+
     await request(app)
       .post('/professor/addProf')
       .send({
@@ -61,6 +65,7 @@ describe('Test Index Route', () => {
         department: 'Software Technology',
         courses: ['STSWENG', 'CSSWENG'],
       });
+
     const response = await request(app).post('/review/addreview').send({
       user_id: '11812345',
       userName: 'Tongki',
@@ -68,6 +73,7 @@ describe('Test Index Route', () => {
       course_code: 'CCPROG1',
       review: 'Great professor and teaches good!',
     });
+
     expect(response.statusCode).toBe(200);
   });
 });
