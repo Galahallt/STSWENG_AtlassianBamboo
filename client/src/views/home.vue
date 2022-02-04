@@ -2,7 +2,7 @@
   <div class="background_all home-container">
     <nav-bar />
 
-    <div class="grid grid-cols-10">
+    <div class="grid grid-cols-10" v-if="state.render != null">
       <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
@@ -996,15 +996,7 @@ import multipleAddProfModal from '../components/multipleProfessorModal.vue';
 import useVuelidate from '@vuelidate/core';
 import profInfo from '../components/profInfo.vue';
 import { email, required, helpers } from '@vuelidate/validators';
-import {
-  ref,
-  watch,
-  nextTick,
-  onMounted,
-  reactive,
-  onBeforeMount,
-  computed,
-} from 'vue';
+import { ref, watch, nextTick, onMounted, reactive, onBeforeMount } from 'vue';
 
 export default {
   name: 'Home',
@@ -1035,6 +1027,7 @@ export default {
       isAdministrator: false,
       search: null,
       tagValidation: false,
+      render: null,
     });
 
     const user = reactive({
@@ -1313,6 +1306,7 @@ export default {
     onBeforeMount(() => {
       initProfs();
       getUserAdminAccess();
+      state.render = false;
     });
 
     function isValidProf() {
