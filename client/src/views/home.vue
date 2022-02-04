@@ -5,7 +5,7 @@
       Rendering page...
     </p>
 
-    <div v-else class="grid grid-cols-10">
+    <div v-if="state.render != null" class="grid grid-cols-10">
       <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
