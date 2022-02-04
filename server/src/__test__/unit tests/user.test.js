@@ -37,12 +37,12 @@ describe('Test User Routes', () => {
     expect(response.statusCode).toBe(500);
   });
 
-  it('user email does not exist, should respond with 400 status code', async () => {
+  it('user email does not exist, should still respond with 200 status code', async () => {
     const response = await request(app).post('/user/getUserByEmail').send({
       email: 'pogi@dlsu.edu.ph',
     });
 
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(200);
   });
 
   it('bad request, should respond with 500 status code', async () => {

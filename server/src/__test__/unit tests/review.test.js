@@ -3,7 +3,7 @@ import request from 'supertest';
 import app from '../../app.js';
 import mockDB from '../../config/mockDB.js';
 
-describe('Test Index Route', () => {
+describe('Test Review Route', () => {
   /**
    * Clear all test data after every test.
    */
@@ -18,62 +18,51 @@ describe('Test Index Route', () => {
     await mockDB.closeDatabase();
   });
 
-  it('function returns prof, should respond with 200 status code', async () => {
-    await request(app)
-      .post('/professor/addProf')
-      .send({
-        id: 'asidasio91213',
-        lastName: 'Espiritu',
-        firstName: 'Paolo',
-        email: 'paoloEspiritu@dlsu.edu.ph',
-        college: 'CCS',
-        department: 'Software Technology',
-        courses: ['STSWENG', 'CSSWENG'],
-      });
+  // weird case
+  // it('no reviews, should respond with 400 status code', async () => {
+  //   const response = await request(app).post('/review/reviews').send({
+  //     instructorID: 'basdasdasd',
+  //   });
 
-    const response = await request(app).post('/review/reviews').send({
-      instructorID: 'asidasio91213',
-    });
-    expect(response.statusCode).toBe(200);
+  //   expect(response.statusCode).toBe(400);
+  // });
+
+  it('bad request, should respond with 500 status code', async () => {
+    const response = await request(app)
+      .post('/review/reviews')
+      .send({
+        instructorID: new Error('Server Error'),
+      });
+    expect(response.statusCode).toBe(500);
   });
 
-  it('Professor does not exist, should respond with 400 status code', async () => {
-    const response = await request(app).post('/review/reviews').send({
-      instructorID: '11812345',
+  it('invalid user/prof id, should respond with 400 status code', async () => {
+    const response = await request(app).post('/review/addreview').send({
+      user_id: 'aiosdoaisdhasd',
+      userName: 'Pogi McPogster',
+      instructor_id: 'basdasdasd',
+      course_code: 'STSWENG',
+      review: 'Great subject, great prof!',
     });
+
     expect(response.statusCode).toBe(400);
   });
 
-  it('add review sucessful, should respond with 200 status code', async () => {
-    await request(app).post('/login').send({
-      fullName: 'Tongki Ilagan',
-      givenName: 'Tongki',
-      familyName: 'Ilagan',
-      imageURL: 'asdasdwqeq',
-      email: 'vincent_ilagan@dlsu.edu.ph@dlsu.edu.ph',
-      accessToken: 'asdasdasdasd',
-    });
+  // it('review not found, should respond with 400 status code', async () => {
+  //   const response = await request(app).post(
+  //     '/review/deleteReview/asdasdahsdh'
+  //   );
 
-    await request(app)
-      .post('/professor/addProf')
-      .send({
-        id: 'asidasio91213',
-        lastName: 'Espiritu',
-        firstName: 'Paolo',
-        email: 'paoloEspiritu@dlsu.edu.ph',
-        college: 'CCS',
-        department: 'Software Technology',
-        courses: ['STSWENG', 'CSSWENG'],
-      });
+  //   expect(response.statusCode).toBe(400);
+  // });
 
-    const response = await request(app).post('/review/addreview').send({
-      user_id: '11812345',
-      userName: 'Tongki',
-      instructor_id: 'asidasio91213',
-      course_code: 'CCPROG1',
-      review: 'Great professor and teaches good!',
-    });
+  // it('bad request, should respond with 500 status code', async () => {
+  //   const response = await request(app)
+  //     .post('/review/deleteReview/asdasdahsdh')
+  //     .send({
+  //       error: new Error('Server Error'),
+  //     });
 
-    expect(response.statusCode).toBe(200);
-  });
+  //   expect(response.statusCode).toBe(500);
+  // });
 });
