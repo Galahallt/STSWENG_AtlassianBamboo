@@ -2,11 +2,11 @@
   <div class="min-h-screen justify-center" style="background-color: #edfff7">
     <nav-bar />
 
-    <p v-if="state.admins === null" class="hello_color font-bold">
+    <p v-if="state.render === null" class="hello_color font-bold">
       Rendering page...
     </p>
 
-    <div v-if="state.admins !== null">
+    <div v-if="state.render !== null">
       <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
         <button
           class="
@@ -191,6 +191,7 @@ export default {
       try {
         const result = await api.getUserByEmail(state.email);
         state.loggedUser = result.data.email;
+        state.render = false;
       } catch (err) {
         console.log(err);
       }
@@ -199,9 +200,6 @@ export default {
     onBeforeMount(() => {
       getAdminList();
       loadCurrUser();
-      console.log('---------' + state.render);
-      state.render = false;
-      console.log('+++++++++' + state.render);
     });
     return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin };
   },

@@ -1,11 +1,11 @@
 <template>
   <div class="background_all home-container">
     <nav-bar />
-    <p v-if="state.render == null" class="hello_color font-bold">
+    <p v-if="state.render === null" class="hello_color font-bold">
       Rendering page...
     </p>
 
-    <div v-if="state.render != null" class="grid grid-cols-10">
+    <div v-if="state.render !== null" class="grid grid-cols-10">
       <div class="col-span-2 ml-10 mt-6 text-2xl font-bold hello_color">
         Hello, {{ user.firstName }}
       </div>
@@ -1345,14 +1345,11 @@ export default {
         if (result) {
           state.isAdministrator = result.data.isAdministrator;
         }
+        state.render = false;
       } catch (err) {
         console.log(err);
       }
     }
-
-    onMounted(() => {
-      state.render = false;
-    });
 
     onBeforeMount(() => {
       initProfs();
