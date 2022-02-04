@@ -1153,11 +1153,13 @@ export default {
 
     // adjust cursor
     function onTagsChange() {
-      // set left padding
-      const extraCushion = 15;
-      paddingLeft.value = tagsUl.value.clientWidth + extraCushion;
-      // scroll tags ul to end
-      tagsUl.value.scrollTo(tagsUl.value.scrollWidth, 0);
+      if (state.render !== null) {
+        // set left padding
+        const extraCushion = 15;
+        paddingLeft.value = tagsUl.value.clientWidth + extraCushion;
+        // scroll tags ul to end
+        tagsUl.value.scrollTo(tagsUl.value.scrollWidth, 0);
+      }
     }
 
     watch(
