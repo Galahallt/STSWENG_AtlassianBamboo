@@ -489,9 +489,10 @@ export default {
           fileExt[1] == 'gif'
         ) {
           profData.profilePicture = URL.createObjectURL(file.value.files[0]);
+          state.isValidFile = true;
           console.log('file: ' + file.value.files[0].name);
         } else {
-          state.isValidFile = !state.isValidFile;
+          state.isValidFile = false;
           console.log('FILE IS NOT AN IMAGE FILE');
         }
       }
