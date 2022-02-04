@@ -18,7 +18,7 @@ const reviewController = {
       if (reviews != null) {
         return res.status(200).json(reviews);
       } else {
-        return res.status(200).json({ message: 'No reviews yet.' });
+        return res.status(400).json({ message: 'No reviews yet.' });
       }
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
