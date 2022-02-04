@@ -680,7 +680,6 @@
           >
             Submit
           </button>
-          >>>>>>> frontend-fix
         </multipleAddProfModal>
 
         <div>
@@ -728,7 +727,7 @@
       </div>
     </div>
     <br />
-    <div class="flex space-x-4 ml-8 mr-8">
+    <div class="flex space-x-4 ml-8 mr-8" v-if="state.render !== null">
       <div class="flex-col text-center dark_green p-6 rounded-lg">
         <div>
           <label class="text-white text-lg">FILTER BY</label>
