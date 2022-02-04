@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20220202 14:15:12.300" rpa="false" schemaversion="2">
+<suite id="s1" name="Us5 Addreview" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-05\us5_addreview.robot">
+<kw name="Login" library="resource1" type="SETUP">
+<arg>${SELF}</arg>
+<arg>${PASS1}</arg>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${DELAY}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20220202 14:15:12.477" endtime="20220202 14:15:12.478"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${LOGIN}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20220202 14:15:12.478" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220202 14:15:12.478" endtime="20220202 14:15:16.326"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20220202 14:15:16.327" endtime="20220202 14:15:17.493"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>${TITLE}</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20220202 14:15:18.516" level="INFO">Page title is 'DLSU Profs to Pick'.</msg>
+<status status="PASS" starttime="20220202 14:15:17.493" endtime="20220202 14:15:18.516"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>Login with Google Account</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:18.517" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220202 14:15:18.516" endtime="20220202 14:15:22.662"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<var>${TAB}</var>
+<arg>NEW</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<msg timestamp="20220202 14:15:26.704" level="INFO">${TAB} = CDwindow-46C4CE7A005FE7AF9E28C29F9629238B</msg>
+<status status="PASS" starttime="20220202 14:15:22.662" endtime="20220202 14:15:26.704"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>identifierId</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:26.705" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220202 14:15:26.704" endtime="20220202 14:15:29.898"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>identifierNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:29.899" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220202 14:15:29.898" endtime="20220202 14:15:31.984"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220202 14:15:33.995" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220202 14:15:31.984" endtime="20220202 14:15:33.995"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>name:password</arg>
+<arg>${pass}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:33.996" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg timestamp="20220202 14:15:36.064" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220202 14:15:37.127" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220202 14:15:33.995" endtime="20220202 14:15:37.127"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>passwordNext</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:37.128" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220202 14:15:37.127" endtime="20220202 14:15:39.218"/>
+</kw>
+<kw name="Switch Window" library="SeleniumLibrary">
+<arg>${TAB}</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" starttime="20220202 14:15:39.218" endtime="20220202 14:15:43.257"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220202 14:15:45.266" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220202 14:15:43.257" endtime="20220202 14:15:45.266"/>
+</kw>
+<kw name="Check Current Page" library="resource1">
+<arg>${HOME}</arg>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20220202 14:15:46.283" level="INFO">${CURRENT} = http://localhost:3000/home</msg>
+<status status="PASS" starttime="20220202 14:15:45.267" endtime="20220202 14:15:46.283"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${target}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220202 14:15:46.283" endtime="20220202 14:15:46.284"/>
+</kw>
+<status status="PASS" starttime="20220202 14:15:45.266" endtime="20220202 14:15:46.284"/>
+</kw>
+<status status="PASS" starttime="20220202 14:15:12.477" endtime="20220202 14:15:46.284"/>
+</kw>
+<test id="s1-t1" name="Valid">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:15:46.287" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:15:46.286" endtime="20220202 14:15:47.653"/>
+</kw>
+<status status="PASS" starttime="20220202 14:15:46.286" endtime="20220202 14:15:47.653"/>
+</kw>
+<kw name="Input Review">
+<arg>${CODE1}</arg>
+<arg>${COMMENT1}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:47.655" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:15:47.655" endtime="20220202 14:15:49.727"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:49.728" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:15:49.727" endtime="20220202 14:15:54.835"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:54.835" level="INFO">Typing text 'CCDSTRU' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:15:54.835" endtime="20220202 14:15:57.968"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:15:57.969" level="INFO">Typing text 'Very nice prof! Teaches well.' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:15:57.968" endtime="20220202 14:16:01.100"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:01.101" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:01.100" endtime="20220202 14:16:06.210"/>
+</kw>
+<status status="PASS" starttime="20220202 14:15:47.654" endtime="20220202 14:16:06.210"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>name:${SELF_NAME}${CODE1}${COMMENT1}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20220202 14:16:07.237" level="INFO">Current page contains element 'name:James Andrew PerezCCDSTRUVery nice prof! Teaches well.'.</msg>
+<status status="PASS" starttime="20220202 14:16:06.211" endtime="20220202 14:16:07.237"/>
+</kw>
+<status status="PASS" starttime="20220202 14:15:46.285" endtime="20220202 14:16:07.238"/>
+</test>
+<test id="s1-t2" name="Same Code">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:16:07.242" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:16:07.242" endtime="20220202 14:16:08.575"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:07.241" endtime="20220202 14:16:08.575"/>
+</kw>
+<kw name="Input Review">
+<arg>${CODE1}</arg>
+<arg>${COMMENT2}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:08.577" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:16:08.577" endtime="20220202 14:16:10.641"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:10.643" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:10.642" endtime="20220202 14:16:15.767"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:15.768" level="INFO">Typing text 'CCDSTRU' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:16:15.767" endtime="20220202 14:16:18.913"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:18.914" level="INFO">Typing text 'Easy to understand. Lessons are clear.' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:16:18.913" endtime="20220202 14:16:22.045"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:22.046" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:22.045" endtime="20220202 14:16:27.134"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:08.576" endtime="20220202 14:16:27.134"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>name:${SELF_NAME}${CODE1}${COMMENT2}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20220202 14:16:28.159" level="INFO">Current page contains element 'name:James Andrew PerezCCDSTRUEasy to understand. Lessons are clear.'.</msg>
+<status status="PASS" starttime="20220202 14:16:27.135" endtime="20220202 14:16:28.159"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:07.240" endtime="20220202 14:16:28.160"/>
+</test>
+<test id="s1-t3" name="Different Code">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:16:28.163" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:16:28.162" endtime="20220202 14:16:29.493"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:28.162" endtime="20220202 14:16:29.493"/>
+</kw>
+<kw name="Input Review">
+<arg>${CODE2}</arg>
+<arg>${COMMENT3}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:29.497" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:16:29.496" endtime="20220202 14:16:31.560"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:31.560" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:31.560" endtime="20220202 14:16:36.720"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:36.720" level="INFO">Typing text 'CCDSALG' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:16:36.720" endtime="20220202 14:16:39.895"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:39.895" level="INFO">Typing text 'Overall good prof. Highly recommend.' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:16:39.895" endtime="20220202 14:16:43.125"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:43.126" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:43.125" endtime="20220202 14:16:48.280"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:29.495" endtime="20220202 14:16:48.280"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>name:${SELF_NAME}${CODE2}${COMMENT3}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20220202 14:16:49.311" level="INFO">Current page contains element 'name:James Andrew PerezCCDSALGOverall good prof. Highly recommend.'.</msg>
+<status status="PASS" starttime="20220202 14:16:48.282" endtime="20220202 14:16:49.311"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:28.161" endtime="20220202 14:16:49.311"/>
+</test>
+<test id="s1-t4" name="Blank Comment">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:16:49.314" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:16:49.314" endtime="20220202 14:16:51.018"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:49.313" endtime="20220202 14:16:51.018"/>
+</kw>
+<kw name="Input Review">
+<arg>${CODE2}</arg>
+<arg>${SPACE}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:51.020" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:16:51.020" endtime="20220202 14:16:53.087"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:53.088" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:16:53.087" endtime="20220202 14:16:58.190"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:16:58.191" level="INFO">Typing text 'CCDSALG' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:16:58.190" endtime="20220202 14:17:01.302"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:01.303" level="INFO">Typing text ' ' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:17:01.303" endtime="20220202 14:17:04.405"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:04.406" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:04.405" endtime="20220202 14:17:09.504"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:51.019" endtime="20220202 14:17:09.504"/>
+</kw>
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20220202 14:17:09.505" endtime="20220202 14:17:11.549"/>
+</kw>
+<status status="PASS" starttime="20220202 14:16:49.312" endtime="20220202 14:17:11.550"/>
+</test>
+<test id="s1-t5" name="Blank Code">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:17:11.554" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:17:11.553" endtime="20220202 14:17:13.039"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:11.552" endtime="20220202 14:17:13.039"/>
+</kw>
+<kw name="Input Review">
+<arg>${SPACE}</arg>
+<arg>${COMMENT1}${COMMENT2}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:13.042" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:17:13.042" endtime="20220202 14:17:15.154"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:15.155" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:15.154" endtime="20220202 14:17:20.261"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:20.262" level="INFO">Typing text ' ' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:17:20.261" endtime="20220202 14:17:23.387"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:23.388" level="INFO">Typing text 'Very nice prof! Teaches well.Easy to understand. Lessons are clear.' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:17:23.387" endtime="20220202 14:17:26.539"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:26.540" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:26.539" endtime="20220202 14:17:31.648"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:13.041" endtime="20220202 14:17:31.649"/>
+</kw>
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20220202 14:17:31.650" endtime="20220202 14:17:33.688"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:11.552" endtime="20220202 14:17:33.689"/>
+</test>
+<test id="s1-t6" name="All Empty">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:17:33.694" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:17:33.693" endtime="20220202 14:17:35.055"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:33.693" endtime="20220202 14:17:35.055"/>
+</kw>
+<kw name="Input Review">
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:35.060" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:17:35.059" endtime="20220202 14:17:37.160"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:37.161" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:37.160" endtime="20220202 14:17:42.278"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:42.279" level="INFO">Typing text '' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:17:42.279" endtime="20220202 14:17:45.391"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:45.392" level="INFO">Typing text '' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:17:45.391" endtime="20220202 14:17:48.475"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:48.476" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:48.475" endtime="20220202 14:17:53.560"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:35.056" endtime="20220202 14:17:53.560"/>
+</kw>
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20220202 14:17:53.561" endtime="20220202 14:17:55.598"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:33.692" endtime="20220202 14:17:55.600"/>
+</test>
+<test id="s1-t7" name="New Code">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:17:55.604" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:17:55.604" endtime="20220202 14:17:56.949"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:55.603" endtime="20220202 14:17:56.949"/>
+</kw>
+<kw name="Input Review">
+<arg>${CODE3}</arg>
+<arg>${COMMENT2}${COMMENT3}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:56.951" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:17:56.951" endtime="20220202 14:17:59.049"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:17:59.050" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:17:59.049" endtime="20220202 14:18:04.141"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:04.143" level="INFO">Typing text 'CCPROG3' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:04.141" endtime="20220202 14:18:07.268"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:07.269" level="INFO">Typing text 'Easy to understand. Lessons are clear.Overall good prof. Highly recommend.' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:07.268" endtime="20220202 14:18:10.430"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:10.432" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:18:10.430" endtime="20220202 14:18:15.527"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:56.950" endtime="20220202 14:18:15.527"/>
+</kw>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>name:${SELF_NAME}${CODE3}${COMMENT2}${COMMENT3}</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20220202 14:18:16.554" level="INFO">Current page contains element 'name:James Andrew PerezCCPROG3Easy to understand. Lessons are clear.Overall good prof. Highly recommend.'.</msg>
+<status status="PASS" starttime="20220202 14:18:15.528" endtime="20220202 14:18:16.554"/>
+</kw>
+<status status="PASS" starttime="20220202 14:17:55.602" endtime="20220202 14:18:16.555"/>
+</test>
+<test id="s1-t8" name="Invalid Code">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:18:16.560" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:18:16.559" endtime="20220202 14:18:17.917"/>
+</kw>
+<status status="PASS" starttime="20220202 14:18:16.559" endtime="20220202 14:18:17.917"/>
+</kw>
+<kw name="Input Review">
+<arg>${INVALID_CODE}</arg>
+<arg>${COMMENT4}</arg>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:17.921" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:18:17.920" endtime="20220202 14:18:19.992"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:19.992" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:18:19.992" endtime="20220202 14:18:25.103"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${code}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:25.104" level="INFO">Typing text 'AAA' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:25.103" endtime="20220202 14:18:28.219"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${comment}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:28.220" level="INFO">Typing text 'Easy 4.0!' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:28.219" endtime="20220202 14:18:31.326"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:31.327" level="INFO">Clicking button 'name:submitBtn'.</msg>
+<status status="PASS" starttime="20220202 14:18:31.326" endtime="20220202 14:18:36.434"/>
+</kw>
+<status status="PASS" starttime="20220202 14:18:17.917" endtime="20220202 14:18:36.434"/>
+</kw>
+<kw name="Element Should Be Disabled" library="SeleniumLibrary">
+<arg>name:submitBtn</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="PASS" starttime="20220202 14:18:36.436" endtime="20220202 14:18:38.467"/>
+</kw>
+<status status="PASS" starttime="20220202 14:18:16.558" endtime="20220202 14:18:38.468"/>
+</test>
+<test id="s1-t9" name="Cancel">
+<kw name="Go Home" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${HOME}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220202 14:18:38.473" level="INFO">Opening url 'http://localhost:3000/home'</msg>
+<status status="PASS" starttime="20220202 14:18:38.473" endtime="20220202 14:18:39.821"/>
+</kw>
+<status status="PASS" starttime="20220202 14:18:38.472" endtime="20220202 14:18:39.821"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:prof-${PROF2}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:39.823" level="INFO">Clicking element 'name:prof-ann.marie@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220202 14:18:39.822" endtime="20220202 14:18:41.913"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:reviewBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:41.914" level="INFO">Clicking button 'name:reviewBtn'.</msg>
+<status status="PASS" starttime="20220202 14:18:41.914" endtime="20220202 14:18:47.018"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:codeInp</arg>
+<arg>${CODE2}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:47.020" level="INFO">Typing text 'CCDSALG' into text field 'name:codeInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:47.019" endtime="20220202 14:18:50.160"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:commentInp</arg>
+<arg>${COMMENT4}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:50.162" level="INFO">Typing text 'Easy 4.0!' into text field 'name:commentInp'.</msg>
+<status status="PASS" starttime="20220202 14:18:50.161" endtime="20220202 14:18:53.279"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:cancelBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220202 14:18:53.281" level="INFO">Clicking button 'name:cancelBtn'.</msg>
+<status status="PASS" starttime="20220202 14:18:53.281" endtime="20220202 14:18:58.375"/>
+</kw>
+<kw name="Page Should Not Contain Element" library="SeleniumLibrary">
+<arg>name:${SELF_NAME}${CODE2}${COMMENT4}</arg>
+<doc>Verifies that element ``locator`` is not found on the current page.</doc>
+<msg timestamp="20220202 14:18:59.389" level="INFO">Current page does not contain element 'name:James Andrew PerezCCDSALGEasy 4.0!'.</msg>
+<status status="PASS" starttime="20220202 14:18:58.376" endtime="20220202 14:18:59.389"/>
+</kw>
+<status status="PASS" starttime="20220202 14:18:38.471" endtime="20220202 14:18:59.390"/>
+</test>
+<kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20220202 14:18:59.395" endtime="20220202 14:19:02.481"/>
+</kw>
+<doc>Test suite for User Story #5
+
+These are test cases deals with going
+to professor's page as an admin and
+adding a review.
+
+By James Andrew F. Perez</doc>
+<status status="PASS" starttime="20220202 14:15:12.301" endtime="20220202 14:19:02.481"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="9" fail="0" skip="0" id="s1" name="Us5 Addreview">Us5 Addreview</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

@@ -413,7 +413,7 @@ export default {
           profData.profilePicture = result.data.profilePicture;
           placeholder.firstName = result.data.firstName;
           placeholder.lastName = result.data.lastName;
-          placeholder.email = result.data.email;
+          placeholder.email = profData.email = result.data.email;
           profData.college = result.data.college;
           profData.department = result.data.department;
           profData.status = result.data.status;
