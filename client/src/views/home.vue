@@ -603,6 +603,12 @@
               </p>
             </div>
             <p
+              v-if="state.fileValidation"
+              class="mt-8 text-red-500 text-center manrope-bold text-sm"
+            >
+              Only .csv files are allowed.
+            </p>
+            <p
               class="mt-8 text-red-500 manrope-bold text-center text-sm"
               v-if="state.profExisting"
             >
@@ -625,7 +631,7 @@
               w-36
             "
             @click="addProfsCsv"
-            :disabled="!state.csvFile"
+            :disabled="!state.csvFile || state.fileValidation"
           >
             Submit
           </button>
@@ -1021,6 +1027,7 @@ export default {
       searchProfs: [],
       fileExisting: null,
       csvFile: null,
+      fileValidation: null,
       profExisting: null,
       filterDept: 'Choose One',
       filterCourse: '',
@@ -1247,7 +1254,6 @@ export default {
         console.log(error);
         state.error = error.response.data.message;
         if (state.error === 'Professor already exists.') {
-          console.log('hello addprof');
           state.invalidEmail.push(addProfData.email);
         }
       }
@@ -1321,6 +1327,11 @@ export default {
       state.fileExisting = file.value.files.length != 0 ? true : false;
       if (state.fileExisting) {
         state.csvFile = file.value.files[0];
+        if (state.csvFile.name.split('.')[1] !== 'csv') {
+          state.fileValidation = true;
+        } else {
+          state.fileValidation = false;
+        }
       }
     }
 
@@ -1336,7 +1347,6 @@ export default {
           if (res.status == 200) {
             for (let i = 0; i < res.data.length; i++) {
               state.allProfs.push(res.data[i]);
-              state.shownProfs.push(res.data[i]);
             }
             clearFilter();
             state.shownProfs = state.allProfs;
