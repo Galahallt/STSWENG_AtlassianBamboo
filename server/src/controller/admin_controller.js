@@ -23,10 +23,7 @@ const adminController = {
   postAddAdmin: async (req, res) => {
     try {
       const email = req.body.email;
-      logger.info(req.body.email);
-      logger.info(req.body);
       const flag = await UserService.updateAdministratorUser(email, true);
-      logger.info(JSON.stringify(flag));
       if (flag) {
         return res.status(200).json(flag);
       }
@@ -52,7 +49,6 @@ const adminController = {
   // edit professor info here
   editProfessor: async (req, res) => {
     try {
-      logger.info(req.file);
       if (req.file) {
         const result = await cloudinary.v2.uploader.upload(req.file.path, {
           public_id: `prof-${uniqid()}`,

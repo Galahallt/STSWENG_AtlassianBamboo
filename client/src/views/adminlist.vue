@@ -2,7 +2,11 @@
   <div class="min-h-screen justify-center" style="background-color: #edfff7">
     <nav-bar />
 
-    <div>
+    <p v-if="state.admins === null" class="hello_color font-bold">
+      Rendering page...
+    </p>
+
+    <div v-if="state.admins !== null">
       <div class="flex space-x-4 space-x-reverse flex-row-reverse mr-8">
         <button
           class="
@@ -156,8 +160,6 @@ export default {
       loggedUser: null,
     });
     //if theres no entries make `error` true and display error msg
-    const app = getCurrentInstance();
-    const router = useRouter();
     const showAddAdminModal = ref(false);
     async function getAdminList() {
       try {
