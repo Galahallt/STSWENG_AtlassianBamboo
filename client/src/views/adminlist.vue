@@ -141,8 +141,7 @@
 <script>
 import NavBar from '../components/NavBar.vue';
 import addAdmin from '../components/addAdminModal.vue';
-import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core';
-import { useRouter } from 'vue-router';
+import { onBeforeMount } from '@vue/runtime-core';
 import { reactive, ref } from 'vue';
 import * as api from '../api';
 export default {
@@ -158,6 +157,7 @@ export default {
       isAdministrator: false,
       email: JSON.parse(localStorage.getItem('user')).email,
       loggedUser: null,
+      render: null,
     });
     //if theres no entries make `error` true and display error msg
     const showAddAdminModal = ref(false);
@@ -199,6 +199,9 @@ export default {
     onBeforeMount(() => {
       getAdminList();
       loadCurrUser();
+      console.log('---------' + state.render);
+      state.render = false;
+      console.log('+++++++++' + state.render);
     });
     return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin };
   },
