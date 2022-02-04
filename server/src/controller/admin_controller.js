@@ -8,15 +8,11 @@ import uniqid from 'uniqid';
 
 const adminController = {
   getAdminList: async (req, res) => {
-    try {
-      const admins = await UserService.getAllAdmins();
-      if (admins != null) {
-        return res.status(200).json(admins);
-      } else {
-        return res.status(400).json({ message: 'No Admininistrators found! ' });
-      }
-    } catch (error) {
-      return res.status(500).json({ message: 'Server Error' });
+    const admins = await UserService.getAllAdmins();
+    if (admins.length !== 0) {
+      return res.status(200).json(admins);
+    } else {
+      return res.status(400).json({ message: 'No Admininistrators found! ' });
     }
   },
 
