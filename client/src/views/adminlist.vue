@@ -54,14 +54,19 @@
               rounded-md
               focus:outline-none focus:ring-1 focus:ring-green-600
             "
+            id="inputEmail"
+            name="inputEmail"
+            v-model.trim="state.inputEmail"
           />
         </div>
         <div class="mt-2 ml-1">
-          <h1 style="color: red">Invalid Email!</h1>
+          <h1 style="color: red" v-if="state.validEmail == false">
+            Invalid Email!
+          </h1>
         </div>
 
         <button
-          @click="addAdmin"
+          @click="checkUsers"
           class="px-2 py-2 mt-4 text-white rounded-lg hover:bg-gray-900"
           style="background-color: #37b47e"
         >
@@ -158,23 +163,54 @@ export default {
       email: JSON.parse(localStorage.getItem('user')).email,
       loggedUser: null,
       render: null,
+      inputEmail: '',
+      validEmail: true,
     });
+
     //if theres no entries make `error` true and display error msg
     const showAddAdminModal = ref(false);
+
     async function getAdminList() {
       try {
         const result = await api.getAdminList();
         state.admins = result.data;
+        state.validEmail = true;
         console.log(result.data);
       } catch (err) {
         console.log(err);
       }
     }
+
+    async function checkUsers() {
+      try {
+        const check = await api.getUserByEmail(state.inputEmail);
+        if (check) {
+          if (check.data.isAdministrator == false) {
+            state.validEmail = true;
+            if (state.validEmail) {
+              const result = await api.postAddAdmin(state.inputEmail);
+
+              if (result) {
+                alert('Admin added successfully!');
+                state.inputEmail = '';
+                toggleAddAdminModal();
+                getAdminList();
+              }
+            }
+          } else {
+            state.validEmail = false;
+          }
+        }
+      } catch (err) {
+        state.validEmail = false;
+      }
+    }
+
     async function removeAdmin(email) {
       try {
         const result = await api.postRemoveAdmin(email);
         if (result) {
-          alert('Professor admin access removed!');
+          alert('Admin access removed!');
           getAdminList();
         }
       } catch (err) {
@@ -201,7 +237,14 @@ export default {
       getAdminList();
       loadCurrUser();
     });
-    return { state, toggleAddAdminModal, showAddAdminModal, removeAdmin };
+
+    return {
+      state,
+      toggleAddAdminModal,
+      showAddAdminModal,
+      checkUsers,
+      removeAdmin,
+    };
   },
 };
 </script>

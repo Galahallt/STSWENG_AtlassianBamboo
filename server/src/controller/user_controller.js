@@ -25,7 +25,7 @@ const userController = {
       if (result) {
         return res.status(200).json(result);
       }
-      return res.status(400).json({ message: 'User does not exists!' });
+      return res.status(200).json({ message: 'User does not exists!' });
     } catch (err) {
       logger.error(err);
       return res.status(500).json({ message: 'Server Error' });
