@@ -18,7 +18,7 @@ const reviewController = {
       if (reviews != null) {
         return res.status(200).json(reviews);
       } else {
-        return res.status(200).json({ message: 'No reviews yet.' });
+        return res.status(400).json({ message: 'No reviews yet.' });
       }
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
@@ -58,6 +58,8 @@ const reviewController = {
         if (result3) {
           return res.status(200).json(result3);
         }
+      } else {
+        return res.status(400).json({ message: 'Professor not found' });
       }
       // use review.id and the id and add it to the Instructor's id
       // add review and add the new review's ID into the Instructor's
@@ -75,7 +77,11 @@ const reviewController = {
 
       const revID = await ReviewService.deleteReview(id);
 
-      return res.status(202).json(revID);
+      if (revID) {
+        return res.status(200).json(revID);
+      } else {
+        return res.status(400).json({ message: 'Review not found' });
+      }
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
     }

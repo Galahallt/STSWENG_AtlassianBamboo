@@ -7,21 +7,36 @@ Documentation     2nd test suite for User Story #3
 ...               By James Andrew F. Perez
 Suite Setup       Open Browser To Admin Page
 Test Setup        Go Back to Admin Page
-Test Template     Add Admin
 Suite Teardown    Close Browser
 Resource          ${CURDIR}${/}..\\resource1.robot
 
-*** Test Cases ***      EMAIL             PROMPT
-Valid Email             ${VALID1}         ${VERIFIED}
-Not User (DLSU)         ${NOT_USER}       ${UNVERIFIED}
-Not User (Non-DLSU)     ${NOT_DLSU}       ${UNVERIFIED}
-Duplicate               ${VALID1}         ${ALREADY}
-Empty                   ${EMPTY}          ${UNVERIFIED}
-Blank                   ${SPACE}          ${UNVERIFIED}
+*** Test Cases ***
+Valid Email
+    Add Admin    ${VALID1}
+    Alert Should Be Present    ${SUCCESS}
+
+Not User (DLSU)
+    Add Admin    ${NOT_USER}
+    Page Should Contain   ${INVALID}
+
+Not User (Non-DLSU)
+    Add Admin    ${NOT_DLSU}
+    Page Should Contain   ${INVALID}
+
+Duplicate
+    Add Admin    ${VALID1}
+    Page Should Contain   ${INVALID}
+
+Empty
+    Add Admin    ${EMPTY}
+    Page Should Contain   ${INVALID}
+
+Blank
+    Add Admin    ${SPACE}
+    Page Should Contain   ${INVALID}
 
 *** KEYWORDS ***
 Add Admin
-    [Arguments]    ${email}    ${prompt}
-    Open Admin Input    ${email}
-    Click Element    //*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button
-    Page Should Contain    ${prompt}
+    [Arguments]    ${email}
+    Open Admin Input  ${email}
+    Click Button    name:saveBtn

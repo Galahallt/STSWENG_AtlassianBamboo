@@ -20,7 +20,7 @@
                 py-2
                 mt-4
                 text-white
-                bg-green-600
+                dark_green
                 rounded-lg
                 hover:bg-green-900
                 shadow-lg
@@ -627,7 +627,7 @@
                 Add Professor
               </button>
             </div>
-            <button
+            <!-- <button
               class="
                 px-6
                 py-2
@@ -646,7 +646,7 @@
               :disabled="!state.csvFile"
             >
               Submit
-            </button>
+            </button> -->
             <p
               v-if="state.fileValidation"
               class="mt-8 text-red-500 text-center manrope-bold text-sm"
@@ -673,7 +673,7 @@
               flex-shrink
               content-center
               place-self-center
-              w-36
+              w-40
             "
             @click="addProfsCsv"
             :disabled="!state.csvFile || state.fileValidation"
@@ -889,12 +889,9 @@
       </div>
 
       <br />
-      <p
-        v-if="state.empty"
-        class="mt-20 text-red-500 manrope-bold text-center text-sm"
-      >
-        No results.
-      </p>
+      <div>
+        <p v-if="state.empty" class="manrope-bold text-xl ml-8">No results.</p>
+      </div>
       <div
         class="flex-col flex-grow overflow-y-auto scrollbar-hidden"
         v-if="!state.empty"

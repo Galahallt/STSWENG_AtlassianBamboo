@@ -12,12 +12,12 @@ Resource          ${CURDIR}${/}..\\resource1.robot
 
 *** Test Cases ***
 Valid
-    Click Button    rmv-${ADMIN_USER}
+    Click Button    name:rmv-${ADMIN_USER}
     Alert Should Be Present    ${REMOVED}
     Page Should Not Contain    ${ADMIN_USER}
 
 Self
-    Click Button    rmv-${SELF}
+    Click Button    name:rmv-${SELF}
     Alert Should Not Be Present    ${REMOVED}
     Page Should Contain    ${SELF}
 
