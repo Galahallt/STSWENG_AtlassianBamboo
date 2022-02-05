@@ -30,10 +30,8 @@ ${NOT_USER}       franchezka_cruz@dlsu.edu.ph
 ${NOT_DLSU}       jamesandrewfperez@gmail.com
 ${PASS1}          Pass-000
 ${PASS2}          Jan20200!
-${VERIFIED}       Verified!
-${UNVERIFIED}     Cannot find email!
-${ALREADY}        User is already an Administrator!
-${ADMIN_INPUT}    //*[@id="app"]/div/div/div/div[2]/div/div[2]/input
+${SUCCESS}        Admin added successfully!
+${INVALID}        Invalid Email!
 ${REMOVED}        Professor admin access removed!
 ${PROF1}          bob.enriquez@dlsu.edu.ph
 ${PROF2}          ann.marie@dlsu.edu.ph
@@ -57,11 +55,11 @@ Login
     ${TAB}    Switch Window    NEW
     Input Text    identifierId    ${email}
     Click Element    identifierNext
-    Sleep    2
+    Sleep    3
     Input Password    name:password    ${pass}
     Click Element    passwordNext
     Switch Window    ${TAB}
-    Sleep    2
+    Sleep    3
     Check Current Page    ${HOME}
 
 Open Browser To Admin Page
@@ -80,7 +78,5 @@ Check Current Page
 
 Open Admin Input
     [Arguments]    ${email}
-    Click Link    /addadmin
-    Clear Element Text    ${ADMIN_INPUT}
-    Press Keys    ${ADMIN_INPUT}    A+BACKSPACE
-    Input Text    ${ADMIN_INPUT}    ${email}
+    Click Button    name:newAdminBtn
+    Input Text    name:inputEmail    ${email}    True

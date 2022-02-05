@@ -1,115 +1,145 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20220126 17:13:44.136" rpa="false" schemaversion="2">
+<robot generator="Robot 4.1.2 (Python 3.9.7 on win32)" generated="20220205 14:29:44.698" rpa="false" schemaversion="2">
 <suite id="s1" name="US-03" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-03">
 <suite id="s1-s1" name="Us3.1 Gotoadminpage" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-03\us3.1_gotoadminpage.robot">
 <test id="s1-s1-t1" name="Admin">
+<kw name="Open Browser To Admin Page" library="resource1">
 <kw name="Login" library="resource1">
 <arg>${SELF}</arg>
 <arg>${PASS1}</arg>
-<arg>${ADMIN_PAGE}</arg>
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220126 17:13:44.351" endtime="20220126 17:13:44.351"/>
+<status status="PASS" starttime="20220205 14:29:44.851" endtime="20220205 14:29:44.852"/>
 </kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${LOGIN}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220126 17:13:44.352" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
-<status status="PASS" starttime="20220126 17:13:44.351" endtime="20220126 17:13:47.910"/>
+<msg timestamp="20220205 14:29:44.852" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220205 14:29:44.852" endtime="20220205 14:29:48.411"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220126 17:13:47.910" endtime="20220126 17:13:49.054"/>
+<status status="PASS" starttime="20220205 14:29:48.411" endtime="20220205 14:29:49.550"/>
 </kw>
 <kw name="Title Should Be" library="SeleniumLibrary">
 <arg>${TITLE}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220126 17:13:50.060" level="INFO">Page title is 'Profs to Pick'.</msg>
-<status status="PASS" starttime="20220126 17:13:49.055" endtime="20220126 17:13:50.060"/>
+<msg timestamp="20220205 14:29:50.559" level="INFO">Page title is 'DLSU Profs to Pick'.</msg>
+<status status="PASS" starttime="20220205 14:29:49.550" endtime="20220205 14:29:50.559"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>Login with Google Account</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:13:50.061" level="INFO">Clicking button 'Login with Google Account'.</msg>
-<status status="PASS" starttime="20220126 17:13:50.060" endtime="20220126 17:13:54.261"/>
+<msg timestamp="20220205 14:29:50.559" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220205 14:29:50.559" endtime="20220205 14:29:54.718"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <var>${TAB}</var>
 <arg>NEW</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<msg timestamp="20220126 17:13:58.281" level="INFO">${TAB} = CDwindow-D3AF378F4D3A3B10E1BE9CB770131069</msg>
-<status status="PASS" starttime="20220126 17:13:54.261" endtime="20220126 17:13:58.281"/>
+<msg timestamp="20220205 14:29:58.756" level="INFO">${TAB} = CDwindow-9FCF651775CCF729966CBD7F7998AA34</msg>
+<status status="PASS" starttime="20220205 14:29:54.718" endtime="20220205 14:29:58.756"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>identifierId</arg>
 <arg>${email}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:13:58.281" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
-<status status="PASS" starttime="20220126 17:13:58.281" endtime="20220126 17:14:01.412"/>
+<msg timestamp="20220205 14:29:58.756" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220205 14:29:58.756" endtime="20220205 14:30:01.944"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>identifierNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:01.412" level="INFO">Clicking element 'identifierNext'.</msg>
-<status status="PASS" starttime="20220126 17:14:01.412" endtime="20220126 17:14:03.514"/>
+<msg timestamp="20220205 14:30:01.945" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220205 14:30:01.944" endtime="20220205 14:30:04.024"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>2</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220126 17:14:05.518" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220126 17:14:03.514" endtime="20220126 17:14:05.518"/>
+<msg timestamp="20220205 14:30:06.030" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220205 14:30:04.024" endtime="20220205 14:30:06.030"/>
 </kw>
 <kw name="Input Password" library="SeleniumLibrary">
 <arg>name:password</arg>
 <arg>${pass}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:05.519" level="INFO">Typing password into text field 'name:password'.</msg>
-<msg timestamp="20220126 17:14:07.565" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20220126 17:14:08.616" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20220126 17:14:05.518" endtime="20220126 17:14:08.616"/>
+<msg timestamp="20220205 14:30:06.032" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg timestamp="20220205 14:30:08.095" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220205 14:30:09.152" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220205 14:30:06.030" endtime="20220205 14:30:09.152"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>passwordNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:08.617" level="INFO">Clicking element 'passwordNext'.</msg>
-<status status="PASS" starttime="20220126 17:14:08.616" endtime="20220126 17:14:10.683"/>
+<msg timestamp="20220205 14:30:09.153" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220205 14:30:09.153" endtime="20220205 14:30:11.235"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <arg>${TAB}</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:14:10.683" endtime="20220126 17:14:14.713"/>
+<status status="PASS" starttime="20220205 14:30:11.236" endtime="20220205 14:30:15.268"/>
 </kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div[1]/div[1]/a/button</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:14.714" level="INFO">Clicking button '//*[@id="app"]/div/div/div[1]/div[1]/a/button'.</msg>
-<status status="PASS" starttime="20220126 17:14:14.713" endtime="20220126 17:14:19.800"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220205 14:30:17.281" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220205 14:30:15.268" endtime="20220205 14:30:17.281"/>
 </kw>
 <kw name="Check Current Page" library="resource1">
-<arg>${current}</arg>
+<arg>${HOME}</arg>
 <kw name="Get Location" library="SeleniumLibrary">
 <var>${CURRENT}</var>
 <doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:14:20.808" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:14:19.801" endtime="20220126 17:14:20.809"/>
+<msg timestamp="20220205 14:30:18.292" level="INFO">${CURRENT} = http://localhost:3000/home</msg>
+<status status="PASS" starttime="20220205 14:30:17.282" endtime="20220205 14:30:18.292"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${target}</arg>
 <arg>${CURRENT}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:14:20.809" endtime="20220126 17:14:20.809"/>
+<status status="PASS" starttime="20220205 14:30:18.292" endtime="20220205 14:30:18.293"/>
 </kw>
-<status status="PASS" starttime="20220126 17:14:19.800" endtime="20220126 17:14:20.809"/>
+<status status="PASS" starttime="20220205 14:30:17.281" endtime="20220205 14:30:18.293"/>
 </kw>
-<status status="PASS" starttime="20220126 17:13:44.351" endtime="20220126 17:14:20.809"/>
+<status status="PASS" starttime="20220205 14:29:44.851" endtime="20220205 14:30:18.294"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:adminAccessBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:30:18.294" level="INFO">Clicking button 'name:adminAccessBtn'.</msg>
+<status status="PASS" starttime="20220205 14:30:18.294" endtime="20220205 14:30:23.396"/>
+</kw>
+<kw name="Check Current Page" library="resource1">
+<arg>${ADMIN_PAGE}</arg>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20220205 14:30:24.420" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
+<status status="PASS" starttime="20220205 14:30:23.396" endtime="20220205 14:30:24.420"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${target}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220205 14:30:24.421" endtime="20220205 14:30:24.421"/>
+</kw>
+<status status="PASS" starttime="20220205 14:30:23.396" endtime="20220205 14:30:24.422"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${SELF}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220205 14:30:26.470" level="INFO">Current page contains text 'james_perez@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220205 14:30:24.422" endtime="20220205 14:30:26.470"/>
+</kw>
+<status status="PASS" starttime="20220205 14:29:44.851" endtime="20220205 14:30:26.471"/>
 </kw>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220126 17:14:20.830" endtime="20220126 17:14:23.899"/>
+<status status="PASS" starttime="20220205 14:30:26.472" endtime="20220205 14:30:29.555"/>
 </kw>
-<status status="PASS" starttime="20220126 17:13:44.350" endtime="20220126 17:14:23.899"/>
+<status status="PASS" starttime="20220205 14:29:44.851" endtime="20220205 14:30:29.556"/>
 </test>
 <doc>1st test suite for User Story #3
 
@@ -119,245 +149,420 @@ non-admin user. Also checks the admin
 list.
 
 By James Andrew F. Perez</doc>
-<status status="PASS" starttime="20220126 17:13:44.163" endtime="20220126 17:14:23.902"/>
+<status status="PASS" starttime="20220205 14:29:44.715" endtime="20220205 14:30:29.559"/>
 </suite>
 <suite id="s1-s2" name="Us3.2 Addadmin" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-03\us3.2_addadmin.robot">
 <kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
 <kw name="Login" library="resource1">
 <arg>${SELF}</arg>
 <arg>${PASS1}</arg>
-<arg>${ADMIN_PAGE}</arg>
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220126 17:14:23.907" endtime="20220126 17:14:23.907"/>
+<status status="PASS" starttime="20220205 14:30:29.572" endtime="20220205 14:30:29.573"/>
 </kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${LOGIN}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220126 17:14:23.908" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
-<status status="PASS" starttime="20220126 17:14:23.907" endtime="20220126 17:14:27.038"/>
+<msg timestamp="20220205 14:30:29.574" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220205 14:30:29.573" endtime="20220205 14:30:33.084"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220126 17:14:27.038" endtime="20220126 17:14:28.167"/>
+<status status="PASS" starttime="20220205 14:30:33.084" endtime="20220205 14:30:34.253"/>
 </kw>
 <kw name="Title Should Be" library="SeleniumLibrary">
 <arg>${TITLE}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220126 17:14:29.176" level="INFO">Page title is 'Profs to Pick'.</msg>
-<status status="PASS" starttime="20220126 17:14:28.167" endtime="20220126 17:14:29.176"/>
+<msg timestamp="20220205 14:30:35.264" level="INFO">Page title is 'DLSU Profs to Pick'.</msg>
+<status status="PASS" starttime="20220205 14:30:34.253" endtime="20220205 14:30:35.264"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>Login with Google Account</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:29.176" level="INFO">Clicking button 'Login with Google Account'.</msg>
-<status status="PASS" starttime="20220126 17:14:29.176" endtime="20220126 17:14:33.282"/>
+<msg timestamp="20220205 14:30:35.265" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220205 14:30:35.264" endtime="20220205 14:30:39.422"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <var>${TAB}</var>
 <arg>NEW</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<msg timestamp="20220126 17:14:37.309" level="INFO">${TAB} = CDwindow-310CD9FBABD0669A88D0E0C37B7FA180</msg>
-<status status="PASS" starttime="20220126 17:14:33.282" endtime="20220126 17:14:37.309"/>
+<msg timestamp="20220205 14:30:43.470" level="INFO">${TAB} = CDwindow-194ED6073B1FAA56D8EEB16238788CD3</msg>
+<status status="PASS" starttime="20220205 14:30:39.422" endtime="20220205 14:30:43.470"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>identifierId</arg>
 <arg>${email}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:37.309" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
-<status status="PASS" starttime="20220126 17:14:37.309" endtime="20220126 17:14:40.444"/>
+<msg timestamp="20220205 14:30:43.471" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220205 14:30:43.470" endtime="20220205 14:30:46.659"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>identifierNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:40.445" level="INFO">Clicking element 'identifierNext'.</msg>
-<status status="PASS" starttime="20220126 17:14:40.444" endtime="20220126 17:14:42.511"/>
+<msg timestamp="20220205 14:30:46.659" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220205 14:30:46.659" endtime="20220205 14:30:48.737"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>2</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220126 17:14:44.512" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220126 17:14:42.511" endtime="20220126 17:14:44.513"/>
+<msg timestamp="20220205 14:30:50.742" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220205 14:30:48.737" endtime="20220205 14:30:50.742"/>
 </kw>
 <kw name="Input Password" library="SeleniumLibrary">
 <arg>name:password</arg>
 <arg>${pass}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:44.513" level="INFO">Typing password into text field 'name:password'.</msg>
-<msg timestamp="20220126 17:14:46.591" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20220126 17:14:47.675" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20220126 17:14:44.513" endtime="20220126 17:14:47.675"/>
+<msg timestamp="20220205 14:30:50.743" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg timestamp="20220205 14:30:52.810" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20220205 14:30:53.852" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20220205 14:30:50.742" endtime="20220205 14:30:53.852"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>passwordNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:47.676" level="INFO">Clicking element 'passwordNext'.</msg>
-<status status="PASS" starttime="20220126 17:14:47.675" endtime="20220126 17:14:49.784"/>
+<msg timestamp="20220205 14:30:53.853" level="INFO">Clicking element 'passwordNext'.</msg>
+<status status="PASS" starttime="20220205 14:30:53.853" endtime="20220205 14:30:55.935"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <arg>${TAB}</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:14:49.784" endtime="20220126 17:14:53.821"/>
+<status status="PASS" starttime="20220205 14:30:55.936" endtime="20220205 14:30:59.962"/>
 </kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div[1]/div[1]/a/button</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:14:53.821" level="INFO">Clicking button '//*[@id="app"]/div/div/div[1]/div[1]/a/button'.</msg>
-<status status="PASS" starttime="20220126 17:14:53.821" endtime="20220126 17:14:58.938"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20220205 14:31:01.969" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220205 14:30:59.962" endtime="20220205 14:31:01.969"/>
 </kw>
 <kw name="Check Current Page" library="resource1">
-<arg>${current}</arg>
+<arg>${HOME}</arg>
 <kw name="Get Location" library="SeleniumLibrary">
 <var>${CURRENT}</var>
 <doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:14:59.943" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:14:58.938" endtime="20220126 17:14:59.943"/>
+<msg timestamp="20220205 14:31:02.977" level="INFO">${CURRENT} = http://localhost:3000/home</msg>
+<status status="PASS" starttime="20220205 14:31:01.970" endtime="20220205 14:31:02.977"/>
 </kw>
 <kw name="Should Be Equal" library="BuiltIn">
 <arg>${target}</arg>
 <arg>${CURRENT}</arg>
 <doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:14:59.943" endtime="20220126 17:14:59.944"/>
+<status status="PASS" starttime="20220205 14:31:02.978" endtime="20220205 14:31:02.978"/>
 </kw>
-<status status="PASS" starttime="20220126 17:14:58.938" endtime="20220126 17:14:59.944"/>
+<status status="PASS" starttime="20220205 14:31:01.969" endtime="20220205 14:31:02.978"/>
 </kw>
-<status status="PASS" starttime="20220126 17:14:23.907" endtime="20220126 17:14:59.944"/>
+<status status="PASS" starttime="20220205 14:30:29.572" endtime="20220205 14:31:02.979"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:adminAccessBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:02.979" level="INFO">Clicking button 'name:adminAccessBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:02.979" endtime="20220205 14:31:08.088"/>
+</kw>
+<kw name="Check Current Page" library="resource1">
+<arg>${ADMIN_PAGE}</arg>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${CURRENT}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20220205 14:31:09.098" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
+<status status="PASS" starttime="20220205 14:31:08.089" endtime="20220205 14:31:09.098"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${target}</arg>
+<arg>${CURRENT}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220205 14:31:09.098" endtime="20220205 14:31:09.099"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:08.089" endtime="20220205 14:31:09.099"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>${SELF}</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220126 17:15:01.989" level="INFO">Current page contains text 'james_perez@dlsu.edu.ph'.</msg>
-<status status="PASS" starttime="20220126 17:14:59.944" endtime="20220126 17:15:01.989"/>
+<msg timestamp="20220205 14:31:11.149" level="INFO">Current page contains text 'james_perez@dlsu.edu.ph'.</msg>
+<status status="PASS" starttime="20220205 14:31:09.100" endtime="20220205 14:31:11.149"/>
 </kw>
-<status status="PASS" starttime="20220126 17:14:23.907" endtime="20220126 17:15:01.990"/>
+<status status="PASS" starttime="20220205 14:30:29.571" endtime="20220205 14:31:11.150"/>
 </kw>
-<test id="s1-s2-t1" name="Empty">
+<test id="s1-s2-t1" name="Valid Email">
 <kw name="Go Back to Admin Page" library="resource1" type="SETUP">
 <kw name="Go To" library="SeleniumLibrary">
 <arg>${ADMIN_PAGE}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220126 17:15:01.992" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
-<status status="PASS" starttime="20220126 17:15:01.992" endtime="20220126 17:15:03.385"/>
+<msg timestamp="20220205 14:31:11.152" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:31:11.152" endtime="20220205 14:31:12.469"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:01.991" endtime="20220126 17:15:03.385"/>
+<status status="PASS" starttime="20220205 14:31:11.151" endtime="20220205 14:31:12.470"/>
+</kw>
+<kw name="Add Admin">
+<arg>${VALID1}</arg>
+<kw name="Open Admin Input" library="resource1">
+<arg>${email}</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:12.472" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:12.472" endtime="20220205 14:31:17.579"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:inputEmail</arg>
+<arg>${email}</arg>
+<arg>True</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:17.580" level="INFO">Typing text 'paolo_edni_v_espiritu@dlsu.edu.ph' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:31:17.579" endtime="20220205 14:31:20.718"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:12.471" endtime="20220205 14:31:20.718"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:20.719" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:20.719" endtime="20220205 14:31:25.819"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:12.471" endtime="20220205 14:31:25.819"/>
+</kw>
+<kw name="Alert Should Be Present" library="SeleniumLibrary">
+<arg>${SUCCESS}</arg>
+<doc>Verifies that an alert is present and by default, accepts it.</doc>
+<msg timestamp="20220205 14:31:25.821" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<status status="PASS" starttime="20220205 14:31:25.820" endtime="20220205 14:31:28.854"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:11.150" endtime="20220205 14:31:28.856"/>
+</test>
+<test id="s1-s2-t2" name="Not User (DLSU)">
+<kw name="Go Back to Admin Page" library="resource1" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${ADMIN_PAGE}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220205 14:31:28.861" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:31:28.861" endtime="20220205 14:31:30.194"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:28.860" endtime="20220205 14:31:30.194"/>
+</kw>
+<kw name="Add Admin">
+<arg>${NOT_USER}</arg>
+<kw name="Open Admin Input" library="resource1">
+<arg>${email}</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:30.198" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:30.197" endtime="20220205 14:31:35.291"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:inputEmail</arg>
+<arg>${email}</arg>
+<arg>True</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:35.292" level="INFO">Typing text 'franchezka_cruz@dlsu.edu.ph' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:31:35.291" endtime="20220205 14:31:38.431"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:30.197" endtime="20220205 14:31:38.431"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:38.432" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:38.432" endtime="20220205 14:31:43.546"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:30.196" endtime="20220205 14:31:43.546"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${INVALID}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220205 14:31:45.594" level="INFO">Current page contains text 'Invalid Email!'.</msg>
+<status status="PASS" starttime="20220205 14:31:43.547" endtime="20220205 14:31:45.594"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:28.859" endtime="20220205 14:31:45.596"/>
+</test>
+<test id="s1-s2-t3" name="Not User (Non-DLSU)">
+<kw name="Go Back to Admin Page" library="resource1" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${ADMIN_PAGE}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220205 14:31:45.600" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:31:45.600" endtime="20220205 14:31:46.946"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:45.599" endtime="20220205 14:31:46.946"/>
+</kw>
+<kw name="Add Admin">
+<arg>${NOT_DLSU}</arg>
+<kw name="Open Admin Input" library="resource1">
+<arg>${email}</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:46.949" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:46.949" endtime="20220205 14:31:52.059"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:inputEmail</arg>
+<arg>${email}</arg>
+<arg>True</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:52.059" level="INFO">Typing text 'jamesandrewfperez@gmail.com' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:31:52.059" endtime="20220205 14:31:55.184"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:46.948" endtime="20220205 14:31:55.184"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:31:55.185" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:31:55.184" endtime="20220205 14:32:00.298"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:46.947" endtime="20220205 14:32:00.298"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${INVALID}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220205 14:32:02.354" level="INFO">Current page contains text 'Invalid Email!'.</msg>
+<status status="PASS" starttime="20220205 14:32:00.299" endtime="20220205 14:32:02.354"/>
+</kw>
+<status status="PASS" starttime="20220205 14:31:45.598" endtime="20220205 14:32:02.355"/>
+</test>
+<test id="s1-s2-t4" name="Duplicate">
+<kw name="Go Back to Admin Page" library="resource1" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${ADMIN_PAGE}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220205 14:32:02.361" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:32:02.361" endtime="20220205 14:32:03.708"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:02.360" endtime="20220205 14:32:03.708"/>
+</kw>
+<kw name="Add Admin">
+<arg>${VALID1}</arg>
+<kw name="Open Admin Input" library="resource1">
+<arg>${email}</arg>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:03.711" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:03.710" endtime="20220205 14:32:08.805"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:inputEmail</arg>
+<arg>${email}</arg>
+<arg>True</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:08.806" level="INFO">Typing text 'paolo_edni_v_espiritu@dlsu.edu.ph' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:32:08.805" endtime="20220205 14:32:11.923"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:03.710" endtime="20220205 14:32:11.924"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:11.924" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:11.924" endtime="20220205 14:32:17.033"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:03.709" endtime="20220205 14:32:17.034"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>${INVALID}</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20220205 14:32:19.086" level="INFO">Current page contains text 'Invalid Email!'.</msg>
+<status status="PASS" starttime="20220205 14:32:17.035" endtime="20220205 14:32:19.086"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:02.359" endtime="20220205 14:32:19.087"/>
+</test>
+<test id="s1-s2-t5" name="Empty">
+<kw name="Go Back to Admin Page" library="resource1" type="SETUP">
+<kw name="Go To" library="SeleniumLibrary">
+<arg>${ADMIN_PAGE}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20220205 14:32:19.092" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:32:19.091" endtime="20220205 14:32:20.444"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:19.091" endtime="20220205 14:32:20.444"/>
 </kw>
 <kw name="Add Admin">
 <arg>${EMPTY}</arg>
-<arg>${UNVERIFIED}</arg>
 <kw name="Open Admin Input" library="resource1">
 <arg>${email}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:03.387" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:15:03.387" endtime="20220126 17:15:06.454"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:15:06.454" endtime="20220126 17:15:08.512"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:15:08.513" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:15:10.798" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:15:10.798" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:15:10.798" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:15:08.512" endtime="20220126 17:15:11.819"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:20.449" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:20.448" endtime="20220205 14:32:25.586"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
+<arg>name:inputEmail</arg>
 <arg>${email}</arg>
+<arg>True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:11.820" level="INFO">Typing text '' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:15:11.819" endtime="20220126 17:15:14.871"/>
+<msg timestamp="20220205 14:32:25.586" level="INFO">Typing text '' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:32:25.586" endtime="20220205 14:32:28.679"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:03.386" endtime="20220126 17:15:14.872"/>
+<status status="PASS" starttime="20220205 14:32:20.447" endtime="20220205 14:32:28.680"/>
 </kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:14.872" level="INFO">Clicking element '//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button'.</msg>
-<status status="PASS" starttime="20220126 17:15:14.872" endtime="20220126 17:15:16.934"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:28.680" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:28.680" endtime="20220205 14:32:33.792"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:20.446" endtime="20220205 14:32:33.792"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>${prompt}</arg>
+<arg>${INVALID}</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220126 17:15:18.978" level="INFO">Current page contains text 'Cannot find email!'.</msg>
-<status status="PASS" starttime="20220126 17:15:16.934" endtime="20220126 17:15:18.978"/>
+<msg timestamp="20220205 14:32:35.844" level="INFO">Current page contains text 'Invalid Email!'.</msg>
+<status status="PASS" starttime="20220205 14:32:33.794" endtime="20220205 14:32:35.844"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:03.385" endtime="20220126 17:15:18.978"/>
-</kw>
-<status status="PASS" starttime="20220126 17:15:01.990" endtime="20220126 17:15:18.978"/>
+<status status="PASS" starttime="20220205 14:32:19.089" endtime="20220205 14:32:35.845"/>
 </test>
-<test id="s1-s2-t2" name="Blank">
+<test id="s1-s2-t6" name="Blank">
 <kw name="Go Back to Admin Page" library="resource1" type="SETUP">
 <kw name="Go To" library="SeleniumLibrary">
 <arg>${ADMIN_PAGE}</arg>
 <doc>Navigates the current browser window to the provided ``url``.</doc>
-<msg timestamp="20220126 17:15:18.982" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
-<status status="PASS" starttime="20220126 17:15:18.982" endtime="20220126 17:15:20.306"/>
+<msg timestamp="20220205 14:32:35.851" level="INFO">Opening url 'http://localhost:3000/adminlist'</msg>
+<status status="PASS" starttime="20220205 14:32:35.851" endtime="20220205 14:32:37.170"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:18.981" endtime="20220126 17:15:20.306"/>
+<status status="PASS" starttime="20220205 14:32:35.850" endtime="20220205 14:32:37.171"/>
 </kw>
 <kw name="Add Admin">
 <arg>${SPACE}</arg>
-<arg>${UNVERIFIED}</arg>
 <kw name="Open Admin Input" library="resource1">
 <arg>${email}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:20.307" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:15:20.307" endtime="20220126 17:15:23.404"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:15:23.404" endtime="20220126 17:15:25.434"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:15:25.434" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:15:27.728" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:15:27.728" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:15:27.728" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:15:25.434" endtime="20220126 17:15:28.749"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:newAdminBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:37.174" level="INFO">Clicking button 'name:newAdminBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:37.173" endtime="20220205 14:32:42.290"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
+<arg>name:inputEmail</arg>
 <arg>${email}</arg>
+<arg>True</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:28.749" level="INFO">Typing text ' ' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:15:28.749" endtime="20220126 17:15:31.822"/>
+<msg timestamp="20220205 14:32:42.291" level="INFO">Typing text ' ' into text field 'name:inputEmail'.</msg>
+<status status="PASS" starttime="20220205 14:32:42.290" endtime="20220205 14:32:45.402"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:20.307" endtime="20220126 17:15:31.822"/>
+<status status="PASS" starttime="20220205 14:32:37.173" endtime="20220205 14:32:45.402"/>
 </kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:31.823" level="INFO">Clicking element '//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/button'.</msg>
-<status status="PASS" starttime="20220126 17:15:31.822" endtime="20220126 17:15:33.904"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:saveBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20220205 14:32:45.403" level="INFO">Clicking button 'name:saveBtn'.</msg>
+<status status="PASS" starttime="20220205 14:32:45.403" endtime="20220205 14:32:50.504"/>
+</kw>
+<status status="PASS" starttime="20220205 14:32:37.172" endtime="20220205 14:32:50.505"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
-<arg>${prompt}</arg>
+<arg>${INVALID}</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220126 17:15:35.984" level="INFO">Current page contains text 'Cannot find email!'.</msg>
-<status status="PASS" starttime="20220126 17:15:33.904" endtime="20220126 17:15:35.984"/>
+<msg timestamp="20220205 14:32:52.552" level="INFO">Current page contains text 'Invalid Email!'.</msg>
+<status status="PASS" starttime="20220205 14:32:50.506" endtime="20220205 14:32:52.552"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:20.306" endtime="20220126 17:15:35.984"/>
-</kw>
-<status status="PASS" starttime="20220126 17:15:18.981" endtime="20220126 17:15:35.984"/>
+<status status="PASS" starttime="20220205 14:32:35.849" endtime="20220205 14:32:52.553"/>
 </test>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220126 17:15:35.985" endtime="20220126 17:15:39.062"/>
+<status status="PASS" starttime="20220205 14:32:52.558" endtime="20220205 14:32:55.649"/>
 </kw>
 <doc>2nd test suite for User Story #3
 
@@ -365,399 +570,231 @@ These are test cases deals with the
 adding an admin.
 
 By James Andrew F. Perez</doc>
-<status status="PASS" starttime="20220126 17:14:23.904" endtime="20220126 17:15:39.062"/>
+<status status="PASS" starttime="20220205 14:30:29.562" endtime="20220205 14:32:55.649"/>
 </suite>
 <suite id="s1-s3" name="Us3.3 Canceladdadmin" source="C:\Users\JAMES ANDREW PEREZ\Desktop\Code\STSWENG\STSWENG_AtlassianBamboo\server\src\__test__\automated_tests\US-03\us3.3_canceladdadmin.robot">
 <kw name="Open Browser To Admin Page" library="resource1" type="SETUP">
 <kw name="Login" library="resource1">
 <arg>${SELF}</arg>
 <arg>${PASS1}</arg>
-<arg>${ADMIN_PAGE}</arg>
 <kw name="Set Selenium Speed" library="SeleniumLibrary">
 <arg>${DELAY}</arg>
 <doc>Sets the delay that is waited after each Selenium command.</doc>
-<status status="PASS" starttime="20220126 17:15:39.071" endtime="20220126 17:15:39.071"/>
+<status status="PASS" starttime="20220205 14:32:55.669" endtime="20220205 14:32:55.669"/>
 </kw>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${LOGIN}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20220126 17:15:39.072" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
-<status status="PASS" starttime="20220126 17:15:39.071" endtime="20220126 17:15:42.505"/>
+<msg timestamp="20220205 14:32:55.670" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20220205 14:32:55.669" endtime="20220205 14:32:59.159"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20220126 17:15:42.505" endtime="20220126 17:15:43.638"/>
+<status status="PASS" starttime="20220205 14:32:59.159" endtime="20220205 14:33:00.298"/>
 </kw>
 <kw name="Title Should Be" library="SeleniumLibrary">
 <arg>${TITLE}</arg>
 <doc>Verifies that the current page title equals ``title``.</doc>
-<msg timestamp="20220126 17:15:44.660" level="INFO">Page title is 'Profs to Pick'.</msg>
-<status status="PASS" starttime="20220126 17:15:43.638" endtime="20220126 17:15:44.660"/>
+<msg timestamp="20220205 14:33:01.316" level="INFO">Page title is 'DLSU Profs to Pick'.</msg>
+<status status="PASS" starttime="20220205 14:33:00.298" endtime="20220205 14:33:01.316"/>
 </kw>
 <kw name="Click Button" library="SeleniumLibrary">
 <arg>Login with Google Account</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:44.660" level="INFO">Clicking button 'Login with Google Account'.</msg>
-<status status="PASS" starttime="20220126 17:15:44.660" endtime="20220126 17:15:48.795"/>
+<msg timestamp="20220205 14:33:01.317" level="INFO">Clicking button 'Login with Google Account'.</msg>
+<status status="PASS" starttime="20220205 14:33:01.316" endtime="20220205 14:33:05.470"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <var>${TAB}</var>
 <arg>NEW</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<msg timestamp="20220126 17:15:52.853" level="INFO">${TAB} = CDwindow-024DF86D81D1CDEADE2ADB5EF9852BA9</msg>
-<status status="PASS" starttime="20220126 17:15:48.795" endtime="20220126 17:15:52.853"/>
+<msg timestamp="20220205 14:33:09.510" level="INFO">${TAB} = CDwindow-CAE1D3721AF2DFA1B267C7441B62031E</msg>
+<status status="PASS" starttime="20220205 14:33:05.470" endtime="20220205 14:33:09.510"/>
 </kw>
 <kw name="Input Text" library="SeleniumLibrary">
 <arg>identifierId</arg>
 <arg>${email}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:52.853" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
-<status status="PASS" starttime="20220126 17:15:52.853" endtime="20220126 17:15:55.978"/>
+<msg timestamp="20220205 14:33:09.511" level="INFO">Typing text 'james_perez@dlsu.edu.ph' into text field 'identifierId'.</msg>
+<status status="PASS" starttime="20220205 14:33:09.510" endtime="20220205 14:33:12.695"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>identifierNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:15:55.978" level="INFO">Clicking element 'identifierNext'.</msg>
-<status status="PASS" starttime="20220126 17:15:55.978" endtime="20220126 17:15:58.045"/>
+<msg timestamp="20220205 14:33:12.696" level="INFO">Clicking element 'identifierNext'.</msg>
+<status status="PASS" starttime="20220205 14:33:12.696" endtime="20220205 14:33:14.776"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>2</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20220126 17:16:00.054" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20220126 17:15:58.045" endtime="20220126 17:16:00.054"/>
+<msg timestamp="20220205 14:33:16.778" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20220205 14:33:14.777" endtime="20220205 14:33:16.778"/>
 </kw>
 <kw name="Input Password" library="SeleniumLibrary">
 <arg>name:password</arg>
 <arg>${pass}</arg>
 <doc>Types the given password into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:00.054" level="INFO">Typing password into text field 'name:password'.</msg>
-<msg timestamp="20220126 17:16:02.100" level="INFO">Temporally setting log level to: NONE</msg>
-<msg timestamp="20220126 17:16:03.156" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20220126 17:16:00.054" endtime="20220126 17:16:03.156"/>
+<msg timestamp="20220205 14:33:16.779" level="INFO">Typing password into text field 'name:password'.</msg>
+<msg timestamp="20220205 14:33:17.831" level="FAIL">ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005DA0A3+2597027]
+	Ordinal0 [0x0056BA61+2144865]
+	Ordinal0 [0x00463B20+1063712]
+	Ordinal0 [0x00488BF0+1215472]
+	Ordinal0 [0x004A87AC+1345452]
+	Ordinal0 [0x00486874+1206388]
+	Ordinal0 [0x004A8904+1345796]
+	Ordinal0 [0x004B8B1A+1411866]
+	Ordinal0 [0x004A85C6+1344966]
+	Ordinal0 [0x004854C6+1201350]
+	Ordinal0 [0x004863B6+1205174]
+	GetHandleVerifier [0x007810A2+1681842]
+	GetHandleVerifier [0x00833B0C+2413596]
+	GetHandleVerifier [0x00671221+568113]
+	GetHandleVerifier [0x0066FFA3+563379]
+	Ordinal0 [0x0057174E+2168654]
+	Ordinal0 [0x00576538+2188600]
+	Ordinal0 [0x00576680+2188928]
+	Ordinal0 [0x0058030C+2229004]
+	BaseThreadInitThunk [0x763C6739+25]
+	RtlGetFullPathName_UEx [0x77518E7F+1215]
+	RtlGetFullPathName_UEx [0x77518E4D+1165]
+</msg>
+<status status="FAIL" starttime="20220205 14:33:16.778" endtime="20220205 14:33:17.831"/>
 </kw>
 <kw name="Click Element" library="SeleniumLibrary">
 <arg>passwordNext</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:03.157" level="INFO">Clicking element 'passwordNext'.</msg>
-<status status="PASS" starttime="20220126 17:16:03.157" endtime="20220126 17:16:05.224"/>
+<status status="NOT RUN" starttime="20220205 14:33:17.832" endtime="20220205 14:33:17.832"/>
 </kw>
 <kw name="Switch Window" library="SeleniumLibrary">
 <arg>${TAB}</arg>
 <doc>Switches to browser window matching ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:16:05.224" endtime="20220126 17:16:09.248"/>
+<status status="NOT RUN" starttime="20220205 14:33:17.832" endtime="20220205 14:33:17.833"/>
 </kw>
-<kw name="Click Button" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div[1]/div[1]/a/button</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:09.249" level="INFO">Clicking button '//*[@id="app"]/div/div/div[1]/div[1]/a/button'.</msg>
-<status status="PASS" starttime="20220126 17:16:09.248" endtime="20220126 17:16:14.382"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20220205 14:33:17.833" endtime="20220205 14:33:17.833"/>
 </kw>
 <kw name="Check Current Page" library="resource1">
-<arg>${current}</arg>
-<kw name="Get Location" library="SeleniumLibrary">
-<var>${CURRENT}</var>
-<doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:16:15.389" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:16:14.383" endtime="20220126 17:16:15.389"/>
+<arg>${HOME}</arg>
+<status status="NOT RUN" starttime="20220205 14:33:17.834" endtime="20220205 14:33:17.834"/>
 </kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${target}</arg>
-<arg>${CURRENT}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:16:15.389" endtime="20220126 17:16:15.389"/>
+<status status="FAIL" starttime="20220205 14:32:55.667" endtime="20220205 14:33:17.834"/>
 </kw>
-<status status="PASS" starttime="20220126 17:16:14.382" endtime="20220126 17:16:15.391"/>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>name:adminAccessBtn</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20220205 14:33:17.835" endtime="20220205 14:33:17.835"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:39.071" endtime="20220126 17:16:15.391"/>
+<kw name="Check Current Page" library="resource1">
+<arg>${ADMIN_PAGE}</arg>
+<status status="NOT RUN" starttime="20220205 14:33:17.835" endtime="20220205 14:33:17.835"/>
 </kw>
 <kw name="Page Should Contain" library="SeleniumLibrary">
 <arg>${SELF}</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<msg timestamp="20220126 17:16:17.439" level="INFO">Current page contains text 'james_perez@dlsu.edu.ph'.</msg>
-<status status="PASS" starttime="20220126 17:16:15.391" endtime="20220126 17:16:17.439"/>
+<status status="NOT RUN" starttime="20220205 14:33:17.835" endtime="20220205 14:33:17.835"/>
 </kw>
-<status status="PASS" starttime="20220126 17:15:39.070" endtime="20220126 17:16:17.440"/>
+<status status="FAIL" starttime="20220205 14:32:55.667" endtime="20220205 14:33:17.836"/>
 </kw>
 <test id="s1-s3-t1" name="Valid">
-<kw name="Open Admin Input" library="resource1">
-<arg>${VALID2}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:17.441" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:16:17.440" endtime="20220126 17:16:20.506"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:16:20.506" endtime="20220126 17:16:22.569"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:16:22.571" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:16:24.876" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:16:24.876" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:16:24.876" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:16:22.570" endtime="20220126 17:16:25.896"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>${email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:25.897" level="INFO">Typing text 'gio_montecillo@dlsu.edu.ph' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:16:25.897" endtime="20220126 17:16:28.973"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:17.440" endtime="20220126 17:16:28.974"/>
-</kw>
-<kw name="Click Cancel">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:28.975" level="INFO">Clicking element '//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a'.</msg>
-<status status="PASS" starttime="20220126 17:16:28.975" endtime="20220126 17:16:31.082"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${VALID2}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:16:37.189" level="INFO">Current page does not contain text 'gio_montecillo@dlsu.edu.ph'.</msg>
-<status status="PASS" starttime="20220126 17:16:31.083" endtime="20220126 17:16:37.189"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${NOT_DLSU}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:16:43.308" level="INFO">Current page does not contain text 'jamesandrewfperez@gmail.com'.</msg>
-<status status="PASS" starttime="20220126 17:16:37.189" endtime="20220126 17:16:43.309"/>
-</kw>
-<kw name="Check Current Page" library="resource1">
-<arg>${ADMIN_PAGE}</arg>
-<kw name="Get Location" library="SeleniumLibrary">
-<var>${CURRENT}</var>
-<doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:16:44.331" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:16:43.310" endtime="20220126 17:16:44.331"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${target}</arg>
-<arg>${CURRENT}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:16:44.331" endtime="20220126 17:16:44.332"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:43.309" endtime="20220126 17:16:44.332"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:28.975" endtime="20220126 17:16:44.332"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:17.440" endtime="20220126 17:16:44.333"/>
+<status status="FAIL" starttime="20220205 14:33:17.836" endtime="20220205 14:33:17.837">Parent suite setup failed:
+ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005DA0A3+2597027]
+	Ordinal0 [0x0056BA61+2144865]
+	Ordinal0 [0x00463B20+1063712]
+	Ordinal0 [0x00488BF0+1215472]
+	Ordinal0 [0x004A87AC+1345452]
+	Ordinal0 [0x00486874+1206388]
+	Ordinal0 [0x004A8904+1345796]
+	Ordinal0 [0x004B8B1A+1411866]
+	Ordinal0 [0x004A85C6+1344966]
+	Ordinal0 [0x004854C6+1201350]
+	Ordinal0 [0x004863B6+1205174]
+	GetHandleVerifier [0x007810A2+1681842]
+	GetHandleVerifier [0x00833B0C+2413596]
+	GetHandleVerifier [0x00671221+568113]
+	GetHandleVerifier [0x0066FFA3+563379]
+	Ordinal0 [0x0057174E+2168654]
+	Ordinal0 [0x00576538+2188600]
+	Ordinal0 [0x00576680+2188928]
+	Ordinal0 [0x0058030C+2229004]
+	BaseThreadInitThunk [0x763C6739+25]
+	RtlGetFullPathName_UEx [0x77518E7F+1215]
+	RtlGetFullPathName_UEx [0x77518E4D+1165]
+</status>
 </test>
 <test id="s1-s3-t2" name="Invalid">
-<kw name="Open Admin Input" library="resource1">
-<arg>${NOT_DLSU}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:44.336" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:16:44.336" endtime="20220126 17:16:47.434"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:16:47.434" endtime="20220126 17:16:49.487"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:16:49.488" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:16:51.799" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:16:51.799" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:16:51.799" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:16:49.487" endtime="20220126 17:16:52.822"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>${email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:52.823" level="INFO">Typing text 'jamesandrewfperez@gmail.com' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:16:52.822" endtime="20220126 17:16:55.935"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:44.335" endtime="20220126 17:16:55.935"/>
-</kw>
-<kw name="Click Cancel">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:16:55.937" level="INFO">Clicking element '//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a'.</msg>
-<status status="PASS" starttime="20220126 17:16:55.936" endtime="20220126 17:16:58.028"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${VALID2}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:17:04.108" level="INFO">Current page does not contain text 'gio_montecillo@dlsu.edu.ph'.</msg>
-<status status="PASS" starttime="20220126 17:16:58.028" endtime="20220126 17:17:04.108"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${NOT_DLSU}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:17:10.206" level="INFO">Current page does not contain text 'jamesandrewfperez@gmail.com'.</msg>
-<status status="PASS" starttime="20220126 17:17:04.108" endtime="20220126 17:17:10.206"/>
-</kw>
-<kw name="Check Current Page" library="resource1">
-<arg>${ADMIN_PAGE}</arg>
-<kw name="Get Location" library="SeleniumLibrary">
-<var>${CURRENT}</var>
-<doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:17:11.227" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:17:10.207" endtime="20220126 17:17:11.227"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${target}</arg>
-<arg>${CURRENT}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:17:11.227" endtime="20220126 17:17:11.227"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:10.206" endtime="20220126 17:17:11.228"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:55.936" endtime="20220126 17:17:11.228"/>
-</kw>
-<status status="PASS" starttime="20220126 17:16:44.334" endtime="20220126 17:17:11.228"/>
+<status status="FAIL" starttime="20220205 14:33:17.840" endtime="20220205 14:33:17.841">Parent suite setup failed:
+ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005DA0A3+2597027]
+	Ordinal0 [0x0056BA61+2144865]
+	Ordinal0 [0x00463B20+1063712]
+	Ordinal0 [0x00488BF0+1215472]
+	Ordinal0 [0x004A87AC+1345452]
+	Ordinal0 [0x00486874+1206388]
+	Ordinal0 [0x004A8904+1345796]
+	Ordinal0 [0x004B8B1A+1411866]
+	Ordinal0 [0x004A85C6+1344966]
+	Ordinal0 [0x004854C6+1201350]
+	Ordinal0 [0x004863B6+1205174]
+	GetHandleVerifier [0x007810A2+1681842]
+	GetHandleVerifier [0x00833B0C+2413596]
+	GetHandleVerifier [0x00671221+568113]
+	GetHandleVerifier [0x0066FFA3+563379]
+	Ordinal0 [0x0057174E+2168654]
+	Ordinal0 [0x00576538+2188600]
+	Ordinal0 [0x00576680+2188928]
+	Ordinal0 [0x0058030C+2229004]
+	BaseThreadInitThunk [0x763C6739+25]
+	RtlGetFullPathName_UEx [0x77518E7F+1215]
+	RtlGetFullPathName_UEx [0x77518E4D+1165]
+</status>
 </test>
 <test id="s1-s3-t3" name="Empty">
-<kw name="Open Admin Input" library="resource1">
-<arg>${EMPTY}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:11.231" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:17:11.231" endtime="20220126 17:17:14.302"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:17:14.303" endtime="20220126 17:17:16.342"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:17:16.343" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:17:18.620" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:17:18.620" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:17:18.620" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:17:16.342" endtime="20220126 17:17:19.642"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>${email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:19.643" level="INFO">Typing text '' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:17:19.642" endtime="20220126 17:17:22.710"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:11.230" endtime="20220126 17:17:22.710"/>
-</kw>
-<kw name="Click Cancel">
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:22.711" level="INFO">Clicking element '//*[@id="app"]/div/div/div/div[2]/div/div[2]/div/div/a'.</msg>
-<status status="PASS" starttime="20220126 17:17:22.711" endtime="20220126 17:17:24.804"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${VALID2}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:17:30.910" level="INFO">Current page does not contain text 'gio_montecillo@dlsu.edu.ph'.</msg>
-<status status="PASS" starttime="20220126 17:17:24.804" endtime="20220126 17:17:30.910"/>
-</kw>
-<kw name="Page Should Not Contain" library="SeleniumLibrary">
-<arg>${NOT_DLSU}</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<msg timestamp="20220126 17:17:37.025" level="INFO">Current page does not contain text 'jamesandrewfperez@gmail.com'.</msg>
-<status status="PASS" starttime="20220126 17:17:30.911" endtime="20220126 17:17:37.025"/>
-</kw>
-<kw name="Check Current Page" library="resource1">
-<arg>${ADMIN_PAGE}</arg>
-<kw name="Get Location" library="SeleniumLibrary">
-<var>${CURRENT}</var>
-<doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:17:38.035" level="INFO">${CURRENT} = http://localhost:3000/adminlist</msg>
-<status status="PASS" starttime="20220126 17:17:37.026" endtime="20220126 17:17:38.035"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${target}</arg>
-<arg>${CURRENT}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:17:38.036" endtime="20220126 17:17:38.036"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:37.025" endtime="20220126 17:17:38.036"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:22.710" endtime="20220126 17:17:38.037"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:11.229" endtime="20220126 17:17:38.037"/>
-</test>
-<test id="s1-s3-t4" name="Redirect">
-<kw name="Open Admin Input" library="resource1">
-<arg>${VALID2}</arg>
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/addadmin</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:38.040" level="INFO">Clicking link '/addadmin'.</msg>
-<status status="PASS" starttime="20220126 17:17:38.040" endtime="20220126 17:17:41.129"/>
-</kw>
-<kw name="Clear Element Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" starttime="20220126 17:17:41.130" endtime="20220126 17:17:43.173"/>
-</kw>
-<kw name="Press Keys" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>A+BACKSPACE</arg>
-<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
-<msg timestamp="20220126 17:17:43.174" level="INFO">Sending key(s) ('A+BACKSPACE',) to //*[@id="app"]/div/div/div/div[2]/div/div[2]/input element.</msg>
-<msg timestamp="20220126 17:17:45.450" level="INFO">Sending key A</msg>
-<msg timestamp="20220126 17:17:45.450" level="INFO">Pressing special key BACKSPACE down.</msg>
-<msg timestamp="20220126 17:17:45.450" level="INFO">Releasing special key BACKSPACE.</msg>
-<status status="PASS" starttime="20220126 17:17:43.173" endtime="20220126 17:17:46.461"/>
-</kw>
-<kw name="Input Text" library="SeleniumLibrary">
-<arg>${ADMIN_INPUT}</arg>
-<arg>${email}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:46.462" level="INFO">Typing text 'gio_montecillo@dlsu.edu.ph' into text field '//*[@id="app"]/div/div/div/div[2]/div/div[2]/input'.</msg>
-<status status="PASS" starttime="20220126 17:17:46.461" endtime="20220126 17:17:49.541"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:38.040" endtime="20220126 17:17:49.541"/>
-</kw>
-<kw name="Click Redirect">
-<kw name="Click Link" library="SeleniumLibrary">
-<arg>/home</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<msg timestamp="20220126 17:17:49.543" level="INFO">Clicking link '/home'.</msg>
-<status status="PASS" starttime="20220126 17:17:49.542" endtime="20220126 17:17:52.653"/>
-</kw>
-<kw name="Check Current Page" library="resource1">
-<arg>${HOME}</arg>
-<kw name="Get Location" library="SeleniumLibrary">
-<var>${CURRENT}</var>
-<doc>Returns the current browser window URL.</doc>
-<msg timestamp="20220126 17:17:53.658" level="INFO">${CURRENT} = http://localhost:3000/home</msg>
-<status status="PASS" starttime="20220126 17:17:52.653" endtime="20220126 17:17:53.658"/>
-</kw>
-<kw name="Should Be Equal" library="BuiltIn">
-<arg>${target}</arg>
-<arg>${CURRENT}</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" starttime="20220126 17:17:53.658" endtime="20220126 17:17:53.659"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:52.653" endtime="20220126 17:17:53.659"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:49.542" endtime="20220126 17:17:53.659"/>
-</kw>
-<status status="PASS" starttime="20220126 17:17:38.039" endtime="20220126 17:17:53.659"/>
+<status status="FAIL" starttime="20220205 14:33:17.844" endtime="20220205 14:33:17.846">Parent suite setup failed:
+ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005DA0A3+2597027]
+	Ordinal0 [0x0056BA61+2144865]
+	Ordinal0 [0x00463B20+1063712]
+	Ordinal0 [0x00488BF0+1215472]
+	Ordinal0 [0x004A87AC+1345452]
+	Ordinal0 [0x00486874+1206388]
+	Ordinal0 [0x004A8904+1345796]
+	Ordinal0 [0x004B8B1A+1411866]
+	Ordinal0 [0x004A85C6+1344966]
+	Ordinal0 [0x004854C6+1201350]
+	Ordinal0 [0x004863B6+1205174]
+	GetHandleVerifier [0x007810A2+1681842]
+	GetHandleVerifier [0x00833B0C+2413596]
+	GetHandleVerifier [0x00671221+568113]
+	GetHandleVerifier [0x0066FFA3+563379]
+	Ordinal0 [0x0057174E+2168654]
+	Ordinal0 [0x00576538+2188600]
+	Ordinal0 [0x00576680+2188928]
+	Ordinal0 [0x0058030C+2229004]
+	BaseThreadInitThunk [0x763C6739+25]
+	RtlGetFullPathName_UEx [0x77518E7F+1215]
+	RtlGetFullPathName_UEx [0x77518E4D+1165]
+</status>
 </test>
 <kw name="Close Browser" library="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" starttime="20220126 17:17:53.661" endtime="20220126 17:17:56.738"/>
+<status status="PASS" starttime="20220205 14:33:17.848" endtime="20220205 14:33:20.938"/>
 </kw>
 <doc>3rd test suite for User Story #3
 
@@ -765,21 +802,48 @@ These are test cases deals with the
 canceling of adding an admin.
 
 By James Andrew F. Perez</doc>
-<status status="PASS" starttime="20220126 17:15:39.065" endtime="20220126 17:17:56.738"/>
+<status status="FAIL" starttime="20220205 14:32:55.657" endtime="20220205 14:33:20.938">Suite setup failed:
+ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=98.0.4758.81)
+Stacktrace:
+Backtrace:
+	Ordinal0 [0x005DA0A3+2597027]
+	Ordinal0 [0x0056BA61+2144865]
+	Ordinal0 [0x00463B20+1063712]
+	Ordinal0 [0x00488BF0+1215472]
+	Ordinal0 [0x004A87AC+1345452]
+	Ordinal0 [0x00486874+1206388]
+	Ordinal0 [0x004A8904+1345796]
+	Ordinal0 [0x004B8B1A+1411866]
+	Ordinal0 [0x004A85C6+1344966]
+	Ordinal0 [0x004854C6+1201350]
+	Ordinal0 [0x004863B6+1205174]
+	GetHandleVerifier [0x007810A2+1681842]
+	GetHandleVerifier [0x00833B0C+2413596]
+	GetHandleVerifier [0x00671221+568113]
+	GetHandleVerifier [0x0066FFA3+563379]
+	Ordinal0 [0x0057174E+2168654]
+	Ordinal0 [0x00576538+2188600]
+	Ordinal0 [0x00576680+2188928]
+	Ordinal0 [0x0058030C+2229004]
+	BaseThreadInitThunk [0x763C6739+25]
+	RtlGetFullPathName_UEx [0x77518E7F+1215]
+	RtlGetFullPathName_UEx [0x77518E4D+1165]
+</status>
 </suite>
-<status status="PASS" starttime="20220126 17:13:44.138" endtime="20220126 17:17:56.740"/>
+<status status="FAIL" starttime="20220205 14:29:44.700" endtime="20220205 14:33:20.944"/>
 </suite>
 <statistics>
 <total>
-<stat pass="7" fail="0" skip="0">All Tests</stat>
+<stat pass="7" fail="3" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="7" fail="0" skip="0" id="s1" name="US-03">US-03</stat>
+<stat pass="7" fail="3" skip="0" id="s1" name="US-03">US-03</stat>
 <stat pass="1" fail="0" skip="0" id="s1-s1" name="Us3.1 Gotoadminpage">US-03.Us3.1 Gotoadminpage</stat>
-<stat pass="2" fail="0" skip="0" id="s1-s2" name="Us3.2 Addadmin">US-03.Us3.2 Addadmin</stat>
-<stat pass="4" fail="0" skip="0" id="s1-s3" name="Us3.3 Canceladdadmin">US-03.Us3.3 Canceladdadmin</stat>
+<stat pass="6" fail="0" skip="0" id="s1-s2" name="Us3.2 Addadmin">US-03.Us3.2 Addadmin</stat>
+<stat pass="0" fail="3" skip="0" id="s1-s3" name="Us3.3 Canceladdadmin">US-03.Us3.3 Canceladdadmin</stat>
 </suite>
 </statistics>
 <errors>

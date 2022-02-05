@@ -18,7 +18,7 @@
           >
             ENTER DLSU EMAIL
           </h1>
-          <font-awesome-icon :icon="['far', 'times-circle']" @click="close" />
+          <font-awesome-icon :icon="['far', 'times-circle']" name="closeBtn" @click="close" />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
 
           <!-- horizontal divider -->

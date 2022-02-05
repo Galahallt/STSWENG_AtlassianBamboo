@@ -19,6 +19,7 @@
             hover:bg-green-900
             shadow-lg
           "
+          name="newAdminBtn"
           @click="toggleAddAdminModal"
         >
           <svg
@@ -69,6 +70,7 @@
           @click="checkUsers"
           class="px-2 py-2 mt-4 text-white rounded-lg hover:bg-gray-900"
           style="background-color: #37b47e"
+          name="saveBtn"
         >
           Save
         </button>
