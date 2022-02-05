@@ -301,6 +301,7 @@
           <button
             class="px-6 py-2 mt-4 text-white rounded"
             style="background-color: #37b47e"
+            name="saveBtn"
             @click="editProf()"
           >
             Save

@@ -52,9 +52,13 @@ ${NO_RESULTS}     No results.
 ${CCS}            CCS
 ${COL}            COL
 ${IT}             Information Technology
+${CO_LAW}         College of Law
 ${COURSE1}        CCDSTRU
 ${COURSE2}        STSWENG
 ${NE_COURSE}      IMYOURS
+${FNAME}          Jason
+${LNAME}          Mraz
+${NEW_EMAIL}      jason_mraz@dlsu.edu.ph
 
 *** Keywords ***
 Login

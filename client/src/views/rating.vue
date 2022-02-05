@@ -39,6 +39,7 @@
               align-middle
               p-3
             "
+            name="editBtn"
           >
             Edit Instructor
           </button>
