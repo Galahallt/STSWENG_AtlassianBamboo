@@ -607,46 +607,6 @@
             </div>
           </div>
           <div>
-            <div class="flex justify-center">
-              <button
-                name="confirm_addProfessorBtn"
-                class="
-                  px-6
-                  py-2
-                  mt-10
-                  text-white
-                  bg-green-600
-                  rounded-lg
-                  hover:bg-green-900
-                  shadow-lg
-                  content-center
-                  place-self-end
-                "
-                @click="addProf"
-              >
-                Add Professor
-              </button>
-            </div>
-            <!-- <button
-              class="
-                px-6
-                py-2
-                mt-10
-                text-white
-                dark_green
-                rounded-lg
-                hover:bg-green-900
-                shadow-lg
-                flex-shrink
-                content-center
-                place-self-center
-                w-36
-              "
-              @click="addProfsCsv"
-              :disabled="!state.csvFile"
-            >
-              Submit
-            </button> -->
             <p
               v-if="state.fileValidation"
               class="mt-8 text-red-500 text-center manrope-bold text-sm"
