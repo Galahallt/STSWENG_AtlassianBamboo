@@ -318,6 +318,7 @@
                 rounded
                 hover:bg-gray-900
               "
+              name="cancelBtn"
             >
               Cancel
             </button>

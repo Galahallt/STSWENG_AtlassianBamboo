@@ -59,6 +59,8 @@ ${NE_COURSE}      IMYOURS
 ${FNAME}          Jason
 ${LNAME}          Mraz
 ${NEW_EMAIL}      jason_mraz@dlsu.edu.ph
+${ERROR1}         Enter email if you wish to retain it
+${ERROR2}         Value must be valid/unregistered DLSU email
 
 *** Keywords ***
 Login
