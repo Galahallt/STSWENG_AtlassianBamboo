@@ -739,6 +739,7 @@
         <div>
           <select
             class="rounded-lg w-44 h-8 pl-2"
+            name="collegeFilter"
             v-model="state.filterCol"
             @change="checkFilterCollege"
           >
@@ -758,7 +759,7 @@
           <label class="text-white">DEPARTMENT</label>
         </div>
         <div>
-          <select class="rounded-lg w-44 h-8 pl-2" v-model="state.filterDept">
+          <select class="rounded-lg w-44 h-8 pl-2" name="departmentFilter" v-model="state.filterDept">
             <option selected disabled hidden>Choose One</option>
             <!-- CCS -->
             <optgroup
@@ -864,6 +865,7 @@
               hover:bg-gray-200
               shadow-lg
             "
+            name="filterBtn"
             @click="filterProfs"
           >
             Submit
@@ -881,6 +883,7 @@
               hover:bg-gray-200
               shadow-lg
             "
+            name="clearBtn"
             @click="clearFilter"
           >
             Clear
