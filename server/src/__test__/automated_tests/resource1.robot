@@ -32,7 +32,7 @@ ${PASS1}          Pass-000
 ${PASS2}          Jan20200!
 ${SUCCESS}        Admin added successfully!
 ${INVALID}        Invalid Email!
-${REMOVED}        Professor admin access removed!
+${REMOVED}        Admin access removed!
 ${PROF1}          bob.enriquez@dlsu.edu.ph
 ${PROF2}          ann.marie@dlsu.edu.ph
 ${CODE1}          CCDSTRU
