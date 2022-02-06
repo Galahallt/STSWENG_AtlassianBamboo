@@ -2,8 +2,9 @@ import buildDevLogger from './dev_logger.js';
 import buildProdLogger from './prod_logger.js';
 
 let logger = null;
-const { NODE_ENV } = process.env;
+// d const { NODE_ENV } = process.env;
 
+const NODE_ENV = 'development';
 if (NODE_ENV === 'development') {
   logger = buildDevLogger();
 } else {

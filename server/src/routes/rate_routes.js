@@ -12,6 +12,9 @@ router.post('/findRating', rateController.findRating);
 // route for adding rating
 router.post('/addRating', rateController.addRating);
 
+// route for all ratings
+router.post('/getAllRatings', rateController.getAllRatings);
+
 // route for display rating
 router.patch('/getInstructorRatings', rateController.getInstructorRatings);
 

@@ -314,19 +314,17 @@
                     <select
                       class="rounded-lg w-44 h-8 pl-2 border-2"
                       name="collegeFilter"
-                      v-model="state.filterCol"
+                      v-model="state.rateCourse"
                       @change="checkFilterCollege"
                     >
                       <option selected disabled hidden>Choose One</option>
-                      <option value="BAGCED">BAGCED</option>
-                      <option value="CCS">CCS</option>
-                      <option value="COL">COL</option>
-                      <option value="CLA">CLA</option>
-                      <option value="COS">COS</option>
-                      <option value="GCOE">GCOE</option>
-                      <option value="RVR-COB">RVR-COB</option>
-                      <option value="SOE">SOE</option>
-                      <option value="N/A">N/A</option>
+                      <option
+                        v-for="code in prof.tags"
+                        :value="code"
+                        :key="code"
+                      >
+                        {{ code }}
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -613,6 +611,7 @@ export default {
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
+      rateCourse: 'Choose One',
     });
     const router = useRoute();
     const prof = reactive({
@@ -723,9 +722,11 @@ export default {
       try {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
+          course: state.rateCourse,
           userEmail: email,
-          profEmail: prof.email,
+          profID: prof.prof_id,
         };
+        console.log(rate);
         const checkExists = await api.findRating(rate);
         if (checkExists.data != null) {
           console.log('EXISTS');
@@ -744,6 +745,7 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
           instructorEmail: prof.email,
         };
@@ -759,7 +761,8 @@ export default {
         console.log(err.response.data);
       }
     }
-    // display rating
+
+    // display average of ALL ratings
     async function avgRating() {
       try {
         const instructor = {
@@ -775,6 +778,16 @@ export default {
         console.log(err.response.data);
       }
     }
+
+    // display average PER course
+    async function avgPerCourse() {
+      try {
+        const res = await api.getAllRatings(prof.prof_id);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     // update rating in backend
     async function updateRating() {
       try {
@@ -782,6 +795,7 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const instructor = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
           instructorEmail: prof.email,
         };
