@@ -355,10 +355,8 @@ export default {
         for (let i = 0; i < state.allProfs.length; i++) {
           if (profData.email == state.allProfs[i].email) {
             if (profData.email == placeholder.email) {
-              console.log('EMAIL VALID');
               return true;
             }
-            console.log('PROF EXISTS');
             return false;
           }
         }
@@ -499,10 +497,8 @@ export default {
         ) {
           profData.profilePicture = URL.createObjectURL(file.value.files[0]);
           state.isValidFile = true;
-          console.log('file: ' + file.value.files[0].name);
         } else {
           state.isValidFile = false;
-          console.log('FILE IS NOT AN IMAGE FILE');
         }
       }
     }
