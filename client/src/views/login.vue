@@ -1,5 +1,5 @@
 <template>
-  <div class="login-body flex min-h-screen flex">
+  <div class="login-body flex min-h-screen">
     <svg
       class="bg-effect mr-auto invisible md:visible"
       viewBox="250 20 870 200"
