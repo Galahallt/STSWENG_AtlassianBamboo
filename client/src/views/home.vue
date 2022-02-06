@@ -472,8 +472,8 @@
                   "
                   v-if="state.tagValidation"
                 >
-                  Each course should contain at least 7 characters and should
-                  not repeat.
+                  Each course should only contain 7 characters and should not
+                  repeat.
                 </p>
               </div>
             </div>
