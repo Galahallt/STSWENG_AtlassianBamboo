@@ -478,7 +478,7 @@
               </div>
             </div>
           </div>
-          <div class="mt-20">
+          <div class="mt-5">
             <p
               class="
                 text-red-500
