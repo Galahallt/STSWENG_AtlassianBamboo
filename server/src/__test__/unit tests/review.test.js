@@ -18,14 +18,14 @@ describe('Test Review Route', () => {
     await mockDB.closeDatabase();
   });
 
-  // weird case
-  // it('no reviews, should respond with 400 status code', async () => {
-  //   const response = await request(app).post('/review/reviews').send({
-  //     instructorID: 'basdasdasd',
-  //   });
+  it('no reviews, should respond with 200 status code', async () => {
+    const response = await request(app).post('/review/reviews').send({
+      instructorID: 'basdasdasd',
+    });
 
-  //   expect(response.statusCode).toBe(400);
-  // });
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe('No reviews yet.');
+  });
 
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
@@ -48,21 +48,25 @@ describe('Test Review Route', () => {
     expect(response.statusCode).toBe(400);
   });
 
-  // it('review not found, should respond with 400 status code', async () => {
-  //   const response = await request(app).post(
-  //     '/review/deleteReview/asdasdahsdh'
-  //   );
+  it('bad request, should respond with 500 status code', async () => {
+    const response = await request(app)
+      .post('/review/addreview')
+      .send({
+        user_id: new Error('Server Error'),
+        userName: new Error('Server Error'),
+        instructor_id: new Error('Server Error'),
+        course_code: new Error('Server Error'),
+        review: new Error('Server Error'),
+      });
 
-  //   expect(response.statusCode).toBe(400);
-  // });
+    expect(response.statusCode).toBe(500);
+  });
 
-  // it('bad request, should respond with 500 status code', async () => {
-  //   const response = await request(app)
-  //     .post('/review/deleteReview/asdasdahsdh')
-  //     .send({
-  //       error: new Error('Server Error'),
-  //     });
+  it('review not found, should respond with 400 status code', async () => {
+    const response = await request(app).delete(
+      '/review/deleteReview/asdasdahsdh'
+    );
 
-  //   expect(response.statusCode).toBe(500);
-  // });
+    expect(response.statusCode).toBe(400);
+  });
 });

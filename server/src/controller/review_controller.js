@@ -11,14 +11,13 @@ import uniqid from 'uniqid';
 const reviewController = {
   getProfReviews: async (req, res) => {
     try {
-      // TODO use the prof's ID to find all of his reviews
       const instructorID = req.body.instructorID;
       logger.info(instructorID);
       const reviews = await ReviewService.getReviews(instructorID);
-      if (reviews != null) {
+      if (reviews.length != 0) {
         return res.status(200).json(reviews);
       } else {
-        return res.status(400).json({ message: 'No reviews yet.' });
+        return res.status(200).json({ message: 'No reviews yet.' });
       }
     } catch (err) {
       return res.status(500).json({ message: 'Server Error' });
@@ -69,21 +68,17 @@ const reviewController = {
     }
   },
   deleteReview: async (req, res) => {
-    try {
-      const id = {
-        reviewid: req.params.reviewid,
-      };
-      logger.info(id.reviewid);
+    const id = {
+      reviewid: req.params.reviewid,
+    };
+    logger.info(id.reviewid);
 
-      const revID = await ReviewService.deleteReview(id);
+    const revID = await ReviewService.deleteReview(id);
 
-      if (revID) {
-        return res.status(200).json(revID);
-      } else {
-        return res.status(400).json({ message: 'Review not found' });
-      }
-    } catch (err) {
-      return res.status(500).json({ message: 'Server Error' });
+    if (revID) {
+      return res.status(200).json(revID);
+    } else {
+      return res.status(400).json({ message: 'Review not found' });
     }
   },
 };

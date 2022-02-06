@@ -79,15 +79,12 @@ const rateController = {
   addRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      const instructorID = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
 
       const rate = {
         rating: req.body.rating,
         course: req.body.course,
         userID: userID.id,
-        instructorID: instructorID.id,
+        instructorID: req.body.instructorID,
       };
 
       const addRate = await rateService.addRating(rate);
@@ -101,14 +98,11 @@ const rateController = {
   updateRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      // fetch props email
-      const instructor = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
 
       const find = {
+        course: req.body.course,
         userID: userID.id,
-        instructorID: instructor.id,
+        instructorID: req.body.instructorID,
       };
 
       const update = {

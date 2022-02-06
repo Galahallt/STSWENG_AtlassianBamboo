@@ -94,13 +94,13 @@
             >
               <div
                 class="text-lg m-1 flex border-2 border-gray-500"
-                v-for="code in prof.tags"
-                :value="code"
-                :key="code"
+                v-for="tag in prof.tags"
+                :value="tag"
+                :key="tag"
               >
-                <div class="course-tag p-2">{{ code }}</div>
+                <div class="course-tag p-2">{{ tag.course }}</div>
                 <div class="bg-white p-2 green-text flex">
-                  <div>5</div>
+                  <div>{{ tag.avgRating }}</div>
                   <div class="ml-2">
                     <svg
                       class="star"
@@ -319,11 +319,11 @@
                     >
                       <option selected disabled hidden>Choose One</option>
                       <option
-                        v-for="code in prof.tags"
-                        :value="code"
-                        :key="code"
+                        v-for="tag in prof.tags"
+                        :value="tag.course"
+                        :key="tag"
                       >
-                        {{ code }}
+                        {{ tag.course }}
                       </option>
                     </select>
                   </div>
@@ -352,6 +352,7 @@
                   <button
                     class="submit-button-rating ml-auto rounded-md p-2"
                     @click="checkRating"
+                    :disabled="state.rateCourse === 'Choose One'"
                   >
                     Submit
                   </button>
@@ -599,7 +600,6 @@ export default {
       empty: true,
       filter: 'All',
       rating: 0,
-      tagString: '',
       error: false,
       avgRating: 0,
       shownReviews: [],
@@ -612,6 +612,7 @@ export default {
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
       rateCourse: 'Choose One',
+      avgRatePerCourse: [],
     });
     const router = useRoute();
     const prof = reactive({
@@ -624,7 +625,7 @@ export default {
       college: null,
       dept: null,
       rating: null,
-      tags: null,
+      tags: [],
     });
     async function loadReviews() {
       try {
@@ -647,6 +648,7 @@ export default {
       try {
         const result = await api.getProf(router.params.profID);
         if (result) {
+          prof.tags = [];
           prof.profPic = result.data.profilePicture;
           prof.profLast = result.data.lastName;
           prof.profFirst = result.data.firstName;
@@ -654,11 +656,18 @@ export default {
           prof.college = result.data.college;
           prof.dept = result.data.department;
           prof.rating = result.data.rating;
-          prof.tags = result.data.courses;
-          formatTags();
-          state.rating = 1;
-          state.empty = false;
+          result.data.courses.sort();
+          for (var i = 0; i < result.data.courses.length; i++) {
+            const tag = {
+              course: result.data.courses[i],
+              avgRating: 0,
+            };
+            prof.tags.push(tag);
+          }
           console.log(prof.tags);
+          await avgPerCourse();
+          prof.tags.course = state.rating = 1;
+          state.empty = false;
         }
       } catch (err) {
         console.log(err);
@@ -705,18 +714,6 @@ export default {
       state.render = false;
     });
 
-    // tag formatting for printing
-    function formatTags() {
-      if (state.tagString == '') {
-        for (let i = 0; i < prof.tags.length; i++) {
-          if (i != prof.tags.length - 1) {
-            state.tagString += prof.tags[i] + ', ';
-          } else {
-            state.tagString += prof.tags[i];
-          }
-        }
-      }
-    }
     // check rating in database before adding/updating
     async function checkRating() {
       try {
@@ -726,7 +723,7 @@ export default {
           userEmail: email,
           profID: prof.prof_id,
         };
-        console.log(rate);
+        console.log(state.rateCourse);
         const checkExists = await api.findRating(rate);
         if (checkExists.data != null) {
           console.log('EXISTS');
@@ -747,7 +744,7 @@ export default {
           rating: state.rating,
           course: state.rateCourse,
           userEmail: email,
-          instructorEmail: prof.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.addRating(rate);
         if (res) {
@@ -772,6 +769,8 @@ export default {
         if (!res.data.message) {
           state.avgRating = res.data;
           await loadProf();
+          await avgPerCourse();
+          state.rateCourse = 'Choose One';
           console.log('Avg updated');
         }
       } catch (err) {
@@ -783,6 +782,22 @@ export default {
     async function avgPerCourse() {
       try {
         const res = await api.getAllRatings(prof.prof_id);
+        if (res) {
+          for (var i = 0; i < prof.tags.length; i++) {
+            var avg = 0;
+            var rating = 0;
+            for (var j = 0; j < res.data.length; j++) {
+              if (prof.tags[i].course == res.data[j].course) {
+                avg++;
+                rating += res.data[j].rating;
+              }
+            }
+            prof.tags[i].avgRating = rating / avg;
+            if (isNaN(prof.tags[i].avgRating)) {
+              prof.tags[i].avgRating = 0;
+            }
+          }
+        }
       } catch (err) {
         console.log(err);
       }
@@ -797,7 +812,7 @@ export default {
           rating: state.rating,
           course: state.rateCourse,
           userEmail: email,
-          instructorEmail: prof.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.updateRating(instructor);
         if (res) {
@@ -845,6 +860,7 @@ export default {
             state.shownReviews.push(res.data);
             if (!prof.tags.includes(review.course_code)) {
               prof.tags.push(review.course_code);
+              prof.tags.sort();
             }
             state.comment = '';
             state.course_code = '';
