@@ -39,6 +39,7 @@
               align-middle
               p-3
             "
+            name="editBtn"
           >
             Edit Instructor
           </button>
@@ -78,6 +79,11 @@
           <div class="flex flex-col md:flex-row mt-5">
             <h1 class="text-xl label">DLSU Email:</h1>
             <h1 class="text-xl md:px-10">{{ prof.email }}</h1>
+          </div>
+
+          <div class="flex flex-col md:flex-row mt-5">
+            <h1 class="text-xl label">Status:</h1>
+            <h1 class="text-xl md:px-10">Active</h1>
           </div>
 
           <!-- COURSE TAGS HERE -->

@@ -472,32 +472,31 @@
                   "
                   v-if="state.tagValidation"
                 >
-                  Each course should contain at least 7 characters.
+                  Each course should only contain 7 characters and should not
+                  repeat.
                 </p>
               </div>
             </div>
           </div>
-          <div>
+          <div class="mt-20">
+            <p
+              class="
+                text-red-500
+                manrope-bold
+                text-center text-sm
+                professor_error
+              "
+              v-if="state.error"
+            >
+              {{ state.error }}
+            </p>
             <div class="flex justify-center">
-              <p
-                class="
-                  mt-20
-                  text-red-500
-                  manrope-bold
-                  text-center text-sm
-                  professor_error
-                "
-                v-if="state.error"
-              >
-                {{ state.error }}
-              </p>
               <button
                 name="confirm_addProfessorBtn"
                 class="
                   px-6
                   py-2
-                  mt-20
-                  mr-4
+                  mt-4
                   w-40
                   text-white
                   dark_green
@@ -699,6 +698,7 @@
         <div>
           <select
             class="rounded-lg w-44 h-8 pl-2"
+            name="collegeFilter"
             v-model="state.filterCol"
             @change="checkFilterCollege"
           >
@@ -718,7 +718,11 @@
           <label class="text-white">DEPARTMENT</label>
         </div>
         <div>
-          <select class="rounded-lg w-44 h-8 pl-2" v-model="state.filterDept">
+          <select
+            class="rounded-lg w-44 h-8 pl-2"
+            name="departmentFilter"
+            v-model="state.filterDept"
+          >
             <option selected disabled hidden>Choose One</option>
             <!-- CCS -->
             <optgroup
@@ -824,6 +828,7 @@
               hover:bg-gray-200
               shadow-lg
             "
+            name="filterBtn"
             @click="filterProfs"
           >
             Submit
@@ -841,6 +846,7 @@
               hover:bg-gray-200
               shadow-lg
             "
+            name="clearBtn"
             @click="clearFilter"
           >
             Clear
@@ -1269,7 +1275,20 @@ export default {
       state.tagValidation =
         addProfData.courses.filter(function (course) {
           return course.length !== 7;
-        }).length !== 0;
+        }).length !== 0 || checkDuplicates(addProfData.courses);
+      console.log(checkDuplicates(addProfData.courses));
+    }
+
+    function checkDuplicates(array) {
+      var courses = Object.create(null);
+      for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in courses) {
+          return true;
+        }
+        courses[value] = true;
+      }
+      return false;
     }
 
     function titleCase(str) {
