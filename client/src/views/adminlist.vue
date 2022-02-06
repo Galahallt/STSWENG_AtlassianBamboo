@@ -62,7 +62,7 @@
         </div>
         <div class="mt-2 ml-1">
           <h1 style="color: red" v-if="state.validEmail == false">
-            Invalid Email!
+            Invalid DLSU email or not a registered user 
           </h1>
         </div>
 
