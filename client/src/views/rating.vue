@@ -630,7 +630,8 @@ export default {
     async function loadReviews() {
       try {
         const result = await api.getReviews(router.params.profID);
-        if (result) {
+        console.log(result);
+        if (!result.data.message) {
           state.shownReviews = state.allReviews = result.data;
           if (state.allReviews.length === 0) {
             state.emptyReviews = true;
