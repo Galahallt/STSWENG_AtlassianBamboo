@@ -18,7 +18,11 @@
           >
             ENTER DLSU EMAIL
           </h1>
-          <font-awesome-icon :icon="['far', 'times-circle']" name="closeBtn" @click="close" />
+          <font-awesome-icon
+            :icon="['far', 'times-circle']"
+            name="closeBtn"
+            @click="close"
+          />
           <!-- <i @click="close" class="far fa-times-circle"></i> -->
 
           <!-- horizontal divider -->
@@ -77,9 +81,8 @@ export default {
 }
 .modal-inner {
   position: relative;
-  max-width: 960px;
-  width: 20%;
-  height: 30%;
+  min-width: 400px;
+  min-height: 250px;
   border-radius: 10px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
