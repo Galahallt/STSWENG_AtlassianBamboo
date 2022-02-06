@@ -29,7 +29,6 @@ describe('Test User Routes', () => {
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/user/getUserById')
-
       .send({
         id: new Error('Server Error'),
       });
@@ -48,7 +47,6 @@ describe('Test User Routes', () => {
   it('bad request, should respond with 500 status code', async () => {
     const response = await request(app)
       .post('/user/getUserByEmail')
-
       .send({
         email: new Error('Server Error'),
       });

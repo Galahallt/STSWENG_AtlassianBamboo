@@ -60,7 +60,7 @@ describe('Test Rating Routes', () => {
   });
 
   // to modify
-  it('add prof successful, should respond with 200 status code', async () => {
+  it('add rating successful, should respond with 200 status code', async () => {
     await request(app).post('/login').send({
       fullName: 'Keil Finez',
       givenName: 'Keil Christopher',
@@ -83,8 +83,9 @@ describe('Test Rating Routes', () => {
 
     const response = await request(app).post('/rating/addRating').send({
       rating: 4,
+      course: 'STSWENG',
       userEmail: 'keilFinez@dlsu.edu.ph',
-      instructorEmail: 'paoloEspiritu@dlsu.edu.ph',
+      instructorID: 'jaslkdfjlkasdhfgl',
     });
     expect(response.statusCode).toBe(200);
   });

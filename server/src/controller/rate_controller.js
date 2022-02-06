@@ -10,6 +10,17 @@ import instructorService from '../service/instructor_service.js';
 import rateService from '../service/rate_service.js';
 
 const rateController = {
+  getAllRatings: async (req, res) => {
+    try {
+      const ratings = await rateService.getInstructorRatings(
+        req.body.instructorID
+      );
+      return res.status(200).json(ratings);
+    } catch (err) {
+      return res.status(500).json({ message: 'Server Error' });
+    }
+  },
+
   getInstructorRatings: async (req, res) => {
     try {
       // retrieve all ratings of this instructor
@@ -46,13 +57,10 @@ const rateController = {
   findRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      const profID = await instructorService.getProf({
-        email: req.body.profEmail,
-      });
-
       const find = {
+        course: req.body.course,
         userID: userID.id,
-        profID: profID.id,
+        profID: req.body.profID,
       };
 
       const findRate = await rateService.findRating(find);
@@ -71,14 +79,12 @@ const rateController = {
   addRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      const instructorID = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
 
       const rate = {
         rating: req.body.rating,
+        course: req.body.course,
         userID: userID.id,
-        instructorID: instructorID.id,
+        instructorID: req.body.instructorID,
       };
 
       const addRate = await rateService.addRating(rate);
@@ -92,14 +98,11 @@ const rateController = {
   updateRating: async (req, res) => {
     try {
       const userID = await userService.getUser({ email: req.body.userEmail });
-      // fetch props email
-      const instructor = await instructorService.getProf({
-        email: req.body.instructorEmail,
-      });
 
       const find = {
+        course: req.body.course,
         userID: userID.id,
-        instructorID: instructor.id,
+        instructorID: req.body.instructorID,
       };
 
       const update = {

@@ -92,17 +92,42 @@
             <div
               class="flex md:px-9 flex-wrap relative tags-container max-w-full"
             >
-              <h1
+              <div
+                class="text-lg m-1 flex border-2 border-gray-500"
+                v-for="tag in prof.tags"
+                :value="tag"
+                :key="tag"
+              >
+                <div class="course-tag p-2">{{ tag.course }}</div>
+                <div class="bg-white p-2 green-text flex">
+                  <div>{{ tag.avgRating }}</div>
+                  <div class="ml-2">
+                    <svg
+                      class="star"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 31 30"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M29.8122 10.7584L20.6381 9.42511L16.537 1.11095C16.425 0.883314 16.2407 0.699037 16.0131 0.587025C15.4422 0.305189 14.7484 0.540052 14.463 1.11095L10.3619 9.42511L1.18781 10.7584C0.934878 10.7945 0.703628 10.9138 0.526577 11.0944C0.312532 11.3144 0.194584 11.6104 0.198649 11.9173C0.202714 12.2243 0.32846 12.517 0.548256 12.7313L7.18585 19.2027L5.61769 28.3406C5.58092 28.5532 5.60444 28.7718 5.68559 28.9717C5.76674 29.1716 5.90228 29.3447 6.07682 29.4715C6.25137 29.5983 6.45795 29.6736 6.67313 29.689C6.88831 29.7043 7.10348 29.659 7.29425 29.5583L15.5 25.2441L23.7058 29.5583C23.9298 29.6776 24.19 29.7173 24.4393 29.6739C25.068 29.5655 25.4907 28.9694 25.3823 28.3406L23.8142 19.2027L30.4518 12.7313C30.6324 12.5542 30.7517 12.323 30.7878 12.07C30.8854 11.4377 30.4445 10.8524 29.8122 10.7584Z"
+                        fill="#FFCD1E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- <h1
                 class="course-tag text-lg p-2 m-1"
                 v-for="code in prof.tags"
                 :value="code"
                 :key="code"
-              >
-                {{ code }}
-              </h1>
+              ></h1>
+              <h1 class="bg-white text-lg p-2 m-1">hi</h1> -->
             </div>
           </div>
 
+          <!-- Rating -->
           <div class="rating-cont flex flex-row mt-6">
             <h1 class="text-2xl rating-text">Rating:</h1>
             <h1 class="text-2xl md:pl-10 px-2 green-text">
@@ -141,8 +166,8 @@
                 @change="filterReviews"
               >
                 <option value="All" selected>All</option>
-                <option v-for="code in prof.tags" :value="code" :key="code">
-                  {{ code }}
+                <option v-for="tag in prof.tags" :value="tag.course" :key="tag">
+                  {{ tag.course }}
                 </option>
               </select>
             </div>
@@ -283,9 +308,26 @@
                 </h1>
                 <hr class="line" />
 
-                <p class="mt-7">
-                  How was your overall experience with this instructor?
-                </p>
+                <div class="flex">
+                  <p class="mt-7">Select course to rate:</p>
+                  <div class="mt-6 ml-4">
+                    <select
+                      class="rounded-lg w-44 h-8 pl-2 border-2"
+                      name="collegeFilter"
+                      v-model="state.rateCourse"
+                      @change="checkFilterCollege"
+                    >
+                      <option selected disabled hidden>Choose One</option>
+                      <option
+                        v-for="tag in prof.tags"
+                        :value="tag.course"
+                        :key="tag"
+                      >
+                        {{ tag.course }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
 
                 <star-rating
                   v-model:rating="state.rating"
@@ -310,6 +352,7 @@
                   <button
                     class="submit-button-rating ml-auto rounded-md p-2"
                     @click="checkRating"
+                    :disabled="state.rateCourse === 'Choose One'"
                   >
                     Submit
                   </button>
@@ -557,7 +600,6 @@ export default {
       empty: true,
       filter: 'All',
       rating: 0,
-      tagString: '',
       error: false,
       avgRating: 0,
       shownReviews: [],
@@ -569,6 +611,8 @@ export default {
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
+      rateCourse: 'Choose One',
+      avgRatePerCourse: [],
     });
     const router = useRoute();
     const prof = reactive({
@@ -581,13 +625,13 @@ export default {
       college: null,
       dept: null,
       rating: null,
-      tags: null,
+      tags: [],
     });
     async function loadReviews() {
       try {
         const result = await api.getReviews(router.params.profID);
-        if (result) {
-          state.allReviews = state.shownReviews = result.data;
+        if (!result.data.message) {
+          state.shownReviews = state.allReviews = result.data;
           if (state.allReviews.length === 0) {
             state.emptyReviews = true;
           } else {
@@ -604,6 +648,7 @@ export default {
       try {
         const result = await api.getProf(router.params.profID);
         if (result) {
+          prof.tags = [];
           prof.profPic = result.data.profilePicture;
           prof.profLast = result.data.lastName;
           prof.profFirst = result.data.firstName;
@@ -611,11 +656,17 @@ export default {
           prof.college = result.data.college;
           prof.dept = result.data.department;
           prof.rating = result.data.rating;
-          prof.tags = result.data.courses;
-          formatTags();
-          state.rating = 1;
+          result.data.courses.sort();
+          for (var i = 0; i < result.data.courses.length; i++) {
+            const tag = {
+              course: result.data.courses[i],
+              avgRating: 0,
+            };
+            prof.tags.push(tag);
+          }
+          await avgPerCourse();
+          prof.tags.course = state.rating = 1;
           state.empty = false;
-          console.log(prof.tags);
         }
       } catch (err) {
         console.log(err);
@@ -623,10 +674,8 @@ export default {
     }
     // filter reviews of professor
     function filterReviews() {
-      console.log(state.filter);
       if (state.filter === 'All') {
         state.shownReviews = state.allReviews;
-        console.log('hi');
       } else {
         const filteredReviews = [];
         for (let i = 0; i < state.allReviews.length; i++) {
@@ -662,32 +711,19 @@ export default {
       state.render = false;
     });
 
-    // tag formatting for printing
-    function formatTags() {
-      if (state.tagString == '') {
-        for (let i = 0; i < prof.tags.length; i++) {
-          if (i != prof.tags.length - 1) {
-            state.tagString += prof.tags[i] + ', ';
-          } else {
-            state.tagString += prof.tags[i];
-          }
-        }
-      }
-    }
     // check rating in database before adding/updating
     async function checkRating() {
       try {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
+          course: state.rateCourse,
           userEmail: email,
-          profEmail: prof.email,
+          profID: prof.prof_id,
         };
         const checkExists = await api.findRating(rate);
         if (checkExists.data != null) {
-          console.log('EXISTS');
           updateRating();
         } else {
-          console.log('NO!');
           addRating();
         }
       } catch (err) {
@@ -700,8 +736,9 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
-          instructorEmail: prof.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.addRating(rate);
         if (res) {
@@ -715,7 +752,8 @@ export default {
         console.log(err.response.data);
       }
     }
-    // display rating
+
+    // display average of ALL ratings
     async function avgRating() {
       try {
         const instructor = {
@@ -725,25 +763,51 @@ export default {
         if (!res.data.message) {
           state.avgRating = res.data;
           await loadProf();
-          console.log('Avg updated');
+          await avgPerCourse();
+          state.rateCourse = 'Choose One';
         }
       } catch (err) {
         console.log(err.response.data);
       }
     }
+
+    // display average PER course
+    async function avgPerCourse() {
+      try {
+        const res = await api.getAllRatings(prof.prof_id);
+        if (res) {
+          for (var i = 0; i < prof.tags.length; i++) {
+            var avg = 0;
+            var rating = 0;
+            for (var j = 0; j < res.data.length; j++) {
+              if (prof.tags[i].course == res.data[j].course) {
+                avg++;
+                rating += res.data[j].rating;
+              }
+            }
+            prof.tags[i].avgRating = rating / avg;
+            if (isNaN(prof.tags[i].avgRating)) {
+              prof.tags[i].avgRating = 0;
+            }
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     // update rating in backend
     async function updateRating() {
       try {
-        console.log(state.rating);
         const email = JSON.parse(localStorage.getItem('user')).email;
         const instructor = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
-          instructorEmail: prof.email,
+          instructorID: prof.prof_id,
         };
         const res = await api.updateRating(instructor);
         if (res) {
-          console.log(res);
           toggleWriteModal();
           state.error = false;
           await avgRating();
@@ -757,13 +821,9 @@ export default {
 
     async function deleteReview(id) {
       try {
-        console.log('-===========-');
-        console.log(id);
-
         const res = await api.deleteReview(id);
         if (res) {
           loadReviews();
-          console.log(res);
         }
       } catch (err) {}
     }
@@ -779,14 +839,34 @@ export default {
             course_code: state.course_code,
             review: state.comment,
           };
-          console.log(review);
           const res = await api.addReview(review);
           if (res) {
             state.emptyReviews = false;
             toggleWriteCommentModal();
             state.shownReviews.push(res.data);
-            if (!prof.tags.includes(review.course_code)) {
-              prof.tags.push(review.course_code);
+
+            const tagsProf = [];
+            for (var i = 0; i < prof.tags.length; i++) {
+              tagsProf.push(prof.tags[i].course);
+            }
+
+            if (!tagsProf.includes(review.course_code)) {
+              const tag = {
+                course: review.course_code,
+                avgRating: 0,
+              };
+              prof.tags.push(tag);
+              prof.tags.sort(function (a, b) {
+                var courseA = a.course.toUpperCase();
+                var courseB = b.course.toUpperCase();
+                if (courseA < courseB) {
+                  return -1;
+                }
+                if (courseA > courseB) {
+                  return 1;
+                }
+                return 0;
+              });
             }
             state.comment = '';
             state.course_code = '';

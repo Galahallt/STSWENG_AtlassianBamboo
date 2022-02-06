@@ -158,7 +158,6 @@ export default {
     }
 
     async function addReview() {
-      // TODO get instructor id, subject code, and comment and insert it to the DB
       const email = JSON.parse(localStorage.getItem('user')).email;
       const user = await api.getUserByEmail(email);
       if (user) {
@@ -168,7 +167,6 @@ export default {
           course_code: state.course_code,
           review: state.comment,
         };
-        console.log(review);
         await api.addReview(review);
         state.comment = '';
         state.message = 'Success!';

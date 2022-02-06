@@ -7,6 +7,11 @@ const RateSchema = new mongoose.Schema({
     required: true,
   },
 
+  course: {
+    type: String,
+    required: true,
+  },
+
   userID: {
     type: String,
     required: true,

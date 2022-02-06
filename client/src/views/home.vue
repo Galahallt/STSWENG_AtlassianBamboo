@@ -1276,7 +1276,6 @@ export default {
         addProfData.courses.filter(function (course) {
           return course.length !== 7;
         }).length !== 0 || checkDuplicates(addProfData.courses);
-      console.log(checkDuplicates(addProfData.courses));
     }
 
     function checkDuplicates(array) {

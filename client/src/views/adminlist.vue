@@ -177,7 +177,6 @@ export default {
         const result = await api.getAdminList();
         state.admins = result.data;
         state.validEmail = true;
-        console.log(result.data);
       } catch (err) {
         console.log(err);
       }
@@ -222,7 +221,6 @@ export default {
 
     function toggleAddAdminModal() {
       showAddAdminModal.value = !showAddAdminModal.value;
-      console.log(showAddAdminModal.value);
     }
 
     async function loadCurrUser() {
