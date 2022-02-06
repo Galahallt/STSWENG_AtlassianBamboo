@@ -137,9 +137,7 @@ export default {
     async function loginUser() {
       try {
         const googleUser = await gAuth.signIn();
-        if (!googleUser) {
-          console.log('empty google user');
-        } else {
+        if (googleUser) {
           const profile = googleUser.getBasicProfile();
 
           const user = {

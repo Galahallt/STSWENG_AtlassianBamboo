@@ -221,7 +221,6 @@ export default {
 
     function toggleAddAdminModal() {
       showAddAdminModal.value = !showAddAdminModal.value;
-      console.log(showAddAdminModal.value);
     }
 
     async function loadCurrUser() {
