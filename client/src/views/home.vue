@@ -478,27 +478,25 @@
               </div>
             </div>
           </div>
-          <div>
+          <div class="mt-5">
+            <p
+              class="
+                text-red-500
+                manrope-bold
+                text-center text-sm
+                professor_error
+              "
+              v-if="state.error"
+            >
+              {{ state.error }}
+            </p>
             <div class="flex justify-center">
-              <p
-                class="
-                  mt-20
-                  text-red-500
-                  manrope-bold
-                  text-center text-sm
-                  professor_error
-                "
-                v-if="state.error"
-              >
-                {{ state.error }}
-              </p>
               <button
                 name="confirm_addProfessorBtn"
                 class="
                   px-6
                   py-2
-                  mt-20
-                  mr-4
+                  mt-2
                   w-40
                   text-white
                   dark_green
