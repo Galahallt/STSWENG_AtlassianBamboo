@@ -830,9 +830,6 @@ export default {
 
     async function deleteReview(id) {
       try {
-        console.log('-===========-');
-        console.log(id);
-
         const res = await api.deleteReview(id);
         if (res) {
           loadReviews();
