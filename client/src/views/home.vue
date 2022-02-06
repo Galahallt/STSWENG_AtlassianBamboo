@@ -1307,10 +1307,22 @@ export default {
 
     function checkTags() {
       state.tagValidation =
-        addProfData.courses.filter(function (course) {
+        (addProfData.courses.filter(function (course) {
           return course.length !== 7;
-        }).length !== 0;
+        }).length !== 0) && checkDuplicates(addProfData.courses);
     }
+
+    function checkDuplicates(array) {
+    var courses = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (value in courses) {
+            return true;
+        }
+        courses[value] = true;
+    }
+    return false;
+}
 
     function titleCase(str) {
       if (str) {
