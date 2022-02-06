@@ -472,7 +472,8 @@
                   "
                   v-if="state.tagValidation"
                 >
-                  Each course should contain at least 7 characters.
+                  Each course should contain at least 7 characters and should
+                  not repeat.
                 </p>
               </div>
             </div>
@@ -759,7 +760,11 @@
           <label class="text-white">DEPARTMENT</label>
         </div>
         <div>
-          <select class="rounded-lg w-44 h-8 pl-2" name="departmentFilter" v-model="state.filterDept">
+          <select
+            class="rounded-lg w-44 h-8 pl-2"
+            name="departmentFilter"
+            v-model="state.filterDept"
+          >
             <option selected disabled hidden>Choose One</option>
             <!-- CCS -->
             <optgroup
@@ -1310,22 +1315,23 @@ export default {
 
     function checkTags() {
       state.tagValidation =
-        (addProfData.courses.filter(function (course) {
+        addProfData.courses.filter(function (course) {
           return course.length !== 7;
-        }).length !== 0) && checkDuplicates(addProfData.courses);
+        }).length !== 0 || checkDuplicates(addProfData.courses);
+      console.log(checkDuplicates(addProfData.courses));
     }
 
     function checkDuplicates(array) {
-    var courses = Object.create(null);
-    for (var i = 0; i < array.length; ++i) {
+      var courses = Object.create(null);
+      for (var i = 0; i < array.length; ++i) {
         var value = array[i];
         if (value in courses) {
-            return true;
+          return true;
         }
         courses[value] = true;
+      }
+      return false;
     }
-    return false;
-}
 
     function titleCase(str) {
       if (str) {
