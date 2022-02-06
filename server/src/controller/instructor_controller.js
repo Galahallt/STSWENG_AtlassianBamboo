@@ -115,13 +115,7 @@ const instructorController = {
     // retrieve all professors from the database
     const profs = await instructorService.getAllProfs();
 
-    // if there are existing professors in the database
-    if (profs.length != 0) {
-      return res.status(200).json(profs);
-    } else {
-      // send back empty array with appropriate status code
-      return res.status(400).json(profs);
-    }
+    return res.status(200).json(profs);
   },
   getProf: async (req, res) => {
     // retrieve professors from the database
