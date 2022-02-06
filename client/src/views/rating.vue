@@ -630,7 +630,6 @@ export default {
     async function loadReviews() {
       try {
         const result = await api.getReviews(router.params.profID);
-        console.log(result);
         if (!result.data.message) {
           state.shownReviews = state.allReviews = result.data;
           if (state.allReviews.length === 0) {
@@ -665,7 +664,6 @@ export default {
             };
             prof.tags.push(tag);
           }
-          console.log(prof.tags);
           await avgPerCourse();
           prof.tags.course = state.rating = 1;
           state.empty = false;
@@ -676,10 +674,8 @@ export default {
     }
     // filter reviews of professor
     function filterReviews() {
-      console.log(state.filter);
       if (state.filter === 'All') {
         state.shownReviews = state.allReviews;
-        console.log('hi');
       } else {
         const filteredReviews = [];
         for (let i = 0; i < state.allReviews.length; i++) {
@@ -724,13 +720,10 @@ export default {
           userEmail: email,
           profID: prof.prof_id,
         };
-        console.log(state.rateCourse);
         const checkExists = await api.findRating(rate);
         if (checkExists.data != null) {
-          console.log('EXISTS');
           updateRating();
         } else {
-          console.log('NO!');
           addRating();
         }
       } catch (err) {
@@ -772,7 +765,6 @@ export default {
           await loadProf();
           await avgPerCourse();
           state.rateCourse = 'Choose One';
-          console.log('Avg updated');
         }
       } catch (err) {
         console.log(err.response.data);
@@ -807,7 +799,6 @@ export default {
     // update rating in backend
     async function updateRating() {
       try {
-        console.log(state.rating);
         const email = JSON.parse(localStorage.getItem('user')).email;
         const instructor = {
           rating: state.rating,
@@ -817,7 +808,6 @@ export default {
         };
         const res = await api.updateRating(instructor);
         if (res) {
-          console.log(res);
           toggleWriteModal();
           state.error = false;
           await avgRating();
@@ -834,7 +824,6 @@ export default {
         const res = await api.deleteReview(id);
         if (res) {
           loadReviews();
-          console.log(res);
         }
       } catch (err) {}
     }
@@ -850,7 +839,6 @@ export default {
             course_code: state.course_code,
             review: state.comment,
           };
-          console.log(review);
           const res = await api.addReview(review);
           if (res) {
             state.emptyReviews = false;
