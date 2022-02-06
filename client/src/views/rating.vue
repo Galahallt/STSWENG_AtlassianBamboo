@@ -856,9 +856,29 @@ export default {
             state.emptyReviews = false;
             toggleWriteCommentModal();
             state.shownReviews.push(res.data);
-            if (!prof.tags.includes(review.course_code)) {
-              prof.tags.push(review.course_code);
-              prof.tags.sort();
+
+            const tagsProf = [];
+            for (var i = 0; i < prof.tags.length; i++) {
+              tagsProf.push(prof.tags[i].course);
+            }
+
+            if (!tagsProf.includes(review.course_code)) {
+              const tag = {
+                course: review.course_code,
+                avgRating: 0,
+              };
+              prof.tags.push(tag);
+              prof.tags.sort(function (a, b) {
+                var courseA = a.course.toUpperCase();
+                var courseB = b.course.toUpperCase();
+                if (courseA < courseB) {
+                  return -1;
+                }
+                if (courseA > courseB) {
+                  return 1;
+                }
+                return 0;
+              });
             }
             state.comment = '';
             state.course_code = '';
