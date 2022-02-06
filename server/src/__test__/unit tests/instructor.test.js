@@ -89,11 +89,6 @@ describe('Test Instructor Routes', () => {
     expect(response.statusCode).toBe(200);
   });
 
-  it('no prof return, should respond with 400 status code', async () => {
-    const response = await request(app).get('/professor/getAllProfs');
-    expect(response.statusCode).toBe(400);
-  });
-
   it('professor does not exist, should respond with 400 status code', async () => {
     await request(app)
       .post('/professor/addProf')
