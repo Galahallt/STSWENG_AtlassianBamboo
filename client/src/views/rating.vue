@@ -81,6 +81,11 @@
             <h1 class="text-xl md:px-10">{{ prof.email }}</h1>
           </div>
 
+          <div class="flex flex-col md:flex-row mt-5">
+            <h1 class="text-xl label">Status:</h1>
+            <h1 class="text-xl md:px-10">Active</h1>
+          </div>
+
           <!-- COURSE TAGS HERE -->
           <div class="flex flex-row mt-5">
             <h1 class="text-xl label pt-2 pb-2">Course Tags:</h1>
