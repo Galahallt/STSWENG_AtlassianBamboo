@@ -60,8 +60,6 @@ const reviewController = {
       } else {
         return res.status(400).json({ message: 'Professor not found' });
       }
-      // use review.id and the id and add it to the Instructor's id
-      // add review and add the new review's ID into the Instructor's
     } catch (err) {
       logger.error(err);
       return res.status(500).json({ message: 'Server Error' });
