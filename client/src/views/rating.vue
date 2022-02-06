@@ -631,7 +631,7 @@ export default {
       try {
         const result = await api.getReviews(router.params.profID);
         if (result) {
-          state.allReviews = state.shownReviews = result.data;
+          state.shownReviews = state.allReviews = result.data;
           if (state.allReviews.length === 0) {
             state.emptyReviews = true;
           } else {
