@@ -35,6 +35,7 @@ ${INVALID}        Invalid Email!
 ${REMOVED}        Admin access removed!
 ${PROF1}          bob.enriquez@dlsu.edu.ph
 ${PROF2}          ann.marie@dlsu.edu.ph
+${PROF3}          christopher.pinpin@dlsu.edu.ph
 ${CODE1}          CCDSTRU
 ${CODE2}          CCDSALG
 ${CODE3}          CCPROG3
@@ -43,6 +44,23 @@ ${COMMENT1}       Very nice prof! Teaches well.
 ${COMMENT2}       Easy to understand. Lessons are clear.
 ${COMMENT3}       Overall good prof. Highly recommend.
 ${COMMENT4}       Easy 4.0!
+${PROF_NAME1}     Bob Enriquez
+${PROF_NAME2}     Ann Marie
+${PROF_NAME3}     Christopher Pinpin
+${NON-EXISTENT}   Taylor Swift
+${NO_RESULTS}     No results.
+${CCS}            CCS
+${COL}            COL
+${IT}             Information Technology
+${CO_LAW}         College of Law
+${COURSE1}        CCDSTRU
+${COURSE2}        STSWENG
+${NE_COURSE}      IMYOURS
+${FNAME}          Jason
+${LNAME}          Mraz
+${NEW_EMAIL}      jason_mraz@dlsu.edu.ph
+${ERROR1}         Enter email if you wish to retain it
+${ERROR2}         Value must be valid/unregistered DLSU email
 
 *** Keywords ***
 Login
@@ -71,6 +89,9 @@ Open Browser To Admin Page
 Go Back to Admin Page
     Go To    ${ADMIN_PAGE}
 
+Go to Home Page
+    Go To    ${HOME}
+
 Check Current Page
     [Arguments]    ${target}
     ${CURRENT}    Get Location
@@ -80,3 +101,14 @@ Open Admin Input
     [Arguments]    ${email}
     Click Button    name:newAdminBtn
     Input Text    name:inputEmail    ${email}    True
+
+All Profs Displayed
+    Page Should Contain Element    name:prof-${PROF1}
+    Page Should Contain Element    name:prof-${PROF2}
+    Page Should Contain Element    name:prof-${PROF3}
+
+No Profs Displayed
+    Page Should Contain    ${NO_RESULTS}
+    Page Should Not Contain Element    name:prof-${PROF1}
+    Page Should Not Contain Element    name:prof-${PROF2}
+    Page Should Not Contain Element    name:prof-${PROF3}

@@ -301,6 +301,7 @@
           <button
             class="px-6 py-2 mt-4 text-white rounded"
             style="background-color: #37b47e"
+            name="saveBtn"
             @click="editProf()"
           >
             Save
@@ -317,6 +318,7 @@
                 rounded
                 hover:bg-gray-900
               "
+              name="cancelBtn"
             >
               Cancel
             </button>
@@ -448,19 +450,22 @@ export default {
 
           const formData = new FormData();
 
-          const fileName = file.value.files[0].name;
-          const fileExt = fileName.split('.');
+          if (file.value.files[0]) {
+            const fileName = file.value.files[0].name;
+            const fileExt = fileName.split('.');
 
-          if (
-            !file.value.files[0] ||
-            fileExt[1] != 'jpg' ||
-            fileExt[1] != 'jpeg' ||
-            fileExt[1] != 'png' ||
-            fileExt[1] != 'gif'
-          ) {
-            formData.append('profilePicture', profData.profilePicture);
+            if (
+              fileExt[1] == 'jpg' ||
+              fileExt[1] == 'jpeg' ||
+              fileExt[1] == 'png' ||
+              fileExt[1] == 'gif'
+            ) {
+              formData.append('image-file', file.value.files[0]);
+            } else {
+              formData.append('profilePicture', profData.profilePicture);
+            }
           } else {
-            formData.append('image-file', file.value.files[0]);
+            formData.append('profilePicture', profData.profilePicture);
           }
 
           formData.append('id', profData.id);
@@ -470,8 +475,6 @@ export default {
           formData.append('college', profData.college);
           formData.append('department', profData.department);
           formData.append('status', profData.status);
-          console.log('---------------');
-          console.log(file.value.files[0]);
 
           const res = await api.editProf(formData);
           if (res) {

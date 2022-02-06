@@ -45,7 +45,7 @@
         <div class="mt-4 justify-center">
           <input
             type="text"
-            placeholder="Email"
+            placeholder="john_doe@dlsu.edu.ph"
             class="
               w-full
               px-4
@@ -95,9 +95,9 @@
           >
             <div class="grid grid-cols-4 bg-gray-100">
               <!-- insert admins here -->
-              <div class="text-black ml-3">{{ items.fullName }}</div>
-              <div class="text-black ml-3">{{ items.email }}</div>
-              <div class="text-black ml-3">11/20/2021</div>
+              <div class="text-black ml-3 py-3">{{ items.fullName }}</div>
+              <div class="text-black ml-3 py-3">{{ items.email }}</div>
+              <div class="text-black ml-3 py-3">11/20/2021</div>
               <div>
                 <button
                   v-if="state.loggedUser != items.email"
