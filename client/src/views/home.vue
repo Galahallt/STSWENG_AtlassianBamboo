@@ -1301,10 +1301,9 @@ export default {
         const result = await api.getAllProfs();
         state.shownProfs = state.allProfs = result.data;
 
-        state.shownProfs.sort(compareLastName);
-
         if (state.allProfs.length !== 0) {
           state.empty = false;
+          state.shownProfs.sort(compareLastName);
         } else {
           state.empty = true;
         }

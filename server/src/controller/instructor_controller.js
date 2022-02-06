@@ -120,7 +120,7 @@ const instructorController = {
       return res.status(200).json(profs);
     } else {
       // send back empty array with appropriate status code
-      return res.status(400).json(profs);
+      return res.status(200).json(profs);
     }
   },
   getProf: async (req, res) => {
