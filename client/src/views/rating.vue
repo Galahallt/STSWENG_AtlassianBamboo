@@ -167,7 +167,7 @@
               >
                 <option value="All" selected>All</option>
                 <option v-for="tag in prof.tags" :value="tag.course" :key="tag">
-                  {{ tag }}
+                  {{ tag.course }}
                 </option>
               </select>
             </div>
