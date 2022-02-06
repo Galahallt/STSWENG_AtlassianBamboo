@@ -28,6 +28,8 @@ export const getProf = (profID) => API.get(`/professor/${profID}`);
 // rate api methods
 export const findRating = (rating) => API.post('/rating/findRating', rating);
 export const addRating = (rating) => API.post('/rating/addRating', rating);
+export const getAllRatings = (rating) =>
+  API.post('/rating/getAllRatings', { instructorID: rating });
 export const getInstructorRatings = (rating) =>
   API.patch('/rating/getInstructorRatings', rating);
 export const updateRating = (rating) =>

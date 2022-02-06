@@ -92,17 +92,42 @@
             <div
               class="flex md:px-9 flex-wrap relative tags-container max-w-full"
             >
-              <h1
-                class="course-tag text-lg p-2 m-1"
+              <div
+                class="text-lg m-1 flex border-2 border-gray-500"
                 v-for="code in prof.tags"
                 :value="code"
                 :key="code"
               >
-                {{ code }}
-              </h1>
+                <div class="course-tag p-2">{{ code }}</div>
+                <div class="bg-white p-2 green-text flex">
+                  <div>5</div>
+                  <div class="ml-2">
+                    <svg
+                      class="star"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 31 30"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M29.8122 10.7584L20.6381 9.42511L16.537 1.11095C16.425 0.883314 16.2407 0.699037 16.0131 0.587025C15.4422 0.305189 14.7484 0.540052 14.463 1.11095L10.3619 9.42511L1.18781 10.7584C0.934878 10.7945 0.703628 10.9138 0.526577 11.0944C0.312532 11.3144 0.194584 11.6104 0.198649 11.9173C0.202714 12.2243 0.32846 12.517 0.548256 12.7313L7.18585 19.2027L5.61769 28.3406C5.58092 28.5532 5.60444 28.7718 5.68559 28.9717C5.76674 29.1716 5.90228 29.3447 6.07682 29.4715C6.25137 29.5983 6.45795 29.6736 6.67313 29.689C6.88831 29.7043 7.10348 29.659 7.29425 29.5583L15.5 25.2441L23.7058 29.5583C23.9298 29.6776 24.19 29.7173 24.4393 29.6739C25.068 29.5655 25.4907 28.9694 25.3823 28.3406L23.8142 19.2027L30.4518 12.7313C30.6324 12.5542 30.7517 12.323 30.7878 12.07C30.8854 11.4377 30.4445 10.8524 29.8122 10.7584Z"
+                        fill="#FFCD1E"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <!-- <h1
+                class="course-tag text-lg p-2 m-1"
+                v-for="code in prof.tags"
+                :value="code"
+                :key="code"
+              ></h1>
+              <h1 class="bg-white text-lg p-2 m-1">hi</h1> -->
             </div>
           </div>
 
+          <!-- Rating -->
           <div class="rating-cont flex flex-row mt-6">
             <h1 class="text-2xl rating-text">Rating:</h1>
             <h1 class="text-2xl md:pl-10 px-2 green-text">
@@ -283,9 +308,26 @@
                 </h1>
                 <hr class="line" />
 
-                <p class="mt-7">
-                  How was your overall experience with this instructor?
-                </p>
+                <div class="flex">
+                  <p class="mt-7">Select course to rate:</p>
+                  <div class="mt-6 ml-4">
+                    <select
+                      class="rounded-lg w-44 h-8 pl-2 border-2"
+                      name="collegeFilter"
+                      v-model="state.rateCourse"
+                      @change="checkFilterCollege"
+                    >
+                      <option selected disabled hidden>Choose One</option>
+                      <option
+                        v-for="code in prof.tags"
+                        :value="code"
+                        :key="code"
+                      >
+                        {{ code }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
 
                 <star-rating
                   v-model:rating="state.rating"
@@ -569,6 +611,7 @@ export default {
       isCommentEmpty: false,
       isCourseCodeIncomplete: true,
       isSubmitDisabled: true,
+      rateCourse: 'Choose One',
     });
     const router = useRoute();
     const prof = reactive({
@@ -679,9 +722,11 @@ export default {
       try {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
+          course: state.rateCourse,
           userEmail: email,
-          profEmail: prof.email,
+          profID: prof.prof_id,
         };
+        console.log(rate);
         const checkExists = await api.findRating(rate);
         if (checkExists.data != null) {
           console.log('EXISTS');
@@ -700,6 +745,7 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const rate = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
           instructorEmail: prof.email,
         };
@@ -715,7 +761,8 @@ export default {
         console.log(err.response.data);
       }
     }
-    // display rating
+
+    // display average of ALL ratings
     async function avgRating() {
       try {
         const instructor = {
@@ -731,6 +778,16 @@ export default {
         console.log(err.response.data);
       }
     }
+
+    // display average PER course
+    async function avgPerCourse() {
+      try {
+        const res = await api.getAllRatings(prof.prof_id);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     // update rating in backend
     async function updateRating() {
       try {
@@ -738,6 +795,7 @@ export default {
         const email = JSON.parse(localStorage.getItem('user')).email;
         const instructor = {
           rating: state.rating,
+          course: state.rateCourse,
           userEmail: email,
           instructorEmail: prof.email,
         };
