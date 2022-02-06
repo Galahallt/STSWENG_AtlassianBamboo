@@ -166,8 +166,8 @@
                 @change="filterReviews"
               >
                 <option value="All" selected>All</option>
-                <option v-for="code in prof.tags" :value="code" :key="code">
-                  {{ code }}
+                <option v-for="tag in prof.tags" :value="tag.course" :key="tag">
+                  {{ tag }}
                 </option>
               </select>
             </div>
