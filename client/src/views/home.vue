@@ -33,6 +33,7 @@
         </div>
         <div>
           <button
+            v-if="state.isAdministrator"
             data-test="addProfessorButton"
             name="addProfessorButton"
             class="
@@ -514,6 +515,7 @@
           </div>
         </addProfModal>
         <button
+          v-if="state.isAdministrator"
           name="addMultipleProfessorsButton"
           class="
             px-6
