@@ -257,7 +257,7 @@
                   <p>Course code:</p>
                   <input
                     v-on:keyup="areFieldsValid"
-                    v-model="state.course_code"
+                    v-model.trim="state.course_code"
                     name="course-code"
                     class="course-code mx-3 px-1 text-sm"
                     placeholder="Ex. GERIZAL"
@@ -836,7 +836,7 @@ export default {
             user_id: user.data.id,
             userName: user.data.fullName,
             instructor_id: prof.prof_id,
-            course_code: state.course_code,
+            course_code: state.course_code.toUpperCase(),
             review: state.comment,
           };
           const res = await api.addReview(review);
