@@ -413,44 +413,48 @@
                 class="relative manrope-bold text-gray-600 text-md mt-4"
                 >Courses:</label
               >
-              <div class="tag-div">
-                <input
-                  name="courses"
-                  class="
-                    ml-14
-                    input-text-field
-                    sm:w-16
-                    md:w-32
-                    lg:w-64
-                    uppercase
-                    courses_input
-                    px-2
-                  "
-                  v-model.trim="newTag"
-                  type="text"
-                  @keydown.enter="addTag(newTag)"
-                  @keydown.prevent.tab="addTag(newTag)"
-                  @keydown.delete="
-                    newTag.length || removeTag(addProfData.courses.length - 1)
-                  "
-                  :style="{
-                    'padding-left': `${paddingLeft}px`,
-                  }"
-                  :class="{
-                    'border-red-500': v.courses.$error || state.tagValidation,
-                  }"
-                />
+              <div>
+                <div class="tag-div">
+                  <input
+                    name="courses"
+                    class="
+                      ml-14
+                      input-text-field
+                      sm:w-16
+                      md:w-32
+                      lg:w-64
+                      uppercase
+                      courses_input
+                      px-2
+                    "
+                    v-model.trim="newTag"
+                    type="text"
+                    @keydown.enter="addTag(newTag)"
+                    @keydown.prevent.tab="addTag(newTag)"
+                    @keydown.delete="
+                      newTag.length || removeTag(addProfData.courses.length - 1)
+                    "
+                    :style="{
+                      'padding-left': `${paddingLeft}px`,
+                    }"
+                    :class="{
+                      'border-red-500': v.courses.$error || state.tagValidation,
+                    }"
+                  />
 
-                <ul class="tags ml-14" ref="tagsUl">
-                  <li
-                    v-for="(tag, index) in addProfData.courses"
-                    :key="tag"
-                    class="tag"
-                  >
-                    {{ tag }}
-                    <button class="delete" @click="removeTag(index)">x</button>
-                  </li>
-                </ul>
+                  <ul class="tags ml-14" ref="tagsUl">
+                    <li
+                      v-for="(tag, index) in addProfData.courses"
+                      :key="tag"
+                      class="tag"
+                    >
+                      {{ tag }}
+                      <button class="delete" @click="removeTag(index)">
+                        x
+                      </button>
+                    </li>
+                  </ul>
+                </div>
                 <p
                   class="
                     ml-14
@@ -463,7 +467,7 @@
                 >
                   {{ v.courses.$errors[0].$message }}
                 </p>
-                <p
+                <div
                   class="
                     ml-14
                     text-red-500
@@ -473,13 +477,13 @@
                   "
                   v-if="state.tagValidation"
                 >
-                  Each course should only contain 7 characters and should not
-                  repeat.
-                </p>
+                  <div>Each course should only contain 7</div>
+                  <div>characters and should not repeat.</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="mt-5">
+          <div class="mt-8">
             <p
               class="
                 text-red-500
