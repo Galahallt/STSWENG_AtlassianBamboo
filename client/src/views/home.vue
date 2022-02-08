@@ -467,7 +467,7 @@
                 >
                   {{ v.courses.$errors[0].$message }}
                 </p>
-                <p
+                <div
                   class="
                     ml-14
                     text-red-500
@@ -477,13 +477,13 @@
                   "
                   v-if="state.tagValidation"
                 >
-                  Each course should only contain 7 characters and should not
-                  repeat.
-                </p>
+                  <div>Each course should only contain 7</div>
+                  <div>characters and should not repeat.</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="mt-5">
+          <div class="mt-8">
             <p
               class="
                 text-red-500
