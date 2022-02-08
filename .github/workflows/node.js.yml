@@ -11,7 +11,6 @@ on:
 
 env:
   NODE_ENV: ${{ secrets.NODE_ENV }}
-  MONGO_URI: ${{ secrets.MONGO_URI }}
 
 jobs:
   build:
@@ -31,7 +30,6 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo MONGO_URI =${{ env.MONGO_URI }} >> .env
           echo NODE_ENV =${{ env.NODE_ENV }} >> .env
           cat .env
 
